@@ -2296,17 +2296,17 @@ Contudo acreditamos que os incentivos financeiros a adoção da elasticidade, al
 
 
 %TODO: citações abaixo
-%\begin{verbatim}
-%[Shankar2018]
-%many linear algebra workloads have large dynamic
-%range in memory and computation requirements over
-%the course of their execution.
-%--- O MESMO PODE SER DITO SOBRE O CALCULO DE BEST-FIT DE MODELOS DE EVOLUÇÃO FILOGENÉTICA
-%
-%[Jonas2017a]
-%Therefore, a simple
-%function interface that captures sufficient local state, performs computation remotely, and returns the result is more than adequate.
-%\end{verbatim}
+\begin{verbatim}
+[Shankar2018]
+many linear algebra workloads have large dynamic
+range in memory and computation requirements over
+the course of their execution.
+--- O MESMO PODE SER DITO SOBRE O CALCULO DE BEST-FIT DE MODELOS DE EVOLUÇÃO FILOGENÉTICA
+
+[Jonas2017a]
+Therefore, a simple
+function interface that captures sufficient local state, performs computation remotely, and returns the result is more than adequate.
+\end{verbatim}
 
 
 
@@ -3793,13 +3793,13 @@ Os resultados obtidos por meio desta estratégia serão abordados em detalhes na
 \label{sec:metodologia-etapas-modelo}
 
 %TODO: falar que até publicações reconhecidas decidiram empiricamente.
-%\begin{verbatim}
-%[Shankar2018]
-%Ttimeout
-%We use simple heuristics and empirical experiments to decide
-%parameters, i.e., scaling factor s f and Ttimeout . We use simple heuristics and empirical experiments to decide
-%these two parameters and leave more rigorous investiga-tion for future work. We set Ttimeout = 10s, which is the average start-up latency
-%\end{verbatim}
+\begin{verbatim}
+[Shankar2018]
+Ttimeout
+We use simple heuristics and empirical experiments to decide
+parameters, i.e., scaling factor s f and Ttimeout . We use simple heuristics and empirical experiments to decide
+these two parameters and leave more rigorous investiga-tion for future work. We set Ttimeout = 10s, which is the average start-up latency
+\end{verbatim}
 
 
 A avaliação do modelo proposto se dará por meio da sua execução em ambiente computacional o mais próximo possível daquele onde se dará a coleta de métricas sobre o \textit{software} jModelTest, mantendo configurações de provedores de computação em nuvem, tipos e variedades de instâncias/VMs e sistemas operacionais.
@@ -4435,20 +4435,20 @@ Desta forma todas a criação e remoção do ambiente necessário para execuçã
 
 
 
-%\begin{verbatim}
-%cenário old
-%	amostras
-%	std-dev
-%	durations
-%	eficiencia conforme recursos
-%\end{verbatim}
-%\begin{verbatim}
-%potencial pra recursos desperdiçados no final dos estágios.
-%4 cpus disponíveis e só duas executando porque tá acabando os jobs
-%problema só piora com mais cpus
-%grafico de cpu usage da i-0b11522f2358bd522 = https://us-east-2.console.aws.amazon.com/cloudwatch/home?region=us-east-2#metricsV2:graph=~(metrics~(~(~'AWS*2fEC2~'CPUUtilization~'InstanceId~'i-0b11522f2358bd522~(stat~'Minimum)))~view~'timeSeries~stacked~false~region~'us-east-2~start~'-P7D~end~'P0D);search=0b11522f2358bd522;namespace=AWS/EC2;dimensions=InstanceId
-%.
-%\end{verbatim}
+\begin{verbatim}
+cenário old
+	amostras
+	std-dev
+	durations
+	eficiencia conforme recursos
+\end{verbatim}
+\begin{verbatim}
+potencial pra recursos desperdiçados no final dos estágios.
+4 cpus disponíveis e só duas executando porque tá acabando os jobs
+problema só piora com mais cpus
+grafico de cpu usage da i-0b11522f2358bd522 = https://us-east-2.console.aws.amazon.com/cloudwatch/home?region=us-east-2#metricsV2:graph=~(metrics~(~(~'AWS*2fEC2~'CPUUtilization~'InstanceId~'i-0b11522f2358bd522~(stat~'Minimum)))~view~'timeSeries~stacked~false~region~'us-east-2~start~'-P7D~end~'P0D);search=0b11522f2358bd522;namespace=AWS/EC2;dimensions=InstanceId
+.
+\end{verbatim}
 
 
 Visando obter resultados de alta confiabilidade, uma vez que estes formariam a régua sobre a qual se apoiariam as medidas do modelo proposto foram realizadas quase mil execuções dos testes de adequação de sistemas de evolução molecular seguindo os arquivos, parâmetros e cenários definidos na \autoref{sec:metodologia-etapasecenarios}.
@@ -4503,22 +4503,22 @@ Apesar da relativamente alta variação encontrada no cenário $C_{j8}$ quando c
 
 
 \section{\textsf{He}--lastic}
-%\begin{verbatim}
-%cenário new
-%	amostras
-%	std-dev
-%	durations
-%
-%	só lambda
-%	só batch
-%	mixed
-%		batch ratio
-%		runtime ratio pra abordar o overhead
-%	warm04-60-768-36
-%		falar que esse cenário foi um tira-teima pra ver se o tempo a mais era em função das operações de elasticidade ou dos retries
-%	1624-stamatakis
-%		impacto pode ser porque teve bastante troca de máquinas e a cada troca incorre custos de subir uma VM, botar a camada de ECS, baixar e instalar o contêiner, pra só então executar
-%\end{verbatim}
+\begin{verbatim}
+cenário new
+	amostras
+	std-dev
+	durations
+
+	só lambda
+	só batch
+	mixed
+		batch ratio
+		runtime ratio pra abordar o overhead
+	warm04-60-768-36
+		falar que esse cenário foi um tira-teima pra ver se o tempo a mais era em função das operações de elasticidade ou dos retries
+	1624-stamatakis
+		impacto pode ser porque teve bastante troca de máquinas e a cada troca incorre custos de subir uma VM, botar a camada de ECS, baixar e instalar o contêiner, pra só então executar
+\end{verbatim}
 
 %=======================================================================
 % Conclusão
@@ -4569,10 +4569,10 @@ Tais cenários serão executados de acordo com uma variedade de conjuntos de dad
 %TODO: Valorizar a análise de custo benefício \autoref{sec:modelo-custben}
 
 %TODO
-%[Shankar2018]
-%As datacenters continue
-%their push towards disaggregation, platforms like numpy-wren open up a fruitful area of research for applications
-%that have long been dominated by traditional HPC.
+[Shankar2018]
+As datacenters continue
+their push towards disaggregation, platforms like numpy-wren open up a fruitful area of research for applications
+that have long been dominated by traditional HPC.
 
 
 
@@ -4595,9 +4595,9 @@ Com base nestas contribuições esperamos, ao longo dos próximos meses, elabora
 
 
 %TODO
-%[Shankar2018]
-%Pipelining: Every LAmbdaPACK instruction block has three execution phases: read, compute and write. To improve CPU utilization and I/O efficiency, we allow a worker to fetch multiple tasks and run them in parallel. The number of parallel tasks is called pipeline width. Ide- ally, with a single-core worker, we can have at most three tasks running in parallel, each doing read, compute and write respectively.
-%	--- ISSO PODE MELHORAR A PERFORMANCE DE TAREFAS 'CURTAS DEMAIS' POR REDUZIR O OVERHEAD
+[Shankar2018]
+Pipelining: Every LAmbdaPACK instruction block has three execution phases: read, compute and write. To improve CPU utilization and I/O efficiency, we allow a worker to fetch multiple tasks and run them in parallel. The number of parallel tasks is called pipeline width. Ide- ally, with a single-core worker, we can have at most three tasks running in parallel, each doing read, compute and write respectively.
+	--- ISSO PODE MELHORAR A PERFORMANCE DE TAREFAS 'CURTAS DEMAIS' POR REDUZIR O OVERHEAD
 
 
 %TODO: estabelecer uma métrica capaz de mapear os cenários de recursos fixos, elásticos e faas sem a necessidade do financeiro
@@ -4614,50 +4614,6 @@ A elaboração do protótipo que permitirá avaliar nosso modelo também está c
 Contudo, como abordado na \autoref{ch:resultados}, os autores já obtiveram acesso e validaram o código fonte da ferramenta jModelTest e continuarão o desenvolvimento com ajuda dos prévios conhecimentos em ambientes de computação em nuvem.
 Enfim será possível traçar análises e conclusões a respeito da eficácia e da eficiência do modelo proposto, sendo atributos de especial interesse a eficiência computacional e econômica.
 
-
-%
-%\section{Cronograma}
-%
-%
-%\begin{table}[tb]
-%%	Prevista para janeiro e tua defesa em fevereiro.
-%	\centering
-%	\caption{Cronograma de atividades previstas para os próximos meses}
-%	\label{tab:cronograma}
-%	\small
-%	\begin{tabularx}{\textwidth}{l||Y|Y|Y|Y|Y|Y||Y|Y|}
-%		\hline
-%		\multicolumn{1}{c||}{\multirow{2}{*}{Atividade}} & \multicolumn{6}{c||}{2018} & \multicolumn{2}{c|}{2019} \\ \cline{2-9} 
-%		\multicolumn{1}{c||}{} & Jul & Ago & Set & Out & Nov & Dez & Jan & Fev \\ 
-%		\hline
-%		% =============================
-%		%Entrega da Proposta de Dissertação & \checked &  &  &  &  &  &  &  &  \\ \hline
-%		Defesa da Proposta de Dissertação &  & \checked &  &  &  &  &  &  \\ \hline
-%		Desenvolvimento do Protótipo & \checked & \checked & \checked & \checked &  &  &  &  \\ \hline
-%		Execução dos Cenários de Avaliação &  &  &  & \checked & \checked &  &  &  \\ \hline
-%		Análise dos Resultados &  &  &  &  & \checked & \checked &  &  \\ \hline
-%		Escrita de Publicações Relacionadas & \checked & \checked & \checked & \checked & \checked & \checked &  &  \\ \hline
-%		Escrita da Dissertação &  &  &  &  & \checked & \checked & \checked &  \\ \hline
-%		Entrega da Dissertação &  &  &  &  &  &  & \checked &  \\ \hline
-%		Defesa da Dissertação &  &  &  &  &  &  &  & \checked \\ \hline
-%		% =============================
-%	\end{tabularx}
-%	\fonte{Elaborado pelo autor.}
-%\end{table}
-%
-%
-%Podemos determinar como concluídas até o presente momento as tarefas de mapeamento do estado da arte e familiarização com conceitos e práticas da filogenética, especialmente relevantes sob a luz do projeto de colaboração com o laboratório de biologia da UNISINOS no contexto do projeto aprovado junto à FAPERGS.
-%Como resultado deste estudo elaboramos uma taxonomia para classificar os projetos de softwares para filogenética em termos de suas categorias, métodos e finalidades.
-%
-%
-%Outro produto do mapeamento do estado da arte é a identificação de uma aplicação candidata, no caso o jModelTest, e a elaboração de um modelo computacional capaz de empregar a elasticidade de recursos oriunda da computação em nuvem para aumentar a eficiência computaciona e econômica da aplicação.
-%Ainda no contexto do modelo estabelecemos os critérios e as estratégias de elasticidade, o que culminou em um modelo com duas camadas de elasticidade baseadas em FaaS e Contêineres.
-%
-%
-%Sombram neste âmbito duas grandes pendências no que diz respeito ao desenvolvimento de um protótipo capaz de colocar em prática nossas ideias e a execução de cenários de avaliação objetivando coletar métricas relevantes à nossa proposta para, enfim, executar a análise dos resultados obtidos, traçando paralelos com o projeto candidato em seu estado atual.
-%
-%
-%Ao agendar as tarefas aqui descritas com as entregas e obrigações no contexto do programa de Mestrado da UNISINOS, assim como iniciativas para publicação de resultados, chegamos ao cronograma final de atividades proposto na \autoref{tab:cronograma} e que guiará o restante dos esforços planejados no escopo desta dissertação.
 
 
 
