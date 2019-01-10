@@ -17,6 +17,7 @@
 % Este documento é de domínio público.
 %
 
+%TODO: verificar onde eu falo do Galante pra confirmar se não tô falando bobagem
 
 %TODO: trocar modelos (-> sistemas) de evolução (-> substituição) pra ficar correto e consistente. botar um aviso na parte de fundamentação dizendo que os modelos também serão chamados de sistemas
 
@@ -89,7 +90,7 @@
 
 \usepackage{enumitem}
 
-\usepackage{color, colortbl}
+\usepackage{color, xcolor, colortbl}
 
 %hidelinks
 \usepackage{xurl}
@@ -169,10 +170,10 @@
 \autor{Aubin}{Mateus Rauback}
 \titulo{\textsf{H\MakeLowercase{e}}--lastic}
 \subtitulo{
-	um modelo de elasticidade em nuvem em duas camadas para acelerar o cálculo de \textit{best--fit} em sistemas de evolução filogenética}
+	um modelo de elasticidade em nuvem baseado em duas camadas para acelerar o cálculo de \textit{best--fit} em sistemas de evolução filogenética}
 \orientador[Prof.~Dr.]{Righi}{Rodrigo da Rosa}
 \local{São Leopoldo}
-\ano{2018}
+\ano{2019}
 
 %% dados específicos para Dissertação de Mestrado
 \unidade{Unidade Acadêmica de Pesquisa e Pós-Graduação}
@@ -530,7 +531,7 @@ Para viabilizar a resposta à esta pergunta se torna necessário esclarecer os e
 	
 	\item \textbf{Filogenética:} também apresentada por meio da fundamentação teórica na \autoref{sec:bioinformatica};
 	
-	\item \textbf{Eficiente Computacional e Economicamente:} através do detalhamento das estratégias de elasticidade (\autoref{sec:estrategias-elasticidade}) formulamos uma metodologia de avaliação (\autoref{sec:modelo-metodologia}) que será fundamental para estabelecer a eficiência de nossa proposta.
+	\item \textbf{Eficiente Computacional e Economicamente:} através do detalhamento das estratégias de elasticidade (\autoref{sec:estrategias-elasticidade}) formulamos uma metodologia de avaliação (\autoref{ch:modelo-metodologia}) que será fundamental para estabelecer a eficiência de nossa proposta.
 \end{itemize}
 
 
@@ -2294,23 +2295,18 @@ Contudo acreditamos que os incentivos financeiros a adoção da elasticidade, al
 \label{ch:modelo}
 
 
-%TODO
-\begin{verbatim}
-[Shankar2018]
-Traditionally, such workloads are run on managed high performance
-computing (HPC) clusters, access to which is often behind walls of paperwork and long job wait queues.
-
-
-[Shankar2018]
-many linear algebra workloads have large dynamic
-range in memory and computation requirements over
-the course of their execution.
---- O MESMO PODE SER DITO SOBRE O CALCULO DE BEST-FIT DE MODELOS DE EVOLUÇÃO FILOGENÉTICA
-
-[Jonas2017a]
-Therefore, a simple
-function interface that captures sufficient local state, performs computation remotely, and returns the result is more than adequate.
-\end{verbatim}
+%TODO: citações abaixo
+%\begin{verbatim}
+%[Shankar2018]
+%many linear algebra workloads have large dynamic
+%range in memory and computation requirements over
+%the course of their execution.
+%--- O MESMO PODE SER DITO SOBRE O CALCULO DE BEST-FIT DE MODELOS DE EVOLUÇÃO FILOGENÉTICA
+%
+%[Jonas2017a]
+%Therefore, a simple
+%function interface that captures sufficient local state, performs computation remotely, and returns the result is more than adequate.
+%\end{verbatim}
 
 
 
@@ -2400,7 +2396,7 @@ Quando levamos em conta a importância da correta seleção do sistema de substi
 		\caption{Linha do tempo do projeto jModelTest: histórico de publicações relevantes para compreensão do contexto, objetivos e evolução da ferramenta}
 		\label{fig:jmodeltest-history}
 		\begin{NoHyper}
-		\begin{chronology}[4]{1996}{2018}{\defaultFigureWidth\textwidth}
+		\begin{chronology}[4]{1996}{2019}{\defaultFigureWidth\textwidth}
 			\eventUP{1997}{Base Teórica --- \citetexto{Huelsenbeck1997}}
 			\eventDOWN{1998}{MODELTEST --- \citetexto{Posada1998}}
 			\eventUP{2003}{Guia de uso MODELTEST --- \citetexto{Posada2003a}}
@@ -2440,7 +2436,7 @@ Desde o estabelecimento das fundações teóricas em 1997\footnote{
 }, apresentamos na \autoref{fig:jmodeltest-history} uma linha do tempo com os pilares que trouxeram o projeto até os dias de hoje, seja no quesito autores\footnote{
 	Darriba parece ser o atual responsável pelo projeto, tendo herdado de Posada que o iniciou em colaboração com Crandall.
 } (de Crandall para Posada e, por fim, Darriba) ou no que diz respeito a softwares\footnote{
-	MODELTEST$\dagger$ foi o precursor direto do jModelTest que, no princípio, trabalhava apenas com um conjunto restrito de modelos de substituição nucleotídica, no entanto ao longo da história suas funcionalidades parecem ter se fundido com o ProtTest$\dagger$ herdando a capacidade de avaliar modelos de substituição proteica e aumentando a quantidade de modelos disponíveis para teste de adequação.
+	MODELTEST\textsuperscript{\dag} foi o precursor direto do jModelTest que, no princípio, trabalhava apenas com um conjunto restrito de modelos de substituição nucleotídica, no entanto ao longo da história suas funcionalidades parecem ter se fundido com o ProtTest\textsuperscript{\dag} herdando a capacidade de avaliar modelos de substituição proteica e aumentando a quantidade de modelos disponíveis para teste de adequação.
 } (começando no MODELTEST, evoluindo para jModelTest e unindo forças com ProtTest).
 
 
@@ -3066,7 +3062,7 @@ Para este fim são de grande valia o conjunto de equações detalhados na \autor
 Desta forma, para os fins deste trabalho, definimos a granularidade do paralelismo conforme:
 \begin{quote}
 	%TODO: Definição é quando tens uma palavra ou expressão nova. Por exemplo: "granulosidade adaptativa"... - minha intenção era destacar alguns pontos determinantes pro entendimento das métricas de avaliação e resultados mais a frente. Acho que vou trocar para ‘decisões’ então. [gmail FMfcgxwBTsfLXGPKcBNKhxLncfDftgCR]
-	\textbf{Definição 1 --- da Granularidade:} a granularidade de uma execução do modelo \textsf{He}--lastic, e consequentemente do \textit{software} jModelTest, pode ser determinada através da combinação entre o conteúdo do arquivo de múltiplos alinhamentos de sequências moleculares, fornecido como parâmetro de entrada, e os parâmetros escolhidos pelo usuário que determinarão, em última instância, quais sistemas de evolução farão parte do teste de adequação.
+	\textbf{Decisão 1 --- da Granularidade:} a granularidade de uma execução do modelo \textsf{He}--lastic, e consequentemente do \textit{software} jModelTest, pode ser determinada através da combinação entre o conteúdo do arquivo de múltiplos alinhamentos de sequências moleculares, fornecido como parâmetro de entrada, e os parâmetros escolhidos pelo usuário que determinarão, em última instância, quais sistemas de evolução farão parte do teste de adequação.
 \end{quote}
 
 
@@ -3173,7 +3169,7 @@ Desta forma, mantendo-se fiel ao conceito de \textit{utility--computing} habilit
 Uma desvantagem em relação à métrica de custo financeiro está na sua variabilidade ao longo do tempo e entre provedores de computação em nuvem, uma vez que preços tendem a se alterar conforme são disponibilizadas novas funcionalidades e novos tipos de hardware.
 \begin{quote}
 	%TODO: Definição é quando tens uma palavra ou expressão nova. Por exemplo: "granulosidade adaptativa"... - minha intenção era destacar alguns pontos determinantes pro entendimento das métricas de avaliação e resultados mais a frente. Acho que vou trocar para ‘decisões’ então. [gmail FMfcgxwBTsfLXGPKcBNKhxLncfDftgCR]
-	\textbf{Definição 2 --- da Métrica de Avaliação:} nos cenários que contemplem a composição entre múltiplos modelos de execução (fixo, elástico e FaaS) a métrica Financeira será utilizada como baliza para determinar as relações de eficiência. Tal definição se apoia na associatividade de custos, definida por \citetexto{Armbrust:EECS-2009-28} ao afirmar que, em um ambiente de computação em nuvem usar 1000 máquinas por uma hora equivale a usar uma máquina por 1000 horas.
+	\textbf{Decisão 2 --- da Métrica de Avaliação:} nos cenários que contemplem a composição entre múltiplos modelos de execução (fixo, elástico e FaaS) a métrica Financeira será utilizada como baliza para determinar as relações de eficiência. Tal definição se apoia na associatividade de custos, definida por \citetexto{Armbrust:EECS-2009-28} ao afirmar que, em um ambiente de computação em nuvem usar 1000 máquinas por uma hora equivale a usar uma máquina por 1000 horas.
 \end{quote}
 
 
@@ -3184,7 +3180,7 @@ Ainda assim a métrica de custo financeiro, além de ser um forma eficaz de prov
 Resultando, enfim, nas definições 2 e 3:
 \begin{quote}
 	%TODO: Definição é quando tens uma palavra ou expressão nova. Por exemplo: "granulosidade adaptativa"... - minha intenção era destacar alguns pontos determinantes pro entendimento das métricas de avaliação e resultados mais a frente. Acho que vou trocar para ‘decisões’ então. [gmail FMfcgxwBTsfLXGPKcBNKhxLncfDftgCR]
-	\textbf{Definição 3 --- do Provedor de Computação em Nuvem:} para os fins do presente trabalho fica estabelecida a restrição referente ao uso de um único provedor de computação em nuvem. Esta restrição não é imposta pelo modelo \textsf{He}--lastic, que é indiferente a uma possível implantação \textit{multi--cloud} em função da sua arquitetura desacoplada através de componentes independentemente escaláveis, contudo tem por objetivo manter uma comparação justa entre os diferentes modelos de execução, evitando discrepâncias no que tange à performance dos recursos computacionais subjacentes e à precificação dos mesmos.
+	\textbf{Decisão 3 --- do Provedor de Computação em Nuvem:} para os fins do presente trabalho fica estabelecida a restrição referente ao uso de um único provedor de computação em nuvem. Esta restrição não é imposta pelo modelo \textsf{He}--lastic, que é indiferente a uma possível implantação \textit{multi--cloud} em função da sua arquitetura desacoplada através de componentes independentemente escaláveis, contudo tem por objetivo manter uma comparação justa entre os diferentes modelos de execução, evitando discrepâncias no que tange à performance dos recursos computacionais subjacentes e à precificação dos mesmos.
 \end{quote}
 
 
@@ -3201,26 +3197,31 @@ Resultando, enfim, nas definições 2 e 3:
 		\label{tab:modelo-custben-faas}
 		\vspace{1ex}
 		%\small
+		% qualidative 3-class Pastel2
+		\definecolor{c1}{HTML}{b3e2cd}%
+		\definecolor{c2}{HTML}{fdcdac}%
+		\definecolor{c3}{HTML}{cbd5e8}%
+		%
 		\begin{tabularx}{\textwidth}{rrrrrWWrr}
 			\toprule
-			& \multicolumn{1}{c}{Memória} & \multicolumn{1}{c}{CPU\textsuperscript{\ddag}} & \multicolumn{1}{c}{\begin{tabular}[c]{@{}c@{}}Tempo\\ Efetivo\end{tabular}} & \multicolumn{1}{c}{\begin{tabular}[c]{@{}c@{}}Tempo\\ Máximo\end{tabular}} & {$y$} & {$t$} & \rotatebox[origin=c]{\tabelaAngulo}{\begin{tabular}[c]{@{}c@{}}$ Custo $ \\[1ex]\end{tabular}} & \rotatebox[origin=c]{\tabelaAngulo}{\begin{tabular}[c]{@{}c@{}}$ Financeiro $ \\[3ex]\end{tabular}} \\ 
+			\# & \multicolumn{1}{c}{Memória} & \multicolumn{1}{c}{CPU\textsuperscript{\ddag}} & \multicolumn{1}{c}{\begin{tabular}[c]{@{}c@{}}Tempo\\ Efetivo\end{tabular}} & \multicolumn{1}{c}{\begin{tabular}[c]{@{}c@{}}Tempo\\ Máximo\end{tabular}} & {$y$} & {$t$} & \rotatebox[origin=c]{\tabelaAngulo}{\begin{tabular}[c]{@{}c@{}}$ Custo $ \\[1ex]\end{tabular}} & \rotatebox[origin=c]{\tabelaAngulo}{\begin{tabular}[c]{@{}c@{}}$ Financeiro $ \\[3ex]\end{tabular}} \\ 
 			\midrule
 			1 & 128 & 8\% &  & 00:11,250 & 2 & 113 & 225 & 0,000023 \\
 			2 & 256 & 17\% &  & 00:22,500 & 4 & 225 & 900 & 0,000094 \\
-			\rowcolor{green}
+			\rowcolor{c1}
 			3 & 384 & 25\% &  & 00:45,000 & 6 & 450 & 2700 & 0,000281 \\
-			\rowcolor{green}
+			\rowcolor{c1}
 			4 & 768 & 50\% & 00:22,500 & 01:30,000 & 12 & 225 & 2700 & 0,000281 \\
-			\rowcolor{red}
+			\rowcolor{c2}
 			5 & 768 & 50\% &  & 03:00,000 & 12 & 1800 & 21600 & 0,002251 \\
 			6 & 1536 & 100\% &  & 01:00,000 & 24 & 600 & 14400 & 0,001500 \\
-			\rowcolor{red}
+			\rowcolor{c2}
 			7 & 1536 & 100\% &  & 01:30,000 & 24 & 900 & 21600 & 0,002251 \\
 			8 & 1536 & 100\% &  & 03:00,000 & 24 & 1800 & 43200 & 0,004501 \\
 			9 & 1920 & 125\% &  & 06:00,000 & 30 & 3600 & 108000 & 0,011253 \\
-			\rowcolor{blue}
+			\rowcolor{c3}
 			10 & 2560 & 170\% &  & 12:00,000 & 40 & 7200 & 288000 & 0,030007 \\
-			\rowcolor{blue}
+			\rowcolor{c3}
 			11 & 3008 & 200\% & 10:12,766 & 15:00,000 & 47 & 6128 & 288000 & 0,030007 \\
 			12 & 3008 & 200\% &  & 15:00,000 & 47 & 9000 & 423000 & 0,044073 \\ 
 			\bottomrule
@@ -3312,7 +3313,7 @@ Desta forma uma análise quanto ao teto de gastos é fundamental para que sejam 
 		\centering
 		\begin{tabulary}{\textwidth}{rrrrrr}
 			\toprule
-			& Amostras ($ t $) & vCPUs & Custo da Amostra & $ Custo_{elastico} $ & $ Financeiro_{elastico} $ \\ \midrule
+			\# & Amostras ($ t $) & vCPUs & Custo da Amostra & $ Custo_{elastico} $ & $ Financeiro_{elastico} $ \\ \midrule
 			1 & 10 & 16 & 160 & 160 & 6,80 \\
 %			\cmidrule{2-6}
 			\cdashline{1-6}[.4pt/1pt]
@@ -3605,7 +3606,7 @@ Abaixo são descritas as quatro etapas da avaliação e seus respectivos cenári
 		\centering
 		\begin{tabular*}{\textwidth}{@{\hspace{0.75em}}@{\extracolsep{\fill}}r@{~--~}lrrrr}
 \toprule
-\multicolumn{1}{c}{ID} & \multicolumn{1}{l}{Arquivo} & \multicolumn{1}{c}{Sequências} & \multicolumn{1}{c}{Comprimento} & \multicolumn{1}{c}{\begin{tabular}[c]{@{}c@{}}Quantidade \\ de Sistemas \\ de Evolução\end{tabular}} & \multicolumn{1}{c}{\begin{tabular}[c]{@{}c@{}}Tempo\\ Total de \\ Execução\end{tabular}} \\ 
+\multicolumn{1}{c}{\#} & \multicolumn{1}{l}{Arquivo} & \multicolumn{1}{c}{Sequências} & \multicolumn{1}{c}{Comprimento} & \multicolumn{1}{c}{\begin{tabular}[c]{@{}c@{}}Quantidade \\ de Sistemas \\ de Evolução\end{tabular}} & \multicolumn{1}{c}{\begin{tabular}[c]{@{}c@{}}Tempo\\ Total de \\ Execução\end{tabular}} \\ 
 \midrule
 01 & aP6 & 6 & 631 & 288 & 0:00:40 \\
 02 & rodents & 8 & 1078 & 256 & 0:03:20 \\
@@ -3641,7 +3642,7 @@ Abaixo são descritas as quatro etapas da avaliação e seus respectivos cenári
 			Parâmetro & Descrição \\ 
 			\midrule
 			Esquemas~de Substituição & Quantidade de sistemas de evolução molecular a ser incluídos no teste de adequação\textsuperscript{\dag} \newline 
-			Opções disponíveis são [3, 5, 7, 11, 203] \\
+			Opções disponíveis são \{3, 5, 7, 11, 203\} \\
 			+F & Controla a inclusão de sistemas com frequências base iguais ou desiguais \\
 			+I & Controla a inclusão de sistemas com ou sem uma proporção de locais invariantes em uma sequência molecular \\
 			+G$_{n}$ & Controla a inclusão de sistemas com ou sem variação na taxa de substituição por local em uma sequência molecular \newline
@@ -3792,13 +3793,13 @@ Os resultados obtidos por meio desta estratégia serão abordados em detalhes na
 \label{sec:metodologia-etapas-modelo}
 
 %TODO: falar que até publicações reconhecidas decidiram empiricamente.
-\begin{verbatim}
-[Shankar2018]
-Ttimeout
-We use simple heuristics and empirical experiments to decide
-parameters, i.e., scaling factor s f and Ttimeout . We use simple heuristics and empirical experiments to decide
-these two parameters and leave more rigorous investiga-tion for future work. We set Ttimeout = 10s, which is the average start-up latency
-\end{verbatim}
+%\begin{verbatim}
+%[Shankar2018]
+%Ttimeout
+%We use simple heuristics and empirical experiments to decide
+%parameters, i.e., scaling factor s f and Ttimeout . We use simple heuristics and empirical experiments to decide
+%these two parameters and leave more rigorous investiga-tion for future work. We set Ttimeout = 10s, which is the average start-up latency
+%\end{verbatim}
 
 
 A avaliação do modelo proposto se dará por meio da sua execução em ambiente computacional o mais próximo possível daquele onde se dará a coleta de métricas sobre o \textit{software} jModelTest, mantendo configurações de provedores de computação em nuvem, tipos e variedades de instâncias/VMs e sistemas operacionais.
@@ -4122,6 +4123,11 @@ No que diz respeito a portabilidade entre provedores de computação em nuvem to
 		\caption{Artefatos de código presentes nos três módulos do protótipo.}
 		\label{tab:metodologia-prototipo-artefatos}
 		\vspace{1ex}
+		% sequential 4-class Blues reversed
+		\definecolor{c1}{HTML}{6baed6}%
+		\definecolor{c2}{HTML}{bdd7e7}%
+		\definecolor{c3}{HTML}{eff3ff}%
+		%
 		\begin{tabularx}{\textwidth}{
 				>{\hsize=0.9\hsize}X
 				>{\hsize=0.9\hsize}X
@@ -4132,9 +4138,10 @@ No que diz respeito a portabilidade entre provedores de computação em nuvem to
 			\cmidrule(lr){1-2}
 			\multicolumn{1}{c}{\texttt{forwarder}} & \multicolumn{1}{c}{\texttt{modeltest}} & \multicolumn{1}{c}{} \\ 
 			\midrule
+			\rowcolor{c1} 
 			src/aws.py & src/aws.py & src/aws.py \\
-			src/forwarder.py & lib/phyml & lib/phyml \\
-			& src/modeltest.py & src/modeltest.py \\
+			src/forwarder.py & \cellcolor{c2} lib/phyml & \cellcolor{c2}lib/phyml \\
+			& \cellcolor{c3} src/modeltest.py & \cellcolor{c3} src/modeltest.py \\
 			&  & src/dockerentrypoint.py \\
 			&  & requirements.txt \\ 
 			\bottomrule
@@ -4320,6 +4327,7 @@ Desta forma todas a criação e remoção do ambiente necessário para execuçã
 
 
 \chapter{Resultados}
+\label{ch:resultados}
 
 \section{jModelTest}
 \label{sec:resultados-jmodel}
@@ -4427,20 +4435,20 @@ Desta forma todas a criação e remoção do ambiente necessário para execuçã
 
 
 
-\begin{verbatim}
-cenário old
-	amostras
-	std-dev
-	durations
-	eficiencia conforme recursos
-\end{verbatim}
-\begin{verbatim}
-potencial pra recursos desperdiçados no final dos estágios.
-4 cpus disponíveis e só duas executando porque tá acabando os jobs
-problema só piora com mais cpus
-grafico de cpu usage da i-0b11522f2358bd522 = https://us-east-2.console.aws.amazon.com/cloudwatch/home?region=us-east-2#metricsV2:graph=~(metrics~(~(~'AWS*2fEC2~'CPUUtilization~'InstanceId~'i-0b11522f2358bd522~(stat~'Minimum)))~view~'timeSeries~stacked~false~region~'us-east-2~start~'-P7D~end~'P0D);search=0b11522f2358bd522;namespace=AWS/EC2;dimensions=InstanceId
-.
-\end{verbatim}
+%\begin{verbatim}
+%cenário old
+%	amostras
+%	std-dev
+%	durations
+%	eficiencia conforme recursos
+%\end{verbatim}
+%\begin{verbatim}
+%potencial pra recursos desperdiçados no final dos estágios.
+%4 cpus disponíveis e só duas executando porque tá acabando os jobs
+%problema só piora com mais cpus
+%grafico de cpu usage da i-0b11522f2358bd522 = https://us-east-2.console.aws.amazon.com/cloudwatch/home?region=us-east-2#metricsV2:graph=~(metrics~(~(~'AWS*2fEC2~'CPUUtilization~'InstanceId~'i-0b11522f2358bd522~(stat~'Minimum)))~view~'timeSeries~stacked~false~region~'us-east-2~start~'-P7D~end~'P0D);search=0b11522f2358bd522;namespace=AWS/EC2;dimensions=InstanceId
+%.
+%\end{verbatim}
 
 
 Visando obter resultados de alta confiabilidade, uma vez que estes formariam a régua sobre a qual se apoiariam as medidas do modelo proposto foram realizadas quase mil execuções dos testes de adequação de sistemas de evolução molecular seguindo os arquivos, parâmetros e cenários definidos na \autoref{sec:metodologia-etapasecenarios}.
@@ -4495,22 +4503,22 @@ Apesar da relativamente alta variação encontrada no cenário $C_{j8}$ quando c
 
 
 \section{\textsf{He}--lastic}
-\begin{verbatim}
-cenário new
-	amostras
-	std-dev
-	durations
-
-	só lambda
-	só batch
-	mixed
-		batch ratio
-		runtime ratio pra abordar o overhead
-	warm04-60-768-36
-		falar que esse cenário foi um tira-teima pra ver se o tempo a mais era em função das operações de elasticidade ou dos retries
-	1624-stamatakis
-		impacto pode ser porque teve bastante troca de máquinas e a cada troca incorre custos de subir uma VM, botar a camada de ECS, baixar e instalar o contêiner, pra só então executar
-\end{verbatim}
+%\begin{verbatim}
+%cenário new
+%	amostras
+%	std-dev
+%	durations
+%
+%	só lambda
+%	só batch
+%	mixed
+%		batch ratio
+%		runtime ratio pra abordar o overhead
+%	warm04-60-768-36
+%		falar que esse cenário foi um tira-teima pra ver se o tempo a mais era em função das operações de elasticidade ou dos retries
+%	1624-stamatakis
+%		impacto pode ser porque teve bastante troca de máquinas e a cada troca incorre custos de subir uma VM, botar a camada de ECS, baixar e instalar o contêiner, pra só então executar
+%\end{verbatim}
 
 %=======================================================================
 % Conclusão
@@ -4549,7 +4557,7 @@ Enquanto a camada FaaS tem por característica fundamental o modelo de cobrança
 Em contrapartida, a camada de orquestração de contêineres alivia esta limitação em troca de maior fardo operacional, obrigando o usuário a gerenciar a elasticidade em termos dos mecanismos de Regra--Condição--Ação e se assegurar do efetivo aproveitamento dos recursos alocados.
 
 
-Finalmente apresentamos resultados preliminares e delineamos, na \autoref{sec:modelo-metodologia}, a metodologia prevista para avaliação do modelo proposto em comparação com o esta atual da aplicação jModelTest.
+Finalmente apresentamos resultados e delineamos, na \autoref{ch:modelo-metodologia}, a metodologia prevista para avaliação do modelo proposto em comparação com o esta atual da aplicação jModelTest.
 Para tanto estabelecemos seis cenários que visam exercitar o comportamento tanto da nossa proposta quanto do software candidato.
 Tais cenários serão executados de acordo com uma variedade de conjuntos de dados e parâmetros de execução e formarão uma base de dados para posterior análise.
 
@@ -4561,10 +4569,10 @@ Tais cenários serão executados de acordo com uma variedade de conjuntos de dad
 %TODO: Valorizar a análise de custo benefício \autoref{sec:modelo-custben}
 
 %TODO
-[Shankar2018]
-As datacenters continue
-their push towards disaggregation, platforms like numpy-wren open up a fruitful area of research for applications
-that have long been dominated by traditional HPC.
+%[Shankar2018]
+%As datacenters continue
+%their push towards disaggregation, platforms like numpy-wren open up a fruitful area of research for applications
+%that have long been dominated by traditional HPC.
 
 
 
@@ -4587,9 +4595,9 @@ Com base nestas contribuições esperamos, ao longo dos próximos meses, elabora
 
 
 %TODO
-[Shankar2018]
-Pipelining: Every LAmbdaPACK instruction block has three execution phases: read, compute and write. To improve CPU utilization and I/O efficiency, we allow a worker to fetch multiple tasks and run them in parallel. The number of parallel tasks is called pipeline width. Ide- ally, with a single-core worker, we can have at most three tasks running in parallel, each doing read, compute and write respectively.
-	--- ISSO PODE MELHORAR A PERFORMANCE DE TAREFAS 'CURTAS DEMAIS' POR REDUZIR O OVERHEAD
+%[Shankar2018]
+%Pipelining: Every LAmbdaPACK instruction block has three execution phases: read, compute and write. To improve CPU utilization and I/O efficiency, we allow a worker to fetch multiple tasks and run them in parallel. The number of parallel tasks is called pipeline width. Ide- ally, with a single-core worker, we can have at most three tasks running in parallel, each doing read, compute and write respectively.
+%	--- ISSO PODE MELHORAR A PERFORMANCE DE TAREFAS 'CURTAS DEMAIS' POR REDUZIR O OVERHEAD
 
 
 %TODO: estabelecer uma métrica capaz de mapear os cenários de recursos fixos, elásticos e faas sem a necessidade do financeiro
@@ -4598,58 +4606,58 @@ Pipelining: Every LAmbdaPACK instruction block has three execution phases: read,
 
 
 Permanecem como questões em aberto uma melhora na taxonomia elaborada que, conforme previamente abordado, ainda detém um número não trivial de trabalhos classificados na categoria \textquoteleft outras finalidades\textquoteright.
-Além disso, todas as etapas e cenários referentes à metodologia de avaliação descrita na \autoref{sec:modelo-metodologia} devem ser executados.
+Além disso, todas as etapas e cenários referentes à metodologia de avaliação descrita na \autoref{ch:modelo-metodologia} devem ser executados.
 Conforme comentado no detalhamento da etapa, apesar da existência de \textit{datasets} filogenéticos em alguns trabalhos não há consenso quanto à qualidade dos mesmos, sendo este um ponto em aberto para futura verificação.
 
 
 A elaboração do protótipo que permitirá avaliar nosso modelo também está contemplada em trabalhos futuros, sendo prioritária para liberar as demais etapas do processo de execução dos cenários descritos e posterior avaliação dos mesmos.
-Contudo, como abordado na \autoref{sec:preliminares}, os autores já obtiveram acesso e validaram o código fonte da ferramenta jModelTest e continuarão o desenvolvimento com ajuda dos prévios conhecimentos em ambientes de computação em nuvem.
+Contudo, como abordado na \autoref{ch:resultados}, os autores já obtiveram acesso e validaram o código fonte da ferramenta jModelTest e continuarão o desenvolvimento com ajuda dos prévios conhecimentos em ambientes de computação em nuvem.
 Enfim será possível traçar análises e conclusões a respeito da eficácia e da eficiência do modelo proposto, sendo atributos de especial interesse a eficiência computacional e econômica.
 
 
-
-\section{Cronograma}
-
-
-\begin{table}[tb]
-%	Prevista para janeiro e tua defesa em fevereiro.
-	\centering
-	\caption{Cronograma de atividades previstas para os próximos meses}
-	\label{tab:cronograma}
-	\small
-	\begin{tabularx}{\textwidth}{l||Y|Y|Y|Y|Y|Y||Y|Y|}
-		\hline
-		\multicolumn{1}{c||}{\multirow{2}{*}{Atividade}} & \multicolumn{6}{c||}{2018} & \multicolumn{2}{c|}{2019} \\ \cline{2-9} 
-		\multicolumn{1}{c||}{} & Jul & Ago & Set & Out & Nov & Dez & Jan & Fev \\ 
-		\hline
-		% =============================
-		%Entrega da Proposta de Dissertação & \checked &  &  &  &  &  &  &  &  \\ \hline
-		Defesa da Proposta de Dissertação &  & \checked &  &  &  &  &  &  \\ \hline
-		Desenvolvimento do Protótipo & \checked & \checked & \checked & \checked &  &  &  &  \\ \hline
-		Execução dos Cenários de Avaliação &  &  &  & \checked & \checked &  &  &  \\ \hline
-		Análise dos Resultados &  &  &  &  & \checked & \checked &  &  \\ \hline
-		Escrita de Publicações Relacionadas & \checked & \checked & \checked & \checked & \checked & \checked &  &  \\ \hline
-		Escrita da Dissertação &  &  &  &  & \checked & \checked & \checked &  \\ \hline
-		Entrega da Dissertação &  &  &  &  &  &  & \checked &  \\ \hline
-		Defesa da Dissertação &  &  &  &  &  &  &  & \checked \\ \hline
-		% =============================
-	\end{tabularx}
-	\fonte{Elaborado pelo autor.}
-\end{table}
-
-
-Podemos determinar como concluídas até o presente momento as tarefas de mapeamento do estado da arte e familiarização com conceitos e práticas da filogenética, especialmente relevantes sob a luz do projeto de colaboração com o laboratório de biologia da UNISINOS no contexto do projeto aprovado junto à FAPERGS.
-Como resultado deste estudo elaboramos uma taxonomia para classificar os projetos de softwares para filogenética em termos de suas categorias, métodos e finalidades.
-
-
-Outro produto do mapeamento do estado da arte é a identificação de uma aplicação candidata, no caso o jModelTest, e a elaboração de um modelo computacional capaz de empregar a elasticidade de recursos oriunda da computação em nuvem para aumentar a eficiência computaciona e econômica da aplicação.
-Ainda no contexto do modelo estabelecemos os critérios e as estratégias de elasticidade, o que culminou em um modelo com duas camadas de elasticidade baseadas em FaaS e Contêineres.
-
-
-Sombram neste âmbito duas grandes pendências no que diz respeito ao desenvolvimento de um protótipo capaz de colocar em prática nossas ideias e a execução de cenários de avaliação objetivando coletar métricas relevantes à nossa proposta para, enfim, executar a análise dos resultados obtidos, traçando paralelos com o projeto candidato em seu estado atual.
-
-
-Ao agendar as tarefas aqui descritas com as entregas e obrigações no contexto do programa de Mestrado da UNISINOS, assim como iniciativas para publicação de resultados, chegamos ao cronograma final de atividades proposto na \autoref{tab:cronograma} e que guiará o restante dos esforços planejados no escopo desta dissertação.
+%
+%\section{Cronograma}
+%
+%
+%\begin{table}[tb]
+%%	Prevista para janeiro e tua defesa em fevereiro.
+%	\centering
+%	\caption{Cronograma de atividades previstas para os próximos meses}
+%	\label{tab:cronograma}
+%	\small
+%	\begin{tabularx}{\textwidth}{l||Y|Y|Y|Y|Y|Y||Y|Y|}
+%		\hline
+%		\multicolumn{1}{c||}{\multirow{2}{*}{Atividade}} & \multicolumn{6}{c||}{2018} & \multicolumn{2}{c|}{2019} \\ \cline{2-9} 
+%		\multicolumn{1}{c||}{} & Jul & Ago & Set & Out & Nov & Dez & Jan & Fev \\ 
+%		\hline
+%		% =============================
+%		%Entrega da Proposta de Dissertação & \checked &  &  &  &  &  &  &  &  \\ \hline
+%		Defesa da Proposta de Dissertação &  & \checked &  &  &  &  &  &  \\ \hline
+%		Desenvolvimento do Protótipo & \checked & \checked & \checked & \checked &  &  &  &  \\ \hline
+%		Execução dos Cenários de Avaliação &  &  &  & \checked & \checked &  &  &  \\ \hline
+%		Análise dos Resultados &  &  &  &  & \checked & \checked &  &  \\ \hline
+%		Escrita de Publicações Relacionadas & \checked & \checked & \checked & \checked & \checked & \checked &  &  \\ \hline
+%		Escrita da Dissertação &  &  &  &  & \checked & \checked & \checked &  \\ \hline
+%		Entrega da Dissertação &  &  &  &  &  &  & \checked &  \\ \hline
+%		Defesa da Dissertação &  &  &  &  &  &  &  & \checked \\ \hline
+%		% =============================
+%	\end{tabularx}
+%	\fonte{Elaborado pelo autor.}
+%\end{table}
+%
+%
+%Podemos determinar como concluídas até o presente momento as tarefas de mapeamento do estado da arte e familiarização com conceitos e práticas da filogenética, especialmente relevantes sob a luz do projeto de colaboração com o laboratório de biologia da UNISINOS no contexto do projeto aprovado junto à FAPERGS.
+%Como resultado deste estudo elaboramos uma taxonomia para classificar os projetos de softwares para filogenética em termos de suas categorias, métodos e finalidades.
+%
+%
+%Outro produto do mapeamento do estado da arte é a identificação de uma aplicação candidata, no caso o jModelTest, e a elaboração de um modelo computacional capaz de empregar a elasticidade de recursos oriunda da computação em nuvem para aumentar a eficiência computaciona e econômica da aplicação.
+%Ainda no contexto do modelo estabelecemos os critérios e as estratégias de elasticidade, o que culminou em um modelo com duas camadas de elasticidade baseadas em FaaS e Contêineres.
+%
+%
+%Sombram neste âmbito duas grandes pendências no que diz respeito ao desenvolvimento de um protótipo capaz de colocar em prática nossas ideias e a execução de cenários de avaliação objetivando coletar métricas relevantes à nossa proposta para, enfim, executar a análise dos resultados obtidos, traçando paralelos com o projeto candidato em seu estado atual.
+%
+%
+%Ao agendar as tarefas aqui descritas com as entregas e obrigações no contexto do programa de Mestrado da UNISINOS, assim como iniciativas para publicação de resultados, chegamos ao cronograma final de atividades proposto na \autoref{tab:cronograma} e que guiará o restante dos esforços planejados no escopo desta dissertação.
 
 
 
