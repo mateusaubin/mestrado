@@ -84,6 +84,7 @@
 \usepackage{afterpage} % afterpage pra usar no landscape
 
 \usepackage{mathtools}
+\usepackage{amsmath}
 \usepackage{wasysym}
 \usepackage{eurosym}
 
@@ -1292,6 +1293,7 @@ Devido a características como o auto grau de elasticidade e a facilidade em obt
 
 
 \subsection{Computação Paralela e Distribuída}
+\label{fundamentacao-computacao-distribuida}
 
 
 %Keane2006a
@@ -1906,6 +1908,7 @@ Para tanto adotamos uma abordagem estruturada, conforme \autoref{fig:survey-pipe
 
 \begin{figure}[tb]
 	\centering%
+	%TODO: valorizar a taxonomia, buscar no RITA como foi feito
 	\begin{minipage}{\defaultFigureWidth\textwidth}
 		\caption{Taxonomia elaborada para a classificação dos trabalhos identificados durante a etapa de revisão de literatura}
 		\label{fig:taxonomia}
@@ -2438,6 +2441,8 @@ Desde o estabelecimento das fundações teóricas em 1997\footnote{
 } (de Crandall para Posada e, por fim, Darriba) ou no que diz respeito a softwares\footnote{
 	MODELTEST\textsuperscript{\dag} foi o precursor direto do jModelTest que, no princípio, trabalhava apenas com um conjunto restrito de modelos de substituição nucleotídica, no entanto ao longo da história suas funcionalidades parecem ter se fundido com o ProtTest\textsuperscript{\dag} herdando a capacidade de avaliar modelos de substituição proteica e aumentando a quantidade de modelos disponíveis para teste de adequação.
 } (começando no MODELTEST, evoluindo para jModelTest e unindo forças com ProtTest).
+%
+Daqui em diante o projeto como um todo será denominado apenas jModelTest, embora se refira especificamente à versão 2 do programa.
 
 
 % delimita o bloco da footnote da footnote
@@ -2458,7 +2463,7 @@ O projeto está acompanhado de múltiplos artigos que abordam seu funcionamento 
 porém seu uso é simples e direto, apesar de exigir conhecimentos avançados da área de atuação para a compreensão dos resultados, ou seja, a adequação dos modelos de substituição de sequências e seus parâmetros.
 
 
-Conforme previamente abordado na \autoref{sec:analise-estadodaarte} e na \autoref{tab:survey-comparativo}, o jmodeltest tem suporte explícito à múltiplas CPUs, seja localmente ou até mesmo em ambientes MPI.
+Conforme previamente abordado na \autoref{sec:analise-estadodaarte} e na \autoref{tab:survey-comparativo}, o jModelTest tem suporte explícito à múltiplas CPUs, seja localmente ou até mesmo em ambientes MPI.
 Outra característica importante do programa é que a natureza do trabalho realizado permite um alto grau de paralelismo \cite{Keane2006a}, uma vez que o teste de cada um dos modelos de substituição de sequências pode ser realizado de maneira independente dos demais.
 Estas e outras características técnicas serão abordadas em maior profundidade nas próximas seções.
 
@@ -3956,26 +3961,26 @@ Outro benefício da automação foi possibilitar a execução não assistida dos
 	\end{minipage}
 \end{figure}
 
-\afterpage{
+%\afterpage{
 \begin{figure}
-\centering%
-\begin{minipage}{.49\textwidth}
-	\caption{Variação no custo por região do provedor AWS no uso de recursos computacionais em instâncias da família \texttt{m5}.}
-	\label{fig:metodologia-infra-cost-compute}
-	%	\vspace{1ex}
-	\includegraphics[width=\textwidth]{aws-compute-costperregion}
-	\fonte{\citetexto{AWSRegionCost}.}
-\end{minipage}
-\hfill
-\begin{minipage}{.49\textwidth}
-	\caption{Variação no custo por região do provedor AWS para a transferência de 1 TB de dados para a Internet.}
-	\label{fig:metodologia-infra-cost-network}
-	%	\vspace{1ex}
-	\includegraphics[width=\textwidth]{aws-network-costperregion}
-	\fonte{\citetexto{AWSRegionCost}.}
-\end{minipage}
+	\centering%
+	\begin{minipage}{.49\textwidth}
+		\caption{Variação no custo por região do provedor AWS no uso de recursos computacionais em instâncias da família \texttt{m5}.}
+		\label{fig:metodologia-infra-cost-compute}
+		%	\vspace{1ex}
+		\includegraphics[width=\textwidth]{aws-compute-costperregion}
+		\fonte{\citetexto{AWSRegionCost}.}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{.49\textwidth}
+		\caption{Variação no custo por região do provedor AWS para a transferência de 1 TB de dados para a Internet.}
+		\label{fig:metodologia-infra-cost-network}
+		%	\vspace{1ex}
+		\includegraphics[width=\textwidth]{aws-network-costperregion}
+		\fonte{\citetexto{AWSRegionCost}.}
+	\end{minipage}
 \end{figure}
-}
+%}
 
 No que diz respeito a infraestrutura de computação em nuvem a escolha foi pelo provedor Amazon Web Services (AWS), uma subsidiária da Amazon que por sua vez é considerada uma gigante do \textit{e-commerce} nos Estados Unidos e já conta com alguma atuação no Brasil.
 %
@@ -4333,51 +4338,13 @@ Desta forma todas a criação e remoção do ambiente necessário para execuçã
 \label{sec:resultados-jmodel}
 
 
-\afterpage{
-	\clearpage
-	\begin{landscape}
-		\begin{table}
-			\centering%
-			\begin{minipage}{\linewidth}
-				\caption{Média e Mediana dos tempos de execução observados por arquivo e cenário de avaliação.}
-				\label{tab:results-jmodel-avgs}
-				\vspace{1ex}
-				%\small
-				\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrcrrcrrcrrcrr@{}}
-					\toprule
-					\multicolumn{1}{c}{\multirow{3}{*}{Arquivo}} & \multicolumn{14}{c}{Cenário / vCPUs} \\ \cmidrule(l){2-15} 
-					& \multicolumn{2}{c}{$C_{j2}$} &  & \multicolumn{2}{c}{$C_{j4}$} &  & \multicolumn{2}{c}{$C_{j8}$} &  & \multicolumn{2}{c}{$C_{j16}$} &  & \multicolumn{2}{c}{$C_{j36}$} \\ 
-					\cmidrule(lr){2-3} \cmidrule(lr){5-6} \cmidrule(lr){8-9} \cmidrule(lr){11-12} \cmidrule(l){14-15} 
-					& \multicolumn{1}{c}{Média} & \multicolumn{1}{c}{Mediana} &  & \multicolumn{1}{c}{Média} & \multicolumn{1}{c}{Mediana} &  & \multicolumn{1}{c}{Média} & \multicolumn{1}{c}{Mediana} &  & \multicolumn{1}{c}{Média} & \multicolumn{1}{c}{Mediana} &  & \multicolumn{1}{c}{Média} & \multicolumn{1}{c}{Mediana} \\ 
-					\midrule
-					01-aP6 & 0:00:40 & 0:00:40 &  & 0:00:20 & 0:00:21 &  & 0:00:11 & 0:00:11 &  & 0:00:06 & 0:00:06 &  & 0:00:04 & 0:00:04 \\
-					02-rodents & 0:03:19 & 0:03:20 &  & 0:01:40 & 0:01:41 &  & 0:00:54 & 0:00:57 &  & 0:00:29 & 0:00:29 &  & 0:00:17 & 0:00:17 \\
-					03-example & 0:04:41 & 0:04:42 &  & 0:02:22 & 0:02:23 &  & 0:01:19 & 0:01:22 &  & 0:00:44 & 0:00:45 &  & 0:00:26 & 0:00:27 \\
-					04-18S\_insects2 & 0:04:51 & 0:04:52 &  & 0:02:26 & 0:02:27 &  & 0:01:18 & 0:01:23 &  & 0:00:40 & 0:00:41 &  & 0:00:22 & 0:00:22 \\
-					05-HIVpol.groupM & 0:11:58 & 0:11:58 &  & 0:06:09 & 0:06:10 &  & 0:03:22 & 0:03:34 &  & 0:01:55 & 0:01:55 &  & 0:01:11 & 0:01:11 \\
-					06-Hex\_EF1a & 0:20:11 & 0:20:12 &  & 0:10:14 & 0:10:16 &  & 0:05:27 & 0:05:45 &  & 0:03:05 & 0:03:05 &  & 0:01:45 & 0:01:44 \\
-					07-primate-mtDNA & 0:24:22 & 0:24:23 &  & 0:12:25 & 0:12:26 &  & 0:06:45 & 0:07:07 &  & 0:04:00 & 0:04:01 &  & 0:02:37 & 0:02:37 \\
-					08-HIV\_vpu.ref2 & 0:45:39 & 0:45:38 &  & 0:22:52 & 0:22:56 &  & 0:11:58 & 0:12:39 &  & 0:06:40 & 0:06:41 &  & 0:03:52 & 0:03:52 \\
-					09-gusanos16S.mafft & 1:44:53 & 1:44:52 &  & 0:52:49 & 0:53:06 &  & 0:28:08 & 0:29:46 &  & 0:15:46 & 0:15:47 &  & 0:10:24 & 0:10:24 \\
-					10-Birds & 2:11:57 & 2:11:50 &  & 1:07:22 & 1:07:34 &  & 0:36:00 & 0:37:38 &  & 0:20:53 & 0:20:53 &  & 0:12:27 & 0:12:28 \\
-					11-gusanosCOI.mafft & 2:58:59 & 2:58:49 &  & 1:30:39 & 1:31:03 &  & 0:47:51 & 0:50:14 &  & 0:27:21 & 0:27:22 &  & 0:16:15 & 0:16:15 \\
-					12-stamatakis-59 & 14:52:32 & 14:51:54 &  & 7:28:55 & 7:30:39 &  & 4:02:50 & 4:15:20 &  & 2:19:25 & 2:19:30 &  & 1:23:40 & 1:23:34 \\
-					\bottomrule
-				\end{tabular*}
-				\tabelafootnote{{*}~Valores apresentados em formato hh:mm:ss.}
-				\fonte{Elaborado pelo autor.}
-			\end{minipage}
-		\end{table}
-	\end{landscape}
-}
-
-
 \begin{table}[tbp]
 \centering%
 \begin{minipage}{\defaultFigureWidth\textwidth}
 	\caption{Quantidade de amostras (execuções) para cada arquivo do \textit{dataset} conforme o cenário.}
 	\label{tab:results-jmodel-samples}
 	\vspace{1ex}
+	\small
 	\begin{tabularx}{\textwidth}{lWWWWWW}
 		\toprule
 		\multicolumn{1}{c}{\multirow{2}{*}{Arquivo}} & \multicolumn{5}{c}{Cenário / vCPUs} & \multicolumn{1}{c}{\multirow{2}{*}{Total}} \\ \cmidrule(lr){2-6}
@@ -4408,6 +4375,7 @@ Desta forma todas a criação e remoção do ambiente necessário para execuçã
 	\caption{Coeficiente de Variação (CV) dos tempos de execução obtidos por arquivo e cenário de avaliação.}
 	\label{tab:results-jmodel-cv}
 	\vspace{1ex}
+	\small
 	\begin{tabularx}{\textwidth}{lWWWWW}
 		\toprule
 		\multicolumn{1}{c}{\multirow[b]{2}{*}{Arquivo}} & \multicolumn{5}{c}{Cenário / vCPUs} \\ 
@@ -4433,32 +4401,16 @@ Desta forma todas a criação e remoção do ambiente necessário para execuçã
 \end{table}
 
 
-
-
-\begin{verbatim}
-cenário old
-	amostras
-	std-dev
-	durations
-	eficiencia conforme recursos
-\end{verbatim}
-\begin{verbatim}
-potencial pra recursos desperdiçados no final dos estágios.
-4 cpus disponíveis e só duas executando porque tá acabando os jobs
-problema só piora com mais cpus
-grafico de cpu usage da i-0b11522f2358bd522 = https://us-east-2.console.aws.amazon.com/cloudwatch/home?region=us-east-2#metricsV2:graph=~(metrics~(~(~'AWS*2fEC2~'CPUUtilization~'InstanceId~'i-0b11522f2358bd522~(stat~'Minimum)))~view~'timeSeries~stacked~false~region~'us-east-2~start~'-P7D~end~'P0D);search=0b11522f2358bd522;namespace=AWS/EC2;dimensions=InstanceId
-.
-\end{verbatim}
-
-
-Visando obter resultados de alta confiabilidade, uma vez que estes formariam a régua sobre a qual se apoiariam as medidas do modelo proposto foram realizadas quase mil execuções dos testes de adequação de sistemas de evolução molecular seguindo os arquivos, parâmetros e cenários definidos na \autoref{sec:metodologia-etapasecenarios}.
+Visando obter resultados de alta confiabilidade, uma vez que estes formariam a régua sobre a qual se apoiariam as medidas do modelo proposto foram realizadas no total quase mil execuções dos testes de adequação de sistemas de evolução molecular seguindo os arquivos, parâmetros e cenários definidos na \autoref{sec:metodologia-etapasecenarios}.
+%
+Estas execuções foram distribuídas em quase cem (96) máquinas virtuais distintas contemplando instâncias do serviço EC2 da AWS nos seguintes modelos: \texttt{c4.2xlarge}, \texttt{c5.large}, \texttt{c5.xlarge}, \texttt{c5.2xlarge}, \texttt{c5.4xlarge}, \texttt{c5.9xlarge}.
 %
 Os dados contidos na \autoref{tab:results-jmodel-samples} apresentam os resultados da coleta de dados baseada na execução do jModelTest, totalizando, após filtragem de anomalias (\textit{outliers}), 983 execuções por arquivo--cenário.
 %
 Para obter a quantidade de chamadas à ferramenta PhyML basta multiplicar os dados da \autoref{tab:results-jmodel-samples} pela \autoref{tab:metodologia-etapas-dataset}, mais especificamente a quantidade de sistemas de evolução molecular contemplados por arquivo quando é seguida a estratégia de \textit{Clustering Search}, resultando em aproximadamente 250 mil (249.184) execuções por arquivo--sistema--cenário.
 
 
-A respeito da quantidade de amostras cabe ressaltar que a variação no número de coletas do cenário $C_{j8}$ se deu em função de uma limitação do provedor AWS onde inicialmente a conta de usuário utilizada para os testes não tinha acesso à recursos computacionais da família \texttt{c5} de última geração, de forma que, na época, a estratégia adotada foi prosseguir com os testes utilizando recursos da família \texttt{c4}, da geração anterior.
+A respeito da quantidade de amostras cabe ressaltar que a variação no número de coletas do cenário $C_{j8}$ se deu em função de uma limitação do provedor AWS onde inicialmente a conta de usuário utilizada para os testes não tinha acesso à recursos computacionais da família \texttt{c5}, de última geração, de forma que, na época, a estratégia adotada foi prosseguir com os testes utilizando recursos da família \texttt{c4}, da geração anterior.
 %
 O impacto destas restrições estabelecidas pelo provedor AWS também se manifesta na pequena redução da quantidade de execuções para o arquivo 12-stamatakis-59 que alocava todas as VMs disponíveis por longos períodos de tempo, principalmente nos cenários com menos recursos como $C_{j2}$ e $C_{j4}$, afetando a execução dos demais cenários.
 %
@@ -4469,29 +4421,84 @@ Uma vez detalhados os objetivos da requisição e o contexto de uso, os recursos
 
 
 Contudo, ao detectar uma variação atípica nos tempos de execução, que se manifesta no desvio padrão e no coeficiente de variação (CV\footnote{
-O Coeficiente de Variação é uma métrica estatística amplamente utilizada para indicar a precisão, repetitividade e reprodutibilidade de avaliações, atuando também como indicador de dispersão de uma distribuição por incorporar em seu cálculo a média e o desvio padrão, sendo definido pela fórmula:
-\[ CV = \dfrac{desvio~padr\tilde{a}o}{m\acute{e}dia} \]
-}) das amostras coletadas, conforme evidências na \autoref{tab:results-jmodel-cv}, 
+	Coeficiente de Variação é uma métrica estatística amplamente utilizada para indicar a precisão, repetitividade e reprodutibilidade de avaliações, atuando também como indicador de dispersão de uma distribuição por incorporar em seu cálculo a média e o desvio padrão, sendo definido pela fórmula:
+	\[ \text{CV} = \dfrac{desvio~padr\tilde{a}o}{m\acute{e}dia} \]
+}) das amostras coletadas, conforme evidências da \autoref{tab:results-jmodel-cv}, 
 foi decidido por aumentar o número de execuções até obter uma variação em linha com os demais cenários e arquivos.
-
-
-
+%
 Outro padrão que emerge da análise do coeficiente de variação por arquivo e cenário é o alto nível de oscilação apresentado pelo arquivo 01-aP6.
 %
 Este comportamento está relacionado à sua curta duração e se estende para outros arquivos conforme aumenta a quantidade de recursos disponível, como mostra, por exemplo, o CV de 5\% para o arquivo 04 no cenário $C_{j36}$.
 %
-Através da análise da \autoref{tab:results-jmodel-cv}, desconsiderando-se o cenário $C_{j8}$ pelos motivos previamente citados, é possível vislumbrar uma diagonal imaginária que abrange os dados de arquivo e cenário: \{03--$C_{j2}$, 04--$C_{j4}$, 04--$C_{j16}$, 06--$C_{j36}$\}.
+Através da análise da \autoref{tab:results-jmodel-cv}, desconsiderando-se o cenário $C_{j8}$ pelos motivos previamente citados, é possível vislumbrar uma 
+%TODO: aplicar cores pra demarcar esta diagonal
+diagonal imaginária que abrange os dados de arquivo e cenário: \{03--$C_{j2}$, 04--$C_{j4}$, 04--$C_{j16}$, 06--$C_{j36}$\}.
+
+
+\afterpage{
+	\clearpage
+	\begin{landscape}
+		\begin{table}
+			%\centering%
+			\begin{minipage}{\linewidth}
+				\caption{Média e Mediana dos tempos de execução observados por arquivo e cenário de avaliação.}
+				\label{tab:results-jmodel-avgs}
+				\vspace{0.75ex}
+				%\small
+				\renewcommand\arraystretch{1.35}
+				\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrcrrcrrcrrcrr@{}}
+					\toprule
+					\multicolumn{1}{c}{\multirow[b]{3}{*}{Arquivo}} & \multicolumn{14}{c}{Cenário / vCPUs} \\ \cmidrule(l){2-15} 
+					& \multicolumn{2}{c}{$C_{j2}$} &  & \multicolumn{2}{c}{$C_{j4}$} &  & \multicolumn{2}{c}{$C_{j8}$} &  & \multicolumn{2}{c}{$C_{j16}$} &  & \multicolumn{2}{c}{$C_{j36}$} \\ 
+					\cmidrule(lr){2-3} \cmidrule(lr){5-6} \cmidrule(lr){8-9} \cmidrule(lr){11-12} \cmidrule(l){14-15} 
+					& \multicolumn{1}{c}{Média} & \multicolumn{1}{c}{Mediana} &  & \multicolumn{1}{c}{Média} & \multicolumn{1}{c}{Mediana} &  & \multicolumn{1}{c}{Média} & \multicolumn{1}{c}{Mediana} &  & \multicolumn{1}{c}{Média} & \multicolumn{1}{c}{Mediana} &  & \multicolumn{1}{c}{Média} & \multicolumn{1}{c}{Mediana} \\ 
+					\midrule
+					01-aP6 & 0:00:40 & 0:00:40 &  & 0:00:20 & 0:00:21 &  & 0:00:11 & 0:00:11 &  & 0:00:06 & 0:00:06 &  & 0:00:04 & 0:00:04 \\
+					02-rodents & 0:03:19 & 0:03:20 &  & 0:01:40 & 0:01:41 &  & 0:00:54 & 0:00:57 &  & 0:00:29 & 0:00:29 &  & 0:00:17 & 0:00:17 \\
+					03-example & 0:04:41 & 0:04:42 &  & 0:02:22 & 0:02:23 &  & 0:01:19 & 0:01:22 &  & 0:00:44 & 0:00:45 &  & 0:00:26 & 0:00:27 \\
+					04-18S\_insects2 & 0:04:51 & 0:04:52 &  & 0:02:26 & 0:02:27 &  & 0:01:18 & 0:01:23 &  & 0:00:40 & 0:00:41 &  & 0:00:22 & 0:00:22 \\
+					05-HIVpol.groupM & 0:11:58 & 0:11:58 &  & 0:06:09 & 0:06:10 &  & 0:03:22 & 0:03:34 &  & 0:01:55 & 0:01:55 &  & 0:01:11 & 0:01:11 \\
+					06-Hex\_EF1a & 0:20:11 & 0:20:12 &  & 0:10:14 & 0:10:16 &  & 0:05:27 & 0:05:45 &  & 0:03:05 & 0:03:05 &  & 0:01:45 & 0:01:44 \\
+					07-primate-mtDNA & 0:24:22 & 0:24:23 &  & 0:12:25 & 0:12:26 &  & 0:06:45 & 0:07:07 &  & 0:04:00 & 0:04:01 &  & 0:02:37 & 0:02:37 \\
+					08-HIV\_vpu.ref2 & 0:45:39 & 0:45:38 &  & 0:22:52 & 0:22:56 &  & 0:11:58 & 0:12:39 &  & 0:06:40 & 0:06:41 &  & 0:03:52 & 0:03:52 \\
+					09-gusanos16S.mafft & 1:44:53 & 1:44:52 &  & 0:52:49 & 0:53:06 &  & 0:28:08 & 0:29:46 &  & 0:15:46 & 0:15:47 &  & 0:10:24 & 0:10:24 \\
+					10-Birds & 2:11:57 & 2:11:50 &  & 1:07:22 & 1:07:34 &  & 0:36:00 & 0:37:38 &  & 0:20:53 & 0:20:53 &  & 0:12:27 & 0:12:28 \\
+					11-gusanosCOI.mafft & 2:58:59 & 2:58:49 &  & 1:30:39 & 1:31:03 &  & 0:47:51 & 0:50:14 &  & 0:27:21 & 0:27:22 &  & 0:16:15 & 0:16:15 \\
+					12-stamatakis-59 & 14:52:32 & 14:51:54 &  & 7:28:55 & 7:30:39 &  & 4:02:50 & 4:15:20 &  & 2:19:25 & 2:19:30 &  & 1:23:40 & 1:23:34 \\
+					\bottomrule
+				\end{tabular*}
+				\tabelafootnote{{*}~Valores apresentados em formato hh:mm:ss.}
+				\fonte{Elaborado pelo autor.}
+			\end{minipage}
+		\end{table}
+		
+		\begin{figure}[bt]
+			\centering%
+			\begin{minipage}{\linewidth}
+				\caption{Representação gráfica da \autoref{tab:results-jmodel-avgs} mostrando os tempos de execução por arquivo e cenário conforme a mediana.}
+				\label{fig:results-jmodel-avgs}
+				\vspace{1ex}
+				\includegraphics[width=\linewidth]{results-jmodel-avgs}
+				\fonte{Elaborado pelo autor.}
+			\end{minipage}
+		\end{figure}
+		
+	\end{landscape}
+}
 
 
 Dentre as razões que motivam a alta variabilidade nos tempos de execução é possível citar a curta duração absoluta, medida em termos do tempo total de execução e que pode ser observada na \autoref{tab:results-jmodel-avgs} onde são detalhadas as métricas de média e mediana dos tempos de execução para cada tupla de arquivo e cenário de avaliação.
 %
-Além de amplificar as diferenças relativas, medida em termos do CV, as tarefas de curta duração são especialmente sensíveis a interferências e/ou irregularidades no processamento que podem originar de uma série de fatores como: política de \textit{scheduling} de \textit{threads} e processos, consumo dos demais processos em execução, I/O de rede e disco além de fatores típicos de uma ambiente de nuvem como o impacto do virtualizador e o efeito popularmente conhecido como \textit{noisy neighbor} em que os processos em execução por outro \textit{tenant} que divide o mesmo recurso físico afetam as demais VMs.
+Além de amplificar as diferenças relativas, medida em termos do CV, as tarefas de curta duração são especialmente sensíveis a interferências e/ou irregularidades no processamento que podem originar de uma série de fatores como: política de \textit{scheduling} de processos e \textit{threads}, consumo dos demais processos em execução, I/O de rede e disco, além de fatores típicos de uma ambiente de nuvem como o impacto do virtualizador e o efeito popularmente conhecido como \textit{noisy neighbor} em que os processos em execução por outro \textit{tenant}, que divide o mesmo recurso físico, podem afetar a performance das demais VMs.
 
 
-Entretanto é possível afirmar que as métricas de média e mediana encontram-se, de maneira geral, bastante alinhadas entre si, apresentando pequenos deltas, o que, combinado com os dados de CV, indica uma distribuição equilibrada e com uma tendência central bem definida.
+Entretanto é possível afirmar que as métricas de média e mediana encontram-se, de maneira geral, bastante alinhadas entre si, apresentando pequenos deltas, o que, combinado com os dados de CV, indica uma distribuição estatística equilibrada e com uma tendência central bem definida.
 %
-Apesar da relativamente alta variação encontrada no cenário $C_{j8}$ quando comparado com o restante dos resultados, a afirmação encontra suporte na métrica de Variância, que apresenta valores maiores que zero em apenas quatro ocorrências, sendo:
-\begin{inparaenum}[\itshape 1\upshape)] 
+Apesar da relativamente alta variação encontrada no cenário $C_{j8}$ quando comparado com o restante dos resultados, a afirmação anterior encontra suporte na métrica de Variância\footnote{
+	Variância representa uma medida de dispersão estatística que indica quão distantes do valor esperado estão os valores observados sendo calculada através da média do quadrado da distância de cada ponto até a média com a fórmula:
+	\[ \text{VAR} = m\acute{e}dia((X-m\acute{e}dia)^2) \]
+}, que apresenta valores maiores do que zero em apenas quatro ocorrências, sendo elas:
+\begin{inparaenum}[\itshape a\upshape)] 
 	\item 16 segundos no arquivo 12-stamatakis-59 do cenário $C_{j8}$;
 	\item 2 segundos no arquivo 12-stamatakis-59 do cenário $C_{j2}$;
 	\item 1 segundo no arquivo 12-stamatakis-59 do cenário $C_{j4}$; e
@@ -4500,6 +4507,176 @@ Apesar da relativamente alta variação encontrada no cenário $C_{j8}$ quando c
 
 
 
+Os resultados gerais das execuções por arquivo--cenário, conforme \autoref{tab:results-jmodel-avgs} são apresentados de maneira visual em gráficos na \autoref{fig:results-jmodel-avgs} que adota como referência a métrica da Mediana para estipular os valores retratados.
+%
+Devido à amplitude dos tempos de execução a figura foi dividida em dois eixos verticais, com o eixo da direita reservado para arquivos que exigem um tempo muito maior de processamento, como é o caso de 12-stamatakis-59.
+%
+Através da representação gráfica fica evidente como o jModelTest se beneficia do aumento na quantidade de CPUs disponíveis, uma vez que este sua execução é totalmente CPU--\textit{bound}.
+%
+Também é possível perceber a expressiva diferença nos tempos de execução do arquivo 12-stamatakis-59 em relação ao demais onde sua execução costuma ser responsável por, em média, 63\% do tempo total de execução de cada cenário.
+%
+Outro destaque é o primeiro grupo de arquivos, composto por 01-aP6, 02-rodents, 03-example e 04-18S\_insects2, que contabilizam tempos de execução extremamente curtos mesmo em cenários com relativa escassez de recursos como $C_{j2}$, $C_{j4}$ e $C_{j8}$, contabilizando, somados, apenas 1\% do tempo total de execução de cada cenário.
+
+%\afterpage{
+	\begin{figure}
+		\centering%
+		\begin{minipage}{.43\textwidth}
+			\caption{Histograma da frequência dos tempos de execução para cada um dos sistemas de evolução avaliados durante a execução do arquivo 12-stamatakis-59 no cenário $C_{j36}$.}
+			\label{fig:results-jmodel-timepermodel-36-stamatakis}
+			\vspace{1ex}
+			\includegraphics[width=\textwidth]{results-jmodel-timepermodel-36-stamatakis}
+			\fonte{Elaborado pelo autor.}
+		\end{minipage}
+		\hfill
+		\begin{minipage}{.52\textwidth}
+			\caption{Histograma da frequência dos tempos de execução para cada um dos sistemas de evolução avaliados durante a execução do arquivo 07-primate-mtDNA no cenário $C_{j2}$.}
+			\label{fig:results-jmodel-timepermodel-02-primate}
+			\vspace{1ex}
+			\includegraphics[width=\textwidth]{results-jmodel-timepermodel-02-primate}
+			\fonte{Elaborado pelo autor.}
+		\end{minipage}
+	\end{figure}
+%}
+%TODO: variação no tempo de execução por modelo
+
+
+Os resultados obtidos na coleta de execuções do jModelTest comprovam a adequação da escolha da aplicação para uso no modelo \textsf{He}--lastic, conforme definido na \autoref{sec:modelo-selecao} e explorado em detalhes na \autoref{sec:modelo-decisoes}.
+%
+A ampla variação no tempo de execução conforme o arquivo é uma característica relevante para o usuário do jModelTest uma vez que ele não sabe (a não ser por experiência empírica) o tempo de execução e/ou os recursos necessários para que o cálculo de adequação que está prestes a realizar.
+%
+Este problema torna-se ainda mais relevante em casos onde o usuário pretende executar o jModelTest em arquivos maiores, como 12-stamatakis-59, pois, uma vez que não há indicação de tempo estimado ou complexidade, não é possível saber a quantidade de recursos necessária ou adequada para requisitar em uma determinada execução supondo um ambiente de \textit{cluster} ou \textit{grid} computacional.
+%
+A execução local de arquivos grandes, embora sem dúvida possível, exige uma significativa dose de paciência do usuário em função dos elevados tempos de execução em computadores pessoais (que atualmente costumam ter entre 4 e 8 \textit{cores} de processamento) e até mesmo servidores de menor porte.
+
+
+
+Ademais, o emprego da estratégia de \textit{Clustering Search}, ativada por padrão no jModelTest, faz com que a execução dos cálculos de adequação de sistemas de evolução molecular deixe de compartilhar as características de computação embaraçosamente paralela para ficar mais parecido com uma computação baseada em paralelismo do tipo BSP, conforme abordado na \autoref{fundamentacao-computacao-distribuida}.
+%
+Esta mudança de carácter de paralelismo torna o jModelTest ainda mais sensível ao maior esforço computacional exigido por sistemas de evolução mais complexos assim como possíveis \textit{outliers} e execuções atrasadas que acabam por determinar o tempo máximo de execução independente da média ou dos demais sistemas avaliados.
+%
+Embora não seja objetivo do modelo \textsf{He}--lastic atenuar ou tratar esta característica, a adoção de elasticidade resulta em um significativo benefício no que diz respeito ao custo financeiro uma vez que recursos ociosos são descartados enquanto aguardam o término da computação dos sistemas de evolução mais complexos.
+%
+Além disso a associatividade de custos que emerge da elasticidade permite empregar um número maior de recursos durante momentos de pico enquanto mantém um custo similar ao modelo de alocação fixa por meio do descarte de recursos ociosos.
+
+
+\begin{equation*}
+\Delta{recursos} = \dfrac{Recursos(C_{x-1})}{Recursos(C_{x})}
+\end{equation*}
+\begin{equation}\label{eq:results-jmodel-eficiencia}
+\Delta{efici\hat{e}ncia} = 
+\left(
+	\dfrac
+		{Tempo(C_{x})}
+		{Tempo(C_{x-1}) \times \Delta{recursos}}
+\right)-1
+\end{equation}
+
+
+O impacto da estratégia de \textit{Clustering Search} também pode ser verificado através da análise de eficiência do jModelTest.
+%
+Para determinar esta métrica foram tomadas as médias dos tempos de execução por cenário e arquivo, conforme consta na \autoref{tab:results-jmodel-avgs}, e realizada a comparação entre cada cenário e o seguinte calculando-se a razão entre a diferença de tempos de execução e de recursos.
+%
+Desta forma é possível obter um índice, descrito na \autoref{eq:results-jmodel-eficiencia} normalizado que expressa a perda, ou ganho, de desempenho conforme varia a quantidade de recursos disponível em cada cenário de execução.
+%
+Desta forma, uma execução que levava uma hora pra executar com duas unidades de recursos teria 0\% de perdas caso levasse a metade do tempo para executar com o dobro de unidades de recursos, no caso meia hora e quatro unidades.
+
+
+
+\begin{figure}[bt]
+	\centering%
+	\begin{minipage}{\defaultFigureWidth\textwidth}
+		\caption{Perda de eficiência observada durante as execuções do jModelTest através das médias dos tempos de execução por arquivo (pontos) e transição de cenários (cores) com a média geral em destaque.}
+		\label{fig:results-jmodel-eficiencia}
+		\vspace{1ex}
+		\includegraphics[width=\textwidth]{results-jmodel-eficiencia}
+		\fonte{Elaborado pelo autor.}
+	\end{minipage}
+\end{figure}
+
+
+
+Através da aplicação desta formula torna-se possível visualizar na \autoref{fig:results-jmodel-eficiencia} o comportamento do jModelTest em relação à sua eficiência conforme varia o uso de recursos indicando, de certa forma, seu comportamento de escalabilidade.
+%
+Na figura mencionada as cores determinam os cenários e a variação na quantidade de recursos e cada ponto representa um arquivo do \textit{dataset} apontando as perdas observadas pelos tempos médios de execução.
+%
+Como não foram observados ganhos de eficiência a figura apresenta apenas as perdas conforme variam os recursos disponíveis para cada arquivo e, destacados através dos losangos, as médias gerais para cada cenário.
+
+
+
+Desta forma é possível visualizar um expressivo aumento na ineficiência na transição entre os cenários $C_{j16}$ para $C_{j36}$, reportando uma perda de, em média, 36\% apesar do aumento de 2,25x na quantidade de recursos disponíveis.
+%
+Enquanto isso são observadas perdas entre 12\% e 8\% para as transições entre os cenários $C_{j4}$ para $C_{j8}$ e $C_{j8}$ para $C_{j16}$ respectivamente.
+%
+Por fim, a transição do cenário $C_{j2}$ para $C_{j4}$ apresenta menor perda média com apenas 2\% embora a média geral dentre todos os arquivos do \textit{dataset} e cenários de teste figure em 14\% ineficiência.
+%
+Estes resultados corroboram com observações quanto a utilização de recursos realizadas durante o acompanhamento da execução dos cenários, onde foi possível visualizar longos períodos de recursos ociosos, neste caso \textit{cores} de processamento, conforme a execução se aproxima do final de um dos seis estágios da execução por \textit{Clustering Search} (vide \autoref{tab:modelo-elasticidade-jmodelsteps}).
+
+
+
+Embora não seja parte dos cenários propostos na Metodologia de Avaliação, foi realizada uma única execução em uma VM dotada de 72 vCPUs para confirmar a tendência de aumento no desperdício conforme aumentam os recursos disponíveis.
+%
+Neste teste foi observada uma perda média, ou seja, ao longo de todos os arquivos do \textit{dataset}, de 79\% (ou 64\% excluindo o arquivo aP6), um aumento expressivo frente à ineficiência de 36\% observada na transição dos cenários $C_{j16}$ para $C_{j36}$.
+%
+A análise de ambas as pontas do espectro no que diz respeito ao tempo de execução fornecem \textit{insights} valiosos sobre a utilização de recursos onde o arquivo 01-aP6, o menor do \textit{dataset} apresentou uma regressão, contabilizando perdas de 235\%, negando qualquer benefício do aumento de recursos uma vez que seu tempo de execução já era bastante reduzido.
+%
+Na ponta oposta, o arquivo 12-stamatakis-59 apresentou uma ineficiência de 43\%, contrabalanceando a maior disponibilidade de recursos com os longos períodos de ociosidade em função do processamento em fases.
+%
+Contudo há de se advertir que estes dados podem não refletir fielmente a realidade (principalmente nos arquivos menores) visto que o cenário foi executado apenas uma vez.
+
+
+
+\begin{figure}[btp]
+	\centering%
+	\begin{minipage}{\textwidth}
+		\caption{Utilização média de CPU ao longo de uma rodada de processamento contemplando todos os arquivos do \textit{dataset} de testes em uma VM com 36 \textit{cores} de processamento equivalente ao cenário $C_{j36}$.}
+		\label{fig:results-jmodel-eficiencia-36}
+		\vspace{1ex}
+		\includegraphics[width=\textwidth]{results-jmodel-eficiencia-36}
+		\fonte{Capturado pelo autor a partir do serviço CloudWatch do provedor AWS.}
+	\end{minipage}
+	\begin{minipage}{\textwidth}
+		\caption{Detalhe da \autoref{fig:results-jmodel-eficiencia-36} excluindo o período referente à execução do arquivo 12-stamatakis-59.}
+		\label{fig:results-jmodel-eficiencia-36-ex12}
+		\vspace{1ex}
+		\includegraphics[width=\textwidth]{results-jmodel-eficiencia-36-ex12}
+		\fonte{Capturado pelo autor a partir do serviço CloudWatch do provedor AWS.}
+	\end{minipage}
+	\begin{minipage}{\textwidth}
+		\caption{Utilização média de CPU ao longo de uma rodada de processamento contemplando os quatro maiores arquivos do \textit{dataset} de testes em uma VM com 72 \textit{cores} de processamento.}
+		\label{fig:results-jmodel-eficiencia-72-maiores}
+		\vspace{1ex}
+		\includegraphics[width=\textwidth]{results-jmodel-eficiencia-72-maiores}
+		\fonte{Capturado pelo autor a partir do serviço CloudWatch do provedor AWS.}
+	\end{minipage}
+\end{figure}
+
+
+Para explorar os motivos das perdas de eficiência reportadas é possível recorrer às Figuras \ref{fig:results-jmodel-eficiencia-36} e \ref{fig:results-jmodel-eficiencia-36-ex12} que
+apresentam a utilização média de CPU em períodos de um minuto conforme medida pelo provedor AWS no serviço CloudWatch enquanto ocorre uma execução completa do cenário de testes, contemplando uma única execução do jModelTest para cada arquivo do \textit{dataset}, onde 100\% equivale ao uso completo de todos os \textit{cores} disponíveis.
+%
+Cada linha vertical corresponde à transição entre a execução referente a um arquivo e o próximo, evidenciando o comportamento do uso de CPU durante o cálculo de adequação de sistemas de evolução molecular.
+%
+Na \autoref{fig:results-jmodel-eficiencia-36}, que representa uma amostra do cenário $C_{j36}$, é possível visualizar, no período que contempla os quatro últimos arquivos, por exemplo, o comportamento intermitente de uso de CPU e o desperdício de recursos em função da característica faseada do cálculo realizado através da técnica de \textit{Clustering Search}.
+%
+A \autoref{fig:results-jmodel-eficiencia-72-maiores} retrata uma execução em VM com 72 \textit{cores} de processamento e suporta a intuição a respeito dos limites de escalabilidade do jModelTest haja vista sua a incapacidade de aproveitar todos os recursos disponíveis e o adiantamento da rampa descendente no uso de recursos do último arquivo, que resulta em um aumento da ociosidade. 
+
+
+
+Os impactos da estratégia de \textit{Clustering Search} se destacam conforme aumenta a disponibilidade de recursos e principalmente no caso do último, e maior, arquivo (12-stamatakis-59) que faz uso de apenas duas fases com 8 e 120 sistemas, respectivamente, onde é possível observar um longo período de ociosidade de recursos até que todos os 8 sistemas sejam avaliados.
+%
+Assim que encerra o cálculo da primeira fase o programa faz uso de todos os 36 \textit{cores} disponíveis até que se inicie, novamente, um longo período de ociosidade enquanto os últimos sistemas são processados.
+%
+Estes períodos de longa ociosidade são o alvo das ações de elasticidade propostas no modelo \textsf{He}--lastic por meio da camada baseada em Orquestração de Contêineres.
+
+
+Através da \autoref{fig:results-jmodel-eficiencia-36-ex12}, que apresenta os mesmos dados exceto o arquivo 12-stamatakis-59, é possível observar o baixo nível de utilização média de CPU ao longo da execução do cenário apresentado.
+%
+O comportamento de fases, conforme detalhado na \autoref{tab:modelo-elasticidade-jmodelsteps}, torna-se ainda mais evidente assim como o desperdício observado durante a execução de arquivos menores, onde não se utiliza completamente os recursos disponíveis, o que indica uma alocação excessiva.
+%
+Desta forma o modelo \textsf{He}--lastic lança mão da primeira camada de elasticidade que tem como objetivo atenuar a ociosidade e consequente desperdício de recursos que ocorre ao processar arquivos menores, visando alocar apenas a quantidade necessária.
+
+% 16  
+% 36  i-05a2d5bcf27c76238
 
 
 \section{\textsf{He}--lastic}
@@ -4518,6 +4695,16 @@ cenário new
 		falar que esse cenário foi um tira-teima pra ver se o tempo a mais era em função das operações de elasticidade ou dos retries
 	1624-stamatakis
 		impacto pode ser porque teve bastante troca de máquinas e a cada troca incorre custos de subir uma VM, botar a camada de ECS, baixar e instalar o contêiner, pra só então executar
+\end{verbatim}
+
+\section{Comparativo de Custos}
+
+\begin{verbatim}
+só o financeiro porque as métricas são incompatíveis otherwise
+
+warm04		=	 investigate wether the increased runtime is due to scaling actions or retries
+
+
 \end{verbatim}
 
 %=======================================================================
