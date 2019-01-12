@@ -25,13 +25,7 @@
 %	definições (na sec. 4.5) mover para 'decisões de projeto e premissas' e chamar de premissas
 %	mover a formula 4.3 pra metodologia?
 %	seção 4.3 botar a figura explodida do jmodel + figura explodida do helastic (ver resposta daqui do email)
-%	colocar as figuras 18/19 na mesma página pra fazer antes e depois
 %	mover a análise de custo benefício pra parte de resultados
-%	5.1.1 definição do conjunto... ajustar as demais também
-
-
-
-
 
 
 
@@ -211,7 +205,7 @@ Aplicada da Universidade do Vale do Rio dos Sinos --- UNISINOS
 
 \hypersetup{
 	pdfauthor	= {Mateus R. Aubin},
-	pdftitle	= {He-lastic: um modelo de elasticidade em nuvem em duas camadas para acelerar o cálculo de best-fit em sistemas de evolução filogenética},
+	pdftitle	= {He-lastic: um modelo de elasticidade em nuvem baseado em duas camadas para acelerar o cálculo de best-fit em sistemas de evolução filogenética},
 	pdfsubject	= {Dissertação apresentada como requisito parcial para a obtenção do título de Mestre pelo Programa de Pós-Graduação em Computação Aplicada UNISINOS},
 	pdfkeywords	= {Parallel and Distributed Computing} {Cloud Computing} {Elasticity} {Bioinformatics} {Phylogenetics} {Computação Paralela e Distribuída} {Computação em Nuvem} {Elasticidade} {Bioinformática} {Filogenética},
 	breaklinks	= true,
@@ -291,6 +285,7 @@ Aplicada da Universidade do Vale do Rio dos Sinos --- UNISINOS
 \begin{abstract}
 
 %TODO: Valorizar a análise de custo benefício \autoref{sec:modelo-custben}
+%taxonomia
 
 % == problema & motivação
 Atualmente são escassos os exemplos de áreas do conhecimento que não se beneficiam de recursos tecnológicos para aumentar a produtividade .
@@ -440,7 +435,7 @@ In the future, we intend to improve the taxonomy and, mainly, to implement the p
 \label{ch:intro}
 
 % as epígrafes nos capítulos são opcionais
-%\epigrafecap{The reasonable man adapts himself to the world; the unreasonable one persists in trying to adapt the world to himself. Therefore all progress depends on the unreasonable man.}{George Bernard Shaw}
+\epigrafecap{You must not come lightly to the blank page.}{Stephen King}
 
 
 A biologia, no seu estudo dos seres vivos, é uma das mais antigas faces da ciência e por isso diversas foram as mudanças em seus modos de pesquisa ao longo dos anos.
@@ -592,6 +587,10 @@ Apresentamos, também, um cronograma de atividades remanescentes para a conclus�
 %=======================================================================
 \chapter{Fundamentação Teórica}
 \label{ch:fundamentacao}
+
+
+% as epígrafes nos capítulos são opcionais
+\epigrafecap{Knowledge speaks, but wisdom listens.}{Jimi Hendrix}
 
 
 Este capítulo apresentará ao leitor conceitos fundamentais para o completo entendimento do presente trabalho, assim como conceitos básicos das áreas de estudo e referências adicionais.
@@ -1709,6 +1708,11 @@ No meio acadêmico os trabalhos de \citetexto{Jonas2017} e \citetexto{Shankar201
 \chapter{Trabalhos Relacionados}
 \label{ch:relacionados}
 
+
+% as epígrafes nos capítulos são opcionais
+\epigrafecap{A fool thinks himself to be wise, \\ but a wise man knows himself to be a fool.}{William Shakespeare}
+
+
 %rabuske
 %Esse capítulo apresenta os trabalhos relacionados com a área dessa pesquisa e suas contribuições para a mesma. Na primeira seção, são apresentados os critérios de seleção dos trabalhos e detalhes sobre a execução da pesquisa. Nas seções subsequentes, são apresentados um resumo de cada trabalho relevante e os resultados obtidos pelos mesmos. Por fim, é feita uma análise comparativa entre os trabalhos e são apresentadas as lacunas na área de pesquisa.
 
@@ -2298,6 +2302,10 @@ Contudo acreditamos que os incentivos financeiros a adoção da elasticidade, al
 \label{ch:modelo}
 
 
+% as epígrafes nos capítulos são opcionais
+\epigrafecap{A distributed system is one in which the failure \\ of a computer you didn't even know existed \\ can render your own computer unusable.}{Leslie Lamport}
+
+
 %TODO: citações abaixo
 \begin{verbatim}
 [Shankar2018]
@@ -2649,7 +2657,6 @@ Com este cenário em mente foram estabelecidas as seguintes decisões de projeto
 \begin{table}[tb]
 \centering%
 \begin{minipage}{\defaultFigureWidth\textwidth}
-	%TODO: Seria legal uma análise sobre os parâmetros da tabela 13. Se for muito curto temos isso se for longo temos aquilo... - Abordo isso na 4.6 análise de custo benefício. Mencionarei no texto. [gmail FMfcgxwBTsfLXGPKcBNKhxLncfDftgCR]
 	\caption{Parâmetros necessários para a configuração do modelo \textsf{He}--lastic}
 	\label{tab:modelo-arq-params}
 	\small
@@ -2690,6 +2697,8 @@ Ainda assim, existe a necessidade de configurar alguns parâmetros de execução
 Neste caso a figura de um administrador de ambientes deve ser prevista.
 Embora este perfil de usuário não seja mencionado nas publicações e documentações do projeto jModelTest, é natural projetar a sua existência para qualquer cenário de uso exceto os mais simples.
 Tal afirmação deve-se à necessidade de separar o usuário com conhecimentos em bioinformática (exerce domínio sobre conhecimentos da biologia e suas ferramentas, contudo é incapaz de executar tarefas computacionais mais avançadas) do administrador, um perfil com profundo conhecimento computacional, capaz de provisionar servidores, configurar ambientes e montar \textit{clusters} computacionais.
+%
+Cabe, também, ao administrador determinar os valores para os parâmetros de operação do modelo, uma tarefa que pode ser realizada de maneira empírica através de experiência ou observações, ou seguindo uma abordagem mais científica através de uma análise de cenários de custo benefício, como será detalhado na \autoref{sec:modelo-custben}.
 
 
 
@@ -2791,7 +2800,6 @@ Outro benefício é a redução na ocorrência de \textit{thrashing} de recursos
 \afterpage{%
 	%\clearpage	% Flush earlier floats
 	\begin{figure}[p]
-		%TODO: Eu nao entendi muito a figura 16.  Como devo le-la? De forma horizontal? - a leitura é de cima pra baixo contudo dependendo do fluxo de execução vai pra uma setinha ou outra (codificadas por cor). Botei uma anotação pra ver como deixar isso claro. [gmail FMfcgxwBTsfLXGPKcBNKhxLncfDftgCR]
 		\vspace{-15.8ex}
 		\hspace{-10.1ex}
 		\begin{minipage}{1.16\textwidth}
@@ -2826,8 +2834,14 @@ Estão destacados na figura cinco momentos distintos durante a execução do mod
 
 
 Uma vez detalhados os objetivos e os componentes do modelo torna-se possível a utilização de técnicas de projeto e arquitetura de \textit{software} para fornecer uma visão de alto nível e descrever as interações entre os elementos que compõem o modelo \textsf{He}--lastic.
-Através da Linguagem Unificada de Modelagem (UML, no inglês), podemos representar formalmente o fluxo de controle entre os componentes do modelo, ou seja, seu comportamento, em um diagrama de atividades como o apresentado na \autoref{fig:modelo-uml-activity}.
-Os pontos de comunicação assíncrona através de filas de mensagens (representados pelo símbolo de evento, conforme a especificação UML) realizam a mediação entre ambiente local e de computação em nuvem além de favorecer o comportamento elástico através do desacoplamento, permitindo que cada componente do modelo atinja escalabilidade independentemente dos demais.
+Através da Linguagem Unificada de Modelagem (UML, no inglês), podemos representar formalmente o fluxo de controle entre os componentes do modelo, ou seja, seu comportamento, em um diagrama de atividades.
+%
+Este diagrama apresenta, conforme detalhado pela \autoref{fig:modelo-uml-activity}, no eixo vertical as etapas de execução do jModelTest, sendo compostas por { Preparação,  Execução, Erro e Sucesso} enquanto no eixo horizontal são descritos os princpais componentes do modelo.
+%
+Desta forma é possível identificar, por exemplo, a transição da camada FaaS para a camada de Orquestração de Contêineres através da leitura diagonal da esquerda para a direita e de cima para baixo, seguindo também as setas e seus possíveis locais de encaixe, que são representados pelo símbolo de evento, conforme a especificação UML
+%
+Os pontos de comunicação assíncrona através de filas de mensagens realizam a mediação entre ambiente local e de computação em nuvem além de favorecer o comportamento elástico através do desacoplamento, permitindo que cada componente do modelo atinja escalabilidade independentemente dos demais.
+
 
 
 
@@ -2866,9 +2880,8 @@ Os pontos de comunicação assíncrona através de filas de mensagens (represent
 
 \begin{figure}[tb]
 \centering%
-%TODO: Na figura 17, seria legal entender melhor a ordem, primeiro FAAS e depois container. - minha intenção com essa figura não era mostrar a ordem de execução, mas as diferenças nos componentes das camadas. Botei um lembrete pra deixar isso mais evidente na caption. [gmail FMfcgxwBTsfLXGPKcBNKhxLncfDftgCR]
 \begin{minipage}{\defaultFigureWidth\textwidth}
-	\caption{Diagrama ilustrando as principais diferenças entre os componentes das camadas de elasticidade: Apesar de compartilharem a estrutura de alto nível o FaaS tem importantes limitações no que diz respeito ao tempo limite de execução e capacidade de processamento, o que permite ao provedor de computação em nuvem otimizar a gestão da elasticidade e multiplexar o uso de recursos entre usuários; em contrapartida o orquestrador de contêineres permite que o usuário determine o comportamento da elasticidade e abdica da limitação no tempo de execução em troca de um maior fardo operacional e um ambiente de execução que deve ser gerido pelo próprio usuário}
+	\caption{Diagrama ilustrando as principais diferenças entre os componentes das camadas de elasticidade: Apesar de compartilharem a estrutura de alto nível o FaaS tem importantes limitações no que diz respeito ao tempo de execução e a capacidade de processamento, o que permite ao provedor de computação em nuvem otimizar a gestão da elasticidade e multiplexar o uso de recursos entre usuários; em contrapartida o orquestrador de contêineres permite que o usuário determine o comportamento da elasticidade e abdica da limitação no tempo de execução em troca de um maior fardo operacional e um ambiente de execução que deve ser gerido pelo próprio usuário}
 	\label{fig:modelo-componentes-explodidos}
 	\includegraphics[width=\textwidth]{modelo-componentes-explodidos}
 	\fonte{Elaborado pelo autor.}
@@ -2876,87 +2889,9 @@ Os pontos de comunicação assíncrona através de filas de mensagens (represent
 \end{figure}
 
 
-\begin{figure}[tb]
-\centering%
-\begin{minipage}{\defaultFigureWidth\textwidth}
-	\caption{Estratégia de paralelismo adotada pelo programa jModelTest durante a análise de adequação de modelos de substituição molecular: um arquivo com múltiplas sequências moleculares alinhadas serve como entrada para um número de tarefas de avaliação (uma para cada modelo de substituição selecionado) e que ficam, por sua vez, em uma fila de tarefas e são processados conforme existam recursos disponíveis dentre um conjunto fixo preestabelecido}
-	\label{fig:modelo-jmodeltest}
-	\vspace{1ex}
-	\includegraphics[width=\textwidth]{modelo-jmodeltest}
-	\fonte{Adaptado de \citetexto{Darriba2014}.}
-%=======================================================================
-%		EXPLICAMENTO
-%=======================================================================
-%	\centering
-%	\begin{minipage}{.8\textwidth}
-%		\centering
-%		\vspace{1ex}
-%		\small
-%		\textbf{Fluxo de Execução:}
-%		\begin{enumerate}[leftmargin=*]
-%			\item O programa recebe de entrada um arquivo contendo um conjunto de múltiplas sequências moleculares alinhadas;
-%			\item A partir dos parâmetros selecionados pelo usuário são geradas um conjunto de tarefas para execução do teste de adequação dos modelos de substituição moleculares;
-%			\item Com a ajuda do padrão MPI as tarefas são distribuídas entre os nodos disponíveis no \textit{cluster} computacional com um número fixo de recursos;
-%			\item Cada recurso do \textit{cluster} recebe e processa o teste de adequação do seu modelo com o arquivo de alinhamentos recebido, devolvendo um \textit{score} que determina quão bem o modelo representa os dados e os parâmetros que levaram a este resultado.
-%		\end{enumerate}
-%	\end{minipage}
-%
-\end{minipage}
-\end{figure}
-\begin{table}[tb]
-\centering%
-\begin{minipage}{\defaultFigureWidth\textwidth}
-	\caption{Configuração do processamento efetuado pelo jModelTest durante o uso de \textit{Clustering Search} mostrando a quantidade e os sistemas de evolução molecular de acordo com a etapa}
-	\label{tab:modelo-elasticidade-jmodelsteps}
-	\small
-	\vspace{1ex}
-	\renewcommand {\tabularxcolumn}[1]{>{\arraybackslash}m{#1}} % vertical center
-	\begin{tabularx}{\textwidth}{rrX@{}}
-		\toprule
-		Etapa & Quantidade & {Sistemas} \\ 
-		\midrule
-		1 & 8 &  GTR, GTR+G, GTR+I, GTR+I+G, \newline SYM, SYM+G, SYM+I, SYM+I+G  \\
-		2 & 120 &  001234~$\times~v$, 010234~$\times~v$, 011234~$\times~v$, 012034~$\times~v$, 012134~$\times~v$, 012234~$\times~v$, 012304~$\times~v$, 012324~$\times~v$, 012334~$\times~v$, 012340~$\times~v$, 012341~$\times~v$, 012342~$\times~v$, 012343~$\times~v$, 012344~$\times~v$, \newline TVM~$\times~v$, TVMef~$\times~v$  \\
-		3 & 80 &  001203~$\times~v$, 010203~$\times~v$, 011203~$\times~v$, 012003~$\times~v$, 012103~$\times~v$, 012203~$\times~v$, 012300~$\times~v$, 012301~$\times~v$, 012302~$\times~v$, 012303~$\times~v$  \\
-		4 & 48 &  001200~$\times~v$, 010200~$\times~v$, 011200~$\times~v$, \newline 012000~$\times~v$, 012100~$\times~v$, 012200~$\times~v$  \\
-		5 & 24 &  000100~$\times~v$, 011000~$\times~v$, 011100~$\times~v$  \\
-		6 & 8 &  JC, JC+G, JC+I, JC+I+G, \newline F81, F81+G, F81+I, F81+I+G  \\
-		\bottomrule
-		Total & 288 & \multicolumn{1}{r}{onde $ v~=~${\small \{ +F, +G, +G+F, +I, +I+F, +I+G+F, +I+G \}}} \\ 
-	\end{tabularx}
-	\fonte{Elaborado pelo autor.}
-\end{minipage}
-\end{table}
 
 
-\begin{figure}[tb]
-\centering%
-\begin{minipage}{\defaultFigureWidth\textwidth}
-	\caption{Estratégia de paralelismo adotada pelo modelo \textsf{He}--lastic durante a análise de adequação de modelos de substituição molecular: um arquivo com múltiplas sequências moleculares alinhadas serve como entrada para um número de tarefas de avaliação (uma para cada modelo de substituição selecionado) que ficam, por sua vez, em uma fila de tarefas sendo primeiramente processadas na camada FaaS e encaminhadas para a camada de Orquestração de Contêineres em caso de falha por tempo de processamento expirado}
-	\label{fig:modelo-strategies}
-	\vspace{1ex}
-	\includegraphics[width=\textwidth]{modelo-strategies}
-	\fonte{Elaborado pelo autor.}
-%=======================================================================
-%		EXPLICAMENTO
-%=======================================================================
-%	\centering
-%	\begin{minipage}{.85\textwidth}
-%		\centering
-%		\vspace{1ex}
-%		\footnotesize
-%		\textbf{Fluxo de Execução:}
-%		\begin{enumerate}[leftmargin=*]
-%			\item O programa recebe de entrada um arquivo contendo um conjunto de múltiplas sequências moleculares alinhadas;
-%			\item A partir dos parâmetros selecionados pelo usuário são geradas um conjunto de tarefas para execução do teste de adequação dos modelos de substituição moleculares;
-%			\item Através de filas de mensagens o componente FaaS, primeira camada de elasticidade responsável pelas tarefas de curta duração, é notificado de que há processamento aguardando, o que serve como gatilho para que o provedor de computação em nuvem aloque os recursos necessários de maneira elástica para que cada recurso seja responsável por processar uma única requisição;
-%			\item No caso de um dos processamentos exceder o tempo limite de execução configurado para a camada FaaS, sua tarefa é encaminhada para a segunda camada de elasticidade, o orquestrador de contêineres, onde são executadas as tarefas de média e longa duração; 
-%			\item Cada recurso da unidade de elasticidade recebe e processa um teste de adequação onde um gerenciador de elasticidade configurável dá conta de alocar e desalocar recursos conforme a demanda, devolvendo, ao final do processo, um \textit{score} que determina quão bem o modelo representa os dados e os parâmetros que levaram a este resultado.
-%		\end{enumerate}
-%	\end{minipage}
-%
-\end{minipage}
-\end{figure}
+
 
 
 A interação entre os componentes previamente citados representa o cerne do modelo \textsf{He}--lastic que, através das suas duas unidades de elasticidade, nomeadamente o componente FaaS e o Orquestrador de Contêineres, operando na modalidade horizontal, com política automática reativa e estratégia por replicação (vide \autoref{sec:elasticidade}), possibilita um melhor acompanhamento da demanda computacional e economia ao evitar custos ociosos.
@@ -3002,6 +2937,55 @@ A \autoref{fig:modelo-jmodeltest} apresenta uma visão conceitual sobre a estrat
 
 
 
+\begin{table}[tb]
+\centering%
+\begin{minipage}{\defaultFigureWidth\textwidth}
+	\caption{Configuração do processamento efetuado pelo jModelTest durante o uso de \textit{Clustering Search} mostrando a quantidade e os sistemas de evolução molecular de acordo com a etapa}
+	\label{tab:modelo-elasticidade-jmodelsteps}
+	\small
+	\vspace{1ex}
+	\renewcommand {\tabularxcolumn}[1]{>{\arraybackslash}m{#1}} % vertical center
+	\begin{tabularx}{\textwidth}{rrX@{}}
+		\toprule
+		Etapa & Quantidade & {Sistemas} \\ 
+		\midrule
+		1 & 8 &  GTR, GTR+G, GTR+I, GTR+I+G, \newline SYM, SYM+G, SYM+I, SYM+I+G  \\
+		2 & 120 &  001234~$\times~v$, 010234~$\times~v$, 011234~$\times~v$, 012034~$\times~v$, 012134~$\times~v$, 012234~$\times~v$, 012304~$\times~v$, 012324~$\times~v$, 012334~$\times~v$, 012340~$\times~v$, 012341~$\times~v$, 012342~$\times~v$, 012343~$\times~v$, 012344~$\times~v$, \newline TVM~$\times~v$, TVMef~$\times~v$  \\
+		3 & 80 &  001203~$\times~v$, 010203~$\times~v$, 011203~$\times~v$, 012003~$\times~v$, 012103~$\times~v$, 012203~$\times~v$, 012300~$\times~v$, 012301~$\times~v$, 012302~$\times~v$, 012303~$\times~v$  \\
+		4 & 48 &  001200~$\times~v$, 010200~$\times~v$, 011200~$\times~v$, \newline 012000~$\times~v$, 012100~$\times~v$, 012200~$\times~v$  \\
+		5 & 24 &  000100~$\times~v$, 011000~$\times~v$, 011100~$\times~v$  \\
+		6 & 8 &  JC, JC+G, JC+I, JC+I+G, \newline F81, F81+G, F81+I, F81+I+G  \\
+		\bottomrule
+		Total & 288 & \multicolumn{1}{r}{onde $ v~=~${\small \{ +F, +G, +G+F, +I, +I+F, +I+G+F, +I+G \}}} \\ 
+	\end{tabularx}
+	\fonte{Elaborado pelo autor.}
+\end{minipage}
+\end{table}
+
+
+\begin{figure}[p]
+\centering%
+\begin{minipage}{.75\textwidth}
+	\caption{Estratégia de paralelismo adotada pelo programa jModelTest: um arquivo com múltiplas sequências moleculares alinhadas serve como entrada para um número de tarefas de avaliação (uma para cada sistema de substituição selecionado) e que ficam, por sua vez, em uma fila de tarefas e são processados conforme existam recursos disponíveis dentre um conjunto fixo preestabelecido.}
+	\label{fig:modelo-jmodeltest}
+	\vspace{1ex}
+	\includegraphics[width=\textwidth]{modelo-jmodeltest}
+	\fonte{Adaptado de \citetexto{Darriba2014}.}
+\end{minipage}
+%\end{figure}
+%\begin{figure}[tb]
+%\centering%
+\begin{minipage}{.75\textwidth}
+	\caption{Estratégia de paralelismo adotada pelo modelo \textsf{He}--lastic: um arquivo com múltiplas sequências moleculares alinhadas serve como entrada para um número de tarefas de avaliação (uma para cada sistema de substituição selecionado) que ficam, por sua vez, em uma fila de tarefas sendo primeiramente processadas na camada FaaS e encaminhadas para a camada de Orquestração de Contêineres em caso de falha por tempo de processamento expirado.}
+	\label{fig:modelo-strategies}
+	\vspace{1ex}
+	\includegraphics[width=\textwidth]{modelo-strategies}
+	\fonte{Elaborado pelo autor.}
+\end{minipage}
+\end{figure}
+
+
+
 Enquanto a estratégia adotada pelo jModelTest é muito eficaz na obtenção de altos níveis de performance através da distribuição de tarefas via MPI ela sofre com o desperdício de recursos computacionais em função da heterogeneidade no custo computacional do cálculo de adequação de sistemas de evolução de sequências moleculares.
 Este cenário é agravado quando há a aplicação da estratégia de \textit{Clustering Search}, onde o total de sistemas de evolução é divido em 6 grupos de teste de acordo com critérios de particionamento que buscam, através de uma busca gulosa testar até 288 sistemas do total de 1624 suportados pelo jModelTest em troca de uma precisão levemente pior, segundo afirma \citetexto{Darriba2012} e \citetexto{DarribaPHD}.
 
@@ -3020,7 +3004,6 @@ Desta forma, o modelo \textsf{He}--lastic lança mão da sua estratégia dividid
 	\item a ampla variação na quantidade de recursos requeridos pela execução empregando o método de \textit{Clustering Search}; e
 	\item manter um baixo impacto na eficiência (\textit{overhead}) comparado com a performance original do jModelTest. 
 \end{inparaenum}
-
 
 
 Comparada a abordagem original do jModelTest, representada pela \autoref{fig:modelo-jmodeltest}, a proposta do modelo \textsf{He}--lastic adiciona, na camada FaaS (de curta duração), um \textit{buffer}, ou colchão, capaz de absorver uma parcela das requisições de forma paralela enquanto evita sobrecarregar a camada de longa duração com alta rotatividade de tarefas.
@@ -3067,7 +3050,7 @@ Para este fim são de grande valia o conjunto de equações detalhados na \autor
 Desta forma, para os fins deste trabalho, definimos a granularidade do paralelismo conforme:
 \begin{quote}
 	%TODO: Definição é quando tens uma palavra ou expressão nova. Por exemplo: "granulosidade adaptativa"... - minha intenção era destacar alguns pontos determinantes pro entendimento das métricas de avaliação e resultados mais a frente. Acho que vou trocar para ‘decisões’ então. [gmail FMfcgxwBTsfLXGPKcBNKhxLncfDftgCR]
-	\textbf{Decisão 1 --- da Granularidade:} a granularidade de uma execução do modelo \textsf{He}--lastic, e consequentemente do \textit{software} jModelTest, pode ser determinada através da combinação entre o conteúdo do arquivo de múltiplos alinhamentos de sequências moleculares, fornecido como parâmetro de entrada, e os parâmetros escolhidos pelo usuário que determinarão, em última instância, quais sistemas de evolução farão parte do teste de adequação.
+	\textbf{Premissa 1 --- da Granularidade:} a granularidade de uma execução do modelo \textsf{He}--lastic, e consequentemente do \textit{software} jModelTest, pode ser determinada através da combinação entre o conteúdo do arquivo de múltiplos alinhamentos de sequências moleculares, fornecido como parâmetro de entrada, e os parâmetros escolhidos pelo usuário que determinarão, em última instância, quais sistemas de evolução farão parte do teste de adequação.
 \end{quote}
 
 
@@ -3174,7 +3157,7 @@ Desta forma, mantendo-se fiel ao conceito de \textit{utility--computing} habilit
 Uma desvantagem em relação à métrica de custo financeiro está na sua variabilidade ao longo do tempo e entre provedores de computação em nuvem, uma vez que preços tendem a se alterar conforme são disponibilizadas novas funcionalidades e novos tipos de hardware.
 \begin{quote}
 	%TODO: Definição é quando tens uma palavra ou expressão nova. Por exemplo: "granulosidade adaptativa"... - minha intenção era destacar alguns pontos determinantes pro entendimento das métricas de avaliação e resultados mais a frente. Acho que vou trocar para ‘decisões’ então. [gmail FMfcgxwBTsfLXGPKcBNKhxLncfDftgCR]
-	\textbf{Decisão 2 --- da Métrica de Avaliação:} nos cenários que contemplem a composição entre múltiplos modelos de execução (fixo, elástico e FaaS) a métrica Financeira será utilizada como baliza para determinar as relações de eficiência. Tal definição se apoia na associatividade de custos, definida por \citetexto{Armbrust:EECS-2009-28} ao afirmar que, em um ambiente de computação em nuvem usar 1000 máquinas por uma hora equivale a usar uma máquina por 1000 horas.
+	\textbf{Premissa 2 --- da Métrica de Avaliação:} nos cenários que contemplem a composição entre múltiplos modelos de execução (fixo, elástico e FaaS) a métrica Financeira será utilizada como baliza para determinar as relações de eficiência. Tal definição se apoia na associatividade de custos, definida por \citetexto{Armbrust:EECS-2009-28} ao afirmar que, em um ambiente de computação em nuvem usar 1000 máquinas por uma hora equivale a usar uma máquina por 1000 horas.
 \end{quote}
 
 
@@ -3185,7 +3168,7 @@ Ainda assim a métrica de custo financeiro, além de ser um forma eficaz de prov
 Resultando, enfim, nas definições 2 e 3:
 \begin{quote}
 	%TODO: Definição é quando tens uma palavra ou expressão nova. Por exemplo: "granulosidade adaptativa"... - minha intenção era destacar alguns pontos determinantes pro entendimento das métricas de avaliação e resultados mais a frente. Acho que vou trocar para ‘decisões’ então. [gmail FMfcgxwBTsfLXGPKcBNKhxLncfDftgCR]
-	\textbf{Decisão 3 --- do Provedor de Computação em Nuvem:} para os fins do presente trabalho fica estabelecida a restrição referente ao uso de um único provedor de computação em nuvem. Esta restrição não é imposta pelo modelo \textsf{He}--lastic, que é indiferente a uma possível implantação \textit{multi--cloud} em função da sua arquitetura desacoplada através de componentes independentemente escaláveis, contudo tem por objetivo manter uma comparação justa entre os diferentes modelos de execução, evitando discrepâncias no que tange à performance dos recursos computacionais subjacentes e à precificação dos mesmos.
+	\textbf{Premissa 3 --- do Provedor de Computação em Nuvem:} para os fins do presente trabalho fica estabelecida a restrição referente ao uso de um único provedor de computação em nuvem. Esta restrição não é imposta pelo modelo \textsf{He}--lastic, que é indiferente a uma possível implantação \textit{multi--cloud} em função da sua arquitetura desacoplada através de componentes independentemente escaláveis, contudo tem por objetivo manter uma comparação justa entre os diferentes modelos de execução, evitando discrepâncias no que tange à performance dos recursos computacionais subjacentes e à precificação dos mesmos.
 \end{quote}
 
 
@@ -3537,6 +3520,8 @@ Além disso, o modelo delega a gestão de tarefas secundárias\footnote{
 
 \chapter{Metodologia de Avaliação}
 \label{ch:modelo-metodologia}
+
+\epigrafecap{Software maintenance is not \textquoteleft keep it working like before\textquoteright. \\ It is \textquoteleft keep being useful in a changing world\textquoteright.}{Jessica Kerr}
 
 % TODO escrever intro do capitulo, falar da visao geral e: na sec. 1 falamos disso na outra daquilo bla bla bla
 %Uma vez identificada a aplicação candidata para modernização realizamos uma análise em busca de suas características e pontos de melhoria, chegando assim aos nossos objetivos em termos de decisões de projetos e, finalmente, na arquitetura proposta e seu tratamento no que diz respeito a elasticidade.
@@ -4334,6 +4319,8 @@ Desta forma todas a criação e remoção do ambiente necessário para execuçã
 \chapter{Resultados}
 \label{ch:resultados}
 
+\epigrafecap{The purpose of life is not to be happy --- but to matter, to be productive, \\ to be useful, to have it make some difference that you have lived at all.}{Leo Rosten}
+
 \section{jModelTest}
 \label{sec:resultados-jmodel}
 
@@ -4341,7 +4328,7 @@ Desta forma todas a criação e remoção do ambiente necessário para execuçã
 \begin{table}[tbp]
 \centering%
 \begin{minipage}{\defaultFigureWidth\textwidth}
-	\caption{Quantidade de amostras (execuções) para cada arquivo do \textit{dataset} conforme o cenário.}
+	\caption{Quantidade de amostras coletadas na avaliação do jModelTest para cada arquivo do \textit{dataset} conforme o cenário.}
 	\label{tab:results-jmodel-samples}
 	\vspace{1ex}
 	\small
@@ -4401,7 +4388,7 @@ Desta forma todas a criação e remoção do ambiente necessário para execuçã
 \end{table}
 
 
-Visando obter resultados de alta confiabilidade, uma vez que estes formariam a régua sobre a qual se apoiariam as medidas do modelo proposto foram realizadas no total quase mil execuções dos testes de adequação de sistemas de evolução molecular seguindo os arquivos, parâmetros e cenários definidos na \autoref{sec:metodologia-etapasecenarios}.
+Visando obter resultados de alta confiabilidade, uma vez que estes formariam a régua sobre a qual se apoiam as medidas do modelo proposto, foram realizadas no total quase mil execuções dos testes de adequação de sistemas de evolução molecular seguindo os arquivos, parâmetros e cenários definidos na \autoref{sec:metodologia-etapasecenarios}.
 %
 Estas execuções foram distribuídas em quase cem (96) máquinas virtuais distintas contemplando instâncias do serviço EC2 da AWS nos seguintes modelos: \texttt{c4.2xlarge}, \texttt{c5.large}, \texttt{c5.xlarge}, \texttt{c5.2xlarge}, \texttt{c5.4xlarge}, \texttt{c5.9xlarge}.
 %
@@ -4506,10 +4493,32 @@ Apesar da relativamente alta variação encontrada no cenário $C_{j8}$ quando c
 \end{inparaenum}
 
 
+\afterpage{
+\begin{figure}[bt]
+	\centering%
+	\begin{minipage}{.43\textwidth}
+		\caption{Histograma da frequência dos tempos de execução para cada um dos sistemas de evolução avaliados durante a execução do arquivo 12-stamatakis-59 no cenário $C_{j36}$.}
+		\label{fig:results-jmodel-timepermodel-36-stamatakis}
+		\vspace{1ex}
+		\includegraphics[width=\textwidth]{results-jmodel-timepermodel-36-stamatakis}
+		\fonte{Elaborado pelo autor.}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{.52\textwidth}
+		\caption{Histograma da frequência dos tempos de execução para cada um dos sistemas de evolução avaliados durante a execução do arquivo 07-primate-mtDNA no cenário $C_{j2}$.}
+		\label{fig:results-jmodel-timepermodel-02-primate}
+		\vspace{1ex}
+		\includegraphics[width=\textwidth]{results-jmodel-timepermodel-02-primate}
+		\fonte{Elaborado pelo autor.}
+	\end{minipage}
+\end{figure}
+}
 
-Os resultados gerais das execuções por arquivo--cenário, conforme \autoref{tab:results-jmodel-avgs} são apresentados de maneira visual em gráficos na \autoref{fig:results-jmodel-avgs} que adota como referência a métrica da Mediana para estipular os valores retratados.
+
+
+Os resultados gerais das execuções por arquivo--cenário, conforme a \autoref{tab:results-jmodel-avgs}, são apresentados de maneira visual em gráficos na \autoref{fig:results-jmodel-avgs} que adota como referência a métrica da Mediana para estipular os valores retratados.
 %
-Devido à amplitude dos tempos de execução a figura foi dividida em dois eixos verticais, com o eixo da direita reservado para arquivos que exigem um tempo muito maior de processamento, como é o caso de 12-stamatakis-59.
+Devido à amplitude dos tempos de execução a figura foi dividida em dois eixos verticais, com o eixo da direita reservado para arquivos que exigem um tempo maior de processamento, como é o caso de 12-stamatakis-59.
 %
 Através da representação gráfica fica evidente como o jModelTest se beneficia do aumento na quantidade de CPUs disponíveis, uma vez que este sua execução é totalmente CPU--\textit{bound}.
 %
@@ -4517,27 +4526,13 @@ Também é possível perceber a expressiva diferença nos tempos de execução d
 %
 Outro destaque é o primeiro grupo de arquivos, composto por 01-aP6, 02-rodents, 03-example e 04-18S\_insects2, que contabilizam tempos de execução extremamente curtos mesmo em cenários com relativa escassez de recursos como $C_{j2}$, $C_{j4}$ e $C_{j8}$, contabilizando, somados, apenas 1\% do tempo total de execução de cada cenário.
 
-%\afterpage{
-	\begin{figure}
-		\centering%
-		\begin{minipage}{.43\textwidth}
-			\caption{Histograma da frequência dos tempos de execução para cada um dos sistemas de evolução avaliados durante a execução do arquivo 12-stamatakis-59 no cenário $C_{j36}$.}
-			\label{fig:results-jmodel-timepermodel-36-stamatakis}
-			\vspace{1ex}
-			\includegraphics[width=\textwidth]{results-jmodel-timepermodel-36-stamatakis}
-			\fonte{Elaborado pelo autor.}
-		\end{minipage}
-		\hfill
-		\begin{minipage}{.52\textwidth}
-			\caption{Histograma da frequência dos tempos de execução para cada um dos sistemas de evolução avaliados durante a execução do arquivo 07-primate-mtDNA no cenário $C_{j2}$.}
-			\label{fig:results-jmodel-timepermodel-02-primate}
-			\vspace{1ex}
-			\includegraphics[width=\textwidth]{results-jmodel-timepermodel-02-primate}
-			\fonte{Elaborado pelo autor.}
-		\end{minipage}
-	\end{figure}
-%}
-%TODO: variação no tempo de execução por modelo
+
+Através da análise dos tempos de processamento por sistema de evolução molecular testado pelo jModelTest é possível verificar o caráter destas execuções em termos da sua amplitude de duração.
+%
+Os histogramas apresentados nas Figuras \ref{fig:results-jmodel-timepermodel-36-stamatakis} e \ref{fig:results-jmodel-timepermodel-02-primate} apresentam a frequência com que os sistemas avaliados se enquadram em um determinado intervalo de tempo de execução.
+%
+É possível determinar pela análise das figuras que a maior parte dos sistemas avaliados se concentra na ponta mais baixa das durações, contudo há também uma característica de cauda longa que contempla execuções que levam mais de 4x o tempo de execução da maioria.
+
 
 
 Os resultados obtidos na coleta de execuções do jModelTest comprovam a adequação da escolha da aplicação para uso no modelo \textsf{He}--lastic, conforme definido na \autoref{sec:modelo-selecao} e explorado em detalhes na \autoref{sec:modelo-decisoes}.
@@ -4546,7 +4541,7 @@ A ampla variação no tempo de execução conforme o arquivo é uma característ
 %
 Este problema torna-se ainda mais relevante em casos onde o usuário pretende executar o jModelTest em arquivos maiores, como 12-stamatakis-59, pois, uma vez que não há indicação de tempo estimado ou complexidade, não é possível saber a quantidade de recursos necessária ou adequada para requisitar em uma determinada execução supondo um ambiente de \textit{cluster} ou \textit{grid} computacional.
 %
-A execução local de arquivos grandes, embora sem dúvida possível, exige uma significativa dose de paciência do usuário em função dos elevados tempos de execução em computadores pessoais (que atualmente costumam ter entre 4 e 8 \textit{cores} de processamento) e até mesmo servidores de menor porte.
+A execução local de arquivos maiores, embora sem dúvida possível, exige uma significativa dose de paciência do usuário em função dos elevados tempos de execução em computadores pessoais (que atualmente costumam ter entre 4 e 8 \textit{cores} de processamento) e até mesmo servidores de menor porte.
 
 
 
@@ -4554,16 +4549,16 @@ Ademais, o emprego da estratégia de \textit{Clustering Search}, ativada por pad
 %
 Esta mudança de carácter de paralelismo torna o jModelTest ainda mais sensível ao maior esforço computacional exigido por sistemas de evolução mais complexos assim como possíveis \textit{outliers} e execuções atrasadas que acabam por determinar o tempo máximo de execução independente da média ou dos demais sistemas avaliados.
 %
-Embora não seja objetivo do modelo \textsf{He}--lastic atenuar ou tratar esta característica, a adoção de elasticidade resulta em um significativo benefício no que diz respeito ao custo financeiro uma vez que recursos ociosos são descartados enquanto aguardam o término da computação dos sistemas de evolução mais complexos.
+Embora não seja objetivo do modelo \textsf{He}--lastic atenuar ou tratar esta característica, a adoção de elasticidade pode resultar em um significativo benefício no que diz respeito ao custo financeiro uma vez que recursos ociosos serão descartados enquanto aguardam o término da computação dos sistemas de evolução mais complexos.
 %
 Além disso a associatividade de custos que emerge da elasticidade permite empregar um número maior de recursos durante momentos de pico enquanto mantém um custo similar ao modelo de alocação fixa por meio do descarte de recursos ociosos.
 
 
-\begin{equation*}
+\begin{equation}
 \Delta{recursos} = \dfrac{Recursos(C_{x-1})}{Recursos(C_{x})}
-\end{equation*}
+\end{equation}
 \begin{equation}\label{eq:results-jmodel-eficiencia}
-\Delta{efici\hat{e}ncia} = 
+Perda = 
 \left(
 	\dfrac
 		{Tempo(C_{x})}
@@ -4576,7 +4571,7 @@ O impacto da estratégia de \textit{Clustering Search} também pode ser verifica
 %
 Para determinar esta métrica foram tomadas as médias dos tempos de execução por cenário e arquivo, conforme consta na \autoref{tab:results-jmodel-avgs}, e realizada a comparação entre cada cenário e o seguinte calculando-se a razão entre a diferença de tempos de execução e de recursos.
 %
-Desta forma é possível obter um índice, descrito na \autoref{eq:results-jmodel-eficiencia} normalizado que expressa a perda, ou ganho, de desempenho conforme varia a quantidade de recursos disponível em cada cenário de execução.
+Desta forma é possível obter um índice normalizado, descrito na \autoref{eq:results-jmodel-eficiencia}, que expressa a perda, ou ganho, de desempenho conforme varia a quantidade de recursos disponível em cada cenário de execução.
 %
 Desta forma, uma execução que levava uma hora pra executar com duas unidades de recursos teria 0\% de perdas caso levasse a metade do tempo para executar com o dobro de unidades de recursos, no caso meia hora e quatro unidades.
 
@@ -4615,34 +4610,48 @@ Estes resultados corroboram com observações quanto a utilização de recursos 
 
 Embora não seja parte dos cenários propostos na Metodologia de Avaliação, foi realizada uma única execução em uma VM dotada de 72 vCPUs para confirmar a tendência de aumento no desperdício conforme aumentam os recursos disponíveis.
 %
-Neste teste foi observada uma perda média, ou seja, ao longo de todos os arquivos do \textit{dataset}, de 79\% (ou 64\% excluindo o arquivo aP6), um aumento expressivo frente à ineficiência de 36\% observada na transição dos cenários $C_{j16}$ para $C_{j36}$.
+Neste teste foi observada uma perda média, ou seja, ao longo de todos os arquivos do \textit{dataset}, de 79\% (ou 64\% excluindo o arquivo 01-aP6), um aumento expressivo frente à ineficiência de 36\% observada na transição dos cenários $C_{j16}$ para $C_{j36}$.
 %
 A análise de ambas as pontas do espectro no que diz respeito ao tempo de execução fornecem \textit{insights} valiosos sobre a utilização de recursos onde o arquivo 01-aP6, o menor do \textit{dataset} apresentou uma regressão, contabilizando perdas de 235\%, negando qualquer benefício do aumento de recursos uma vez que seu tempo de execução já era bastante reduzido.
 %
 Na ponta oposta, o arquivo 12-stamatakis-59 apresentou uma ineficiência de 43\%, contrabalanceando a maior disponibilidade de recursos com os longos períodos de ociosidade em função do processamento em fases.
 %
-Contudo há de se advertir que estes dados podem não refletir fielmente a realidade (principalmente nos arquivos menores) visto que o cenário foi executado apenas uma vez.
+Contudo há de se advertir que estes dados podem não refletir fielmente a realidade (principalmente nos arquivos menores) visto que o cenário foi executado apenas uma vez e desta forma servem apenas como indicativo de tendência, sem prover a confiança estatística necessária para tirar conclusões.
 
 
 
 \begin{figure}[btp]
 	\centering%
 	\begin{minipage}{\textwidth}
-		\caption{Utilização média de CPU ao longo de uma rodada de processamento contemplando todos os arquivos do \textit{dataset} de testes em uma VM com 36 \textit{cores} de processamento equivalente ao cenário $C_{j36}$.}
+		\caption{Utilização média de CPU ao longo de uma execução contemplando todos os arquivos do \textit{dataset} de testes em uma VM com 8 \textit{cores} de processamento equivalente ao cenário $C_{j8}$ (Duração total: 6 horas, 28 minutos).}
+		\label{fig:results-jmodel-eficiencia-8}
+		\vspace{1ex}
+		\includegraphics[width=\textwidth]{results-jmodel-eficiencia-8}
+		\fonte{Capturado pelo autor a partir do serviço CloudWatch do provedor AWS.}
+	\end{minipage}
+	\begin{minipage}{\textwidth}
+		\caption{Utilização média de CPU ao longo de execução contemplando todos os arquivos do \textit{dataset} de testes em uma VM com 16 \textit{cores} de processamento equivalente ao cenário $C_{j16}$ (Duração total: 3 horas, 44 minutos).}
+		\label{fig:results-jmodel-eficiencia-16}
+		\vspace{1ex}
+		\includegraphics[width=\textwidth]{results-jmodel-eficiencia-16}
+		\fonte{Capturado pelo autor a partir do serviço CloudWatch do provedor AWS.}
+	\end{minipage}
+	\begin{minipage}{\textwidth}
+		\caption{Utilização média de CPU ao longo de uma execução contemplando todos os arquivos do \textit{dataset} de testes em uma VM com 36 \textit{cores} de processamento equivalente ao cenário $C_{j36}$ (Duração total: 2 horas, 17 minutos).}
 		\label{fig:results-jmodel-eficiencia-36}
 		\vspace{1ex}
 		\includegraphics[width=\textwidth]{results-jmodel-eficiencia-36}
 		\fonte{Capturado pelo autor a partir do serviço CloudWatch do provedor AWS.}
 	\end{minipage}
 	\begin{minipage}{\textwidth}
-		\caption{Detalhe da \autoref{fig:results-jmodel-eficiencia-36} excluindo o período referente à execução do arquivo 12-stamatakis-59.}
+		\caption{Detalhe da \autoref{fig:results-jmodel-eficiencia-36} excluindo a execução do arquivo 12-stamatakis-59.}
 		\label{fig:results-jmodel-eficiencia-36-ex12}
 		\vspace{1ex}
 		\includegraphics[width=\textwidth]{results-jmodel-eficiencia-36-ex12}
 		\fonte{Capturado pelo autor a partir do serviço CloudWatch do provedor AWS.}
 	\end{minipage}
 	\begin{minipage}{\textwidth}
-		\caption{Utilização média de CPU ao longo de uma rodada de processamento contemplando os quatro maiores arquivos do \textit{dataset} de testes em uma VM com 72 \textit{cores} de processamento.}
+		\caption{Utilização média de CPU ao longo de uma execução contemplando os quatro maiores arquivos do \textit{dataset} de testes em uma VM com 72 \textit{cores} de processamento com o intuito de verificar o comportamento de do jModelTest  (Duração total: 1 hora, 43 minutos).}
 		\label{fig:results-jmodel-eficiencia-72-maiores}
 		\vspace{1ex}
 		\includegraphics[width=\textwidth]{results-jmodel-eficiencia-72-maiores}
@@ -4651,20 +4660,20 @@ Contudo há de se advertir que estes dados podem não refletir fielmente a reali
 \end{figure}
 
 
-Para explorar os motivos das perdas de eficiência reportadas é possível recorrer às Figuras \ref{fig:results-jmodel-eficiencia-36} e \ref{fig:results-jmodel-eficiencia-36-ex12} que
+Para explorar os motivos das perdas de eficiência reportadas é possível recorrer às Figuras \ref{fig:results-jmodel-eficiencia-8}, \ref{fig:results-jmodel-eficiencia-16}, \ref{fig:results-jmodel-eficiencia-36} e \ref{fig:results-jmodel-eficiencia-36-ex12} que
 apresentam a utilização média de CPU em períodos de um minuto conforme medida pelo provedor AWS no serviço CloudWatch enquanto ocorre uma execução completa do cenário de testes, contemplando uma única execução do jModelTest para cada arquivo do \textit{dataset}, onde 100\% equivale ao uso completo de todos os \textit{cores} disponíveis.
 %
 Cada linha vertical corresponde à transição entre a execução referente a um arquivo e o próximo, evidenciando o comportamento do uso de CPU durante o cálculo de adequação de sistemas de evolução molecular.
 %
 Na \autoref{fig:results-jmodel-eficiencia-36}, que representa uma amostra do cenário $C_{j36}$, é possível visualizar, no período que contempla os quatro últimos arquivos, por exemplo, o comportamento intermitente de uso de CPU e o desperdício de recursos em função da característica faseada do cálculo realizado através da técnica de \textit{Clustering Search}.
 %
-A \autoref{fig:results-jmodel-eficiencia-72-maiores} retrata uma execução em VM com 72 \textit{cores} de processamento e suporta a intuição a respeito dos limites de escalabilidade do jModelTest haja vista sua a incapacidade de aproveitar todos os recursos disponíveis e o adiantamento da rampa descendente no uso de recursos do último arquivo, que resulta em um aumento da ociosidade. 
+A \autoref{fig:results-jmodel-eficiencia-72-maiores} retrata uma execução em VM com 72 \textit{cores} de processamento que, embora não esteja formalmente incluída na metodologia de avaliação, suporta a intuição a respeito dos limites de escalabilidade do jModelTest haja vista sua a incapacidade de aproveitar todos os recursos disponíveis e o adiantamento da rampa descendente no uso de recursos do último arquivo, que resulta em um aumento da ociosidade. 
 
 
 
 Os impactos da estratégia de \textit{Clustering Search} se destacam conforme aumenta a disponibilidade de recursos e principalmente no caso do último, e maior, arquivo (12-stamatakis-59) que faz uso de apenas duas fases com 8 e 120 sistemas, respectivamente, onde é possível observar um longo período de ociosidade de recursos até que todos os 8 sistemas sejam avaliados.
 %
-Assim que encerra o cálculo da primeira fase o programa faz uso de todos os 36 \textit{cores} disponíveis até que se inicie, novamente, um longo período de ociosidade enquanto os últimos sistemas são processados.
+Assim que encerra o cálculo da primeira fase o programa faz uso de todos os \textit{cores} disponíveis até que se inicie, novamente, um longo período de ociosidade enquanto os últimos sistemas são processados.
 %
 Estes períodos de longa ociosidade são o alvo das ações de elasticidade propostas no modelo \textsf{He}--lastic por meio da camada baseada em Orquestração de Contêineres.
 
@@ -4675,26 +4684,96 @@ O comportamento de fases, conforme detalhado na \autoref{tab:modelo-elasticidade
 %
 Desta forma o modelo \textsf{He}--lastic lança mão da primeira camada de elasticidade que tem como objetivo atenuar a ociosidade e consequente desperdício de recursos que ocorre ao processar arquivos menores, visando alocar apenas a quantidade necessária.
 
-% 16  
-% 36  i-05a2d5bcf27c76238
+
 
 
 \section{\textsf{He}--lastic}
+
+
+\begin{table}[tbp]
+	\centering%
+	\begin{minipage}{\textwidth}
+		\caption{Quantidade de amostras coletadas na avaliação do modelo \textsf{He}--lastic para cada arquivo do \textit{dataset} conforme o cenário.}
+		\label{tab:results-modelo-samples}
+		\vspace{1ex}
+		\footnotesize
+		\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lrrrrrrrrrrrr@{}}
+			\toprule
+			\multirow[b]{3}{*}{Arquivo} & \multicolumn{11}{c}{Cenário} &
+			\multirow[b]{3}{*}{\rotatebox[origin=c]{\tabelaAngulo}{\begin{tabular}[c]{@{}c@{}}Total\end{tabular}}} \\ \cmidrule(lr){2-12}
+			& \multicolumn{1}{c}{FaaS} & \multicolumn{3}{c}{Contêineres} & \multicolumn{7}{c}{Misto} & \multicolumn{1}{c}{} \\ 
+			\cmidrule(lr){2-2}
+			\cmidrule(lr){3-5}
+			\cmidrule(lr){6-12}
+			& $C_{f0}$ & $C_{c8}$ & $C_{c16}$ & $C_{c36}$ & $C_{m1}$ & $C_{m2}$ & $C_{m3}$ & $C_{m4}$ & $C_{m5}$ & $C_{m6}$ & $C_{m7}$ & \multicolumn{1}{c}{} \\
+			\midrule
+			01-aP6 & 6 & 5 & 10 & 10 & 11 & 11 & 5 & 5 & 4 & 5 & 5 & 77 \\
+			02-rodents & 6 & 5 & 10 & 10 & 11 & 9 & 5 & 5 & 5 & 5 & 5 & 76 \\
+			03-example & 6 & 5 & 9 & 10 & 11 & 11 & 23 & 5 & 5 & 5 & 5 & 95 \\
+			04-18S\_insects2 & 6 & 5 & 5 & 5 & 11 & 11 & 5 & 5 & 5 & 5 & 5 & 68 \\
+			05-HIVpol.grou[..] & 6 & 5 & 6 & 10 & 11 & 33 & 17 & 5 & 5 & 5 & 5 & 108 \\
+			06-Hex\_EF1a & 6 & 5 & 5 & 9 & 11 & 32 & 5 & 5 & 5 & 5 & 5 & 93 \\
+			07-primate-mtDNA & 6 & 5 & 5 & 10 & 11 & 31 & 17 & 17 & 5 & 5 & 5 & 117 \\
+			08-HIV\_vpu.ref2 & 6 & 5 & 5 & 10 & 10 & 22 & 16 & 5 & 5 & 5 & 5 & 94 \\
+			09-gusanos16S[..] & 5 & 5 & 5 & 10 & 11 & 13 & 11 & 5 & 5 & 11 & 5 & 86 \\
+			10-Birds & 5 & 5 & 5 & 9 & 10 & 10 & 11 & 5 & 5 & 11 & 5 & 81 \\
+			11-gusanosCOI[..] & 5 & 5 & 5 & 10 & 11 & 11 & 11 & 5 & 5 & 11 & 5 & 84 \\
+			12-stamatakis-59 & 6 & 5 & 5 & 5 & 11 & 16 & 10 & 5 & 5 & 11 & 5 & 84 \\
+			\bottomrule
+			\multicolumn{1}{r}{Total} & 69 & 60 & 75 & 108 & 130 & 210 & 136 & 72 & 59 & 84 & 60 & {\scriptsize 1063} \\ 
+		\end{tabular*}
+		\fonte{Elaborado pelo autor.}
+	\end{minipage}
+\end{table}
+
+
+Os resultados do modelo \textsf{He}--lastic, coletados por meio do protótipo desenvolvido, seguem os mesmos moldes dos cenários de avaliação centrados no jModelTest.
+%
+Esta estratégia visa estabelecer uma comparação o mais fiel possível enquanto não deixa de endereçar as diferenças existente entre as abordagens avaliadas, principalmente no que diz respeito à camada FaaS do modelo proposto.
+%
+Desta forma foram avaliados, assim como na seção anterior, os cenários de testes estabelecidos na \autoref{sec:metodologia-etapasecenarios}
+e apresentados na \autoref{tab:results-modelo-samples} que apresenta os resultados da coleta de dados baseada na execução do protótipo do modelo \textsf{He}--lastic, totalizando, após filtragem de anomalias (\textit{outliers}), 1063 execuções por arquivo--cenário.
+%
+Para obter a quantidade de chamadas à ferramenta PhyML basta multiplicar os dados da \autoref{tab:results-jmodel-samples} pela \autoref{tab:metodologia-etapas-dataset}, mais especificamente a quantidade de sistemas de evolução molecular contemplados por arquivo quando é seguida a estratégia de \textit{Clustering Search}, resultando em aproximadamente 270 mil (268.992) execuções por arquivo--sistema--cenário.
+
+
+Apesar do número similar de execuções em relação às avaliações do jModelTest, nos testes do modelo proposto foi necessário reduzir a quantidade de amostras para viabilizar a execução de todos os cenários propostos.
+%
+Desta forma foi estabelecido que cinco seria o número mínimo desejado de amostras, menor que os 11 desejados na avaliação do jModelTest contudo ainda significativos o suficiente para fornecer uma rede de segurança estatística para que se possam tirar conclusões acerca dos resultados.
+%
+Os pontos de maior concentração no número de amostras coletadas indicam áreas de interesse devido ao comportamento dinâmico e em duas camadas do modelo ou cenários que apresentavam alta variação nos tempos de execução e receberam maior atenção para garantir uma melhor compreensão do comportamento.
+
+
 \begin{verbatim}
 cenário new
 	amostras
 	std-dev
 	durations
 
-	só lambda
 	só batch
+		verificar se o 'caráter' de execução se mantem o mesmo versus jModelTest puro
+			stamatakis leva +60% do tempo
+			4 primeiros levam 1%
+			histograma dos tempos de execução
+		Clustering Search / Perda de eficiência
+			falar muito da elasticidade e comparar com o jModel puro
+	
+	só lambda
+		parâmetros simplificados e paralelismo amplo e pay-per-100ms
+		número distinto de processadores/conteineres rodando
+		potencialmente todos em paralelo
+		reuso dos executores
+		se eu aloco 100 e o sistema usa somente 70, eu pago pelas 70 somente! pelo tempo de execucao das 70 e nao pago pelo tempo ocioso
+		
 	mixed
 		batch ratio
+			quantidade de jobs na camada rtapida e na camada lenta, e quais foram eles, ou seja, características desses jobs em cada camada. Tempo de execução é uma boa. Dois histogramas?
 		runtime ratio pra abordar o overhead
+	
 	warm04-60-768-36
 		falar que esse cenário foi um tira-teima pra ver se o tempo a mais era em função das operações de elasticidade ou dos retries
-	1624-stamatakis
-		impacto pode ser porque teve bastante troca de máquinas e a cada troca incorre custos de subir uma VM, botar a camada de ECS, baixar e instalar o contêiner, pra só então executar
+		warm04		=	 investigate wether the increased runtime is due to scaling actions or retries
+	
 \end{verbatim}
 
 \section{Comparativo de Custos}
@@ -4702,16 +4781,44 @@ cenário new
 \begin{verbatim}
 só o financeiro porque as métricas são incompatíveis otherwise
 
-warm04		=	 investigate wether the increased runtime is due to scaling actions or retries
-
 
 \end{verbatim}
+
+\section{1264?}
+
+\begin{verbatim}
+um estudo a parte pra ver o que muda com TODOS os modelos rodando TOTALMENTE EM PARALELO, sem fases
+
+1624-stamatakis
+impacto pode ser porque teve bastante troca de máquinas e a cada troca incorre custos de subir uma VM, botar a camada de ECS, baixar e instalar o contêiner, pra só então executar
+\end{verbatim}
+
+\section{considerações parciais?}
+
+fraquezas do protótipo:
+	-aws batch
+		delay pra reagir as mudanças na fila
+		pra reduzir as máquinas
+		mas principalmente pra ligar
+		tarefas curtas sofrem muito com overhead
+		future: usar um autoscaling group com daemon na máquina consumindo direto da fila (ameniza o impacto nos jobs curtos)
+	-aws lambda
+		retries fixos em 3
+		embora algumas vezes consiga processar no retry isso causa um delay muito grande
+		exponential backoff entre as retries (especialmente problematico pra timeouts maiores)
+		implementado: 'semi-heuristica' 2/3 de jobs em CPUS pra evitar esperar tanto pra subir máquinas
+		não foi feito pra descer porque pode interferir em outros jobs
+		future: mecanismo pra burlar o retry
+		future: se 1 job deu timeout, encaminha todos os demais pro batch uma vez que já vai estar ligado mesmo
+		future: heurística pra saber que vai dar timeout (deve ser muito rápida pra não roubar tempo útil)
 
 %=======================================================================
 % Conclusão
 %=======================================================================
 \chapter{Conclusão}
 \label{ch:conclusao}
+
+\epigrafecap{The difference between winning and losing \\ is most often not quitting.}{Walt Disney}
 
 
 A biologia, assim como diversas outras áreas do conhecimento, se beneficia de recursos tecnológicos para aumentar sua produtividade \cite{Denning2009}.
