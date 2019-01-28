@@ -3792,14 +3792,14 @@ Os resultados obtidos por meio desta estratégia serão abordados em detalhes na
 \subsection{Avaliação do Modelo \textsf{He}--lastic}
 \label{sec:metodologia-etapas-modelo}
 
-%TODO: falar que até publicações reconhecidas decidiram empiricamente.
-\begin{verbatim}
-[Shankar2018]
-Ttimeout
-We use simple heuristics and empirical experiments to decide
-parameters, i.e., scaling factor s f and Ttimeout . We use simple heuristics and empirical experiments to decide
-these two parameters and leave more rigorous investiga-tion for future work. We set Ttimeout = 10s, which is the average start-up latency
-\end{verbatim}
+%%TODO: falar que até publicações reconhecidas decidiram empiricamente.
+%\begin{verbatim}
+%[Shankar2018]
+%Ttimeout
+%We use simple heuristics and empirical experiments to decide
+%parameters, i.e., scaling factor s f and Ttimeout . We use simple heuristics and empirical experiments to decide
+%these two parameters and leave more rigorous investiga-tion for future work. We set Ttimeout = 10s, which is the average start-up latency
+%\end{verbatim}
 
 
 A avaliação do modelo proposto se dará por meio da sua execução em ambiente computacional o mais próximo possível daquele onde se dará a coleta de métricas sobre o \textit{software} jModelTest, mantendo configurações de provedores de computação em nuvem, tipos e variedades de instâncias/VMs e sistemas operacionais.
@@ -4833,7 +4833,7 @@ Apesar do número similar de execuções em relação às avaliações do jModel
 %
 Desta forma foi estabelecido que cinco seria o número mínimo desejado de amostras, menor que os onze desejados na avaliação do jModelTest, contudo ainda significativos o suficiente para fornecer uma rede de segurança estatística para que se possam tirar conclusões acerca dos resultados.
 %
-Os pontos de maior concentração no número de amostras coletadas indicam áreas de interesse devido ao comportamento dinâmico e em duas camadas do modelo ou cenários que apresentavam alta variação nos tempos de execução e receberam maior atenção para garantir uma melhor compreensão do comportamento.
+Os pontos de maior concentração no número de amostras coletadas indicam áreas de interesse devido ao comportamento dinâmico em duas camadas do modelo ou cenários que apresentavam alta variação nos tempos de execução e receberam maior atenção para garantir uma melhor compreensão do comportamento.
 
 
 
@@ -4898,10 +4898,50 @@ Para compreender melhor as origens dos três comportamentos distintos, uma anál
 
 \subsection{Cenário Somente FaaS}
 
+
+
+O paradigma Function as a Service / Serverless permite a simplificação do ambiente das configurações, promete amplo paralelismo e fornece faturamento contabilizado em unidades de 100ms, o que garantiu grande popularidade e adoção no meio comercial.
+%
+Em contrapartida, nos ambientes acadêmicos ainda são encontradas poucas referências e análises a respeito do assunto, comprovando a necessidade de estudo e melhor caracterização deste modelo computacional.
+%
+Desta forma o cenário Somente FaaS ($C_{f0}$) foi incluído no conjunto de cenários da metodologia de avaliação com o intuito de viabilizar um melhor conhecimento a respeito e verificar os níveis de impacto que podem ser causados pela escolha de FaaS.
+
+
+
+A execução do cenário $C_{f0}$ teve configurados os seguintes parâmetros: Potência/Memória e Tempo Limite com os valores de 1536 e 60, respectivamente.
+%
+A escolha dos parâmetros não é por acaso haja vista que é ele que determina o limite superior aos parâmetros das execuções dos cenários Mistos, uma decisão que tem por objetivo permitir uma comparação justa entre os cenários e facilitar a identificação de \textit{overhead} ou interferências do modelo proposto.
+
+
+
+Um dos pontos mais convincentes sobre a adoção de FaaS está na sua capacidade de responder rapidamente à mudanças na carga de trabalho através do lançamento de novas unidades de execução.
+%
+Determinar o número de processadores, processos ou contêineres envolvidos na execução é, sem dúvida, um fator relevante para este e outros trabalhos.
+%
+Através da extração de \textit{logs} do serviço CloudWatch do provedor de computação em nuvem escolhido é possível capturar o identificador da unidade de execução, geralmente chamado de contêiner ou instância, embora ambos os termos já representem outros conceitos.
+%
+De posse destes identificadores torna-se possível contabilizar as unidades de execução e verificar questões como reuso e grau de paralelismo na execução dos cenários de avaliação.
+%
+A fim de reduzir possíveis equívocos foi adotado o nome de Processos, que representam, portanto, a quantidade de unidades distintas de execução alocadas pelo provedor para servir requisições.
+
+
+
+A \autoref{tab:results-modelo-faas-computacao} apresenta, sumarizados através das médias, os resultados encontrados para este cenário assim como uma comparação com o cenário de recursos fixos baseado no jModelTest.
+%
+A comparação da razão entre os tempos de execução e os tempos médios observados pelos cenários $C_{j2}$ e $C_{j36}$ contempla os dois extremos do espectro que avaliou a execução do jModelTest na \autoref{sec:resultados-jmodel} e permite detectar o impacto de performance ocasionado pelo uso da tecnologia FaaS.
+%
+São detectados, nesta análise, três casos onde o \textit{overhead} da tecnologia FaaS causou um atraso ou impactou a performance da execução sendo, nomeadamente: 
+\begin{inparaenum}[\itshape a\upshape)] 
+	\item 01-aP6;
+	\item 03-example; e
+	\item 08-HIV\_vpu.ref2.
+\end{inparaenum}
+
+
 \begin{table}[tb]
 	\centering%
 	\begin{minipage}{\textwidth}
-		\caption{Processos e Tempo de Execução médios dos cenários somente FaaS do modelo \textsf{He}--lastic.}
+		\caption{Processos e Tempo de Execução médios do cenário somente FaaS ($C_{f0}$) do modelo \textsf{He}--lastic.}
 		\label{tab:results-modelo-faas-computacao}
 		\vspace{1ex}
 		%\small
@@ -4918,7 +4958,7 @@ Para compreender melhor as origens dos três comportamentos distintos, uma anál
 			07-primate-mtDNA & 120 & 0:34:26 & 0:01:37 & 5\% & 7\% & 62\% \\
 			08-HIV\_vpu.ref2 & 122 & 1:42:02 & 0:04:41 & 5\% & 10\% & 121\% \\
 			\bottomrule
-			\multicolumn{1}{r}{Média Geral} & 112 & --- & --- & 5\% & 9\% & 95\% \\ 
+			\multicolumn{1}{r}{Média Geral} & 112 & --- & --- & 5\% & 8\% & 84\% \\ 
 		\end{tabularx}
 		%\tabelafootnote{{*}~Valores obtidos através da média das execuções.}
 		\fonte{Elaborado pelo autor.}
@@ -4926,75 +4966,289 @@ Para compreender melhor as origens dos três comportamentos distintos, uma anál
 \end{table}
 
 
-\begin{verbatim}
-só lambda
-	parâmetros simplificados e paralelismo amplo e pay-per-100ms
-	número distinto de processadores/conteineres rodando
-	potencialmente todos em paralelo
-	reuso dos executores
-	se eu aloco 100 e o sistema usa somente 70, eu pago pelas 70 somente! pelo tempo de execucao das 70 e nao pago pelo tempo ocioso
-	mas não presta por causa dos limites de tempo e "potencia"
-	
-	não conseguiu dar conta do 9,10,11,12
-\end{verbatim}
-
-
-O paradigma Function as a Service / Serverless permite a simplificação do ambiente das configurações, promete amplo paralelismo e fornece faturamento contabilizado em unidades de 100ms, o que garantiu grande popularidade e adoção no meio comercial.
-%
-Em contrapartida, nos ambientes acadêmicos ainda são encontradas poucas referências e análises a respeito do assunto, comprovando a necessidade de estudo e melhor caracterização deste modelo computacional.
-%
-Desta forma o cenário Somente FaaS ($C_{f0}$) foi incluído no conjunto de cenários da metodologia de avaliação com o intuito de viabilizar um melhor conhecimento a respeito e verificar os níveis de impacto que podem ser causados pela escolha de FaaS.
-
-
-
-A execução do cenário $C_{f0}$ teve configurados os seguintes parâmetros: Potência/Memória e Tempo Limite com os valores de 1536 e 60, respectivamente.
-%
-A escolha dos parâmetros não é por acaso haja vista que e ele que determina o limite superior aos parâmetros das execuções dos cenários Mistos, uma decisão que tem por objetivo permitir uma comparação justa entre os cenários e facilitar a identificação de \textit{overhead} ou interferências do modelo proposto.
-
-
-
-Um dos pontos mais convincentes sobre a adoção de FaaS está na sua capacidade de responder rapidamente à mudanças na carga de trabalho através do lançamento de novas unidades de execução.
-%
-Determinar o número de processadores, processos ou contêineres envolvidos na execução é, sem dúvida, um fator relevante para este e outros trabalhos.
-%
-Através da extração de \textit{logs} do serviço CloudWatch do provedor de computação em nuvem escolhido é possível capturar o identificador da unidade de execução, geralmente chamado de contêiner ou instância, embora ambos os termos já representem outros conceitos.
-%
-A fim de reduzir possíveis equívocos foi adotado o nome de Processos, que representam, portanto, a quantidade de unidades distintas de execução alocadas pelo provedor para servir requisições.
-
-
-
-A \autoref{tab:results-modelo-faas-computacao} apresenta, sumarizados através das médias, os resultados encontrados para este cenário assim como uma comparação com o cenário de recursos fixos baseado no jModelTest.
-%
-A comparação da razão entre os tempos de execução e os tempos médios observados pelos cenários $C_{j2}$ e $C_{j36}$ contempla os dois extremos do espectro que avaliou a execução do jModelTest na \autoref{sec:resultados-jmodel} e permite detectar o impacto de performance ocasionado pelo uso da tecnologia FaaS.
-%
-São detectados, nesta análise, três casos onde o \textit{overhead} da tecnologia FaaS causou um atraso ou impactou a performance da execução sendo, nomeadamente: 
-\begin{inparaenum}[\itshape a\upshape)] 
-	\item 01-aP6;
-	\item 03-example; e
-	\item 08-HIV\_vpu.ref2.
-\end{inparaenum}
-%
 No que diz respeito ao arquivo 01-aP6, embora o valor percentual de 223\% possa assustar, esta variação se deve ao pequeno valor absoluto, menor que dez segundos e, portanto, muito sensível à variações, mesmo que não sejam significativas para o usuário, como é o caso aqui.
 %
-Já o arquivo 03-example ....
+Já no caso do arquivo 03-example as médias dos tempos de execução via FaaS foram praticamente iguais aos do cenário $C_{j36}$, com durações de 27 e 26 segundos, respectivamente, um resultado que pode ser considerado ainda satisfatório considerando-se o alto nível de paralelismo obtido através dos quase 120 processos mais de 3 vezes o observado no cenário $C_{j36}$, que estava limitado a 36 \textit{cores}.
 %
-08-HIV\_vpu.ref2 ....
+O arquivo 08-HIV\_vpu.ref2 apresenta uma situação interessante que se manifesta no impacto de aproximadamente 20\% na performance quando comparada ao cenário $C_{j36}$ e que pode ser explicado pela ocorrência de \textit{retries}, detectável através do número maior de processos paralelos (122) do que o paralelismo máximo (120) dos estágios de processamento do jModelTest, como detalhado na \autoref{tab:modelo-elasticidade-jmodelsteps}.
+
+
+
+
+A existência de \textit{retries} durante o processamento indica a proximidade com os limites estabelecidos para a camada FaaS no cenário $C_{f0}$, onde os recursos alocados não são mais suficientes para dar conta do processamento solicitado.
+%
+Contudo, mesmo se aproximando do ponto de saturação e excedendo o tempo limite em alguns processos, é interessante notar que o arquivo ainda é processado integralmente, o que parece contra intuitivo uma vez que não houve alteração nos parâmetros estabelecidos para o cenário.
+%
+Este fenômeno pode ser explicado por duas características que trabalham juntas e influenciam o tempo de execução de cada processo paralelo, sendo a primeira delas as pequenas variações de performance que ocorrem em função da virtualização e de fatores fora do controle da função FaaS como \textit{scheduler} de sistema operacional e contenção de leitura e escrita.
+%
+A segunda característica é a existência de um \textit{cache} na camada FaaS que evita a necessidade de obter um novo ambiente de execução e até mesmo os arquivos de entrada que também ficam em \textit{cache} em área temporária de armazenamento, o que acelera de maneira significativa uma reexecução ao remover a necessidade de buscar recursos remotos.
+
+
+
+Ainda assim, no resultado geral obtido, é possível dizer que o cenário com apenas FaaS obteve tempos de execução em linha com as execuções do jModelTest com 36 \textit{cores} do cenário $C_{j36}$, alcançando uma duração de 84\%, na média entre os arquivos que ele foi capaz de processar integralmente.
+%
+Quando comparado com o cenário de apenas dois \textit{cores}, $C_{j2}$ a execução via FaaS levou, em média, somente 8\% do tempo total observado, uma significativa melhoria obtida através do alto grau de paralelismo possibilitado pelo uso da camada FaaS.
+%
+A respeito do paralelismo é possível observar que se manteve muito próximo do limite de 120 estabelecido pela execução em fases do jModelTest, com a média geral em 112 processos paralelos em execução, confirmando a capacidade da camada FaaS de obter rapidamente o alto nível de paralelismo prometido, onde impressiona o resultado do arquivo 02-rodents onde foram observados 114 processos paralelos em apenas 13 segundos de execução total.
+
+
+
+No que tange ao tempo de execução em relação ao tempo total de processamento utilizado, chamado na \autoref{tab:results-modelo-faas-computacao} de CPU--time, é possível perceber que este se mantém estável em torno de 5\% no geral, com a notável exceção sendo o arquivo 01-aP6 que reporta um tempo de execução de 10\% do tempo total de processamento.
+%
+A relativa estabilidade deste indicador pode ser explicada devido a natureza do processamento realizado pelo jModelTest e pelo protótipo do modelo \textsf{He}--lastic, onde cada processo paralelo é responsável por executar o cálculo de \textit{best--fit} de sistemas de substituição molecular.
+%
+Neste caso, os sistemas executados são sempre os mesmos e a variação se dá através do arquivo de múltiplos alinhamentos de sequências, conforme definidos na \autoref{sec:metodologia-etapasecenarios}, de forma que o sistema com maior tempo de duração do cálculo acaba se tornando balizador do tempo de execução, uma vez que todas as durações são proporcionais ao arquivo fornecido como parâmetro de entrada.
+
+
+
+Por fim é importante notar que a grande vantagem da execução via FaaS, e do modelo \textsf{He}--lastic, está na sua capacidade de cobrar apenas pelo tempo efetivo de execução, sendo este o grande fator de diferenciação quando comparado com os cenários de base do jModelTest, que se apoiam na existência de servidores, \textit{grids} ou \textit{clusters} computacionais sempre disponíveis.
+%
+A comparação dos tempos de execução indica que, embora exista um \textit{overhead} oriundo da adoção do FaaS, uma vez que seu tempo de execução empregando mais de cem processos foi praticamente o mesmo do que o jModelTest com apenas 36 \textit{cores}, este \textit{overhead} não é significativo o suficiente para justificar o abandono do FaaS como alternativa viável.
+%
+Soma-se a isto o fato observado na \autoref{sec:resultados-jmodel} de que o jModelTest tende a perder eficiência conforme aumentam os recursos disponíveis, 
+causando retornos decrescentes no investimento em hardware.
+%
+Contudo é evidente, também, que a computação via FaaS tem suas falhas, manifestando-se claramente na incapacidade de processar os arquivos maiores do \textit{dataset} em função dos limites de potência e tempo de execução.
+%
+Ademais, ainda que estes limites fossem flexibilizados, eventualmente o custo monetário, conforme visto na \autoref{sec:modelo-custben}, tornaria sua utilização proibitiva, uma vez que o objetivo dos provedores de computação em nuvem com este tipo de serviço é incentivar a rotatividade através de curtas execuções, o que inviabiliza sua adoção como plataforma de computação de propósito geral.
 
 
 
 \subsection{Cenário Somente Orquestrador de Contêineres}
 
-%todo: ccx gravita em torno de um valor central do 01 ao 10 () causado pelo alto custo inicial de subir as vms
 
-\begin{verbatim}
-só batch
-	verificar se o 'caráter' de execução se mantem o mesmo versus jModelTest puro
-		stamatakis leva +60% do tempo
-		4 primeiros levam 1%
-		histograma dos tempos de execução
-	Clustering Search / Perda de eficiência
-		falar muito da elasticidade e comparar com o jModel puro
-\end{verbatim}
+Ao contrário do FaaS, a elasticidade por regra--condição--ação, utilizada pelo Orquestrador de Contêineres já encontra-se estabelecida tanto no meio comercial quanto acadêmico, sendo um dos pilares da computação em nuvem.
+%
+As avaliações realizadas nos cenários compostos somente por Orquestração de Contêineres buscaram verificar o comportamento dinâmico da elasticidade e o seu impacto de performance frente a execuções do jModelTest em um ambiente não distribuído com paralelismo obtido por meio de \textit{threads}.
+%
+Através desta metodologia é possível observar o impacto na performance e consequente \textit{overhead} computacional pelo emprego da elasticidade frente a um cenário ótimo do jModelTest, uma vez que a execução por \textit{threads} causa o menor impacto quando comparada com a computação distribuída por MPI, por exemplo.
+
+
+O uso do serviço Batch, do provedor AWS, como gestor de elasticidade embora não permita a explícita configuração dos \textit{thresholds} mínimos e máximos comumente adotados para controle da elasticidade, faz uso destas configurações internamente, juntamente com informações a respeito do nível de ocupação da fila de trabalhos aguardando processamento.
+%
+Esta estratégia, embora não seja estritamente igual a elasticidade como geralmente definida na literatura, representa uma arquitetura comum à diversos projetos que fazem uso da elasticidade para compor \textit{pipelines} de processamento distribuído e desacoplados, utilizando filas de mensagens em conjunto com ações de elasticidade.
+%
+Sendo considerado, portanto, adequado para os fins deste trabalho uma vez que facilita a configuração e integração dos diferentes passos de processamento adotados pelo modelo \textsf{He}--lastic.
+
+
+Ao embutir, em suas informações de contexto, dados a respeito do estado da fila de trabalhos, o serviço Batch permite, assim como o Lambda no FaaS, descartar completamente a necessidade de recursos ociosos enquanto aguarda novas requisições.
+%
+Esta propriedade é também utilizada pelo modelo \textsf{He}--lastic para prover uma computação ainda mais próxima do modelo pague pelo uso (\textit{pay--per--use}) objetivada pelo conceito de \textit{utility--computing}.
+%
+Em cenários de elasticidade, mesmo que não haja demanda sendo exercida em um determinado momento, é prática comum manter disponível pelo menos um nível mínimo de recursos computacionais para atender requisições que possam chegar, evitando o risco de rejeitar conexões e aparentar estar indisponível.
+%
+Embora esta não seja uma preocupação para grandes aplicações de uso contínuo, pode significar maior economia em cenários de baixa demanda ou sazonais, que contemplem longos períodos de ociosidade, por exemplo.
+
+
+A fim de possibilitar uma comparação justa frente aos cenários de avaliação do jModelTest, os testes da camada de Orquestração de Contêineres do modelo \textsf{He}--lastic contemplaram três cenários variando o parâmetro de número máximo de CPUs utilizadas, uma vez que, conforme anteriormente mencionado, não há a necessidade de configurar \textit{thresholds} ao utilizar o serviço AWS Batch.
+%
+Desta forma foram estabelecidos os cenários $C_{c8}$, $C_{c16}$ e $C_{c36}$ com limites máximos de 8, 16 e 36 CPUs, respectivamente.
+%
+Estes cenários podem ser diretamente comparados com os cenários de avaliação do jModelTest $C_{j8}$, $C_{j16}$ e $C_{j36}$ para uma análise dos impactos de performance obtidos através da adoção de elasticidade e do serviço AWS Batch.
+
+
+Conforme observado previamente na \autoref{fig:results-modelo-caracteristicas}, através das linhas pontilhadas de tonalidade azul, que representam os cenários com somente o Orquestrador de Contêineres, é observado um fenômeno interessante no processamento dos arquivos menores.
+%
+Pela análise da figura é possível visualizar uma reta quase plana que contempla os arquivos de 01-aP6 ao 10-Birds e que se mantém com um tempo de execução entre 10\% à 20\% do tempo total.
+%
+Este comportamento também pode ser observado pela análise da \autoref{tab:results-modelo-avgs}, que mostra em valores absolutos as medianas dos tempos de execução observados para os cenários aqui analisados, onde é possível perceber que, na média, os tempos de execução dos arquivos de 01 à 10 do cenário $C_{c8}$ giram em torno de 24 minutos, no cenário $C_{c16}$ em 14 minutos e, finalmente, no cenário $C_{c36}$ giram em torno de 10 minutos.
+
+
+A existência deste limiar mínimo sobre o tempo de execução de uma parcela significativa dos arquivos do \textit{dataset} indica um alto custo inicial para a adoção da elasticidade via Orquestrador de Contêineres.
+%
+Este custo inicial também dá indícios de que a utilização desta camada de processamento não é recomendada para os menores arquivos do \textit{dataset}, onde o tempo de execução acaba sendo dominado pelo \textit{overhead} oriundo da utilização da elasticidade.
+%
+No caso do arquivo 01-aP6, este impacto se traduz em uma execução aproximadamente 140 vezes mais lenta ao longo dos três cenários comparados, um valor definitivamente inaceitável para o usuário da aplicação que passaria a esperar praticamente meia hora por um resultado que anteriormente obteria em questão de segundos.
+
+
+\begin{table}[tb]
+	\centering%
+	\begin{minipage}{\textwidth}
+		\caption{Tempos de Execução médios dos cenários somente Orquestrador de Contêineres do modelo \textsf{He}--lastic.}
+		\label{tab:results-modelo-batch-computacao}
+		\vspace{1ex}
+		%\small
+		\begin{tabularx}{\textwidth}{@{\extracolsep{\fill}}lrrrrrr@{}}
+			\toprule
+			\multicolumn{1}{c}{\multirow{2}{*}{Arquivo}} &  &  &  & \multicolumn{3}{c}{Percentual Sobre} \\ \cmidrule(l){5-7} 
+			\multicolumn{1}{c}{} & $C_{c8}$ & $C_{c16}$ & $C_{c36}$ & $C_{j8}$ & $C_{j16}$ & $C_{j36}$ \\ 
+			\midrule
+			01-aP6 & 0:27:00 & 0:13:37 & 0:10:03 & 14613\% & 13223\% & 14408\% \\
+			02-rodents & 0:19:44 & 0:12:06 & 0:09:06 & 2083\% & 2503\% & 3144\% \\
+			03-example & 0:25:58 & 0:13:42 & 0:10:14 & 1908\% & 1819\% & 2305\% \\
+			04-18S\_insects2 & 0:21:14 & 0:12:06 & 0:09:23 & 1541\% & 1763\% & 2519\% \\
+			05-HIVpol.groupM & 0:19:50 & 0:12:48 & 0:08:55 & 556\% & 669\% & 754\% \\
+			06-Hex\_EF1a & 0:20:54 & 0:13:35 & 0:08:28 & 363\% & 440\% & 486\% \\
+			07-primate-mtDNA & 0:23:08 & 0:14:43 & 0:10:24 & 325\% & 366\% & 398\% \\
+			08-HIV\_vpu.ref2 & 0:27:21 & 0:16:01 & 0:11:18 & 216\% & 240\% & 292\% \\
+			09-gusanos16S.mafft & 0:34:02 & 0:19:16 & 0:13:17 & 114\% & 122\% & 128\% \\
+			10-Birds & 0:22:10 & 0:13:31 & 0:09:15 & 59\% & 65\% & 74\% \\
+			11-gusanosCOI.mafft & 0:52:01 & 0:31:44 & 0:19:58 & 104\% & 116\% & 123\% \\
+			12-stamatakis-59 & 3:25:41 & 1:54:29 & 1:05:27 & 81\% & 82\% & 78\% \\
+			\bottomrule
+			\multicolumn{4}{r}{Média Geral} & 123\% & 130\% & 139\% \\ 
+		\end{tabularx}
+		%\tabelafootnote{{*}~Valores obtidos através da média das execuções.}
+		\fonte{Elaborado pelo autor.}
+	\end{minipage}
+\end{table}
+
+
+Como pode ser visto na \autoref{tab:results-modelo-batch-computacao}, embora o caso do arquivo 01-aP6 seja um extremo, os impactos se estendem de maneira significativa até o arquivo 08-HIV\_vpu.ref2 que leva pelo menos o dobro do tempo quando comparado à execução com paralelismo em \textit{threads} do jModelTest.
+%
+Contudo, os arquivos de 09 em diante apresentam tempos de execução aceitáveis quando comparados a abordagem de base do jModelTest, podendo ser adotados sem grande impacto para o usuário e resultando até mesmo em alguns ganhos de performance na casa de 65\% para o arquivo 10-Birds e 80\% para o 12-stamatakis-59.
+%
+De qualquer forma, na média geral, a adoção de uma estratégia baseada apenas na Orquestração de Contêineres para o modelo \textsf{He}--lastic resultaria em uma perda de desempenho que gira em torno de 30\% entre todos os três cenários avaliados.
+
+
+O impacto de apenas 30\% no geral, quando existem tantas ocorrências de \textit{overhead} acima de três vezes o tempo de execução, se dá por uma característica da distribuição da computação entre os arquivos do \textit{dataset}, onde o arquivo 12-stamatakis-59 contabiliza, sozinho, aproximadamente 40\% de todo o tempo de execução dos cenários, exercendo uma grande influência sobre a média final.
+%
+Excluindo o arquivo 12-stamatakis-59 do cálculo, os tempos de execução baseados somente na estratégia de Orquestração de Contêineres levariam, em média, o dobro do tempo observado pelos cenários análogos do jModelTest com paralelismo via \textit{threads}.
+
+
+Os resultados observados, onde o impacto se concentra nos arquivos menores e eventualmente se dissipa conforme crescem os dados, se convertendo até mesmo em modestos ganhos de performance, corroboram para a estratégia de duas camadas proposta pelo modelo \textsf{He}--lastic.
+%
+Em seu modo completo de funcionamento a camada FaaS fica responsável por absorver os arquivos de menor duração enquanto a camada baseada em Orquestração de Contêineres é ativada somente em casos onde os limites estabelecidos para a camada FaaS não permitem o completo processamento das requisições.
+%
+O fato de que, no caso do jModelTest e do protótipo implementado, somente uma parcela das avaliações dos sistemas de evolução molecular serão processadas pela camada de Contêineres ajuda a reduzir ainda mais o impacto que ela pode ter na performance quando comparada com o jModelTest sem modificações.
+
+
+\begin{figure}[p]
+	\centering%
+	\begin{minipage}{\textwidth}
+		\caption{Comportamento de elasticidade para uma execução do arquivo 02-rodents no cenário $C_{c36}$.}
+		\label{fig:results-modelo-batch-rodents}
+		\vspace{1ex}
+		% esq | baixo | dir | alto
+		\includegraphics[trim=60 325 60 360,clip,width=\textwidth]{2018-12-16T05-17-35_rodents}
+		\fonte{Elaborado pelo autor.}
+	\end{minipage}
+\end{figure}
+\begin{figure}[p]
+	\centering%
+	\begin{minipage}{\textwidth}
+		\caption{Comportamento de elasticidade para uma execução do arquivo 08-HIV\_vpu.ref2 no cenário $C_{c36}$.}
+		\label{fig:results-modelo-batch-19HIV}
+		\vspace{1ex}
+		% esq | baixo | dir | alto
+		\includegraphics[trim=60 325 60 360,clip,width=\textwidth]{2018-12-16T11-19-00_HIV_vpu}
+		\fonte{Elaborado pelo autor.}
+	\end{minipage}
+\end{figure}
+\begin{figure}[p]
+	\centering%
+	\begin{minipage}{\textwidth}
+		\caption{Comportamento de elasticidade contra--intuitivo para uma execução do arquivo 08-HIV\_vpu.ref2 no cenário $C_{c36}$.}
+		\label{fig:results-modelo-batch-41HIV}
+		\vspace{1ex}
+		% esq | baixo | dir | alto
+		\includegraphics[trim=60 325 60 360,clip,width=\textwidth]{2018-12-16T11-41-09_HIV_vpu}
+		\fonte{Elaborado pelo autor.}
+	\end{minipage}
+\end{figure}
+
+
+No que tange ao comportamento de elasticidade da camada de Orquestração de Contêineres é possível inspecionar graficamente seu comportamento através de medições realizadas durante as execuções.
+%
+Os registros de monitoramento coletados pelo modelo \textsf{He}--lastic, assim como os dados do serviço CloudWatch do provedor de computação em nuvem AWS, permitem observar as ações tomadas pelo motor de elasticidade, ajudando a entender os motivos e as circunstâncias que causaram tais ações.
+
+
+Como pode ser visto no conjunto de Figuras 
+\ref{fig:results-modelo-batch-rodents}, 
+\ref{fig:results-modelo-batch-19HIV},
+\ref{fig:results-modelo-batch-41HIV},
+\ref{fig:results-modelo-batch-primate},
+\ref{fig:results-modelo-batch-stamatakis} e
+\ref{fig:results-modelo-batch-stamatakis-detail},
+o funcionamento do motor de elasticidade do serviço AWS Batch costuma seguir de maneira fiel, embora com algum atraso, a curva de demanda, exemplificado, por exemplo, na \autoref{fig:results-modelo-batch-rodents} e \autoref{fig:results-modelo-batch-19HIV}.
+%
+Estas duas imagens representam a visão geral do que foi observado pelo autor durante o acompanhamento da execução dos cenários de testes, onde geralmente o motor de elasticidade reage às variações na demanda com um \textit{delay} de até um ou dois minutos.
+%
+Os pontos demarcados com um losango representam ações preparatórias de elasticidade sugeridas pelo modelo \textsf{He}--lastic, conforme abordado na \autoref{sec:metodologia-prototipo-dificuldades} onde, por meio de chamadas de API é informado um número sugerido de CPUs a alocar para o processamento.
+%
+Contudo, como pode ser observado nas imagens, nem sempre o motor de elasticidade do serviço acata a estas sugestões, o que é considerado correto pelo autor uma vez que esta é apenas uma sugestão oriunda de uma heurística.
+
+
+Como resultado da demanda em formato dente de serra, originada pela estratégia de \textit{Clustering Search} adotada pelo jModelTest, podem ocorrer instâncias de comportamento contra--intuitivo das ações de elasticidade, como exemplificado pela dupla de \autoref{fig:results-modelo-batch-41HIV} e \autoref{fig:results-modelo-batch-primate}.
+%
+Nestes casos existe uma retomada na quantidade de recursos alocados próximo ao final do processamento, geralmente originada por sugestão da heurística ou, na maioria dos casos, devido ao início de uma nova etapa de processamento que aumenta de maneira abrupta a quantidade de tarefas em espera na fila de processamento.
+%
+Como resultado deste repentino aumento nos recursos disponíveis, é possível observar um nível elevado de ociosidade nas VMs alocadas para atender estas requisições, um fenômeno que é agravado nos arquivos menores.
+
+
+
+Em execuções do arquivo 01-aP6, por exemplo, é comum observar que o serviço Batch, responsável pela camada de Orquestração de Contêineres, tome mais tempo para distribuir as requisições entre as VMs disponíveis do que o tempo necessário para executar um dos cálculos de adequação dos sistemas de evolução molecular.
+%
+Este comportamento é oriundo do próprio serviço AWS Batch, de forma que não há parâmetro disponível para configurá-lo, e se manifesta através do aumento na ociosidade média dos recursos disponíveis, constituindo um cenário que deve ser evitado por seus usuários.
+%
+No caso do modelo \textsf{He}--lastic este fenômeno perde importância quando são utilizadas as duas camadas de elasticidade, haja vista que a camada FaaS irá absorver as tarefas mais curtas e evitar que este comportamento se manifeste.
+
+
+\begin{figure}[p]
+	\centering%
+	\begin{minipage}{\textwidth}
+		\caption{Comportamento de elasticidade contra--intuitivo para uma execução do arquivo 07-primate-mtDNA no cenário $C_{c36}$.}
+		\label{fig:results-modelo-batch-primate}
+		\vspace{1ex}
+		% esq | baixo | dir | alto
+		\includegraphics[trim=60 325 60 360,clip,width=\textwidth]{primate-mtDNA_36cpu}
+		\fonte{Elaborado pelo autor.}
+	\end{minipage}
+\end{figure}
+\begin{figure}[p]
+	\centering%
+	\begin{minipage}{\textwidth}
+		\caption{Comportamento de elasticidade para uma execução do arquivo 12-stamatakis-59 no cenário $C_{c36}$.}
+		\label{fig:results-modelo-batch-stamatakis}
+		\vspace{1ex}
+		% esq | baixo | dir | alto
+		\includegraphics[trim=60 325 60 360,clip,width=\textwidth]{stamatakis_36cpu}
+		\fonte{Elaborado pelo autor.}
+	\end{minipage}
+\end{figure}
+\begin{figure}[p]
+	\centering%
+	\begin{minipage}{\textwidth}
+		\caption{Percentual de uso de CPU para cada uma das VMs (com quatro \textit{cores} de processamento) ativas durante a execução do arquivo 12-stamatakis-59 no cenário $C_{c36}$.}
+		\label{fig:results-modelo-batch-stamatakis-detail}
+		\vspace{1ex}
+		\includegraphics[width=\textwidth]{stamatakis_36cpu_processors}
+		\fonte{Capturado pelo autor a partir do serviço CloudWatch do provedor AWS.}
+	\end{minipage}
+\end{figure}
+
+
+
+Contudo, para afirmar com segurança que esta é uma característica do serviço utilizado como manipulador da camada de Orquestração de Contêineres ao invés de uma característica do modelo, seriam necessários mais cenários de testes com uma abordagem alternativa para o tratamento desta camada.
+%
+No entanto a experiência do autor sugere que este comportamento tem origem, de fato, na implementação interna do serviço AWS Batch.
+%
+Contudo, indiferente da origem deste comportamento, sua ocorrência perde relevância a medida que aumentam os tamanhos dos arquivos e as durações de cada requisição de processamento, reduzindo também seu impacto no desempenho do modelo \textsf{He}--lastic.
+
+
+Por fim, as Figuras \ref{fig:results-modelo-batch-stamatakis} e
+\ref{fig:results-modelo-batch-stamatakis-detail} tem por objetivo mostrar a progressividade das ações de elasticidade em um arquivo de maior duração, como o caso do 12-stamatakis-59.
+%
+Nesta execução, o gerenciador de elasticidade inicialmente lança mão de quatro \textit{cores} de processamento que, quase imediatamente, reconhece como insuficientes, dobrando a alocação para que cada uma das oito tarefas iniciais seja processada por um \textit{core} distinto.
+%
+Assim que se inicia a segunda etapa do processamento baseado em \textit{Clustering Search} mais uma ação de elasticidade é executada, trazendo o número de \textit{cores} disponível para 28 e, alguns minutos depois, para o teto configurado de 36.
+
+
+
+Ao final do processamento, conforme vai aumentando a ociosidade das VMs alocadas o gestor de elasticidade inicia as reduções baixando para 24 \textit{cores} e, logo em seguida, para 12 \textit{cores} distribuídos em 3 VMs.
+%
+Por meio do monitoramento do arquivo 12-stamatakis-59 é possível perceber a relativa cautela com que o gerenciador de elasticidade executa suas ações, deixando um intervalo de tempo observado na casa dos cinco a dez minutos antes de efetivamente desligar uma VM.
+%
+Este comportamento pode ser explicado pela existência de alguma tarefa ainda em andamento em um dos \textit{cores} da VM, uma vez que o gerenciador só pode remover o recurso com segurança depois que todas as tarefas em execução na VM estejam concluídas.
+
+
+Neste caso o gerenciador fica refém de tarefas atrasadas ou que recém foram alocadas, uma situação que se agrava conforme aumentam o número de \textit{cores} disponíveis na VM, o que aumenta também a probabilidade de haver tarefas ainda em andamento, apesar de boa parte da máquina estar ociosa.
+%
+O conservadorismo na hora de devolver recursos computacionais também pode ser explicado por uma possível política de redução de \textit{thrashing} adotada pelo serviço Batch, o que ajuda a reduzir o impacto de \textit{setup} de novos recursos.
+%
+Embora não haja menção oficial nas documentações a respeito de uma política de redução de \textit{thrashing}, é seguro assumir que um mecanismo análogo esteja em voga, pois é de interesse do usuário.
+
+
 
 
 \subsection{Cenário Misto}
@@ -5002,7 +5256,7 @@ só batch
 
 \begin{table}[tb]
 	\centering%
-	\begin{minipage}{\textwidth}
+	\begin{minipage}{\defaultFigureWidth\textwidth}
 		\caption{Razão dos sistemas de evolução processados pela camada de Orquestração de Contêineres sobre o total por arquivo e cenário observada na avaliação do \textsf{He}--lastic.}
 		\label{tab:results-modelo-batchratio}
 		\vspace{1ex}
@@ -5022,45 +5276,174 @@ só batch
 	\end{minipage}
 \end{table}
 
-Já os cenários que contemplam a combinação entre FaaS e Orquestração de Contêineres, representando a aplicação completa do modelo \textsf{He}--lastic, embora compartilhem a progressividade oriunda dos arquivos do \textit{dataset}, iniciam de patamar mais baixo que os demais e encerram com uma curva mais suave.
+Já os cenários que contemplam a combinação entre as camadas de FaaS e Orquestração de Contêineres, representando a aplicação completa do modelo \textsf{He}--lastic, embora compartilhem a progressividade oriunda dos arquivos do \textit{dataset}, iniciam de patamar mais baixo que os demais e encerram com uma curva mais suave.
 %
 Neste caso os dados absolutos endossam os dados relativos, conciliando a \autoref{tab:results-modelo-avgs} com a \autoref{fig:results-modelo-caracteristicas}, uma validação que pode ser realizada através da comparação entre os menores e maiores arquivos do \textit{dataset}.
 %
 Assim é possível perceber que a estratégia empregada pelo modelo \textsf{He}--lastic é altamente eficaz quando processando em alta granularidade, ou seja, com pequenas tarefas individuais que, no caso desta avaliação, se manifestam por meio dos menores arquivos de alinhamentos de sequências moleculares.
 %
-No que diz respeito aos arquivos maiores, ou seja, unidades de processamento com menor granularidade, é possível observar uma degradação de performance quando comparados ao cenário que contempla apenas Orquestração de Contêineres, contudo os dados e o gráfico sugerem que este \textit{overhead} diminui conforme crescem os arquivos até eventualmente deixar de ser uma preocupação como mostra o maior arquivo do \textit{dataset}, 12-stamatakis-59.
+No que diz respeito aos arquivos maiores, ou seja, unidades de processamento com menor granularidade, é possível observar uma degradação de performance quando comparados ao cenário que contempla apenas Orquestração de Contêineres, contudo os dados e o gráfico sugerem que este \textit{overhead} diminui conforme crescem os arquivos até eventualmente deixar de ser uma preocupação como pode ser observado no 12-stamatakis-59, o maior arquivo do \textit{dataset}.
 
 
 
-Uma observação mais próxima dos cenários mistos do modelo \textsf{He}--lastic ($C_{mX}$), ainda na \autoref{fig:results-modelo-caracteristicas}, mostra uma divergência de comportamento nos arquivos intermediários do \textit{dataset}, que podem ser reunidos em 2 grupos contendo:
+Uma observação mais próxima dos cenários mistos do modelo \textsf{He}--lastic ($C_{mX}$), ainda na \autoref{fig:results-modelo-caracteristicas}, mostra uma divergência de comportamento nos arquivos intermediários do \textit{dataset}, que podem ser reunidos em 2 grupos, contendo:
 \begin{inparaenum}[\itshape a\upshape)] 
-	\item os cenários que continuam apresentando um comportamento em linha com o dos cenários baseado em Orquestração de Contêineres (mais linear e progressivo); e
-	\item os cenários que sofrem um impacto mais agressivo, composto por ($C_{m4}$, $C_{m5}$ e $C_{m7}$).
+	\item os cenários que continuam apresentando um comportamento em linha com os cenários baseados em Orquestração de Contêineres (mais linear e progressivo); e
+	\item os cenários que sofrem um impacto mais agressivo na performance, compostos por ($C_{m4}$, $C_{m5}$ e $C_{m7}$).
 \end{inparaenum}
 %
 Para compreender este comportamento é necessário recorrer à \autoref{tab:results-modelo-batchratio} que apresenta a razão entre os sistemas de evolução molecular que foram processados pela camada de Orquestração de Contêineres sobre o total.
+
+
+
+Assim, uma razão de 40\% indica que, do total de sistemas de evolução molecular testados para um determinado arquivo do \textit{dataset}, 60\% dos sistemas foram processados na camada FaaS e os 40\% restantes foram encaminhados para a segunda camada em função do limite no tempo de execução, sendo efetivamente processados pelo Orquestrador de Contêineres.
 %
-Assim uma razão de 40\% indica que, do total de sistemas de evolução molecular testados para um determinado arquivo do \textit{dataset}, 60\% dos sistemas foram processados na camada FaaS e os 40\% restantes foram encaminhados para a segunda camada em função do limite no tempo de execução, sendo efetivamente processados pelo Orquestrador de Contêineres.
-%
-Através da média geral por cenário é possível perceber que os cenários $C_{m4}$, $C_{m5}$ e $C_{m7}$, que apresentaram um aumento mais agressivo no tempo de execução, são os que apresentam maior razão de sistemas de evolução processados na camada de Orquestração de Contêineres, com valores na faixa de 80\% ($C_{m4}$) e 45\% ($C_{m5}$, $C_{m7}$), enquanto os demais se mantém na faixa de 25\% dos sistemas processados pelo Orquestrador de Contêineres.
+Através da média geral por cenário é possível perceber que os cenários $C_{m4}$, $C_{m5}$ e $C_{m7}$, que apresentaram um aumento mais agressivo no tempo de execução, são os que apresentam maior razão de sistemas processados na camada de Orquestração de Contêineres, com valores na faixa de 80\% para o cenário $C_{m4}$ e 45\% para os cenários $C_{m5}$ e $C_{m7}$.
+Os demais cenários se mantém na faixa de 25\% dos sistemas processados pelo Orquestrador de Contêineres, resultando em uma curva mais suave conforme observado na \autoref{fig:results-modelo-caracteristicas}.
 
 
 
-Por meio da análise conjunta sobre os dados da \autoref{tab:results-modelo-avgs}, \autoref{fig:results-modelo-caracteristicas} e \autoref{tab:results-modelo-batchratio} é possível estabelecer que a razão entre os arquivos processados pela camada FaaS e a camada de Orquestração de Contêineres exerce uma significativa influência no tempo das execuções quando se utiliza o modelo \textsf{He}--lastic.
+Por meio da análise conjunta sobre os dados da \autoref{tab:results-modelo-avgs}, \autoref{fig:results-modelo-caracteristicas} e \autoref{tab:results-modelo-batchratio} é possível estabelecer que a razão entre os arquivos processados pela camada FaaS e pela camada de Orquestração de Contêineres exerce uma significativa influência no tempo total das execuções quando se utiliza o modelo \textsf{He}--lastic.
 %
 Também é possível perceber, integrando na análise os dados da \autoref{tab:metodologia-cenarios-helastic}, que existe grande sensibilidade ao tempo limite de execução estabelecido para a camada FaaS, onde os arquivos processados pelos cenários $C_{m1}$, $C_{m3}$ e $C_{m6}$ apresentam os menores níveis de arquivos processados na camada de Orquestração de Contêineres.
 %
-Contudo, no que diz respeito ao tempo total de execução, a comparação entre os cenários $C_{m3}$ e $C_{m4}$ mostra que reduzindo o tempo limite da camada FaaS para $1/4$ (de 60s para 15s) enquanto aumenta os recursos do Orquestrador de Contêineres em $2,25x$ (de 16 para 36) é possível obter tempos de execução melhores conforme provam os resultados dos arquivos 09-gusanos16S.mafft, 11-gusanosCOI.mafft, e 12-stamatakis-59.
+Contudo, no que diz respeito ao tempo total de execução, a comparação entre os cenários $C_{m3}$ e $C_{m4}$ mostra que através da redução no tempo limite da camada FaaS para $1/4$ (de 60s para 15s), enquanto aumenta os recursos do Orquestrador de Contêineres em $2,25x$ (de 16 para 36), é possível obter melhores tempos de execução, conforme provam os resultados dos arquivos 09-gusanos16S.mafft, 11-gusanosCOI.mafft, e 12-stamatakis-59.
 
 
 
-Estes dados sugerem a existência de um faixa do espaço de configurações possíveis do modelo \textsf{He}--lastic que necessita de uma escolha mais criteriosa para os seus valores, onde uma análise empírica pode ser uma aliada no ajuste fino das configurações.
+Estes dados sugerem a existência de um faixa do espaço de possíveis configurações do modelo \textsf{He}--lastic que necessita de uma escolha mais criteriosa para os seus valores, onde uma análise empírica pode ser uma aliada no ajuste fino destas configurações.
 %
-Embora não seja desejável na formulação de um modelo, a aplicação de estratégias empíricas também é adotada por trabalhos como os de \citetexto{Shankar2018} e \citetexto{Jonas2017} devido à dificuldade de formalizar o comportamento dinâmico que se origina da combinação entre os parâmetros de Tempo Limite e Potência na camada FaaS sendo, no caso do modelo \textsf{He}--lastic, agravada pela existência de um terceiro fator, a Quantidade Limite de CPUs na camada de Orquestração de Contêineres.
+Embora não seja desejável na formulação de qualquer modelo, a aplicação de estratégias empíricas também é adotada por trabalhos como os de \citetexto{Shankar2018} e \citetexto{Jonas2017} devido à dificuldade em formalizar o comportamento dinâmico que se origina da combinação entre os parâmetros de Potência e Tempo Limite na camada FaaS sendo, no caso do modelo \textsf{He}--lastic, agravada pela existência de um terceiro fator, a Quantidade Limite de CPUs na camada de Orquestração de Contêineres.
 %
 A falta de modelos formais que sejam capazes de representar este comportamento dinâmico evidencia a necessidade de trabalhos futuros visando este objetivo, conclusão também obtida por \citetexto{Shankar2018}.
 
 
+\afterpage{
+	\clearpage
+	\begin{landscape}
+		\begin{table}
+			\centering%
+			\begin{minipage}{\linewidth}
+				\caption{Diferenças nos tempos de execução entre os cenários de avaliação do modelo \textsf{He}--lastic com FaaS e Orquestração de Contêineres versus os cenários do jModelTest.}
+				\label{tab:results-modelo-mixed}
+				\vspace{0.75ex}
+				%\footnotesize
+				\small
+				\renewcommand\arraystretch{1.2}
+		\begin{tabularx}{\linewidth}{@{\extracolsep{\fill}}lrrrrrrrrrrrrrr@{}}
+			\toprule
+			\multicolumn{1}{c}{\multirow{2}{*}{Arquivo}} & \multicolumn{2}{c}{$C_{m1}$} & \multicolumn{2}{c}{$C_{m2}$} & \multicolumn{2}{c}{$C_{m3}$} & \multicolumn{2}{c}{$C_{m4}$} & \multicolumn{2}{c}{$C_{m5}$} & \multicolumn{2}{c}{$C_{m6}$} & \multicolumn{2}{c}{$C_{m7}$} \\ 
+			\cmidrule(r){2-3} 
+			\cmidrule(lr){4-5} 
+			\cmidrule(lr){6-7} 
+			\cmidrule(lr){8-9} 
+			\cmidrule(lr){10-11} 
+			\cmidrule(lr){12-13} 
+			\cmidrule(l){14-15} 
+			& Razão & Delta & Razão & Delta & Razão & Delta & Razão & Delta & Razão & Delta & Razão & Delta & Razão & Delta \\
+			\midrule
+			01-aP6 & 81\% & 0:00:02 & 175\% & 0:00:05 & 188\% & 0:00:06 & 220\% & 0:00:05 & 221\% & 0:00:05 & 263\% & 0:00:07 & 297\% & 0:00:08 \\
+			02-rodents & 22\% & 0:00:45 & 47\% & 0:00:15 & 49\% & 0:00:16 & 73\% & 0:00:05 & 73\% & 0:00:05 & 79\% & 0:00:03 & 126\% & 0:00:05 \\
+			03-example & 30\% & 0:00:58 & 55\% & 0:00:21 & 58\% & 0:00:18 & 83\% & 0:00:06 & 92\% & 0:00:03 & 100\% & 0:00:00 & 163\% & 0:00:18 \\
+			04-18S\_insects2 & 24\% & 0:01:03 & 41\% & 0:00:25 & 47\% & 0:00:21 & 77\% & 0:00:05 & 78\% & 0:00:05 & 89\% & 0:00:02 & 128\% & 0:00:06 \\
+			05-HIVpol.groupM & 13\% & 0:03:07 & 25\% & 0:01:28 & 28\% & 0:01:22 & 41\% & 0:00:43 & 40\% & 0:00:43 & 45\% & 0:00:39 & 76\% & 0:00:15 \\
+			06-Hex\_EF1a & 17\% & 0:04:47 & 32\% & 0:02:05 & 30\% & 0:02:08 & 55\% & 0:00:48 & 57\% & 0:00:43 & 58\% & 0:00:42 & 96\% & 0:00:03 \\
+			07-primate-mtDNA & 23\% & 0:05:32 & 40\% & 0:02:26 & 39\% & 0:02:28 & 181\% & 0:01:29 & 59\% & 0:01:02 & 67\% & 0:00:54 & 105\% & 0:00:08 \\
+			08-HIV\_vpu.ref2 & 35\% & 0:08:36 & 195\% & 0:06:21 & 67\% & 0:02:37 & 855\% & 0:29:25 & 878\% & 0:30:18 & 163\% & 0:02:44 & 1084\% & 0:33:06 \\
+			09-gusanos16S.mafft & 151\% & 0:15:32 & 223\% & 0:19:12 & 237\% & 0:20:24 & 308\% & 0:20:46 & 322\% & 0:23:21 & 395\% & 0:28:50 & 362\% & 0:29:19 \\
+			10-Birds & 38\% & 0:22:29 & 73\% & 0:05:40 & 71\% & 0:05:29 & 192\% & 0:11:48 & 189\% & 0:11:38 & 124\% & 0:04:18 & 220\% & 0:15:05 \\
+			11-gusanosCOI.mafft & 160\% & 0:29:52 & 199\% & 0:27:53 & 212\% & 0:30:53 & 268\% & 0:26:33 & 297\% & 0:31:54 & 367\% & 0:41:54 & 356\% & 0:41:18 \\
+			12-stamatakis-59 & 87\% & 0:36:37 & 76\% & 0:39:45 & 95\% & 0:06:19 & 90\% & 0:08:35 & 93\% & 0:06:04 & 99\% & 0:01:38 & 94\% & 0:06:15 \\ 
+			\bottomrule
+			\multicolumn{1}{r}{Média} & & 0:10:42 & & 0:07:35 & & \textit{0:06:00} & & 0:07:13 & & 0:08:59 & & 0:10:21 & & 0:10:31 \\
+			\multicolumn{1}{r}{Máximo} &  & 0:36:37 &  & 0:39:45 &  & 0:30:53 &  & \textit{0:29:25} &  & 0:31:54 &  & 0:41:54 &  & 0:41:18
+		\end{tabularx}
+		\fonte{Elaborado pelo autor.}
+	\end{minipage}
+\end{table}
+
+\begin{figure}[p]
+	\centering%
+	\begin{minipage}{\linewidth}
+		\caption{Mapa de calor da diferença percentual nos tempos de execução entre os cenários de avaliação do modelo \textsf{He}--lastic com FaaS e Orquestração de Contêineres versus os cenários do jModelTest.}
+		\label{fig:results-modelo-mixed}
+		\vspace{1ex}
+		% esq | baixo | dir | alto
+		\includegraphics[trim=0 38 0 70,clip,width=\textwidth]{results-modelo-mixed}
+		\fonte{Elaborado pelo autor.}
+	\end{minipage}
+\end{figure}
+
+\end{landscape}
+}
+
+
+Como estratégia para avaliar o grau de \textit{overhead} gerado pelo modelo \textsf{He}--lastic sobre a execução do software jModelTest, uma medida de variação no tempo de execução foi adotada, comparando os tempos médios das execuções por arquivo dos cenários $C_{mX}$ versus os cenários $C_{jX}$ com a mesma quantidade de CPUs.
+%
+Desta forma, o cenário $C_{m1}$ é comparado com $C_{j8}$, os cenários $C_{m2}$ e $C_{m3}$ são comparados com $C_{j16}$ e os demais cenários são comparados com $C_{j36}$, como pode ser visto pela análise das Tabelas \ref{tab:metodologia-cenarios-jmodel} e \ref{tab:metodologia-cenarios-helastic}.
+%
+Embora a comparação por meio da quantidade de CPUs seja intuitiva, ela se mostra incompleta uma vez que, do lado do jModelTest a quantidade de CPUs mapeia a disponibilidade destes recursos ao longo da execução, enquanto no modelo \textsf{He}--lastic ela mapeia a quantidade máxima do recurso que pode ou não ser alocado conforme o comportamento de elasticidade.
+%
+Além disso, não é possível estabelecer um paralelo entre as duas abordagens comparadas no que diz respeito à alocação de recursos da camada FaaS, haja vista que não há nenhuma semelhança entre os conceitos de Potência e Tempo Limite de execução, parâmetros fundamentais para o modelo \textsf{He}--lastic e a camada FaaS.
+%
+Contudo, mesmo que a comparação dos cenários por meio do número de CPUs não seja ideal, ela apresenta--se como a alternativa mais próxima para uma comparação justa entre as abordagens do modelo \textsf{He}--lastic e do jModelTest.
+
+
+
+Por meio dos dados apresentados na \autoref{tab:results-modelo-mixed} é possível perceber que, na maioria dos arquivos do \textit{dataset} de testes, a abordagem do modelo \textsf{He}--lastic se mostra favorável quando avaliada em termos do tempo total de execução.
+%
+Observando as diferenças nos tempos de execução ao longo de todos os cenários avaliados é possível perceber que os maiores ganhos estão concentrados nos arquivos de tamanho pequeno a intermediários do \textit{dataset}, com destaque para os arquivos 05-HIVpol.groupM e 06-Hex\_EF1a, onde foi possível obter tempos de execução que levaram menos de 25\% do tempo dos cenários base do jModelTest.
+%
+O arquivo 01-aP6 pode ser incluído nesta classificação pois, embora sua variação percentual seja significativa, ela não apresenta grande relevância quando avaliada em termos absolutos, devido ao pequeno tamanho do arquivo e consequente curta duração de processamento.
+
+
+Nos arquivos considerados maiores os resultados são de interpretação mais complexa, uma vez que existe um claro ganho de performance, embora pequeno, no caso do arquivo 12-stamatakis-59, que não é compartilhado com os arquivos.
+%
+A região que contempla os arquivos do intervalo 07 à 11 merece especial atenção devido aos resultados mistos obtidos, conforme o cenário executado.
+%
+Chamam a atenção nesta análise os resultados obtidos pelo arquivo 08-HIV\_vpu.ref2 nos cenários $C_{m7}$, $C_{m5}$ e $C_{m4}$, com variações percentuais de 1084\%, 878\% e 855\%, respectivamente.
+
+
+Para auxiliar na compreensão destes resultados a \autoref{fig:results-modelo-mixed} apresenta um mapa de calor que abrange os dados da \autoref{tab:results-modelo-mixed}, possibilitando a análise visual dos resultados obtidos.
+%
+Com a ajuda desta figura é possível perceber que os resultados do arquivo 08-HIV\_vpu.ref2 são localizados, afetando de maneira mais grave apenas este arquivo nos cenários previamente mencionados.
+%
+Nos demais arquivos e cenários a variação observada se concentra na faixa entre 100\% à 400\%, o que, embora não seja encorajador, não causa o mesmo nível de espanto dos valores observados para o arquivo 08.
+
+
+Uma nova análise da \autoref{tab:results-modelo-batchratio} resulta em uma forte correlação com a \autoref{fig:results-modelo-mixed}, fornecendo uma explicação para o formato da região que sofreu maior impacto de performance em função da adoção do modelo \textsf{He}--lastic.
+%
+Embora nem todos os arquivos e cenários apresentem correlação tão intensa quanto o 10-Birds, por exemplo, a \autoref{tab:results-modelo-batchratio} fornece um importante \textit{insight} sobre o motivo desta degradação de performance, nomeadamente a taxa de requisições que foram atendidas pela segunda camada do modelo.
+%
+No caso do protótipo que toma por base a implementação do jModelTest, isto se traduz na razão dos sistemas de evolução molecular cujo cálculo não foi possível de realizar na camada FaaS, necessitando a transição para a camada de Orquestração de Contêineres.
+%
+Uma ressalva importante na análise da \autoref{tab:results-modelo-batchratio} deve ser feita quanto ao arquivo 12-stamatakis-59 que, embora não conste na tabela, tem a totalidade de suas requisições, ou seja, 100\%, atendidas pela camada de Orquestração de Contêineres e, por consequência, sofrendo o mesmo tipo de \textit{overhead} que os demais arquivos e cenários.
+
+
+Como já previamente abordado na \autoref{sec:metodologia-prototipo-dificuldades}, uma das grandes dificuldades encontradas na avaliação do protótipo se deu em função da incapacidade de influenciar a quantidade de \textit{retries} realizados pela camada FaaS quando uma requisição ultrapassa o tempo limite de execução.
+%
+Especula-se que os \textit{retries} impostos pelo serviço Lambda do provedor AWS estejam contribuindo de maneira significativa para o impacto de performance observado.
+%
+A proporcionalidade do tempo de espera entre os \textit{retries}, que segue a política de \textit{backoff} exponencial, também é visível nos dados da \autoref{tab:results-modelo-mixed}, onde o cenário $C_{m7}$ que tem \textit{timeout} configurado de 60 segundos é que apresenta maior impacto de performance, seguido dos cenários $C_{m5}$ e $C_{m4}$, com \textit{timeouts} de 30 e 15 segundos, respectivamente.
+
+
+
+outro fator que gera impacto é o overhead do orquestrador de contêineres que se mostrou mais lento e conservador nas ações de elasticidade
+[...]
+ainda mais quando tá perto do final de uma etapa
+
+
+contudo todos esses overheads são enfrentados pelo arquivo 12 que até apresentou uma leve melhora na performance quando comparado ao jmodel
+[...]
+carece investigação sobre porque o arquivo 08 é afetado de maneira tão grave por este fenômeno.
+
+
+por fim, retomando a tabela 36, podemos escolher os melhores cenários de acordo com dois critérios:
+- reduzir o impacto médio no tempo de execução
+- limitar o impacto máximo no tempo de execução
+que dá como ganhadores os cenários 3 e 4
+[...]
+falar sobre
 
 
 \begin{verbatim}
@@ -5072,7 +5455,6 @@ A falta de modelos formais que sejam capazes de representar este comportamento d
 	warm04-60-768-36
 		falar que esse cenário foi um tira-teima pra ver se o tempo a mais era em função das operações de elasticidade ou dos retries
 		warm04		=	 investigate wether the increased runtime is due to scaling actions or retries
-	
 \end{verbatim}
 
 \section{Comparativo de Custos}
