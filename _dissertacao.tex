@@ -257,17 +257,19 @@ Aplicada da Universidade do Vale do Rio dos Sinos --- UNISINOS
 %=======================================================================
 \begin{agradecimentos}
 	
-	
 	Ao Prof.~Dr. Rodrigo da Rosa \textbf{Righi} pelo tempo e a confiança continuamente investidos em mim desde a graduação.
 	\\[1ex]
 	
 	A minha noiva, \textbf{Natália}, por me dar condições para desenvolver este trabalho e me apoiar incondicionalmente.
 	\\[1ex]
 	
-	A Coordenação de Aperfeiçoamento de Pessoal de Nível Superior (CAPES), pela bolsa de estudos.
+	Aos meus \textbf{pais} que me incentivaram a sempre buscar e aprimorar meus conhecimentos.
+	\\[1ex]
+	
+	A Coordenação de Aperfeiçoamento de Pessoal de Nível Superior (\textbf{CAPES}), pela bolsa de estudos.
 	\\[1ex]
 
-	A Fundação de Amparo à Pesquisa do Estado do Rio Grande do Sul (FAPERGS), por contemplar nossa proposta, Combinando Elasticidade Multi-Métrica em Nuvem nas Modalidades Vertical e Horizontal para Análise de Genes e Redução de Pragas Agrícolas, no Edital 02/2017 - PqG.
+	A Fundação de Amparo à Pesquisa do Estado do Rio Grande do Sul (\textbf{FAPERGS}), por contemplar nossa proposta, Combinando Elasticidade Multi-Métrica em Nuvem nas Modalidades Vertical e Horizontal para Análise de Genes e Redução de Pragas Agrícolas, no Edital 02/2017 - PqG.
 
 \end{agradecimentos}
 
@@ -579,11 +581,18 @@ Contudo, visando detalhar este objetivo, assim como seus requisitos e resultados
 O restante do texto está estruturado da seguinte forma: no \autoref{ch:fundamentacao} é apresentada a base teórica que sustenta esta pesquisa, composta majoritariamente por conhecimentos das áreas da Bioinformática e da Computação de Alto Desempenho. 
 Dentre estes domínios são de especial interesse para esta dissertação os métodos de Inferência Filogenética e a Computação em Nuvem, mais especificamente o conceito de Elasticidade.
 
-Em \autoref{ch:relacionados} apresentam-se os critérios de seleção e escolha da literatura científica que contribuíram para determinar o estado da arte no que tange os assuntos abordados neste trabalho.
+No \autoref{ch:relacionados} apresentam-se os critérios de seleção e escolha da literatura científica que contribuíram para determinar o estado da arte no que tange os assuntos abordados neste trabalho.
 Uma análise comparativa auxilia o leitor a compreender o panorama da área de estudo e contribui para a identificação de possíveis lacunas de pesquisa, onde esta pesquisa se insere e busca, através do modelo proposto, sua contribuição científica.
 
 
-Em seguida, no \autoref{ch:modelo}, o leitor será apresentado ao modelo \textsf{He}--lastic, sendo esta uma estratégia para preencher algumas das lacunas de pesquisa previamente identificadas. Aborda-se neste capítulo as questões relacionadas à decisões de projeto, arquitetura e metodologia de avaliação do modelo proposto, fornecendo um panorama conceitual da solução apresentada
+Em seguida, no \autoref{ch:modelo}, o leitor será apresentado ao modelo \textsf{He}--lastic, sendo esta uma estratégia para preencher algumas das lacunas de pesquisa previamente identificadas. Aborda-se neste capítulo as questões relacionadas à decisões de projeto, arquitetura estratégias de elasticidade e as métricas de avaliação para o modelo proposto, fornecendo um panorama conceitual da solução apresentada
+
+
+No \autoref{ch:modelo-metodologia} é apresentada a metodologia de avaliação do modelo proposto, abordando as etapas e os cenários que fazem parte da avaliação, aproveitando, também, para descrever em maiores detalhes as questões práticas da avaliação, abordando características da aplicação, da infraestrutura utilizada, assim como o desenvolvimento do protótipo e seus parâmetros.
+
+
+A seguir, no \autoref{ch:resultados}, são apresentados os resultados obtidos conforme o protocolo de avaliação previamente descrito, onde são abordadas questões que dizem respeito a análise de custo--benefício da estratégia de elasticidade adotada pelo modelo proposto, os resultados da avaliação da aplicação de referência, e os resultados da avaliação do modelo \textsf{He}--lastic em suas variações, reservando também espaço para discussão sobre a comparação em termos de custo financeiro.
+
 
 Enfim, no \autoref{ch:conclusao}, encerra-se a pesquisa com a apresentação das principais contribuições esperadas com a adoção do modelo proposto, assim como, os possíveis caminhos disponíveis para aprofundar a pesquisa em trabalhos futuros.
 Apresenta-se também, um cronograma de atividades remanescentes para a conclusão dos estudos propostos no escopo desta dissertação.
@@ -759,7 +768,7 @@ Dentre os diversos métodos possíveis para alinhamento de múltiplas sequência
 \centering%
 \begin{minipage}{\defaultFigureWidth\textwidth}
 \begin{minipage}{.46\textwidth}
-	\caption{Codificação padrão para dados de sequências de DNA}
+	\caption{Codificação padrão para dados de sequências de DNA.}
 	\label{tab:dna-codes}
 	\vspace{1ex}
 	\begin{tabularx}{\textwidth}{YX}
@@ -776,7 +785,7 @@ Dentre os diversos métodos possíveis para alinhamento de múltiplas sequência
 \end{minipage}
 \hfill
 \begin{minipage}{.46\textwidth}
-	\caption{Codificação padrão para dados de sequências de RNA}
+	\caption{Codificação padrão para dados de sequências de RNA.}
 	\label{tab:rna-codes}
 	\vspace{1ex}
 	\begin{tabularx}{\textwidth}{YX}
@@ -797,7 +806,7 @@ Dentre os diversos métodos possíveis para alinhamento de múltiplas sequência
 \begin{table}[tb]
 \centering%
 \begin{minipage}{\defaultFigureWidth\textwidth}
-	\caption{Codificação padrão para dados de sequências de aminoácidos}
+	\caption{Codificação padrão para dados de sequências de aminoácidos.}
 	\label{tab:amino-codes}
 	\setlength{\tabcolsep}{9pt}
 	\vspace{1ex}
@@ -824,7 +833,7 @@ Dentre os diversos métodos possíveis para alinhamento de múltiplas sequência
 \begin{figure}[tb]
 \centering%
 \begin{minipage}{\defaultFigureWidth\textwidth}
-	\caption{Exemplo de arquivo no formato FASTA contendo múltiplas sequências moleculares representadas através da codificação de aminoácidos}
+	\caption{Exemplo de arquivo no formato FASTA contendo múltiplas sequências moleculares representadas através da codificação de aminoácidos.}
 	\label{fig:arquivo-fasta}
 	\begin{footnotesize}
 	\begin{verbatim}
@@ -903,11 +912,11 @@ Tais metodologias são explicadas detalhadamente nas subseções seguintes, e cl
 \begin{figure}[tb]
 \centering%
 \begin{minipage}{.75\textwidth}
-	\caption{Representação gráfica de uma árvore filogenética em uma tentativa de reconstruir a hipotética Árvore da Vida até o ancestral universal}
+	\caption{Representação gráfica de uma árvore filogenética em uma tentativa de reconstruir a hipotética Árvore da Vida até o ancestral universal.}
 	\label{fig:treeoflife}
 	\vspace{1ex}
 	\includegraphics[width=\textwidth]{treeoflife}
-	\fonte{\citetexto{Hinchliff2015}}
+	\fonte{\citetexto{Hinchliff2015}.}
 \end{minipage}
 \end{figure}
 
@@ -1125,7 +1134,7 @@ algoritmo Metropolis-Hastings, também conhecido como Markov chain Monte Carlo (
 \begin{table}[tb]
 	\centering%
 	\begin{minipage}{\defaultFigureWidth\textwidth}
-		\caption{Lista dos mais utilizados sistemas de substituição de sequências moleculares}
+		\caption{Lista dos mais utilizados sistemas de substituição de sequências moleculares.}
 		\label{tab:models}
 		\vspace{1ex}
 		\begin{tabu} to \textwidth{YX[2.5]@{}}
@@ -1250,7 +1259,7 @@ Portanto, é fundamental que a escolha de um sistema de substituição para aná
 		\caption[Taxas relativas de substituição para três sistemas baseados em cadeias de Markov]{Taxas relativas de substituição para três sistemas baseados em cadeias de Markov: a grossura das linhas representa a probabilidade de transição e o tamanho dos círculos representa a distribuição de ocorrências}
 		\label{fig:models}
 		\includegraphics[trim=130 95 120 500,clip,width=\textwidth]{yang2014molecular-fig1-2}
-		\fonte{\citetexto{yang2014molecular} referenciando os sistemas \citetexto{JukesCantor1969}, \citetexto{Kimura1980} e \citetexto{Hasegawa1984}, respectivamente}
+		\fonte{\citetexto{yang2014molecular} referenciando os sistemas \citetexto{JukesCantor1969}, \citetexto{Kimura1980} e \citetexto{Hasegawa1984}, respectivamente.}
 	\end{minipage}
 \end{figure}
 
@@ -1409,11 +1418,11 @@ Através da virtualização, é capaz de simular capacidade infinita e reduzir d
 \begin{figure}[tb]
 	\centering%
 	\begin{minipage}{\defaultFigureWidth\textwidth}
-		\caption{Taxonomia da Elasticidade apresentando quais são as Modalidades e Políticas disponíveis além das diferentes estratégias de elasticidade}
+		\caption{Taxonomia da Elasticidade apresentando quais são as Modalidades e Políticas disponíveis além das diferentes estratégias de elasticidade.}
 		\label{fig:elasticidade-taxonomia}
 		\vspace{1ex}
 		\includegraphics[clip,width=\textwidth]{AUTOELASTIC-taxonomia}
-		\fonte{Adaptado de \citetexto{S2016}, \citetexto{Coutinho2015}, \citetexto{Righi2013} e \citetexto{Galante2012}}
+		\fonte{Adaptado de \citetexto{S2016}, \citetexto{Coutinho2015}, \citetexto{Righi2013} e \citetexto{Galante2012}.}
 	\end{minipage}
 \end{figure}
 
@@ -1480,7 +1489,7 @@ Embora se observe uma mudança nos padrões de aplicações distribuídas em dir
 		\label{fig:docker}
 		\vspace{1ex}
 		\includegraphics[clip,width=\textwidth]{docker-concept}
-		\fonte{Reproduzido de \url{https://www.docker.com/what-container\#/virtual_machines}}
+		\fonte{Reproduzido de \url{https://www.docker.com/what-container\#/virtual_machines}.}
 	\end{minipage}
 \end{figure}
 
@@ -1614,7 +1623,7 @@ Este cenário pode ser ilustrado através de citações provenientes de três fo
 \begin{table}[tb]
 \centering%
 \begin{minipage}{\defaultFigureWidth\textwidth}
-	\caption{Comparativo das principais características nas ofertas de FaaS por parte de três grandes provedores de computação em nuvem}
+	\caption{Comparativo das principais características nas ofertas de FaaS por parte de três grandes provedores de computação em nuvem.}
 	\label{tab:FaaS-implementations}
 	\small
 	\vspace{1ex}
@@ -1659,12 +1668,11 @@ Desta forma a gestão do ambiente e da elasticidade é transferida para o proved
 \begin{figure}[tb]
 	\centering%
 	\begin{minipage}{\defaultFigureWidth\textwidth}
-		\caption{Diagrama representando a divisão de responsabilidades sobre as diversas camadas que compõem um ambiente computacional contrastando ambientes locais com diferentes modelos de serviço habilitados pela computação em nuvem (IaaS, PaaS, Contêineres,e FaaS)}
+		\caption{Diagrama representando a divisão de responsabilidades sobre as diversas camadas que compõem um ambiente computacional contrastando ambientes locais com diferentes modelos de serviço habilitados pela computação em nuvem (IaaS, PaaS, Contêineres,e FaaS).}
 		\label{fig:faas}
 		\vspace{1ex}
 		\includegraphics[clip,width=\textwidth]{mestrado-faas}
-		\fonte{Adaptado de \citetexto{SpoialaServerless} %\url{https://assist-software.net/blog/pros-and-cons-serverless-computing-faas-comparison-aws-lambda-vs-azure-functions-vs-google}
-		}
+		\fonte{Adaptado de \citetexto{SpoialaServerless}.} %\url{https://assist-software.net/blog/pros-and-cons-serverless-computing-faas-comparison-aws-lambda-vs-azure-functions-vs-google}.}
 	\end{minipage}
 \end{figure}
 
@@ -1768,7 +1776,7 @@ Com o intuito de mapear o estado da arte, no que diz respeito a ferramentas comp
 \centering%
 \begin{minipage}{\defaultFigureWidth\textwidth}
 	\begin{minipage}{.4\textwidth}
-		\caption{Palavras-chaves utilizadas na composição dos termos de busca desta revisão da literatura}
+		\caption{Palavras-chaves utilizadas na composição dos termos de busca desta revisão da literatura.}
 		\label{tab:survey-keywords}
 		%\setlength{\tabcolsep}{9pt}
 		\vspace{1ex}
@@ -1786,7 +1794,7 @@ Com o intuito de mapear o estado da arte, no que diz respeito a ferramentas comp
 	\end{minipage}
 	\hfill
 	\begin{minipage}{.55\textwidth}
-		\caption{Critérios de inclusão no conjunto de dados para trabalhos encontrados nesta revisão da literatura}
+		\caption{Critérios de inclusão no conjunto de dados para trabalhos encontrados nesta revisão da literatura.}
 		\label{tab:survey-filters}
 		\vspace{1ex}
 		\renewcommand {\tabularxcolumn}[1]{>{\arraybackslash}m{#1}}
@@ -1809,7 +1817,7 @@ Com o intuito de mapear o estado da arte, no que diz respeito a ferramentas comp
 \begin{table}[tb]
 \centering%
 \begin{minipage}{\defaultFigureWidth\textwidth}
-	\caption{Editoras e fontes utilizadas na elaboração da presente revisão de literatura}
+	\caption{Editoras e fontes utilizadas na elaboração da presente revisão de literatura.}
 	\label{tab:survey-sources}
 	\vspace{1ex}
 	\renewcommand{\tabularxcolumn}[1]{>{\arraybackslash}m{#1}}
@@ -1839,7 +1847,7 @@ Com o intuito de mapear o estado da arte, no que diz respeito a ferramentas comp
 \begin{figure}[tb]
 \centering%
 \begin{minipage}{\defaultFigureWidth\textwidth}
-	\caption{Diagrama representando a estrutura de busca e triagem utilizada neste trabalho para a revisão de literatura}
+	\caption{Diagrama representando a estrutura de busca e triagem utilizada neste trabalho para a revisão de literatura.}
 	\label{fig:survey-pipeline}
 	\includegraphics[trim=0 160 420 0,clip,width=\textwidth]{survey-pipeline}
 	\fonte{Elaborado pelo autor.}
@@ -1924,7 +1932,7 @@ Para tanto, adotou-se uma abordagem estruturada, conforme \autoref{fig:survey-pi
 	\centering%
 	%TODO: valorizar a taxonomia, buscar no RITA como foi feito
 	\begin{minipage}{\defaultFigureWidth\textwidth}
-		\caption{Taxonomia elaborada para a classificação dos trabalhos identificados durante a etapa de revisão de literatura}
+		\caption{Taxonomia elaborada para a classificação dos trabalhos identificados durante a etapa de revisão de literatura.}
 		\label{fig:taxonomia}
 		%tXdo: valorizar: falar que o estado da arte não tem taxonomia definida
 		\includegraphics[trim=15 40 15 40,clip,width=\textwidth]{taxonomia}
@@ -2008,7 +2016,7 @@ Desta forma, buscou-se nas publicações e, quando disponível, nas páginas e d
 \begin{table}[t]
 \centering%
 \begin{minipage}{\defaultFigureWidth\textwidth}
-	\caption{Quantidade de trabalhos da revisão de literatura quando classificados de acordo com as características relevantes para a computação distribuída}
+	\caption{Quantidade de trabalhos da revisão de literatura quando classificados de acordo com as características relevantes para a computação distribuída.}
 	\label{tab:survey-stats-comp}
 	\vspace{1ex}
 	\setlength{\tymin}{3.5em}
@@ -2060,11 +2068,11 @@ Ao conciliar os dados referentes a estes dois pontos de vista, filogenético e d
 \begin{figure}[tb]
 	\centering%
 	\begin{minipage}{\defaultFigureWidth\textwidth}
-		\caption{Comparativo entre a evolução do poder computacional das CPUs versus GPUs medido em GFLOP/s}
+		\caption{Comparativo entre a evolução do poder computacional das CPUs versus GPUs medido em GFLOP/s.}
 		\label{fig:gpu-power}
 		\vspace{1ex}
 		\includegraphics[trim=105 170 70 395,clip,width=\textwidth]{nvidia}
-		\fonte{\citetexto{nvidia2018}}
+		\fonte{\citetexto{nvidia2018}.}
 	\end{minipage}
 \end{figure}
 
@@ -2354,12 +2362,10 @@ Em seguida são apresentadas as características do problema que ela trata, quai
 Na sequência, a arquitetura proposta é detalhada com base nas características e decisões tomadas, discutindo em profundidade a respeito dos elementos constituintes do modelo, sua interação com o usuário, com o ambiente computacional e sua importância no que diz respeito a aplicação de técnicas de elasticidade de recursos computacionais, com especial atenção no que tange a motivação para a adoção de uma arquitetura baseada em duas camadas de elasticidade e os benefícios esperados pelo emprego deste arranjo.
 
 
-%todo: atualizar!
+
 
 % métricas avaliação
 Por fim, a metodologia de avaliação é apresentada detalhando as estratégias empregadas para comprovar a eficiência do modelo proposto em relação ao aproveitamento de recursos e o custo associado à execução das análises realizadas pela aplicação alvo, ou seja, o cálculo de adequação (\textit{best--fit}) de sistemas de substituição de sequências moleculares.
-
-% análise de custo benefício
 
 
 
@@ -2371,7 +2377,7 @@ Por fim, a metodologia de avaliação é apresentada detalhando as estratégias 
 \begin{figure}[tb]
 	\centering%
 	\begin{minipage}{\defaultFigureWidth\textwidth}
-		\caption{Gráfico apresentando os projetos mais relevantes para esta pesquisa segundo o critério de que somados componham até 85\% do total de citações dentre os trabalhos encontrados na revisão de literatura}
+		\caption{Gráfico apresentando os projetos mais relevantes para esta pesquisa segundo o critério de que somados componham até 85\% do total de citações dentre os trabalhos encontrados na revisão de literatura.}
 		\label{fig:survey-topcitations}
 		\vspace{1ex}
 		\includegraphics[width=\textwidth]{survey-topcitations}
@@ -2414,7 +2420,7 @@ Quando considerada a importância da correta seleção do sistema de substituiç
 \begin{figure}[tb]
 	\centering%
 	\begin{minipage}{\defaultFigureWidth\textwidth}
-		\caption{Linha do tempo do projeto jModelTest: histórico de publicações relevantes para compreensão do contexto, objetivos e evolução da ferramenta}
+		\caption{Linha do tempo do projeto jModelTest: histórico de publicações relevantes para compreensão do contexto, objetivos e evolução da ferramenta.}
 		\label{fig:jmodeltest-history}
 		\begin{NoHyper}
 		\begin{chronology}[4]{1996}{2019}{\defaultFigureWidth\textwidth}
@@ -2539,7 +2545,7 @@ Desta forma, ainda que paralelizável, o cálculo de adequação do sistema é u
 \begin{figure}[tb]
 	\centering%
 	\begin{minipage}{\defaultFigureWidth\textwidth}
-		\caption{Representação de carga em múltiplos processadores ou nodos durante a execução de processos com complexidade variável, exemplificando o cenário encontrado pela aplicação jModelTest durante o teste de adequação de sistemas de substituição de sequências moleculares onde parte significativa dos recursos pode permanecer ociosa enquanto aguarda a conclusão dos cálculos que exigem maior poder computacional}
+		\caption{Representação de carga em múltiplos processadores ou nodos durante a execução de processos com complexidade variável, exemplificando o cenário encontrado pela aplicação jModelTest durante o teste de adequação de sistemas de substituição de sequências moleculares onde parte significativa dos recursos pode permanecer ociosa enquanto aguarda a conclusão dos cálculos que exigem maior poder computacional.}
 		\label{fig:modelo-ociosidade}
 		\centering
 		\includegraphics{modelo-ociosidade}
@@ -2596,7 +2602,7 @@ C(i,c,s) = C_a(i,c) \times C_p(s)
 \begin{table}[tb]
 \centering%
 \begin{minipage}{\defaultFigureWidth\textwidth}
-	\caption{Detalhamento das variáveis e funções utilizadas na definição de custo de execução do jModelTest}
+	\caption{Detalhamento das variáveis e funções utilizadas na definição de custo de execução do jModelTest.}
 	\label{tab:custo-jmodel-elementos}
 	\small
 	\vspace{1ex}
@@ -2657,7 +2663,7 @@ Com este cenário em mente foram estabelecidas as seguintes decisões de projeto
 \begin{figure}[tb]
 	\centering%
 	\begin{minipage}{\defaultFigureWidth\textwidth}
-		\caption{Visão conceitual do modelo \textsf{He}--lastic ilustrando como suas duas camadas de elasticidade interagem para atender requisições}
+		\caption{Visão conceitual do modelo \textsf{He}--lastic ilustrando como suas duas camadas de elasticidade interagem para atender requisições.}
 		\label{fig:modelo-conceitual}
 		\includegraphics[width=\textwidth]{modelo-conceitual}
 		\fonte{Elaborado pelo autor.}
@@ -2668,7 +2674,7 @@ Com este cenário em mente foram estabelecidas as seguintes decisões de projeto
 \begin{table}[tb]
 \centering%
 \begin{minipage}{\defaultFigureWidth\textwidth}
-	\caption{Parâmetros necessários para a configuração do modelo \textsf{He}--lastic}
+	\caption{Parâmetros necessários para a configuração do modelo \textsf{He}--lastic.}
 	\label{tab:modelo-arq-params}
 	\small
 	\vspace{1ex}
@@ -2815,7 +2821,7 @@ Outro benefício é a redução na ocorrência de \textit{thrashing} de recursos
 		\vspace{-15.8ex}
 		\hspace{-10.1ex}
 		\begin{minipage}{1.16\textwidth}
-			\caption{Diagrama UML de atividades do modelo \textsf{He}--lastic representando a interação, agrupada por etapa do processamento, entre os componentes da arquitetura}
+			\caption{Diagrama UML de atividades do modelo \textsf{He}--lastic representando a interação, agrupada por etapa do processamento, entre os componentes da arquitetura.}
 			\label{fig:modelo-uml-activity}
 			\includegraphics[trim=20 255 195 15,clip,width=\textwidth]{modelo-uml-activity}
 			\fonte{Elaborado pelo autor.}
@@ -2893,7 +2899,7 @@ Os pontos de comunicação assíncrona através de filas de mensagens realizam a
 \begin{figure}[tb]
 \centering%
 \begin{minipage}{\defaultFigureWidth\textwidth}
-	\caption{Diagrama ilustrando as principais diferenças entre os componentes das camadas de elasticidade: Apesar de compartilharem a estrutura de alto nível, o FaaS tem importantes limitações no que diz respeito ao tempo de execução e capacidade de processamento, o que permite ao provedor de computação em nuvem otimizar a gestão da elasticidade e multiplexar o uso de recursos entre usuários; em contrapartida, o orquestrador de contêineres permite que o usuário determine o comportamento da elasticidade e abdica da limitação no tempo de execução em troca de um maior fardo operacional e um ambiente de execução que deve ser gerido pelo próprio usuário}
+	\caption{Diagrama ilustrando as principais diferenças entre os componentes das camadas de elasticidade: Apesar de compartilharem a estrutura de alto nível, o FaaS tem importantes limitações no que diz respeito ao tempo de execução e capacidade de processamento, o que permite ao provedor de computação em nuvem otimizar a gestão da elasticidade e multiplexar o uso de recursos entre usuários; em contrapartida, o orquestrador de contêineres permite que o usuário determine o comportamento da elasticidade e abdica da limitação no tempo de execução em troca de um maior fardo operacional e um ambiente de execução que deve ser gerido pelo próprio usuário.}
 	\label{fig:modelo-componentes-explodidos}
 	\includegraphics[width=\textwidth]{modelo-componentes-explodidos}
 	\fonte{Elaborado pelo autor.}
@@ -2954,7 +2960,7 @@ A \autoref{fig:modelo-jmodeltest} apresenta uma visão conceitual sobre a estrat
 \begin{table}[tb]
 \centering%
 \begin{minipage}{\defaultFigureWidth\textwidth}
-	\caption{Configuração do processamento efetuado pelo jModelTest durante o uso de \textit{Clustering Search} mostrando a quantidade e os sistemas de substituição molecular de acordo com a etapa}
+	\caption{Configuração do processamento efetuado pelo jModelTest durante o uso de \textit{Clustering Search} mostrando a quantidade e os sistemas de substituição molecular de acordo com a etapa.}
 	\label{tab:modelo-elasticidade-jmodelsteps}
 	\small
 	\vspace{1ex}
@@ -3121,7 +3127,7 @@ Tendo por referência as características elencadas na \autoref{tab:FaaS-impleme
 \begin{table}[tb]
 	\centering%
 	\begin{minipage}{\defaultFigureWidth\textwidth}
-		\caption{Comparativo entre as principais variáveis que compõem a equação de Custo (\autoref{eq:custo-faas}) para o modelo FaaS de acordo com os limites impostos por três grandes provedores de computação em nuvem}
+		\caption{Comparativo entre as principais variáveis que compõem a equação de Custo (\autoref{eq:custo-faas}) para o modelo FaaS de acordo com os limites impostos por três grandes provedores de computação em nuvem.}
 		\label{tab:custo-faas}
 		\small
 		\vspace{1ex}
@@ -3220,7 +3226,7 @@ Além disso, o modelo delega a gestão de tarefas secundárias\footnote{
 
 \epigrafecap{Software maintenance is not \textquoteleft keep it working like before\textquoteright. \\ It is \textquoteleft keep being useful in a changing world\textquoteright.}{Jessica Kerr}
 
-% TODO escrever intro do capitulo, falar da visao geral e: na sec. 1 falamos disso na outra daquilo bla bla bla
+% TODO: escrever intro do capitulo, falar da visao geral e: na sec. 1 falamos disso na outra daquilo bla bla bla
 %Uma vez identificada a aplicação candidata para modernização realizamos uma análise em busca de suas características e pontos de melhoria, chegando assim aos nossos objetivos em termos de decisões de projetos e, finalmente, na arquitetura proposta e seu tratamento no que diz respeito a elasticidade.
 %Embora a arquitetura proposta se mostre intuitivamente superior ao estado atual da aplicação jModelTest, se faz necessária uma rigorosa avaliação em termos práticos para que possamos demarcar como atingidos os objetivos deste trabalho e do modelo.
 
@@ -3250,7 +3256,7 @@ Estas decisões são detalhadas a seguir.
 \begin{table}[tb]
 	\centering%
 	\begin{minipage}{\textwidth}
-		\caption{Repositórios contendo o código--fonte dos projetos utilizados na avaliação do modelo \textsf{He}--lastic}
+		\caption{Repositórios contendo o código--fonte dos projetos utilizados na avaliação do modelo \textsf{He}--lastic.}
 		\label{tab:prototipo-repos}
 		\small
 		\vspace{1ex}
@@ -3292,7 +3298,7 @@ Abaixo são descritas as quatro etapas da avaliação e seus respectivos cenári
 \begin{table}[tb]
 	\centering%
 	\begin{minipage}{\defaultFigureWidth\textwidth}
-		\caption{Conjuntos de dados utilizados na execução dos cenários de testes para o modelo \textsf{He}--lastic e o jModelTest}
+		\caption{Conjuntos de dados utilizados na execução dos cenários de testes para o modelo \textsf{He}--lastic e o jModelTest.}
 		\label{tab:metodologia-etapas-dataset}
 		\vspace{1ex}
 		\centering
@@ -3323,7 +3329,7 @@ Abaixo são descritas as quatro etapas da avaliação e seus respectivos cenári
 \begin{table}[tb]
 	\centering%
 	\begin{minipage}{\defaultFigureWidth\textwidth}
-		\caption{Parâmetros disponibilizados pelo jModelTest que influenciam diretamente na quantidade de sistemas de substituição molecular que farão parte do teste de adequação}
+		\caption{Parâmetros disponibilizados pelo jModelTest que influenciam diretamente na quantidade de sistemas de substituição molecular que farão parte do teste de adequação.}
 		\label{tab:metodologia-etapas-jmodelparams}
 		\small
 		\vspace{1ex}
@@ -3431,7 +3437,7 @@ Os resultados obtidos por meio desta estratégia serão abordados em detalhes na
 	\centering%
 	\begin{minipage}{\defaultFigureWidth\textwidth}
 		\begin{minipage}{.25\textwidth}
-			\caption{Cenários de avaliação para o \textit{software} jModelTest}
+			\caption{Cenários de avaliação para o \textit{software} jModelTest.}
 			\label{tab:metodologia-cenarios-jmodel}
 			\vspace{1ex}
 			\begin{tabularx}{\textwidth}{YW}
@@ -3449,7 +3455,7 @@ Os resultados obtidos por meio desta estratégia serão abordados em detalhes na
 		\end{minipage}
 		\hfill
 		\begin{minipage}{.65\textwidth}
-			\caption{Cenários de avaliação para o modelo \textsf{He}--lastic}
+			\caption{Cenários de avaliação para o modelo \textsf{He}--lastic.}
 			\label{tab:metodologia-cenarios-helastic}
 			\vspace{1ex}
 			\small
@@ -3580,7 +3586,7 @@ Além disso, também despertam interesse às características de elasticidade e 
 \begin{figure}[tb]
 	\centering%
 	\begin{minipage}{\textwidth}
-		\caption{Linha de comando utilizada pelo jModelTest para controlar o \textit{software} PhyML separada em parcela fixa e variável e apresentando amostras de preenchimento da parcela variável}
+		\caption{Linha de comando utilizada pelo jModelTest para controlar o \textit{software} PhyML separada em parcela fixa e variável e apresentando amostras de preenchimento da parcela variável.}
 		\label{fig:prototipo-phyml-cmdline}
 		\vspace{1ex}
 		\begin{footnotesize}
@@ -3656,8 +3662,7 @@ Outro benefício da automação foi possibilitar a execução não assistida dos
 \begin{figure}[tb]
 	\centering%
 	\begin{minipage}{\defaultFigureWidth\textwidth}
-		%TODO: botar ponto final nos caption
-		\caption{Mapa das regiões e respectivas zonas de disponibilidade fornecidas pelo provedor de computação em nuvem AWS, com os círculos verdes representando regiões em construção}
+		\caption{Mapa das regiões e respectivas zonas de disponibilidade fornecidas pelo provedor de computação em nuvem AWS, com os círculos verdes representando regiões em construção.}
 		\label{fig:metodologia-infra-awsregions}
 		%	\vspace{1ex}
 		\includegraphics[width=\textwidth]{aws-regions}
@@ -3726,7 +3731,7 @@ Para referência, famílias atuais do EC2 são aquelas que têm sufixo \texttt{5
 \begin{table}[t]
 	\centering%
 	\begin{minipage}{\defaultFigureWidth\textwidth}
-		\caption{Tipos de CPUs utilizadas no AWS Lambda e sua equivalência em termos de Famílias EC2}
+		\caption{Tipos de CPUs utilizadas no AWS Lambda e sua equivalência em termos de Famílias EC2.}
 		\label{tab:metodologia-infra-lambdacpus}
 		%\small
 		\vspace{1ex}
@@ -4077,7 +4082,7 @@ Desta forma, toda a criação e remoção do ambiente necessário para execuçã
 
 
 
-\section{Análise de Custo X Benefício}
+\section{Análise de Custo--Benefício}
 \label{sec:modelo-custben}
 
 %ABORT: %todo: xupinhar algumas coisas do BBVAServerlessEconomics
@@ -4085,7 +4090,7 @@ Desta forma, toda a criação e remoção do ambiente necessário para execuçã
 \begin{table}[tb]
 	\centering%
 	\begin{minipage}{\defaultFigureWidth\textwidth}
-		\caption{Análise do comportamento das métricas Custo e Financeiro aplicados no modelo de computação FaaS conforme parâmetros requeridos pelo modelo \textsf{He}--lastic}
+		\caption{Análise do comportamento das métricas Custo e Financeiro aplicados no modelo de computação FaaS conforme parâmetros requeridos pelo modelo \textsf{He}--lastic.}
 		\label{tab:modelo-custben-faas}
 		\vspace{1ex}
 		%\small
@@ -4195,7 +4200,7 @@ Desta forma, uma análise quanto ao teto de gastos é fundamental para que sejam
 \begin{figure}[tb]
 	\centering%
 	\begin{minipage}{\defaultFigureWidth\textwidth}
-		\caption{Simulação do comportamento da camada de longa duração do modelo \textsf{He}--lastic mostrando a relação entre a quantidade de requisições e a disponibilidade de recursos para processamento}
+		\caption{Simulação do comportamento da camada de longa duração do modelo \textsf{He}--lastic mostrando a relação entre a quantidade de requisições e a disponibilidade de recursos para processamento.}
 		\label{fig:modelo-custben-container}
 		%		\vspace{1ex}
 		\includegraphics[width=\textwidth]{modelo-custben-container}
@@ -4207,7 +4212,7 @@ Desta forma, uma análise quanto ao teto de gastos é fundamental para que sejam
 \begin{table}[tb]
 	\centering%
 	\begin{minipage}{\defaultFigureWidth\textwidth}
-		\caption{Análise do comportamento das métricas Custo e Financeiro aplicados no modelo de computação por Orquestração de Contêineres evidenciando a associatividade de custos}
+		\caption{Análise do comportamento das métricas Custo e Financeiro aplicados no modelo de computação por Orquestração de Contêineres evidenciando a associatividade de custos.}
 		\label{tab:modelo-custben-container}
 		\vspace{1ex}
 		\centering
@@ -4282,7 +4287,7 @@ Através desta característica é possível ajustar o modelo \textsf{He}--lastic
 \begin{figure}[tb]
 	\centering%
 	\begin{minipage}{\defaultFigureWidth\textwidth}
-		\caption{Comportamento esperado sobre o uso de recursos ao longo do tempo conforme modelos de execução baseado em recursos fixos, elasticidade e \textsf{He}--lastic, evidenciando as diferenças no que diz respeito à capacidade ociosa e a evolução no aproveitamento de recursos ao longo do tempo}
+		\caption{Comportamento esperado sobre o uso de recursos ao longo do tempo conforme modelos de execução baseado em recursos fixos, elasticidade e \textsf{He}--lastic, evidenciando as diferenças no que diz respeito à capacidade ociosa e a evolução no aproveitamento de recursos ao longo do tempo.}
 		\label{fig:modelo-custben-alternativas}
 		%		\vspace{1ex}
 		\includegraphics[width=\textwidth]{modelo-custben-alternativas}
@@ -4294,7 +4299,7 @@ Através desta característica é possível ajustar o modelo \textsf{He}--lastic
 \begin{table}
 	\centering%
 	\begin{minipage}{\textwidth}
-		\caption{Análise de custo para o modelo \textsf{He}--lastic ressaltando a relação entre os custos financeiros originados nas camadas FaaS e Orquestrador de Contêineres}
+		\caption{Análise de custo para o modelo \textsf{He}--lastic ressaltando a relação entre os custos financeiros originados nas camadas FaaS e Orquestrador de Contêineres.}
 		\label{tab:modelo-custben-misto}
 		\vspace{1ex}
 		\footnotesize
@@ -5951,7 +5956,7 @@ Enfim será possível traçar análises e conclusões a respeito da eficácia e 
 \begin{figure}[tbp]
 	\centering%
 	\begin{minipage}{\textwidth}
-		\caption{Diagrama conceitual da abordagem tradicional para obtenção de elasticidade em um contexto de computação em nuvem: um balanceador de carga distribui as requisições para diversas réplicas de uma máquina virtual enquanto um monitor de recursos avaliam o estado das réplicas e sugerem ações ao gerenciador de elasticidade com o objetivo de adequar os recursos disponíveis à carga computacional}
+		\caption{Diagrama conceitual da abordagem tradicional para obtenção de elasticidade em um contexto de computação em nuvem: um balanceador de carga distribui as requisições para diversas réplicas de uma máquina virtual enquanto um monitor de recursos avaliam o estado das réplicas e sugerem ações ao gerenciador de elasticidade com o objetivo de adequar os recursos disponíveis à carga computacional.}
 		\label{fig:modelo-lb}
 		\includegraphics[width=\textwidth]{modelo-lb}
 		\fonte{Elaborado pelo autor.}
