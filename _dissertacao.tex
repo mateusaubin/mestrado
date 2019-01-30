@@ -121,8 +121,14 @@
 % Let's us use € to get the \EUR command from the eurosym package.
 \DeclareUnicodeCharacter{20AC}{\EUR}
 
+
+
 % {arydshln} dashed lines
-% cdashline			- https://tex.stackexchange.com/a/320147
+
+% \dashedline			- https://tex.stackexchange.com/a/439963
+\newcommand{\dashedline}[1]{\noalign{\vskip\aboverulesep}\cdashline{#1}[1pt/4pt]\noalign{\vskip\belowrulesep}}
+
+% cdashlinelr			- https://tex.stackexchange.com/a/320147
 \makeatletter
 \def\adl@drawiv#1#2#3{%
 	\hskip.5\tabcolsep
@@ -137,6 +143,7 @@
 	\noalign{\global\let\adl@draw\@dashdrawstore
 		\vskip\belowrulesep}}
 \makeatother
+
 
 
 %%%%%%%%
@@ -2024,7 +2031,9 @@ Desta forma, buscou-se nas publicações e, quando disponível, nas páginas e d
 			\toprule
 			\vspace{1ex}Projetos & Console Interativo & Interface Gráfica & Computação Distribuída & Aceleração por GPU & Elasticidade de Recursos & Balanceamento de Carga \\*
 			\midrule
-			\multirow{2}{*}{{\large 83}} & 45 & 34 & 19 & 4 & 3 & 2 \\* \cmidrule{2-7}
+			\multirow{2}{*}{{\large 83}} & 45 & 34 & 19 & 4 & 3 & 2 \\* 
+			%\cmidrule{2-7}
+			\dashedline{2-7}
 			& 54\% & 41\% & 23\% & 5\% & 4\% & 2\% \\*
 			\bottomrule
 		\end{tabulary}
@@ -2686,7 +2695,8 @@ Com este cenário em mente foram estabelecidas as seguintes decisões de projeto
 		\midrule
 		\multirow{2}{*}[-2em]{\begin{tabular}[c]{@{}c@{}}Curta~Duração\\ FaaS\end{tabular}} & Tempo Limite & Tempo máximo de processamento para os processos executando nesta camada. \\
 		& Potência & Determina o poder de processamento alocado para cada unidade de execução na camada. Geralmente se manifesta como uma medida de memória alocada, embora possa ser composta por outras métricas (vide \autoref{tab:FaaS-implementations}). \\
-		\cmidrule{2-3}
+		%\cmidrule{2-3}
+		\dashedline{2-3}
 		\multirow{3}{*}[-3em]{\begin{tabular}[c]{@{}c@{}}Longa~Duração \\ Orquestrador\\ de Contêineres\end{tabular}} & Número de CPUs & Quantidade limite de CPUs disponíveis para uso. Tem por objetivo garantir a previsibilidade de custos para esta camada. \\
 		& Limite Inferior de Carga & \textit{Threshold} indicativo da ocupação mínima permitida para cada VM da camada. A violação deste limite causará uma ação de elasticidade para consolidação / redução de recursos. \\
 		& Limite Superior de Carga & \textit{Threshold} indicativo da ocupação máxima permitida para cada VM da camada. A violação deste limite causará uma ação de elasticidade para replicação / incremento na quantidade de recursos. \\
@@ -4221,7 +4231,7 @@ Desta forma, uma análise quanto ao teto de gastos é fundamental para que sejam
 			\# & Amostras ($ t $) & vCPUs & Custo da Amostra & $ Custo_{elastico} $ & $ Financeiro_{elastico} $ \\ \midrule
 			1 & 10 & 16 & 160 & 160 & 6,80 \\
 			%			\cmidrule{2-6}
-			\cdashline{1-6}[.4pt/1pt]
+			\dashedline{1-6}
 			\multirow{6}{*}{2} & 2 & 2 & 4 & \multirow{6}{*}{160} & \multirow{6}{*}{6,80} \\
 			& 2 & 4 & 8 &  &  \\
 			& 2 & 8 & 16 & & \\
@@ -4230,13 +4240,13 @@ Desta forma, uma análise quanto ao teto de gastos é fundamental para que sejam
 			& 2 & 16 & 32 &  &  \\
 			& 2 & 2 & 4 &  &  \\
 			%			\cmidrule{2-6}
-			\cdashline{1-6}[.4pt/1pt]
+			\dashedline{1-6}
 			\multirow{4}{*}{3} & 2 & 16 & 32 & \multirow{4}{*}{160} & \multirow{4}{*}{6,80} \\
 			& 2 & 32 & 64 &  &  \\
 			& 1 & 48 & 48 &  &  \\
 			& 2 & 8 & 16 &  &  \\
 			%			\cmidrule{2-6}
-			\cdashline{1-6}[.4pt/1pt]
+			\dashedline{1-6}
 			4 & 5 & 32 & 160 & 160 & 6,80 \\
 			\bottomrule
 		\end{tabulary}
@@ -4330,27 +4340,27 @@ Através desta característica é possível ajustar o modelo \textsf{He}--lastic
 			\multirow{3}{*}{8} & \multirow{3}{*}{01:15} & \multirow{3}{*}{128} &  & \multirow{3}{*}{1000} & 75\% &  & 1,125 & 0,12 &  & 8 & 0,34 &  & 0,46 & $26:74$ \\
 			&  &  &  &  & 50\% &  & 0,75 & 0,08 &  & 8 & 0,34 &  & 0,42 & $19:81$ \\
 			&  &  &  &  & 25\% &  & 0,375 & 0,04 &  & 8 & 0,34 &  & 0,38 & $10:90$ \\
-			\cmidrule(l){6-15} 
+			\dashedline{6-15} 
 			\multirow{3}{*}{8} & \multirow{3}{*}{01:15} & \multirow{3}{*}{512} &  & \multirow{3}{*}{1000} & 75\% &  & 4,5 & 0,47 &  & 8 & 0,34 &  & 0,81 & $58:42$ \\
 			&  &  &  &  & 50\% &  & 3 & 0,31 &  & 8 & 0,34 &  & 0,65 & $48:52$ \\
 			&  &  &  &  & 25\% &  & 1,5 & 0,16 &  & 8 & 0,34 &  & 0,50 & $31:69$ \\
-			\cmidrule(l){6-15} 
+			\dashedline{6-15} 
 			\multirow{3}{*}{8} & \multirow{3}{*}{01:15} & \multirow{3}{*}{2048} &  & \multirow{3}{*}{1000} & 75\% &  & 18 & 1,88 &  & 8 & 0,34 &  & 2,22 & $85:15$ \\
 			&  &  &  &  & 50\% &  & 12 & 1,25 &  & 8 & 0,34 &  & 1,59 & $79:21$ \\
 			&  &  &  &  & 25\% &  & 6 & 0,63 &  & 8 & 0,34 &  & 0,97 & $65:35$ \\
-			\cmidrule(l){6-15} 
+			\dashedline{6-15} 
 			\multirow{3}{*}{8} & \multirow{3}{*}{05:00} & \multirow{3}{*}{2048} &  & \multirow{3}{*}{1000} & 75\% &  & 72 & 7,50 &  & 8 & 0,34 &  & 7,84 & $96:04$ \\
 			&  &  &  &  & 50\% &  & 48 & 5,00 &  & 8 & 0,34 &  & 5,34 & $94:06$ \\
 			&  &  &  &  & 25\% &  & 24 & 2,50 &  & 8 & 0,34 &  & 2,84 & $88:12$\rlap{\textsuperscript{\dag}} \\
-			\cmidrule(l){6-15} 
+			\dashedline{6-15} 
 			\multirow{3}{*}{32} & \multirow{3}{*}{05:00} & \multirow{3}{*}{2048} &  & \multirow{3}{*}{1000} & 75\% &  & 72 & 7,50 &  & 32 & 1,36 &  & 8,86 & $85:15$ \\
 			&  &  &  &  & 50\% &  & 48 & 5,00 &  & 32 & 1,36 &  & 6,36 & $79:21$ \\
 			&  &  &  &  & 25\% &  & 24 & 2,50 &  & 32 & 1,36 &  & 3,86 & $65:35$\rlap{\textsuperscript{\dag}} \\
-			\cmidrule(l){6-15} 
+			\dashedline{6-15} 
 			\multirow{3}{*}{32} & \multirow{3}{*}{05:00} & \multirow{3}{*}{2048} &  & \multirow{3}{*}{4000} & 75\% &  & 288 & 30,01 &  & 32 & 1,36 &  & 31,37 & $96:04$ \\
 			&  &  &  &  & 50\% &  & 192 & 20,00 &  & 32 & 1,36 &  & 21,36 & $94:06$ \\
 			&  &  &  &  & 25\% &  & 96 & 10,00 &  & 32 & 1,36 &  & 11,36 & $88:12$ \\
-			\cmidrule(l){6-15} 
+			\dashedline{6-15} 
 			\multirow{3}{*}{32} & \multirow{3}{*}{05:00} & \multirow{3}{*}{2048} &  & \multirow{3}{*}{16000} & 75\% &  & 1152 & 120,03 &  & 32 & 1,36 &  & 121,39 & $99:01$ \\
 			&  &  &  &  & 50\% &  & 768 & 80,02 &  & 32 & 1,36 &  & 81,38 & $98:02$ \\
 			&  &  &  &  & 25\% &  & 384 & 40,01 &  & 32 & 1,36 &  & 41,37 & $97:03$ \\
@@ -4991,6 +5001,7 @@ Para compreender melhor as origens dos três comportamentos distintos, uma anál
 
 
 \subsection{Cenário Somente FaaS}
+\label{sec:resultados-modelo-faas}
 
 
 
@@ -5530,10 +5541,17 @@ A proporcionalidade do tempo de espera entre os \textit{retries}, que segue a po
 
 
 
-Outro fator que gera impacto é o \textit{overhead} oriundo da camada de Orquestração de Contêineres, que se mostrou, de acordo com resultados prévios, mais conservador nas ações de elasticidade.
+Outro fator que gera impacto é o \textit{overhead} oriundo da camada de Orquestração de Contêineres, que se mostrou, de acordo com resultados prévios, mais conservador nas ações de elasticidade, até mesmo deixando de utilizar na totalidade os recursos disponibilizados.
 %
-Embora haja embasamento para este comportamento que pode ser adotado para mitigar a ocorrência de \textit{thrashing} de recursos, em cenários de processamento compartilhado entre as duas camadas do modelo \textsf{He}--lastic há um perceptível impacto no desempenho em termos do tempo de processamento, como pode ser observado na \autoref{fig:results-modelo-mixed}.
+Assim como observado no cenário de avaliação baseado somente em Orquestração de Contêineres, por meio das Figuras \ref{fig:results-modelo-batch-rodents}, \ref{fig:results-modelo-batch-19HIV}, \ref{fig:results-modelo-batch-41HIV} e \ref{fig:results-modelo-batch-primate}, nos cenários de avaliação do modelo \textsf{He}--lastic com suas duas camadas é recorrente o comportamento conservador na alocação de recursos por parte do gerenciador de elasticidade.
 %
+Nestes casos, mesmo que os parâmetros do modelo permitam utilizar até 36 \textit{cores} de processamento, como no cenário $C_{m3}$ por exemplo, o gestor de elasticidade do serviço AWS Batch aloca em torno de 20 para efetuar a execução, o que causa um efeito negativo no tempo de execução, embora positivo do ponto de vista do custo.
+%
+Mesmo que seja possível justificar este comportamento, que pode ser adotado para mitigar a ocorrência de \textit{thrashing} de recursos, nos cenários de processamento compartilhado entre as duas camadas do modelo \textsf{He}--lastic há um perceptível impacto no desempenho em termos do tempo de processamento, como pode ser observado na \autoref{fig:results-modelo-mixed}.
+
+
+
+
 Há, ainda, o agravante da estratégia de \textit{Clustering Search} adotada pelo jModelTest, que faz com que os impactos sejam ainda mais agudos quando o \textit{overhead} da camada de Orquestração de Contêineres inicia próximo do final de uma etapa, o que faz com que todas as demais etapas fiquem represadas até que as últimas requisições sejam atendidas.
 %
 Ilustra este cenário uma situação onde o último dos sistemas de substituição molecular a ser avaliado em uma etapa do processamento excede os limites da camada FaaS e deve, portanto, ser encaminhado para o Orquestrador de Contêineres, o que faz com que todo o restante do processamento deva necessariamente esperar pela conclusão deste último atrasado, podendo, inclusive, causar um efeito bola de neve caso a situação se repita nas próximas etapas.
@@ -5577,18 +5595,21 @@ Dentre os arquivos que passam pela camada de Orquestrador de contêineres, o 08-
 	\caption{Consolidação dos resultados obtidos nas execuções dos cenários mistos do modelo \textsf{He}--lastic em comparação com os resultados das execuções do jModelTest.}
 	\label{tab:results-modelo-mixed-summary}
 	\vspace{1ex}
-	\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrlrrr@{}}
+	\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}crcrrr@{}}
 		\toprule
-		\multicolumn{2}{c}{Cenário de Referência} & \multicolumn{4}{c}{Cenário \textsf{He}--lastic} \\ \cmidrule(r){1-2}
-		\cmidrule(l){3-6}
-		Código & \begin{tabular}[c]{@{}r@{}}Duração\\ Média\end{tabular} & Código & \begin{tabular}[c]{@{}r@{}}Duração\\ Média\end{tabular} & \begin{tabular}[c]{@{}r@{}}Diferença\\ Absoluta\end{tabular} & \begin{tabular}[c]{@{}r@{}}Diferença\\ Percentual\end{tabular} \\ 
+		\multicolumn{2}{c}{Cenário de Referência} & \multicolumn{2}{c}{Cenário \textsf{He}--lastic} & 
+		\multicolumn{2}{c}{Diferença} \\ 
+		\cmidrule(r){1-2}
+		\cmidrule(lr){3-4}
+		\cmidrule(l){5-6}
+		Código & \begin{tabular}[c]{@{}r@{}}Duração\\ Média\end{tabular} & Código & \begin{tabular}[c]{@{}r@{}}Duração\\ Média\end{tabular} & Média & Percentual \\ 
 		\midrule
-		$C_{j8}$ & 0:32:01 & $C_{m1}$ & 0:31:08 & -0:00:53 & -3\% \\ 
-		\cmidrule(r){1-3}
-		\multirow{2}{*}{$C_{j16}$} & \multirow{2}{*}{0:17:31} & $C_{m2}$ & 0:15:46 & -0:01:45 & -10\% \\
+		$C_{j8}$ & 0:32:01 & $C_{m1}$ & 0:31:08 & \textcolor{success-green}{-0:00:53} & -3\% \\ 
+		\dashedline{1-6}
+		\multirow{2}{*}{$C_{j16}$} & \multirow{2}{*}{0:17:31} & $C_{m2}$ & 0:15:46 & \textcolor{success-green}{-0:01:45} & -10\% \\
 		&  & $C_{m3}$ & 0:19:36 & 0:02:05 & 12\% \\ 
-		\cmidrule(r){1-3}
-		\multirow{4}{*}{$C_{j36}$} & \multirow{4}{*}{0:10:33} & $C_{m4}$ & 0:15:45 & 0:05:12 & 49\% \\
+		\dashedline{1-6}
+		\multirow{4}{*}{$C_{j36}$} & \multirow{4}{*}{0:10:33} & $C_{m4}$ & 0:15:45 & \textcolor{success-green}{0:05:12} & 49\% \\
 		&  & $C_{m5}$ & 0:18:43 & 0:08:10 & 77\% \\
 		&  & $C_{m6}$ & 0:26:41 & 0:16:08 & 153\% \\
 		&  & $C_{m7}$ & 0:20:54 & 0:10:21 & 98\% \\ 
@@ -5649,15 +5670,188 @@ Contudo, este resultado não se sustenta quando os recursos disponíveis para o 
 
 \section{Comparativo de Custos}
 
-\begin{verbatim}
-só o financeiro porque as métricas são incompatíveis otherwise
 
 
-\end{verbatim}
+\afterpage{
+	\clearpage
+	\begin{landscape}
+		\begin{table}
+			\centering%
+			\begin{minipage}{\linewidth}
+				\caption{Resultados médios das avaliações de performance e custo financeiro dos cenários do modelo \textsf{He}--lastic por arquivo do \textit{dataset}.}
+				\label{tab:results-custos-modelo}
+				\vspace{0.75ex}
+				%\scriptsize
+				\footnotesize
+				%\small
+				\renewcommand\arraystretch{1.4}
+				\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrrrrrrrrrrrrrrrr@{}}
+					\toprule
+					\multicolumn{1}{c}{\multirow{2}{*}{Arquivo}} & \multicolumn{3}{c}{$C_{f0}$} & \multicolumn{3}{c}{$C_{c36}$} & \multicolumn{4}{c}{$C_{m1}$} & \multicolumn{4}{c}{$C_{m2}$} & \multicolumn{4}{c}{$C_{m4}$} \\
+					\cmidrule(r){2-4}
+					\cmidrule(lr){5-7}
+					\cmidrule(lr){8-11}
+					\cmidrule(lr){12-15}
+					\cmidrule(l){16-19}
+					\multicolumn{1}{c}{} &
+					\rotatebox[origin=c]{\tabelaAngulo}{Duração} & \rotatebox[origin=c]{\tabelaAngulo}{CPUs} & \rotatebox[origin=c]{\tabelaAngulo}{Financeiro} &
+					\rotatebox[origin=c]{\tabelaAngulo}{Duração} & \rotatebox[origin=c]{\tabelaAngulo}{CPUs} & \rotatebox[origin=c]{\tabelaAngulo}{Financeiro} & 
+					\rotatebox[origin=c]{\tabelaAngulo}{Duração} & \rotatebox[origin=c]{\tabelaAngulo}{CPUs} & \rotatebox[origin=c]{\tabelaAngulo}{Razão} &  \rotatebox[origin=c]{\tabelaAngulo}{Financeiro} &
+					\rotatebox[origin=c]{\tabelaAngulo}{Duração} & \rotatebox[origin=c]{\tabelaAngulo}{CPUs} & \rotatebox[origin=c]{\tabelaAngulo}{Razão} &  \rotatebox[origin=c]{\tabelaAngulo}{Financeiro} &
+					\rotatebox[origin=c]{\tabelaAngulo}{Duração} & \rotatebox[origin=c]{\tabelaAngulo}{CPUs} & \rotatebox[origin=c]{\tabelaAngulo}{Razão} & \rotatebox[origin=c]{\tabelaAngulo}{Financeiro}
+					\\
+					\midrule
+					01-aP6 & 0:00:09 & 63 & 0,000 & 0:10:02 & 11 & 0,240 & 0:00:09 & 70 & 0\% & 0,000 & 0:00:11 & 29 & 0\% & 0,000 & 0:00:09 & 78 & 0\% & 0,000 \\
+					02-rodents & 0:00:13 & 114 & 0,010 & 0:09:06 & 10 & 0,190 & 0:00:13 & 113 & 0\% & 0,010 & 0:00:14 & 88 & 0\% & 0,007 & 0:00:13 & 121 & 0\% & 0,008 \\
+					03-example & 0:00:27 & 118 & 0,010 & 0:10:14 & 10 & 0,236 & 0:00:24 & 115 & 0\% & 0,010 & 0:00:25 & 114 & 0\% & 0,011 & 0:00:22 & 114 & 0\% & 0,010 \\
+					04-18S\_insects2 & 0:00:19 & 117 & 0,010 & 0:09:23 & 3 & 0,159 & 0:00:20 & 102 & 0\% & 0,010 & 0:00:17 & 118 & 0\% & 0,010 & 0:00:17 & 116 & 0\% & 0,010 \\
+					05-HIVpol.grou{[}..{]} & 0:00:30 & 120 & 0,020 & 0:08:55 & 11 & 0,208 & 0:00:28 & 120 & 0\% & 0,020 & 0:00:28 & 120 & 0\% & 0,020 & 0:00:29 & 120 & 0\% & 0,020 \\
+					06-Hex\_EF1a & 0:00:59 & 120 & 0,030 & 0:08:28 & 13 & 0,172 & 0:00:59 & 119 & 0\% & 0,032 & 0:00:59 & 120 & 0\% & 0,036 & 0:00:57 & 120 & 0\% & 0,030 \\
+					07-primate-mtDNA & 0:01:37 & 120 & 0,050 & 0:10:51 & 12 & 0,255 & 0:01:36 & 120 & 0\% & 0,050 & 0:01:35 & 121 & 0\% & 0,050 & 0:04:44 & 121 & 0\% & 0,052 \\
+					08-HIV\_vpu.ref2 & 0:04:41 & 122 & 0,150 & 0:11:18 & 11 & 0,324 & 0:04:31 & 120 & 0\% & 0,153 & 0:13:01 & 140 & 1\% & 0,185 & 0:32:45 & 147 & 48\% & 0,454 \\
+					09-gusanos16S{[}..{]} &  &  &  & 0:13:17 & 14 & 0,388 & 0:44:12 & 194 & 21\% & 0,546 & 0:35:21 & 191 & 46\% & 0,540 & 0:32:28 & 147 & 91\% & 0,581 \\
+					10-Birds &  &  &  & 0:09:15 & 13 & 0,242 & 0:14:31 & 139 & 2\% & 0,218 & 0:15:28 & 140 & 6\% & 0,254 & 0:23:19 & 143 & 85\% & 0,578 \\
+					11-gusanosCOI{[}..{]} &  &  &  & 0:19:58 & 12 & 0,460 & 1:18:26 & 222 & 51\% & 0,840 & 0:54:39 & 154 & 57\% & 0,796 & 0:43:13 & 149 & 97\% & 0,785 \\
+					12-stamatakis-59 &  &  &  & 1:05:33 & 4 & 1,346 & 3:41:16 & 128 & 100\% & 1,385 & 1:47:52 & 145 & 100\% & 1,411 & 1:15:33 & 153 & 100\% & 1,456 \\
+					\bottomrule
+					\multicolumn{1}{r}{Total\textsuperscript{\dag}} & 0:08:55 & 112 & 0,28 & 3:06:21 & 10 & 4,22 & 6:07:05 & 130 & 14\% & 3,27 & 3:50:29 & 123 & 18\% & 3,32 & 3:34:29 & 127 & 35\% & 3,99
+					%TODO: Fix b-ratio values like tab:results-modelo-batchratio
+				\end{tabular*}
+				\tabelafootnote{\textsuperscript{\dag}~Na linha de totais as informações são apresentadas da seguinte forma: Duração e Financeiro = Soma, CPUs e Razão = Média.}
+				\fonte{Elaborado pelo autor.}
+			\end{minipage}
+		\end{table}
+		
+		
+		
+		
+		\begin{table}
+			\centering%
+			\begin{minipage}{\linewidth}
+				\caption{Resultados médios das avaliações de performance e custo financeiro dos cenários do jModelTest por arquivo do \textit{dataset}..}
+				\label{tab:results-custos-jmodeltest}
+				\vspace{0.75ex}
+				%\scriptsize
+				%\footnotesize
+				%\small
+				\renewcommand\arraystretch{1.4}
+				\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrrrrrrrr@{}}
+					\toprule
+					\multicolumn{1}{c}{\multirow{2}{*}{Arquivo}} & \multicolumn{2}{c}{$C_{j2}$} & \multicolumn{2}{c}{$C_{j4}$} & \multicolumn{2}{c}{$C_{j8}$} & \multicolumn{2}{c}{$C_{j16}$} & \multicolumn{2}{c}{$C_{j36}$} \\
+					\cmidrule(r){2-3}
+					\cmidrule(lr){4-5}
+					\cmidrule(lr){6-7}
+					\cmidrule(lr){8-9}
+					\cmidrule(l){10-11}
+					\multicolumn{1}{c}{} & Duração & Financeiro & Duração & Financeiro & Duração & Financeiro & Duração & Financeiro & Duração & Financeiro \\
+					\midrule
+					01-aP6 & 0:00:40 & 0,0010 & 0:00:21 & 0,0010 & 0:00:11 & 0,0010 & 0:00:06 & 0,0012 & 0:00:04 & 0,0018 \\
+					02-rodents & 0:03:20 & 0,0047 & 0:01:41 & 0,0048 & 0:00:57 & 0,0054 & 0:00:29 & 0,0055 & 0:00:17 & 0,0074 \\
+					03-example & 0:04:42 & 0,0067 & 0:02:23 & 0,0068 & 0:01:22 & 0,0077 & 0:00:45 & 0,0085 & 0:00:27 & 0,0113 \\
+					04-18S\_insects2 & 0:04:52 & 0,0069 & 0:02:27 & 0,0069 & 0:01:23 & 0,0078 & 0:00:41 & 0,0078 & 0:00:22 & 0,0095 \\
+					05-HIVpol.groupM & 0:11:58 & 0,0170 & 0:06:10 & 0,0175 & 0:03:34 & 0,0202 & 0:01:55 & 0,0217 & 0:01:11 & 0,0302 \\
+					06-Hex\_EF1a & 0:20:12 & 0,0286 & 0:10:16 & 0,0291 & 0:05:45 & 0,0326 & 0:03:05 & 0,0350 & 0:01:44 & 0,0444 \\
+					07-primate-mtDNA & 0:24:23 & 0,0345 & 0:12:26 & 0,0352 & 0:07:07 & 0,0403 & 0:04:01 & 0,0455 & 0:02:37 & 0,0666 \\
+					08-HIV\_vpu.ref2 & 0:45:38 & 0,0647 & 0:22:56 & 0,0650 & 0:12:39 & 0,0717 & 0:06:41 & 0,0757 & 0:03:52 & 0,0987 \\
+					09-gusanos16S.mafft & 1:44:52 & 0,1486 & 0:53:06 & 0,1504 & 0:29:46 & 0,1687 & 0:15:47 & 0,1788 & 0:10:24 & 0,2651 \\
+					10-Birds & 2:11:50 & 0,1868 & 1:07:34 & 0,1914 & 0:37:38 & 0,2133 & 0:20:53 & 0,2366 & 0:12:28 & 0,3179 \\
+					11-gusanosCOI.mafft & 2:58:49 & 0,2533 & 1:31:03 & 0,2580 & 0:50:14 & 0,2847 & 0:27:22 & 0,3101 & 0:16:15 & 0,4145 \\
+					12-stamatakis-59 & 14:51:54 & 1,2635 & 7:30:39 & 1,2768 & 4:15:20 & 1,4469 & 2:19:30 & 1,5811 & 1:23:34 & 2,1310 \\
+					\bottomrule
+					\multicolumn{1}{r}{Total} & 23:43:11 & 2,02 & 12:01:01 & 2,04 & 6:45:56 & 2,30 & 3:41:15 & 2,51 & 2:13:16 & 3,40
+				\end{tabular*}
+				%\tabelafootnote{{*}~Na linha de totais as informações são apresentadas da seguinte forma: Duração e Financeiro = Soma, CPUs e Razão = Média.}
+				\fonte{Elaborado pelo autor.}
+			\end{minipage}
+		\end{table}
+	\end{landscape}
+}
+
+
+
+Uma vez compreendido o comportamento do modelo \textsf{He}--lastic no que diz respeito a performance medida pelo tempo de execução, o presente trabalho prossegue para a análise de custo.
+%
+Todos os dados apresentados aqui tem como base as métricas de avaliação estabelecidas na \autoref{sec:modelo-metricas}, contudo, para fins de apresentação, somente serão apresentados os valores de custo Financeiro, uma vez que esta é a única métrica capaz de harmonizar os custos do modelo de alocação de recursos fixos, do jModelTest puro, da camada FaaS e da camada de Orquestração de Contêineres utilizadas pelo modelo proposto.
+
+
+
+Adicionalmente, os cenários utilizados para comparação de custos foram reduzidos para somente os que contemplam a execução do modelo \textsf{He}--lastic na sua abordagem mista, ou seja, com ambas as camadas de elasticidade habilitadas.
+%
+Os identificadores de tais cenários seguem o formato $C_{mX}$ e foram escolhidos para esta análise aqueles que apresentaram melhor desempenho em termos dos tempos de execução conforme a quantidade de recursos disponível para alocação.
+%
+Como já discutido, embora a quantidade de recursos não seja um indicativo confiável de semelhança entre os cenários, ele se mostrou o único viável na comparação entre jModelTest e o modelo proposto.
+
+
+O critério de seleção dos cenários que participam da análise comparativa de custos se baseou nos dados das Tabelas \ref{tab:results-modelo-mixed} e \ref{tab:results-modelo-mixed-summary}, escolhendo o que obteve melhor desempenho quando agrupados em termos da quantidade de CPUs disponíveis para alocação, conforme determinado na definição dos cenários de avaliação para o modelo \textsf{He}--lastic na \autoref{tab:metodologia-cenarios-helastic}.
+%
+Como resultado, obtêm-se os cenários $C_{m1}$, $C_{m2}$ e $C_{m4}$ como participantes da análise de custos.
+%
+Não foram selecionados para esta etapa de análise os cenários dedicados a uma única das camadas de elasticidade pois a intenção é avaliar de maneira consolidada as características de desempenho, seja em termos do tempo de execução ou de custo financeiro, do modelo proposto.
+%
+Além disso, no caso do cenário somente FaaS ($C_{f0}$), não seria possível obter um resultado conclusivo, haja vista que a camada FaaS é incapaz de processar todos os arquivos contidos no \textit{dataset} em função dos limites estabelecidos pelo próprio modelo computacional.
+
+
+
+São apresentados na \autoref{tab:results-custos-modelo} os principais indicadores que afetam na determinação do custo financeiro para os cenários do modelo \textsf{He}--lastic, onde, além dos cenários selecionados para análise, foram incluídos os cenários exclusivos de avaliação de uma das camadas de elasticidade para referência.
+%
+Todos os valores do corpo da tabela são sumarizados através das suas médias, com a exceção dos dados totalizados que realizam o somatório dos dados de duração e custo financeiro.
+%
+O indicador de CPUs, presente na tabela, representa, em contraste com o parâmetro de configuração do modelo, a quantidade efetiva de unidades de processamento utilizadas durante a avaliação da dupla arquivo--cenário.
+
+
+
+O termo CPU, neste caso, adquire um sentido mais amplo, contemplando tanto o conceito clássico de \textit{cores} de um microprocessador, quanto os contêineres ou unidades de processamento da camada FaaS, o que explica a grande quantidade reportada na tabela.
+%
+Desta forma, as 127 CPUs utilizadas em média no cenário $C_{m4}$ correspondem a um valor $ CPU = CPU_{faas} + CPU_{conteineres} $, onde a quantidade de CPUs utilizadas na camada de Orquestração de Contêineres é um valor inteiro compreendido no intervalo $ 0 \le x \le CPU_{max} $, sendo o limite superior o valor do parâmetro do modelo.
 
 
 
 
+% baixa utilização de CPUs pelo gerenciador de elasticidade do Batch
+%TODO: a planilha tá contabilizando vazio como zero!!!
+Ainda no que diz respeito a CPUs utilizadas é possível confirmar o fenômeno mencionado na \autoref{sec:resultados-modelo-faas}, onde o número de Processos / CPUs tende a se aproximar do nível máximo de paralelismo estabelecido pelo mecanismo de \textit{Clustering Search} adotado pelo jModelTest.
+%
+Contudo, ainda mais interessante é a análise do cenário $C_{c36}$, correspondente ao modelo \textsf{He}--lastic utilizando apenas a camada de Orquestração de Contêineres, que apresenta mais uma evidência a respeito do comportamento conservador do gerenciador de elasticidade do serviço AWS Batch, utilizado pela camada.
+%
+Mesmo configurado para utilizar até 36 \textit{cores} de processamento, o gerenciador de elasticidade adota, neste cenário, um comportamento bastante conservador ao alocar menos de cinco CPUs para os arquivos 04-18S\_insects2 e 12-stamatakis-59, o que representa menos de 15\% do valor permitido.
+%
+Embora este comportamento não seja nocivo para o custo financeiro, uma vez que este acompanha a quantidade de recursos utilizados no tempo, a baixa alocação efetiva traz impactos perceptíveis na duração do processamento, e provavelmente está ocorrendo também nos demais cenários, embora mascarado pela grande quantidade de CPUs da camada FaaS.
+
+
+
+razão (batch-ratio) mostra relação com o custo
+
+
+
+\begin{table}[tb]
+	\centering%
+	\begin{minipage}{\defaultFigureWidth\textwidth}
+		\caption{Consolidação dos resultados obtidos dentre os cenários selecionados do modelo \textsf{He}--lastic e seus cenários análogos no jModelTest.}
+		\label{tab:results-custos-summary}
+		\vspace{1ex}
+		\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}ccrrrrc@{}}
+%\cmidrule(lr){3-4}
+%\cmidrule(lr){5-6}
+%\dashedline{1-7}
+\toprule
+\multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}CPUs\\ Alocadas\end{tabular}} & \multicolumn{1}{c}{\multirow{2}{*}{Cenário}} & \multicolumn{2}{c}{Somatório} & \multicolumn{2}{c}{Percentual} & \multicolumn{1}{c}{\multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}Ineficiência\\ \textsf{He}--lastic\end{tabular}}} \\
+\cmidrule(lr){3-4}
+\cmidrule(lr){5-6}
+& & Duração & Custo & Duração & Custo & \\
+\midrule
+\multirow{2}{*}{8} & $C_{m1}$ & 6:07:31 & 3,27 & 48\% & 59\% & \multirow{2}{*}{6\%} \\
+& $C_{j8}$ & 6:45:56 & 2,30 & 52\% & 41\% &  \\
+\dashedline{1-7}
+\multirow{2}{*}{16} & $C_{m2}$ & 3:50:29 & 3,32 & 51\% & 57\% & \multirow{2}{*}{8\%} \\
+& $C_{j16}$ & 3:41:15 & 2,51 & 49\% & 43\% &  \\
+\dashedline{1-7}
+\multirow{2}{*}{36} & $C_{m4}$ & 3:34:29 & 3,99 & 62\% & 54\% & \multirow{2}{*}{16\%} \\
+& $C_{j36}$ & 2:13:16 & 3,40 & 38\% & 46\% & \\
+\bottomrule
+		\end{tabular*}
+		\fonte{Elaborado pelo autor.}
+	\end{minipage}
+\end{table}
 
 
 
