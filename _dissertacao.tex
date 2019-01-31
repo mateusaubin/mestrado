@@ -1277,7 +1277,7 @@ Portanto, é fundamental que a escolha de um sistema de substituição para aná
 \label{sec:computacao}
 
 
-%TODO: Na parte de fundamentação teórica, seria legal a gente trazer algo que o problema é computacional muito intenso de ser resolvido, com citações. Isso tb aparece como tua motivação na parte do modelo. [gmail FMfcgxwBTsfLXGPKcBNKhxLncfDftgCR]
+%TOD0: Na parte de fundamentação teórica, seria legal a gente trazer algo que o problema é computacional muito intenso de ser resolvido, com citações. Isso tb aparece como tua motivação na parte do modelo. [gmail FMfcgxwBTsfLXGPKcBNKhxLncfDftgCR]
 
 
 Com o objetivo de impulsionar a pesquisa e fornecer respostas para os cada vez mais complexos problemas de variados campos do conhecimento, os supercomputadores e clusters estão na vanguarda dos projetos computacionais.
@@ -3080,7 +3080,7 @@ Embora não seja possível, no caso do modelo \textsf{He}--lastic, controlar exp
 Para este fim, são de grande valia o conjunto de equações detalhadas na \autoref{sec:modelo-arquitetura} que abordam o custo computacional em função do conteúdo do arquivo de múltiplos alinhamentos de sequências e os parâmetros da execução do teste de adequação, culminando na \autoref{eq:custo-jmodel-bestfit}.
 Desta forma, para os fins deste trabalho, define-se a granularidade do paralelismo conforme:
 \begin{quote}
-	%TODO: Definição é quando tens uma palavra ou expressão nova. Por exemplo: "granulosidade adaptativa"... - minha intenção era destacar alguns pontos determinantes pro entendimento das métricas de avaliação e resultados mais a frente. Acho que vou trocar para ‘decisões’ então. [gmail FMfcgxwBTsfLXGPKcBNKhxLncfDftgCR]
+	%TOD0: Definição é quando tens uma palavra ou expressão nova. Por exemplo: "granulosidade adaptativa"... - minha intenção era destacar alguns pontos determinantes pro entendimento das métricas de avaliação e resultados mais a frente. Acho que vou trocar para ‘decisões’ então. [gmail FMfcgxwBTsfLXGPKcBNKhxLncfDftgCR]
 	\textbf{Premissa 1 --- da Granularidade:} a granularidade de uma execução do modelo \textsf{He}--lastic e, consequentemente, do \textit{software} jModelTest, pode ser determinada através da combinação entre o conteúdo do arquivo de múltiplos alinhamentos de sequências moleculares, fornecido como parâmetro de entrada, e os parâmetros escolhidos pelo usuário que determinarão, em última instância, quais sistemas de substituição farão parte do teste de adequação.
 \end{quote}
 
@@ -3187,7 +3187,7 @@ Determinar uma métrica de avaliação unificada torna-se uma tarefa não trivia
 Desta forma, mantendo-se fiel ao conceito de \textit{utility--computing} habilitado pela computação em nuvem, a métrica referente ao custo financeiro foi escolhida como fator de equalização entre os diferentes modelos de execução e será usada no restante deste trabalho.
 Uma desvantagem em relação à métrica de custo financeiro está na sua variabilidade ao longo do tempo e entre provedores de computação em nuvem, uma vez que preços tendem a se alterar conforme são disponibilizadas novas funcionalidades e novos tipos de hardware.
 \begin{quote}
-	%TODO: Definição é quando tens uma palavra ou expressão nova. Por exemplo: "granulosidade adaptativa"... - minha intenção era destacar alguns pontos determinantes pro entendimento das métricas de avaliação e resultados mais a frente. Acho que vou trocar para ‘decisões’ então. [gmail FMfcgxwBTsfLXGPKcBNKhxLncfDftgCR]
+	%TOD0: Definição é quando tens uma palavra ou expressão nova. Por exemplo: "granulosidade adaptativa"... - minha intenção era destacar alguns pontos determinantes pro entendimento das métricas de avaliação e resultados mais a frente. Acho que vou trocar para ‘decisões’ então. [gmail FMfcgxwBTsfLXGPKcBNKhxLncfDftgCR]
 	\textbf{Premissa 2 --- da Métrica de Avaliação:} nos cenários que contemplem a composição entre múltiplos modelos de execução (fixo, elástico e FaaS), a métrica Financeira será utilizada como baliza para determinar as relações de eficiência. Tal definição se apoia na associatividade de custos, definida por \citetexto{Armbrust:EECS-2009-28}, ao afirmar que, em um ambiente de computação em nuvem usar 1000 máquinas por uma hora equivale a usar uma máquina por 1000 horas.
 \end{quote}
 
@@ -3197,7 +3197,7 @@ Contudo, para os fins deste trabalho, esta desvantagem foi anulada através do u
 Ainda assim, a métrica de custo financeiro, além de ser um forma eficaz de prover uma linha justa de comparação entre as três abordagens, é resiliente por naturalmente conter em sua composição uma análise de energia e custo, ainda que realizada pelo provedor.
 Resultando, enfim, nas definições 2 e 3:
 \begin{quote}
-	%TODO: Definição é quando tens uma palavra ou expressão nova. Por exemplo: "granulosidade adaptativa"... - minha intenção era destacar alguns pontos determinantes pro entendimento das métricas de avaliação e resultados mais a frente. Acho que vou trocar para ‘decisões’ então. [gmail FMfcgxwBTsfLXGPKcBNKhxLncfDftgCR]
+	%TOD0: Definição é quando tens uma palavra ou expressão nova. Por exemplo: "granulosidade adaptativa"... - minha intenção era destacar alguns pontos determinantes pro entendimento das métricas de avaliação e resultados mais a frente. Acho que vou trocar para ‘decisões’ então. [gmail FMfcgxwBTsfLXGPKcBNKhxLncfDftgCR]
 	\textbf{Premissa 3 --- do Provedor de Computação em Nuvem:} para os fins do presente trabalho fica estabelecida a restrição referente ao uso de um único provedor de computação em nuvem. Esta restrição não é imposta pelo modelo \textsf{He}--lastic, que é indiferente a uma possível implantação \textit{multi--cloud} em função da sua arquitetura desacoplada através de componentes independentemente escaláveis, contudo tem por objetivo manter uma comparação justa entre os diferentes modelos de execução, evitando discrepâncias no que tange à performance dos recursos computacionais subjacentes e à precificação dos mesmos.
 \end{quote}
 % FECHAMENTO
@@ -4073,10 +4073,6 @@ A \autoref{fig:metodologia-parametros-yaml} apresenta uma amostra do arquivo de 
 Desta forma, toda a criação e remoção do ambiente necessário para execução dos cenários de avaliação pode ser realizada com apenas dois comandos fornecidos pelo \textit{serverless framework}, garantindo a reprodutibilidade dos testes e a ausência de artefatos oriundos de execuções anteriores e que poderiam influenciar nos resultados.
 
 
-%TODO: falar que queria 11 execuções para cada cenário mas que se obrigou a baixar pra 5
-
-
-
 
 
 \chapter{Resultados}
@@ -4534,7 +4530,7 @@ Outro padrão que emerge da análise do coeficiente de variação por arquivo e 
 Este comportamento está relacionado à sua curta duração e se estende para outros arquivos conforme aumenta a quantidade de recursos disponível, como mostra, por exemplo, o CV de 5\% para o arquivo 04 no cenário $C_{j36}$.
 %
 Através da análise da \autoref{tab:results-jmodel-cv}, desconsiderando-se o cenário $C_{j8}$ pelos motivos previamente citados, é possível vislumbrar uma 
-%TODO: aplicar cores pra demarcar esta diagonal
+%TOD0: aplicar cores pra demarcar esta diagonal
 diagonal imaginária que abrange os dados de arquivo e cenário: \{03--$C_{j2}$, 04--$C_{j4}$, 04--$C_{j16}$, 06--$C_{j36}$\}.
 
 
@@ -5715,7 +5711,6 @@ Contudo, este resultado não se sustenta quando os recursos disponíveis para o 
 					12-stamatakis-59 &  &  &  & 1:05:33 & 4 & 1,346 & 3:41:16 & 128 & 100\% & 1,385 & 1:47:52 & 145 & 100\% & 1,411 & 1:15:33 & 153 & 100\% & 1,456 \\
 					\bottomrule
 					\multicolumn{1}{r}{Total\textsuperscript{\dag}} & 0:08:55 & 112 & 0,28 & 3:06:21 & 10 & 4,22 & 6:07:05 & 130 & 14\% & 3,27 & 3:50:29 & 123 & 18\% & 3,32 & 3:34:29 & 127 & 35\% & 3,99
-					%TODO: Fix b-ratio values like tab:results-modelo-batchratio
 				\end{tabular*}
 				\tabelafootnote{\textsuperscript{\dag}~Na linha de totais as informações são apresentadas da seguinte forma: Duração e Financeiro = Soma, CPUs e Razão = Média.}
 				\fonte{Elaborado pelo autor.}
@@ -5819,7 +5814,62 @@ Embora este comportamento não seja nocivo para o custo financeiro, uma vez que 
 
 
 
-razão (batch-ratio) mostra relação com o custo
+Por fim, ainda no contexto da \autoref{tab:results-custos-modelo}, as colunas denominadas Razão apresentam os mesmos dados contidos na \autoref{tab:results-modelo-batchratio}, ilustrando a divisão de tarefas entre as camadas do modelo \textsf{He}--lastic.
+%
+Assim como nos casos anteriores, esta razão representa a quantidade de sistemas de substituição molecular, ou as tarefas individuais, que foram processadas pela camada de Orquestração de Contêineres sobre o total das tarefas executadas no processamento de cada arquivo do \textit{dataset}.
+%
+No contexto da \autoref{tab:results-custos-modelo} sua presença é relevante para observar o impacto, tanto a nível de custo quanto a nível de tempo de execução, causado pela transição entre camadas.
+%
+Os arquivos 08-HIV\_vpu.ref2 e 09-gusanos16S.mafft no cenário $C_{m1}$ ilustram bem esta situação, onde um aumento na razão para aproximadamente 20\%, faz com que o custo financeiro passe de \$ 0,153 para \$ 0,546.
+%
+Como comparação, esta mesma transição avaliada no cenário composto apenas pelo Orquestrador de Contêineres ($C_{c36}$), passa de \$ 0,324 para \$ 0,388, resultando em um aumento no custo de apenas 16\%, em linha com o respectivo aumento no tempo de execução, enquanto na ocorrência de transição entre camadas de elasticidade, o aumento observado no custo é maior que 70\% e acompanhado de um aumento de 90\% no tempo de execução.
+
+
+
+Estes resultados mostram que a ineficiência observada durante a transição entre camadas, em função de fatores previamente mencionados como o obrigatoriedade de \textit{retries} imposto pelo serviço AWS Lambda, assim como possíveis ineficiências ou políticas subjacentes opacas na gestão de elasticidade adotada pelo serviço AWS Batch, é um grave ponto de atenção para o modelo \textsf{He}--lastic.
+%
+O mapa de calor dos tempos de execução, apresentado na \autoref{fig:results-modelo-mixed}, volta a ser relevante aqui para caracterizar este fenômeno como centrado nos pontos de transição entre camadas.
+%
+No caso das execuções que apresentam uma baixa razão de transição entre camadas, assim como aqueles que nem precisariam passar pela primeira camada, como o caso dos arquivos maiores como o 12-stamatakis-59, o nível de impacto causado pela adoção do modelo proposto é negligenciável.
+%
+Assim, o resultado final desta análise, evidencia a necessidade de trabalhos futuros para investigar os motivos deste \textit{overhead}, assim como o investimento na concepção de técnicas e métodos capazes de mitigar este impacto.
+
+
+
+
+Os resultados da análise dos custos associados a execução do programa jModelTest, nos cenários de avaliação estabelecidos na \autoref{sec:metodologia-etapasecenarios}, pode ser visto na \autoref{tab:results-custos-jmodeltest}, onde constam os resultados médios de tempo de execução e custo financeiro para as duplas arquivo--cenário, assim como os totalizadores por cenário.
+%
+Um ponto de fundamental atenção é que os resultados ali apresentados contemplam apenas os custos incorridos durante o tempo de execução dos cenários, sendo definitivamente otimistas uma vez que o projeto jModelTest, devido à sua ausência de diretivas de elasticidade, necessita de um servidor ou \textit{cluster} computacional disponível para atender as solicitações de processamento.
+%
+Contudo, sua análise permanece relevante ao estabelecer uma referência de eficiência máxima para os resultados do modelo \textsf{He}--lastic, onde é adotada a suposição de que os cenários do jModelTest sejam capazes de funcionar com recursos intermitentes, como é o caso do modelo proposto.
+
+
+Assim como nas análises do tempo de execução, fica visível nos resultados da  \autoref{tab:results-custos-jmodeltest} a perda de eficiência do jModelTest conforme aumentam os recursos.
+%
+Esta perda é atribuída ao método de \textit{Clustering Search} adotado pela aplicação, que divide em etapas o processamento dos sistemas de substituição molecular, fazendo com que haja ociosidade significativa no final de cada etapa conforme aumentam os recursos disponíveis para execução dos cálculos, que são, por natureza, embaraçosamente paralelos.
+%
+Tal perda também se manifesta na forma de custo financeiro uma vez que, no formato tradicional de alocação de recursos em nuvem, a cobrança se dá pelo tempo que uma VM foi utilizada, desconsiderando o nível de utilização da mesma.
+
+
+
+Seguindo esta lógica, se o comportamento de escalabilidade do programa jModelTest fosse próximo de linear, o custo observado deveria se manter praticamente constante, uma vez que o aumento nos recursos é compensado, em mesma proporção, pela redução no tempo de execução.
+%
+É possível verificar indícios deste comportamento ótimo de escalabilidade na evolução dos primeiros cenários de teste, onde $C_{j2}$, $C_{j4}$ e $C_{j8}$ apresentam leves aumentos, que são considerados normais para um programa com boas características de elasticidade.
+%
+No entanto, a medida que segue aumentando a quantidade de recursos disponíveis, neste caso a CPU por conta da natureza \textit{CPU--bound} do cálculo, tanto o tempo de execução quanto o custo se descolam de uma linha reta e passam a assumir um comportamento que lembra mais uma função polinomial.
+%
+Assim, o resultado de custo \$ 3,40 para o cenário $C_{j36}$, representa uma ineficiência de quase 70\% sobre o custo esperado de \$ 2,02 caso o programa apresentasse comportamento linear de escalabilidade, reconhecidamente uma tarefa difícil mas possível devido a natureza embaraçosamente paralela do processamento realizado.
+
+
+
+
+Consolidando os resultados obtidos para os cenários de avalição do jModelTest e do modelo \textsf{He}--lastic, a \autoref{tab:results-custos-summary} apresenta o comparativo dos desempenhos em termos de tempo de execução e custos dos dados coletados.
+%
+Estão representados, na tabela, os cenários de teste do jModelTest com seus custos mínimos, calculados estritamente em função do tempo de execução, assim como os dados dos cenários com melhor desempenho em termos dos tempos de execução obtidos para o modelo proposto.
+%
+A comparação entre eles foi realizada através do cálculo do percentual que cada uma das métricas representa sobre a soma dos resultados obtidos pelo cenário do jModelTest e o do \textsf{He}--lastic, onde um resultado de 50\% representa o equilíbrio entre as abordagens, consequência de tempos de execução e/ou custos iguais.
+%
+Adicionalmente, os resultados da tabela são agrupados por número de CPUs alocadas em cada cenário, sendo esta a característica que chega mais próxima de estabelecer um nível de comparação, conforme mencionado anteriormente.
 
 
 
@@ -5830,24 +5880,24 @@ razão (batch-ratio) mostra relação com o custo
 		\label{tab:results-custos-summary}
 		\vspace{1ex}
 		\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}ccrrrrc@{}}
-%\cmidrule(lr){3-4}
-%\cmidrule(lr){5-6}
-%\dashedline{1-7}
-\toprule
-\multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}CPUs\\ Alocadas\end{tabular}} & \multicolumn{1}{c}{\multirow{2}{*}{Cenário}} & \multicolumn{2}{c}{Somatório} & \multicolumn{2}{c}{Percentual} & \multicolumn{1}{c}{\multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}Ineficiência\\ \textsf{He}--lastic\end{tabular}}} \\
-\cmidrule(lr){3-4}
-\cmidrule(lr){5-6}
-& & Duração & Custo & Duração & Custo & \\
-\midrule
-\multirow{2}{*}{8} & $C_{m1}$ & 6:07:31 & 3,27 & 48\% & 59\% & \multirow{2}{*}{6\%} \\
-& $C_{j8}$ & 6:45:56 & 2,30 & 52\% & 41\% &  \\
-\dashedline{1-7}
-\multirow{2}{*}{16} & $C_{m2}$ & 3:50:29 & 3,32 & 51\% & 57\% & \multirow{2}{*}{8\%} \\
-& $C_{j16}$ & 3:41:15 & 2,51 & 49\% & 43\% &  \\
-\dashedline{1-7}
-\multirow{2}{*}{36} & $C_{m4}$ & 3:34:29 & 3,99 & 62\% & 54\% & \multirow{2}{*}{16\%} \\
-& $C_{j36}$ & 2:13:16 & 3,40 & 38\% & 46\% & \\
-\bottomrule
+			%\cmidrule(lr){3-4}
+			%\cmidrule(lr){5-6}
+			%\dashedline{1-7}
+			\toprule
+			\multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}CPUs\\ Alocadas\end{tabular}} & \multicolumn{1}{c}{\multirow{2}{*}{Cenário}} & \multicolumn{2}{c}{Totais} & \multicolumn{2}{c}{Percentual} & \multicolumn{1}{c}{\multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}Ineficiência\\ \textsf{He}--lastic\end{tabular}}} \\
+			\cmidrule(lr){3-4}
+			\cmidrule(lr){5-6}
+			& & Duração & Custo & Duração & Custo & \\
+			\midrule
+			\multirow{2}{*}{8} & $C_{m1}$ & 6:07:31 & 3,27 & 48\% & 59\% & \multirow{2}{*}{6\%} \\
+			& $C_{j8}$ & 6:45:56 & 2,30 & 52\% & 41\% &  \\
+			\dashedline{1-7}
+			\multirow{2}{*}{16} & $C_{m2}$ & 3:50:29 & 3,32 & 51\% & 57\% & \multirow{2}{*}{8\%} \\
+			& $C_{j16}$ & 3:41:15 & 2,51 & 49\% & 43\% &  \\
+			\dashedline{1-7}
+			\multirow{2}{*}{36} & $C_{m4}$ & 3:34:29 & 3,99 & 62\% & 54\% & \multirow{2}{*}{16\%} \\
+			& $C_{j36}$ & 2:13:16 & 3,40 & 38\% & 46\% & \\
+			\bottomrule
 		\end{tabular*}
 		\fonte{Elaborado pelo autor.}
 	\end{minipage}
@@ -5855,16 +5905,173 @@ razão (batch-ratio) mostra relação com o custo
 
 
 
+Por fim, na última coluna da \autoref{tab:results-custos-summary}, é apresentada uma métrica que representa a soma das variações sobre o valor ideal de 50\% para cada uma das características avaliadas, representando o resultado geral do comparativo entre os cenários contrapostos.
+%
+Sua análise fornece um critério final de escolha, capaz de determinar a melhor relação custo--benefício em termos da redução de custo financeiro e tempo total de execução.
+%
+Chamada de Ineficiência \textsf{He}--lastic, a métrica é calculada através da fórmula $ VarPctg(\text{Duração}) + VarPctg(\text{Custo}) - 1 $, representando, portanto, uma visão agregada das características de desempenho avaliadas onde ambas compartilham o mesmo nível de importância para o valor final.
 
 
-\section{1264?}
 
-\begin{verbatim}
-um estudo a parte pra ver o que muda com TODOS os modelos rodando TOTALMENTE EM PARALELO, sem fases
 
-1624-stamatakis
-impacto pode ser porque teve bastante troca de máquinas e a cada troca incorre custos de subir uma VM, botar a camada de ECS, baixar e instalar o contêiner, pra só então executar
-\end{verbatim}
+Desta maneira é possível perceber que o modelo proposto apresenta, de maneira geral um impacto de performance, ou seja, uma perda de eficiência sobre a abordagem base do jModelTest, no intervalo de aproximadamente 5\% à 15\% dentre todos os cenários contemplados na avaliação.
+%
+Também é possível identificar que as perdas acompanham o crescimento da quantidade de recursos disponível em termos do número de CPUs alocados para uso, lembrando que devido às duas camadas de elasticidade empregadas no modelo o verdadeiro valor acaba variando conforme as características do processamento e as configurações adotadas.
+
+
+% cenário 8 cpu
+
+Os resultados demonstram que, na comparação entre os cenários que contemplam o uso de até oito CPUs, há um impacto da ordem de 6\% na adoção do modelo \textsf{He}--lastic, traduzindo em um número as conclusões obtidas no que diz respeito à duração e custo, onde foi possível atingir uma redução da duração de 2\% sobre a abordagem do jModelTest enquanto utilizaram-se quase 10\% mais recursos na forma de custo financeiro.
+%
+Embora a redução na duração pareça pequena em termos percentuais, ela se traduz numa economia de quase 40 minutos (0:38:25) sobre as quase sete horas de execução contabilizadas na abordagem do jModelTest.
+%
+Contudo, a contrapartida de custos para este ganho de 2\% no tempo de execução, se manifesta na forma de um custo 9\% maior, saindo de \$ 2,30 na abordagem do jModelTest, para \$ 3,27 quando há adoção do modelo \textsf{He}--lastic parametrizado conforme o cenário de testes $C_{m1}$.
+
+
+
+% cenário 16 cpu
+
+No comparativo entre os cenários que alocam até 16 CPUs o quadro se agrava no que diz respeito à perda de eficiência, com o índice subindo para 8\%.
+%
+Esta perda é resultado da variação marginal no tempo de execução total do cenário, que variou somente 1\% saindo de aproximadamente três horas e quarenta minutos (3:41:15), no caso do jModelTest, para três horas e cinquenta minutos (3:50:29), como resultado da adoção do modelo proposto.
+%
+Sendo assim, o restante do impacto origina-se da variação do custo financeiro entre os cenários comparados, onde, apesar de próximos aos custos detectados na comparação com 8 CPUs, o modelo proposto incorre numa penalidade da ordem de 7\%, saindo de \$ 2,51 para \$ 3,32.
+%
+
+
+
+% cenário 36 cpu
+
+Apesar de não negligenciáveis, os impactos obtidos na comparação dos cenários de 8 e 16 CPUs podem ser considerados aceitáveis uma vez que se mantém abaixo de 10\%.
+%
+Este cenário, contudo, se modifica na análise dos cenários que contemplam o uso de até 36 CPUs, onde a adoção do modelo \textsf{He}--lastic resulta em um impacto da ordem de 16\%, dobrando as perdas identificadas no cenário anterior.
+%
+A parcela mais significativa deste resultado é oriunda do tempo total de duração da execução do cenário, que levou aproximadamente três horas e meia (3:34:29), enquanto o jModelTest, mesmo com sua perda de eficiência previamente mencionada, atingiu um resultado na casa de duas horas e quinze minutos (2:13:16).
+%
+O tempo total de execução no caso do modelo \textsf{He}--lastic surpreende na comparação com o cenário de 8 CPUs onde, apesar da quantidade de recursos disponíveis mais que dobrar, o tempo de execução é reduzido em apenas 16 minutos.
+
+
+% porque tão ruim? olhar o cc36 X cm4
+
+Ao revisitar os dados da \autoref{tab:results-custos-modelo} e comparar os dados obtidos pelo cenário $C_{m4}$ com o cenário que utiliza apenas a camada de Orquestração de Contêineres ($C_{c36}$), é possível determinar a origem desta perda de eficiência.
+%
+Apesar do alto custo inicial para os arquivos de menor duração do \textit{dataset}, o cenário baseado apenas na camada de Orquestração de Contêineres mantém durações médias próximas de 10 minutos para os arquivos 07, 08, 09 e 10, com o arquivo 11 resultando em aproximadamente 20 minutos de duração média.
+%
+No caso do cenário misto, $C_{m4}$, os tempos de execução significativamente mais baixos para os arquivos iniciais, e de tamanho menor, acabam sendo ofuscados pela duração da casa de meia hora para os arquivos 08, 09 e 10, com o arquivo 11 tomando em média 43 minutos para o cálculo.
+%
+No caso do arquivo 12-stamatakis-59 o impacto decorrente do uso das duas camadas é de apenas 15\%, resultando em 10 minutos à mais de duração média frente ao tempo de execução base de uma hora, aproximadamente.
+%
+Assim é possível, mais uma vez, determinar que existe necessidade de trabalhos futuros para otimizar a transição entre as camadas, uma iniciativa que parte da determinação do principal fator que causa impacto, com os proeminentes candidatos sendo a política de \textit{retries} do serviço AWS Lambda, responsável pela camada FaaS, e o comportamento conservador do gerenciador de elasticidade do serviço AWS Batch, responsável pela camada de Orquestração de Contêineres.
+
+
+% custo variou aprox  60 cents, closing the gap.
+
+Por fim, cabe salientar que, ainda na \autoref{tab:results-custos-summary}, o custo financeiro total de execução do cenário do modelo \textsf{He}--lastic frente ao cenário do jModelTest variou apenas \$ 0,60, aproximadamente.
+%
+Esta variação representa o menor nível de diferença dentre todas as análises comparativas, com a distância entre os custos diminuindo de 42\%, para 32\%, para finalmente 17\% nos cenários de 8, 16 e 36 CPUs, respectivamente.
+%
+Esta redução na distância entre os custos financeiros sugere que eventualmente o modelo \textsf{He}--lastic alcançaria, em termos dos custos financeiros, o custo oriundo do jModelTest.
+%
+Contudo, este indício sozinho não garante melhorias na eficiência sem avaliar também a variação no tempo de execução dos respectivos cenários.
+
+
+
+%em termos de dólar a mudança é bem pequena
+%de 8 pra 16 a degradação é 2%, de 16 pra 36 é 8%, porque?
+
+Outra característica que chama a atenção, ainda a respeito do custo, é pequena variação em termos absolutos, com valores que variam de \$ 2,30 à  \$ 3,99 para a execução de toda a suite de cálculos de \textit{best--fit} de sistemas de substituição filogenéticos contemplando todos os doze arquivos do \textit{dataset}.
+%
+Apesar do presente trabalho não exercer qualquer influência sobre a definição de custos por parte dos provedores de computação em nuvem, não deixa de ser relevante perceber a relativa facilidade com que se obtém, hoje em dia, grande quantidade de recursos computacionais com um custo relativamente baixo em valores absolutos.
+%
+Estes custos reiteram, também, a necessidade de abordagens adaptadas para uso em ambientes de computação em nuvem, como é o caso do modelo \textsf{He}--lastic, aqui proposto, que tem como premissa a devolução total de recursos durante períodos de ociosidade.
+
+
+
+\begin{table}[tb]
+	\centering%
+	\begin{minipage}{\defaultFigureWidth\textwidth}
+		\caption{Evolução dos custos financeiros para manter disponíveis servidores capazes de processar os cenários avaliados para o jModelTest.}
+		\label{tab:results-custos-jmodeltest-ociosidade}
+		\small
+		\vspace{1ex}
+		\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrrr@{}}
+			%\cmidrule(lr){3-4}
+			%\cmidrule(lr){5-6}
+			%\dashedline{1-7}
+			\toprule
+			& \multicolumn{1}{c}{$C_{j2}$} & \multicolumn{1}{c}{$C_{j4}$} & \multicolumn{1}{c}{$C_{j8}$} & \multicolumn{1}{c}{$C_{j16}$} & \multicolumn{1}{c}{$C_{j36}$} \\
+			\midrule
+			Resultado & \begin{tabular}[c]{@{}r@{}}(23:43:11)\\ 0,08\end{tabular} & \begin{tabular}[c]{@{}r@{}}(12:01:01)\\ 0,09\end{tabular} & \begin{tabular}[c]{@{}r@{}}(6:45:56)\\ 0,10\end{tabular} & \begin{tabular}[c]{@{}r@{}}(3:41:15)\\ 0,10\end{tabular} & \begin{tabular}[c]{@{}r@{}}(2:13:16)\\ 0,14\end{tabular} \\
+			Hora Cheia & (24h) 0,09 & (13h) 0,09 & (7h) 0,10 & (4h) 0,11 & (3h) 0,19 \\
+			+ 4h & 0,10 & 0,12 & 0,16 & 0,23 & 0,45 \\
+			+ 8h & 0,11 & 0,15 & 0,21 & 0,34 & 0,70 \\
+			+ 12h & 0,13 & 0,18 & 0,27 & 0,45 & 0,96 \\
+			+ dia & 0,17 & 0,26 & 0,44 & 0,79 & 1,72 \\
+			+ semana & 0,68 & 1,28 & 2,48 & 4,87 & 10,90 \\
+			+ mês & 2,64 & 5,19 & 10,30 & 20,51 & 46,09 \\
+			\bottomrule
+		\end{tabular*}
+		\fonte{Elaborado pelo autor.}
+	\end{minipage}
+\end{table}
+
+
+
+% custo da ociosidade
+
+No que diz respeito ao custo da ociosidade, uma evidente desvantagem do jModelTest em ambientes de computação em nuvem, a \autoref{tab:results-custos-jmodeltest-ociosidade} ilustra como os poucos centavos por execução do cenário de teste podem se transformar em dezenas de dólares em custo no fim do mês, indiferentemente do nível de utilização dos recursos.
+%
+Impressiona, por exemplo, o caso do cenário $C_{j36}$, que é capaz de processar todo o \textit{dataset} de testes num tempo médio de duas horas a um custo de apenas \$ 0,14, onde o custo para caso este mesmo nível de recursos seja mantido disponível durante um mês inteiro se aproxima dos 50 dólares.
+%
+Mesmo que o nível de recursos fosse disponibilizado apenas durante uma semana, o custo financeiro já ultrapassa os 10 dólares, um valor que seria cobrado independentemente do nível de utilização dos recursos disponibilizados, se mantendo o mesmo seja para uma única execução do cenário de avaliação quanto para 75 delas (que é a quantidade máxima de execuções do cenário que cabem no período de uma semana).
+
+
+
+Esta dinâmica de custo pela disponibilidade, ao invés do uso efetivo, também é observada em casos onde são utilizados recursos locais como na aquisição de \textit{clusters} ou \textit{grids} computacionais, fazendo com que o custo financeiro da execução dos cenários não seja produto da sua duração associada a quantidade de recursos utilizados.
+%
+Nestes casos, seja no uso do jModelTest em ambiente de computação em nuvem, seja com recursos físicos, o custo financeiro da execução de qualquer um dos cenários aqui avaliados é auferido de maneira inversamente proporcional ao nível de utilização dos recursos.
+%
+Este fenômeno faz com que exista uma grande pressão para justificar a alocação ou compra de recursos computacionais, uma vez que seu uso deve estar embasado em uma real e pungente necessidade que comprove o uso contínuo destes recursos.
+
+
+
+Tal modelo de operação cria uma barreira de entrada para pesquisadores e/ou profissionais que não são especialistas em suas áreas e, portanto, carecem das habilidades necessárias para justificar um investimento de grande porte.
+%
+Esta dinâmica institucional acaba suprimindo a capacidade de experimentação e exploração sem compromisso, uma notável fonte de inovação que pode originar de uma nova e/ou inusitada abordagem e que, por consequência, dificilmente será aceita como justificativa para um grande investimento em recursos computacionais.
+
+
+
+Embora o modelo proposto não tenha relação com o processo de compra e alocação de recursos computacionais, nem tampouco com as abordagens de pesquisa (seja por especialistas ou por novos entrantes), o fato de abolir custos ociosos através de um engenhoso emprego das suas duas camadas de elasticidade, uma abordagem totalmente \textit{cloud--native}, favorece o acesso à grandes volumes de recursos computacionais em um curto espaço de tempo.
+%
+Esta capacidade é de grande valor não somente para pesquisadores e profissionais individuais, como também para instituições de menor porte, onde a demanda por recursos computacionais não justifique a aquisição de grandes servidores ou \textit{clusters}.
+
+
+
+
+A associatividade de custos oriunda do uso elástico de recursos da computação em nuvem permite o acesso sob demanda a grandes quantidades de recursos computacionais sem a necessidade de justificar seu uso contínuo.
+%
+Neste sentido, o modelo \textsf{He}--lastic se apresenta como uma abordagem capaz de habilitar a elasticidade no projeto jModelTest, assim como outras aplicações mediante adaptações.
+%
+Além disso, seu uso das camadas FaaS e de Orquestração de Contêineres permite o total descarte de recursos em momentos de ociosidade, contrastando com a clássica abordagem de elasticidade intermediada por balanceadores de carga que exige uma quantidade mínima de recursos sempre disponíveis.
+
+
+
+Embora não resulte, como pode ser observado nesta seção, em ganhos de desempenho quando avaliado em termos do duração do processamento e custo financeiro de uma única execução, sua abordagem resulta em grandes economias em função do uso consciente e na medida certa de recursos computacionais.
+%
+Estas características resultam em vantagens não apenas financeiras para pesquisadores e instituições, mas também num \textit{mindset} de liberdade e responsabilidade que incentiva o uso consciente, ao mesmo tempo que empodera individuais a dedicar quantidades adequadas de recursos computacionais para seus objetivos.
+%
+Podendo, em última instância, resultar na democratização do acesso a computação de alto desempenho e contribuir com a qualidade da produção acadêmica e profissional de instituições que anteriormente não teriam os recursos financeiros para justificar grandes aquisições de equipamentos computacionais.
+
+
+
+%\section{1264?}
+%
+%\begin{verbatim}
+%um estudo a parte pra ver o que muda com TODOS os modelos rodando TOTALMENTE EM PARALELO, sem fases
+%
+%1624-stamatakis
+%impacto pode ser porque teve bastante troca de máquinas e a cada troca incorre custos de subir uma VM, botar a camada de ECS, baixar e instalar o contêiner, pra só então executar
+%\end{verbatim}
 
 
 
