@@ -2524,8 +2524,24 @@ porém seu uso é simples e direto, apesar de exigir conhecimentos avançados da
 
 Conforme previamente abordado na \autoref{sec:analise-estadodaarte} e na \autoref{tab:survey-comparativo}, o jModelTest tem suporte explícito à múltiplas CPUs, seja localmente, ou até mesmo, em ambientes MPI.
 Outra característica importante do programa é que a natureza do trabalho realizado permite um alto grau de paralelismo \cite{Keane2006a}, uma vez que o teste de cada um dos sistemas de substituição de sequências pode ser realizado de maneira independente dos demais.
+%
+A \autoref{fig:modelo-jmodel-algo} apresenta, em pseudocódigo, o bloco responsável pelo cálculo de adequação realizado pelo jModelTest no modo \textit{Clustering Search}, detalhado na \autoref{sec:estrategias-elasticidade}.
+%
+Na sua estratégia de paralelismo, o programa tira proveito do fato de que o \textit{loop} contido entre as linhas 8 e 14 não exige dados de estado ou externos ao bloco de código, o que torna trivial habilitar o paralelismo neste trecho.
+%
 Estas e outras características técnicas serão abordadas em maior profundidade nas próximas seções.
 
+
+\begin{figure}[tb]
+	\centering%
+	\begin{minipage}{\defaultFigureWidth\textwidth}
+		\caption{Pseudocódigo retratando o cerne do fluxo de trabalho executado pelo jModelTest durante o teste de adequação de sistemas de substituição moleculares.}
+		\label{fig:modelo-jmodel-algo}
+%		\vspace{1ex}
+		\includegraphics[width=\textwidth]{modelo-jmodel-algo}
+		\fonte{Elaborado pelo autor.}
+	\end{minipage}
+\end{figure}
 
 Embora haja menção ao uso de computação em nuvem, através de testes em instâncias 
 EC2\footnote{
@@ -2658,6 +2674,11 @@ Este arquivo deve conter um alinhamento de sequências moleculares compostas por
 \end{table}
 
 
+A seguir, na \autoref{eq:custo-jmodel-params}, é demonstrado o cálculo do custo computacional em função dos parâmetros de execução, $ C_p(s) $, sendo o principal elemento a variável $ s $ que representa uma lista de sistemas de substituição de sequências moleculares, onde o resultado desta equação é a soma dos custos de cada um dos sistemas escolhidos. 
+Esta lista contém cada um dos sistemas de sustituição a ser testados pelo software em busca daquele que melhor representa os dados, no processo de \textit{best--fit}, e é obtida através da combinação dos parâmetros informados pelo usuário durante o uso do software.
+Embora o custo computacional do cálculo de cada sistema não seja abordado neste trabalho, ele é explorado em profundidade nas teses de \citetexto{Keane2006a}, \citetexto{Zwickl2006} e \citetexto{DarribaPHD}.
+
+
 \begin{equation}
 \label{eq:custo-jmodel-arquivo}
 % custo do arquivo = individuos X comprimento das sequências
@@ -2672,11 +2693,6 @@ C_p(s) = \sum_{k=1}^{n} C_s(s_k)
 \label{eq:custo-jmodel-bestfit}
 C(i,c,s) = C_a(i,c) \times C_p(s)
 \end{equation}
-
-
-A seguir, na \autoref{eq:custo-jmodel-params}, é demonstrado o cálculo do custo computacional em função dos parâmetros de execução, $ C_p(s) $, sendo o principal elemento a variável $ s $ que representa uma lista de sistemas de substituição de sequências moleculares, onde o resultado desta equação é a soma dos custos de cada um dos sistemas escolhidos. 
-Esta lista contém cada um dos sistemas de sustituição a ser testados pelo software em busca daquele que melhor representa os dados, no processo de \textit{best--fit}, e é obtida através da combinação dos parâmetros informados pelo usuário durante o uso do software.
-Embora o custo computacional do cálculo de cada sistema não seja abordado neste trabalho, ele é explorado em profundidade nas teses de \citetexto{Keane2006a}, \citetexto{Zwickl2006} e \citetexto{DarribaPHD}.
 
 
 A proposta descrita neste capítulo adotou decisões diretamente influenciadas pelo contexto apresentado na \autoref{sec:modelo-decisoes}, assim como, os requisitos definidos pelos objetivos deste trabalho (detalhados na \autoref{sec:objetivos}) e as lacunas de pesquisa encontradas durante a análise comparativa (\autoref{sec:lacunas-de-pesquisa}) dos trabalhos relacionados focando, todavia, na questão da elasticidade no consumo de recursos computacionais.
@@ -2864,29 +2880,13 @@ Outro benefício é a redução na ocorrência de \textit{thrashing} de recursos
 \end{figure}
 
 
-\afterpage{%
-	%\clearpage	% Flush earlier floats
-	\begin{figure}[p]
-		\vspace{-15.8ex}
-		\hspace{-10.1ex}
-		\begin{minipage}{1.16\textwidth}
-			\caption{Diagrama UML de atividades do modelo \textsf{He}--lastic representando a interação, agrupada por etapa do processamento, entre os componentes da arquitetura.}
-			\label{fig:modelo-uml-activity}
-			\includegraphics[trim=20 255 195 15,clip,width=\textwidth]{modelo-uml-activity}
-			\fonte{Elaborado pelo autor.}
-		\end{minipage}
-	\end{figure}
-}
-\relax
-
-
 
 Encontram-se representados na \autoref{fig:modelo-arq-full} os principais elementos do modelo, assim como, o relacionamento entre eles, com destaque para os dois grandes blocos que dividem o modelo em ambiente local e de computação em nuvem, sendo o primeiro responsável pela interação com o usuário, enquanto o segundo, tem como principal tarefa a execução dos cálculos para adequação do sistema de substituição molecular.
 Estão destacados na figura cinco momentos distintos durante a execução do modelo \textsf{He}--lastic em conjunto com o jModelTest, sendo eles: 
 %\begin{inparaenum}[\itshape 1\upshape)] 
 \begin{enumerate}[label={\arabic*)}]
 
-	\item o usuário bioinformata interage com o \textit{software} jModelTest, através de seu ambiente local, gerando requisições de processamento que serão interceptadas pelo Módulo Mediador do modelo \textsf{He}--lastic;
+	\item o usuário interage com o \textit{software} jModelTest, através de seu ambiente local, gerando requisições de processamento que serão interceptadas pelo Módulo Mediador do \textsf{He}--lastic;
 
 	\item de posse das requisições, o Subsistema Produtor traduz os comandos recebidos pelo jModelTest em requisições de processamento adequadas para o ambiente de computação em nuvem do modelo \textsf{He}--lastic e deposita estas mensagens em uma fila que alimenta a primeira camada de elasticidade;
 	
@@ -2910,6 +2910,22 @@ Desta forma é possível identificar, por exemplo, a transição da camada FaaS 
 Os pontos de comunicação assíncrona através de filas de mensagens realizam a mediação entre ambiente local e de computação em nuvem além de favorecer o comportamento elástico através do desacoplamento, permitindo que cada componente do modelo atinja escalabilidade independentemente dos demais.
 
 
+
+
+%\afterpage{%
+%\clearpage	% Flush earlier floats
+\begin{figure}[p]
+	\vspace{-15.8ex}
+	\hspace{-10.1ex}
+	\begin{minipage}{1.16\textwidth}
+		\caption{Diagrama UML de atividades do modelo \textsf{He}--lastic representando a interação, agrupada por etapa do processamento, entre os componentes da arquitetura.}
+		\label{fig:modelo-uml-activity}
+		\includegraphics[trim=20 255 195 15,clip,width=\textwidth]{modelo-uml-activity}
+		\fonte{Elaborado pelo autor.}
+	\end{minipage}
+\end{figure}
+%}
+%\relax
 
 
 
@@ -3877,6 +3893,16 @@ Visando garantir o entendimento da arquitetura do protótipo descrita a seguir, 
 
 \section{Protótipo}
 
+\begin{figure}[tp]
+	\centering%
+	\begin{minipage}{\textwidth}
+		\caption{Trecho de código do arquivo \texttt{modeltest.py} responsável por coordenar a execução do cálculo de adequação de sistemas de substituição molecular através da biblioteca PhyML, emulando o comportamento do jModelTest por meio de \textit{traces} de execução.}
+		\label{fig:metodologia-prototipo-src}
+		\vspace{1ex}
+		\includegraphics[height=.87\textheight]{metodologia-prototipo-src}
+		\fonte{Elaborado pelo autor.}
+	\end{minipage}
+\end{figure}
 
 Desenvolvido na linguagem de programação Python, o protótipo do modelo \textsf{He}--lastic tira proveito do fato de que o jModelTest atua como \textit{front--end} para o PhyML e adota uma estratégia baseada na reexecução de \textit{traces} coletados a partir de uma versão do jModelTest modificada para gerar tais registros.
 %
@@ -3885,10 +3911,14 @@ Conforme mencionado anteriormente, o uso do PhyML como efetivo executor dos cál
 Além disso, o uso do PhyML provê um segundo benefício, ao garantir que os cálculos executados pelo protótipo são exatamente os mesmos do que aqueles desempenhados pelo jModelTest, validando os resultados e assegurando que as diferenças nos custos e tempos de execução se originam, exclusivamente, das diferenças entre o modelo \textsf{He}--lastic (e seus modos de execução) e do jModelTest.
 
 
+Como pode ser visto no trecho de código do arquivo \texttt{modeltest.py}, apresentado na \autoref{fig:metodologia-prototipo-src}, o fluxo de execução segue um formato  \textit{decode--fetch--execute--update}.
+%
+Inicialmente o comando recebido é inspecionado para garantir sua validade, para que então sejam obtidos os dados de entrada, neste caso um arquivo de múltiplos alinhamentos de sequências moleculares, o que permite executar o PhyML através do comando \texttt{subprocess.run()}, na linha 22.
+%
+Por fim há um bloco dedicado ao tratamento de erros e, caso o processamento conclua com sucesso, submeter os resultados e definir o processamento como completo.
+%
+Conforme anteriormente mencionado, repositórios de código--fonte contendo todos os artefatos desenvolvidos estão livremente disponíveis nos links da \autoref{tab:prototipo-repos}, onde o repositório \texttt{modeltest-lambda} contém o código executado nos cenários, e o repositório \texttt{modeltest-loadexerciser} contém \textit{scripts} que gerenciam a execução dos cenários de avaliação.
 
-
-
-%TODO: Na parte do protótipo, valeria uma tela de código, ou de como executar, co parâmetros. Isso vale a sedimentar o fato que você fez mesmo.
 
 
 \subsection{Implementação}
@@ -3901,10 +3931,10 @@ Esta decisão está alinhada com as decisões de projeto detalhadas na \autoref{
 No que diz respeito a portabilidade entre provedores de computação em nuvem, todos os serviços fundamentais encontram concorrentes com funcionalidades análogas, enquanto serviços secundários, nomeadamente CloudWatch, CloudFormation e IAM, também têm concorrentes, contudo, sua adaptação requer intervenção manual devido às diferenças e características de cada plataforma de computação em nuvem.
 
 
-\begin{table}[tb]
+\begin{table}[b]
 	\centering%
 	\begin{minipage}{.8\textwidth}
-		\caption{Artefatos de código presentes nos três módulos do protótipo.}
+		\caption{Artefatos de código presentes nos três módulos do protótipo, com o reuso destacado em tons de azul.}
 		\label{tab:metodologia-prototipo-artefatos}
 		\vspace{1ex}
 		% sequential 4-class Blues reversed
@@ -3922,10 +3952,10 @@ No que diz respeito a portabilidade entre provedores de computação em nuvem, t
 			\cmidrule(lr){1-2}
 			\multicolumn{1}{c}{\texttt{forwarder}} & \multicolumn{1}{c}{\texttt{modeltest}} & \multicolumn{1}{c}{} \\ 
 			\midrule
-			\rowcolor{c1} 
+			\rowcolor{c1!30!white} 
 			src/aws.py & src/aws.py & src/aws.py \\
-			src/forwarder.py & \cellcolor{c2} lib/phyml & \cellcolor{c2}lib/phyml \\
-			& \cellcolor{c3} src/modeltest.py & \cellcolor{c3} src/modeltest.py \\
+			src/forwarder.py & \cellcolor{c2!30!white} lib/phyml & \cellcolor{c2!30!white}lib/phyml \\
+			& \cellcolor{c3!60!white} src/modeltest.py & \cellcolor{c3!60!white} src/modeltest.py \\
 			&  & src/dockerentrypoint.py \\
 			&  & requirements.txt \\ 
 			\bottomrule
