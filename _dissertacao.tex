@@ -5381,7 +5381,7 @@ O fato de que, no caso do jModelTest e do protótipo implementado, somente uma p
 \end{figure}
 
 
-No que tange ao comportamento de elasticidade da camada de Orquestração de Contêineres é possível inspecionar graficamente seu comportamento através de medições realizadas durante as execuções.
+No que tange ao comportamento de elasticidade da camada de Orquestração de Contêineres, é possível inspecioná-lo graficamente através de medições realizadas durante as execuções.
 %
 Os registros de monitoramento coletados pelo modelo \textsf{He}--lastic, assim como os dados do serviço CloudWatch do provedor de computação em nuvem AWS, permitem observar as ações tomadas pelo motor de elasticidade, ajudando a entender os motivos e as circunstâncias que causaram tais ações.
 
@@ -6071,8 +6071,9 @@ Apesar de não negligenciáveis, os impactos obtidos na comparação dos cenári
 Este cenário, contudo, se modifica na análise dos cenários que contemplam o uso de até 36 CPUs, onde a adoção do modelo \textsf{He}--lastic resulta em um impacto da ordem de 16\%, dobrando as perdas identificadas no cenário anterior.
 %
 A parcela mais significativa deste resultado é oriunda do tempo total de duração da execução do cenário, que levou aproximadamente três horas e meia (3:34:29), enquanto o jModelTest, mesmo com sua perda de eficiência previamente mencionada, atingiu um resultado na casa de duas horas e quinze minutos (2:13:16).
+O tempo total de execução no caso do modelo \textsf{He}--lastic surpreende na comparação com o cenário de 16 CPUs onde, apesar da quantidade de recursos disponíveis mais que dobrar, o tempo de execução é reduzido em apenas 16 minutos.
 %
-O tempo total de execução no caso do modelo \textsf{He}--lastic surpreende na comparação com o cenário de 8 CPUs onde, apesar da quantidade de recursos disponíveis mais que dobrar, o tempo de execução é reduzido em apenas 16 minutos.
+No que diz respeito ao custo a situação é mais favorável, com um impacto da ordem de 4\% sobre o custo de referência do jModelTest, onde o valor passou de \$ 3,40 para \$ 3,99.
 
 
 % porque tão ruim? olhar o cc36 X cm4
@@ -6107,7 +6108,7 @@ Outra característica que chama a atenção, ainda a respeito do custo, é peque
 %
 Apesar do presente trabalho não exercer qualquer influência sobre a definição de custos por parte dos provedores de computação em nuvem, não deixa de ser relevante perceber a relativa facilidade com que se obtém, hoje em dia, grande quantidade de recursos computacionais com um custo relativamente baixo em valores absolutos.
 %
-Estes custos reiteram, também, a necessidade de abordagens adaptadas para uso em ambientes de computação em nuvem, como é o caso do modelo \textsf{He}--lastic, aqui proposto, que tem como premissa a devolução total de recursos durante períodos de ociosidade.
+Estes custos reiteram, também, a necessidade de abordagens adaptadas para uso em ambientes de computação em nuvem, como é o caso do modelo \textsf{He}--lastic, aqui proposto, que tem como premissa a total inexistência de recursos alocados durante períodos de ociosidade.
 
 
 
@@ -6126,7 +6127,7 @@ Estes custos reiteram, também, a necessidade de abordagens adaptadas para uso e
 			& \multicolumn{1}{c}{$C_{j2}$} & \multicolumn{1}{c}{$C_{j4}$} & \multicolumn{1}{c}{$C_{j8}$} & \multicolumn{1}{c}{$C_{j16}$} & \multicolumn{1}{c}{$C_{j36}$} \\
 			\midrule
 			Resultado & \begin{tabular}[c]{@{}r@{}}(23:43:11)\\ 0,08\end{tabular} & \begin{tabular}[c]{@{}r@{}}(12:01:01)\\ 0,09\end{tabular} & \begin{tabular}[c]{@{}r@{}}(6:45:56)\\ 0,10\end{tabular} & \begin{tabular}[c]{@{}r@{}}(3:41:15)\\ 0,10\end{tabular} & \begin{tabular}[c]{@{}r@{}}(2:13:16)\\ 0,14\end{tabular} \\
-			Hora Cheia & (24h) 0,09 & (13h) 0,09 & (7h) 0,10 & (4h) 0,11 & (3h) 0,19 \\
+			Hora Cheia\textsuperscript{\dag} & (24h) 0,09 & (13h) 0,09 & (7h) 0,10 & (4h) 0,11 & (3h) 0,19 \\
 			+ 4h & 0,10 & 0,12 & 0,16 & 0,23 & 0,45 \\
 			+ 8h & 0,11 & 0,15 & 0,21 & 0,34 & 0,70 \\
 			+ 12h & 0,13 & 0,18 & 0,27 & 0,45 & 0,96 \\
@@ -6135,6 +6136,7 @@ Estes custos reiteram, também, a necessidade de abordagens adaptadas para uso e
 			+ mês & 2,64 & 5,19 & 10,30 & 20,51 & 46,09 \\
 			\bottomrule
 		\end{tabular*}
+		\tabelafootnote{\textsuperscript{\dag}~Dentre os principais provedores de computação em nuvem é usual que a cobrança ocorra por hora, onde o uso por 5 minutos ou 55 minutos, por exemplo, é arredondado para cima, sendo cobrado como uma hora cheia.}
 		\fonte{Elaborado pelo autor.}
 	\end{minipage}
 \end{table}
@@ -6204,6 +6206,7 @@ A análise destes resultados revela que, embora o modelo proposto esteja associa
 Diferentemente do cenário base do jModelTest, o modelo proposto não necessita de recursos disponíveis enquanto espera por requisições, evitando cobranças em momentos de ociosidade.
 
 
+% análise de custo benefício
 
 Durante a análise de custos por meio de dados simulados foi possível compreender o comportamento que emerge da combinação entre as duas camadas de elasticidade do modelo proposto.
 %
@@ -6211,6 +6214,8 @@ Através das tabelas e gráficos apresentados fica evidente como se comporta a d
 %
 Esta análise conjunta foi acompanhada de análises individualizadas das camadas de elasticidade, demonstrando as características de cada uma e representando a manifestação de uma abordagem prática sobre os conceitos previamente estudados a respeito das camadas de \textit{Function as a Service} (FaaS) e de Orquestração de Contêineres.
 
+
+% resultados jmodeltest
 
 A avaliação dos cenários base do jModelTest permitiu verificar seu comportamento a medida que é alterada a quantidade de recursos disponíveis.
 %
@@ -6223,10 +6228,81 @@ Através de análise do código--fonte da aplicação em conjunto com o comporta
 
 % avaliação do helastic
 
+A seguir foram apresentados os resultados referentes a utilização do modelo \textsf{He}--lastic medidos através do protótipo implementado.
+%
+Conforme definido ma Metodologia de Avaliação (\autoref{ch:modelo-metodologia}), os cenários foram divididos em três grupos, conforme a utilização das camadas de elasticidade, com um cenário utilizando apenas FaaS ($C_{f0}$), três cenários utilizando somente Orquestração de Contêineres e variações na quantidade de recursos disponíveis ($C_{C8}$, $C_{C16}$ e $C_{C32}$) e, por fim, mais sete cenários explorando variações nos parâmetros do modelo em uso Misto ($C_{m1}$, $C_{m2}$, $C_{m3}$, $C_{m4}$, $C_{m5}$, $C_{m6}$ e $C_{m7}$).
+%
+Uma diferença sobre os resultados do jModelTest foi que, apesar a Variância se manter baixa ao longo de todos os resultados, foi observado um aumento nos Coeficientes de Variação dos resultados, especificamente nos arquivos que fazem a transição entre camadas, contudo a suspeita é que este efeito foi ocasionado pela redução no número de amostras, consequência do aumento na quantidade de cenários avaliados.
+
+
+%so faas
+
+A avaliação dos resultados que utilizam apenas a camada FaaS resultou na execução incompleta dos cenários em função dos arquivos maiores e que ultrapassavam os limites de recursos e tempo de execução estabelecidos pela tecnologia.
+%
+Contudo, ainda assim foi possível obter valiosas informações a respeito da quantidade de Processos paralelos em execução, que se mostrou geralmente muito próxima ao nível máximo de paralelismo da execução por etapas.
+%
+Também foi possível verificar indícios do comportamento de \textit{retries} imposto pelo AWS Lambda, serviço utilizado para executar a camada FaaS, e como eles afetam a performance sob o ponto de vista do tempo de execução e a capacidade de processar integralmente os arquivos do \textit{dataset}.
+%
+Cabe mencionar também que os resultados de tempo de execução, quando comparados aos tempos nos cenários de avaliação do jModelTest, indicam que, para os arquivos que foram completamente processados, a camada FaaS leva de 8\% a 84\% do tempo, uma melhoria que se mostra ineficiente pois requer uma quantidade maior de recursos.
+
+
+%so containers
+
+Ao analisar os resultados a execução baseada somente na Orquestração de Contêineres um dos objetivos foi determinar o comportamento de elasticidade adotado pelo serviço AWS Batch, responsável por esta camada.
+%
+A respeito dos tempos de execução foi possível observar um alto custo inicial, que se manifesta no tempo de execução dos arquivos menores, onde o \textit{overhead} inicial acaba dominando o tempo total de execução.
+%
+Quando comparados aos cenários do jModelTest fica evidente que este tipo de atraso inviabiliza o uso da camada de Orquestração de Contêineres para pequenos arquivos.
+%
+Contudo, no caso dos maiores arquivos do \textit{dataset}, esta demora na execução é progressivamente mitigada até se reverter em tempos de execução mais vantajosos no caso dos arquivos 10-Birds e 12-stamatakis-59.
+
+
+O comportamento de elasticidade foi demonstrado graficamente juntamente com a quantidade de tarefas aguardando execução, o que permitiu verificar como o gerenciador de elasticidade se comporta em diferentes situações de carga.
+%
+No geral é possível dizer que houve uso conservador de \textit{thresholds} de elasticidade, o que pode ser visto pelo tempo que o gerenciador de elasticidade leva para descartar recursos ociosos.
+%
+Também foi possível observar que a estratégia de \textit{Clustering Search} adotada pela aplicação jModelTest pode confundir o gerenciador de elasticidade, causando atrasos até que ações corretivas sejam tomadas e reequilibrem a relação de carga e recursos.
+%
+De maneira geral foi possível determinar que a camada de Orquestração de Contêineres é melhor adaptada para o tratamento de processos de maior duração e com menor amplitude nas variações de carga.
+
+
+%misto
+
+Os resultados dos cenários de uso Misto, com ambas as camadas de elasticidade funcionando em conjunto, mostrou que o modelo \textsf{He}--lastic é capaz de tirar proveito das melhores características de cada camada.
+%
+Nos extremos do \textit{dataset}, ou seja, nos menores e maiores arquivos, a performance do modelo se equipara à do jModelTest, contudo a interação entre as duas camadas dá origem a um significativo \textit{overhead} que ocorre na transição entre as camadas.
+%
+Neste caso merece destaque o caso do arquivo 08-HIV\_vpu.ref2, cujo tempo de execução em alguns cenários chegou a levar 10 vezes aquele observado nos cenários do jModelTest.
+
+
+Apesar do elevado nível de \textit{overhead} associado a transição entre camadas, é possível como possíveis pontos de melhoria o controle sobre a quantidade de \textit{retries} executados na camada FaaS, assim como a política de \textit{backoff} exponencial, que é apropriada para uma ampla variedade de falhas, mas que, no caso do protótipo, não faz diferença.
+%
+Contudo, os dados obtidos nos cenários de avaliação definidos neste trabalho não permitem estabelecer com segurança os motivos que causam esta degradação de performance, indicando a necessidade de investigações futuras sobre a transição entre as camadas de elasticidade.
+
 
 % avaliação de custo benefício
 
-%TODO: escrever considerações parciais dos resultados
+Por fim, o capítulo apresentou uma análise do ponto de vista do custo financeiro, contemplando os cenários com uso Misto, ou seja, ambas as camadas de elasticidade ativas e comparando-os com os cenários do jModelTest.
+%
+Dentre os sete cenários do modelo \textsf{He}--lastic foram escolhidos três para comparação direta com três outros cenários de avaliação do jModelTest, onde o casamento entre eles foi realizado em função da quantidade de CPUs utilizada.
+%
+Nesta comparação foi possível determinar que o \textit{overhead} de custo associado a utilização do modelo proposto está contido na faixa entre 4\% e 9\% acima do custo do jModelTest em cenário análogo.
+%
+Quando associados ao tempo de execução, estes impactos podem ser avaliados através de um indicador de ineficiência do \textsf{He}--lastic, que apresenta um comportamento ascendente, e portanto acompanha a quantidade de recursos disponíveis, estando contido na faixa entre 6\% e 16\%.
+
+
+%falar que o tempo não é tudo, ociosidade
+
+Contudo, é necessário ponderar que, apesar do impacto de performance e custo do modelo proposto, sua arquitetura permite o descarte total de recursos em momentos de ociosidade.
+%
+Desta forma, não há a necessidade de nenhum servidor ou VM aguardando requisições de clientes, diferentemente do modelo de execução do jModelTest, e até mesmo de outras abordagens de elasticidade.
+%
+Ao comparar os tempos de execução e custos incorridos exclusivamente durante o cálculo do jModelTest, este tralho assume métricas ótimas de execução, desconsiderando custo associado ao tempo de ociosidade dos recursos utilizados na execução.
+%
+Desta forma, a análise de viabilidade de uso do modelo \textsf{He}--lastic deve considerar não somente as métricas de tempo de execução e custo, como também um fator de ociosidade, que determinará o ponto de equilíbrio entre a abordagem proposta e o modelo de execução do jModelTest.
+%
+Embora o fator de ociosidade seja uma característica específica para cada cenário de utilização, implicando conhecimentos específicos não contemplados neste trabalho, é possível adotar uma regra de referência, com base no indicador de ineficiência do modelo, em que a utilização do \textsf{He}--lastic se justifica em casos onde o nível de ociosidade ultrapassa 5\% a 15\%, conforme a quantidade de recursos utilizados.
+
 
 
 %fraquezas do protótipo:
@@ -6357,11 +6433,18 @@ Contudo, ao comparar a duração e o custo financeiro incorrido estritamente dur
 
 Desta forma, uma nova caracterização acerca dos custos financeiros associados a rodar o jModelTest em um ambiente de nuvem é apresentada, contemplando não somente o tempo total de execução dos cenários, e seus respectivos custos, como também o tempo de disponibilidade dos recursos computacionais.
 %
-Esta análise comprova que os custos extras associados a adoção do modelo \textsf{He}--lastic são justificáveis, uma vez que, no caso do jModelTest, o usuário acaba sendo cobrado pelo tempo em que o recurso computacional está disponível, independente do seu nível de utilização.
+Esta análise comprova que os custos extras associados a adoção do modelo \textsf{He}--lastic são justificáveis, uma vez que, no caso do jModelTest, o usuário acaba sendo cobrado pelo tempo em que o recurso computacional está disponível, independentemente do seu nível de utilização.
 %
-Esta característica torna o modelo proposto especialmente apropriado para cenários de baixa utilização ou em que existe grande variabilidade na quantidade de recursos solicitados, o que na abordagem do jModelTest exigiria a alocação excessiva para atender às requisições de maneira satisfatória.
+
+
+
+
+
+O conjunto destas características torna o modelo proposto especialmente apropriado para cenários de baixa utilização ou em que existe grande variabilidade na quantidade de recursos solicitados, o que na abordagem do jModelTest exigiria a alocação excessiva para atender às requisições de maneira satisfatória.
 %
-A capacidade de permanecer ocioso com custo zero do modelo proposto representa um diferencial em situações onde há baixa frequência de requisições que demandam grandes quantidades de recursos, que resulta em uma cobrança efetivamente \textit{pay--per--use} que se apoia na associatividade de custos oriunda da elasticidade.
+A capacidade do modelo proposto de permanecer ocioso com custo zero representa um diferencial em situações onde há baixa frequência de requisições e que demandam grandes quantidades de recursos, resultando em uma cobrança efetivamente \textit{pay--per--use} que se apoia na associatividade de custos oriunda da elasticidade.
+%
+Por meio dos resultados consolidados é possível estabelecer que, conforme a quantidade de recursos utilizados, o modelo \textsf{He}--lastic passa a ser vantajoso para níveis de ociosidade maiores que 5\% a 15\%.
 
 
 
@@ -6377,7 +6460,7 @@ Traçando um paralelo aos objetivos que nos propomos a alcançar com este trabal
 	\item Taxonomia: com base no levantamento bibliográfico realizado no contexto deste trabalho e objetivando um entendimento compartilhado no âmbito da filogenética e suas ferramentas elaboramos a taxonomia apresentada na \autoref{fig:taxonomia};
 	
 	
-	\item Mapeamento do estado da arte: onde foi identificado que uma parcela significativa dos projetos de \textit{software} utilizados no âmbito da filogenética, apesar de já bem estabelecidos e populares, ainda não dá suporte à técnicas de computação de alto desempenho como a elasticidade;
+	\item Mapeamento do Estado da Arte: onde foi identificado que uma parcela significativa dos projetos de \textit{software} utilizados no âmbito da filogenética, apesar de já bem estabelecidos e populares, ainda não dá suporte à técnicas de computação de alto desempenho como a elasticidade;
 	
 	
 	\item Modelo \textsf{He}--lastic: partindo de um dos mais populares projetos de \textit{software} filogenético, foi proposto um modelo, descrito na \autoref{fig:modelo-strategies}, que permite um comportamento verdadeiramente elástico no aproveitamento de recursos computacionais e capaz de lidar com tarefas com ampla variação de complexidade para que seu uso seja mais eficiente do ponto de vista computacional e financeiro;
