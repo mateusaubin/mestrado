@@ -2581,7 +2581,7 @@ Esta tarefa é altamente receptiva ao paralelismo, uma vez que, cada sistema pod
 
 Contudo, apesar da aparente simplicidade da tarefa, um fator relevante no esforço computacional é a complexidade do sistema de substituição molecular.
 Conforme abordado na \autoref{sec:modelos-de-substituicao}, nem todos os sistemas são criados iguais, com a complexidade aumentando progressivamente ao longo dos anos e acompanhando a profundidade do conhecimento acerca dos processos evolutivos.
-Desta forma seria intuitivo pensar que devemos sempre usar o sistema mais complexo possível, uma vez que este será capaz de melhor se adaptar aos dados encontrados. 
+Desta forma seria intuitivo pensar que deve sempre utilizar-se o sistema mais complexo possível, uma vez que este será capaz de melhor se adaptar aos dados encontrados. 
 No entanto, este não é o caso, pois como afirma \citetexto{Zwickl2006}, além de exigir maior esforço computacional, um sistema muito complexo está mais vulnerável ao risco de atribuir grande importância a algum tipo de ruído aleatório presente nos dados.
 
 
@@ -2603,7 +2603,7 @@ Desta forma, ainda que paralelizável, o cálculo de adequação do sistema é u
 
 
 Dependendo das configurações selecionadas pelo usuário para início da análise o número de sistemas simulados pode variar amplamente, com possibilidades tão baixas quanto apenas três sistemas, ou tão altas quanto 1624 variações dos sistemas de evolução para teste.
-Quando executado em um computador de mesa, ou até mesmo, um servidor institucional, é possível que o hardware fique subutilizado, embora seja pouco provável, uma vez que as probabilidades estejam a favor de que este se torne um gargalo, haja vista que as configurações padrão geram 88 cenários de teste, enquanto um computador de mesa conta atualmente com um número entre 4 a 16 \textit{cores} de processamento.
+Quando executado em um computador de mesa, ou até mesmo, um servidor institucional, é possível que o hardware fique subutilizado, embora seja pouco provável, uma vez que as probabilidades estejam a favor de que este se torne um gargalo, haja vista que as configurações padrão geram 88 cenários de teste, enquanto um computador de mesa conta, atualmente, com um número entre 4 a 16 \textit{cores} de processamento.
 Ainda, no que diz respeito aos fatores que influenciam a carga computacional durante o cálculo, quatro são especialmente importantes no contexto deste trabalho:
 
 
@@ -3097,7 +3097,7 @@ Esta abordagem é ilustrada pela \autoref{fig:modelo-strategies}, onde encontram
 \section{Métricas de Avaliação}
 \label{sec:modelo-metricas}
 
-
+%TODO: Na pagina 81, tens várias premissas. Normalmente elas estariam na parte de decisões de projeto. Não é crítico, mas vale repensarmos.
 
 Uma vez definido o modelo \textsf{He}--lastic por meio das decisões que nortearam seu projeto, sua arquitetura e, principalmente, sua estratégia de elasticidade, resta detalhar como poderá ser avaliada sua performance e eficiência.
 Esta seção dedica-se a esta tarefa, ao estabelecer e justificar métricas consideradas relevantes ao modelo e que possibilitam uma análise comparativa frente a possíveis alternativas e ao \textit{software} jModelTest.
@@ -3888,7 +3888,7 @@ Além disso, o uso do PhyML provê um segundo benefício, ao garantir que os cá
 
 
 
-
+%TODO: Na parte do protótipo, valeria uma tela de código, ou de como executar, co parâmetros. Isso vale a sedimentar o fato que você fez mesmo.
 
 
 \subsection{Implementação}
@@ -3956,7 +3956,17 @@ Em contrapartida, realizam processamentos úteis, do ponto de vista funcional, o
 
 
 
-\subsection{Ferramental}
+\subsection{Ferramentas}
+
+
+Nesta subseção são brevemente descritos dois projetos de \textit{software} que tiveram um papel de grande relevância no desenvolvimento do protótipo e avaliação dos cenários.
+%
+Embora não sejam bibliotecas ou \textit{frameworks}, que por característica são utilizados diretamente no código da aplicação, tais ferramentas auxiliam na execução e automação de diversas tarefas relacionadas aos processos operacionais de execução dos cenários de avaliação.
+%
+Desta forma, apesar de não serem componentes obrigatórios para o modelo, cabe mencionar os projetos Docker e \textit{serverless framework} pelas contribuições no decorrer deste trabalho, detalhadas a seguir.
+
+
+
 Dentre o ferramental adotado para o desenvolvimento do protótipo, o projeto Docker contribuiu de maneira significativa para garantir a testabilidade do protótipo ao permitir a especificação de um ambiente isolado e bem definido contendo os artefatos de código, \textit{runtimes} e dependências empacotadas em uma única imagem, que pode ser utilizada no ambiente de Orquestração de Contêineres (Batch) e localmente.
 %
 Através de um arquivo chamado \texttt{dockerfile} é possível especificar todos os passos necessários para a construção do contêiner e obter, depois de compilado, uma imagem pronta para implantação em qualquer ambiente que suporte imagens Docker.
@@ -3964,6 +3974,8 @@ Através de um arquivo chamado \texttt{dockerfile} é possível especificar todo
 Além disso, por meio de projetos como o docker-lambda\footnote{
 	Disponível em \url{https://github.com/lambci/docker-lambda}.
 } é possível obter localmente um ambiente que reproduz as características da camada FaaS (Lambda), o que também contribuiu para a testabilidade e o desenvolvimento do protótipo.
+
+
 
 
 O projeto \textit{serverless framework}\footnote{
@@ -4202,10 +4214,13 @@ O uso deste tipo de avaliação permite estabelecer uma visão consolidada a res
 
 %ABORT: %todo: xupinhar algumas coisas do BBVAServerlessEconomics
 
+%São duplas cujo custo final é equivalente, embora os parâmetros sejam diferentes. A tabela é usada pra demonstrar a associatividade de custos da camada FaaS.
+
+
 \begin{table}[tb]
 	\centering%
 	\begin{minipage}{\defaultFigureWidth\textwidth}
-		\caption{Análise do comportamento das métricas Custo e Financeiro aplicados no modelo de computação FaaS conforme parâmetros requeridos pelo modelo \textsf{He}--lastic.}
+		\caption{Análise do comportamento das métricas Custo e Financeiro aplicados no modelo de computação FaaS conforme parâmetros requeridos pelo modelo \textsf{He}--lastic onde as cores identificam linhas com o mesmo custo total apesar de parâmetros distintos.}
 		\label{tab:modelo-custben-faas}
 		\vspace{1ex}
 		%\small
@@ -4216,30 +4231,30 @@ O uso deste tipo de avaliação permite estabelecer uma visão consolidada a res
 		%
 		\begin{tabularx}{\textwidth}{rrrrrWWrr}
 			\toprule
-			\# & \multicolumn{1}{c}{Memória} & \multicolumn{1}{c}{CPU\textsuperscript{\ddag}} & \multicolumn{1}{c}{\begin{tabular}[c]{@{}c@{}}Tempo\\ Efetivo\end{tabular}} & \multicolumn{1}{c}{\begin{tabular}[c]{@{}c@{}}Tempo\\ Máximo\end{tabular}} & {$y$} & {$t$} & \rotatebox[origin=c]{\tabelaAngulo}{\begin{tabular}[c]{@{}c@{}}$ Custo $ \\[1ex]\end{tabular}} & \rotatebox[origin=c]{\tabelaAngulo}{\begin{tabular}[c]{@{}c@{}}$ Financeiro $ \\[3ex]\end{tabular}} \\ 
+			\# & \multicolumn{1}{c}{Memória} & \multicolumn{1}{c}{CPU\textsuperscript{\dag}} & \multicolumn{1}{c}{\begin{tabular}[c]{@{}c@{}}Tempo\\ Efetivo\end{tabular}} & \multicolumn{1}{c}{\begin{tabular}[c]{@{}c@{}}Tempo\\ Máximo\end{tabular}} & {$y$} & {$t$} & \rotatebox[origin=c]{\tabelaAngulo}{\begin{tabular}[c]{@{}c@{}}$ Custo $ \\[1ex]\end{tabular}} & \rotatebox[origin=c]{\tabelaAngulo}{\begin{tabular}[c]{@{}c@{}}$ Financeiro $ \\[3ex]\end{tabular}} \\ 
 			\midrule
 			1 & 128 & 8\% &  & 00:11,250 & 2 & 113 & 225 & 0,000023 \\
 			2 & 256 & 17\% &  & 00:22,500 & 4 & 225 & 900 & 0,000094 \\
-			\rowcolor{c1}
+			\rowcolor{c1!30!white}
 			3 & 384 & 25\% &  & 00:45,000 & 6 & 450 & 2700 & 0,000281 \\
-			\rowcolor{c1}
+			\rowcolor{c1!30!white}
 			4 & 768 & 50\% & 00:22,500 & 01:30,000 & 12 & 225 & 2700 & 0,000281 \\
-			\rowcolor{c2}
+			\rowcolor{c2!30!white}
 			5 & 768 & 50\% &  & 03:00,000 & 12 & 1800 & 21600 & 0,002251 \\
 			6 & 1536 & 100\% &  & 01:00,000 & 24 & 600 & 14400 & 0,001500 \\
-			\rowcolor{c2}
+			\rowcolor{c2!30!white}
 			7 & 1536 & 100\% &  & 01:30,000 & 24 & 900 & 21600 & 0,002251 \\
 			8 & 1536 & 100\% &  & 03:00,000 & 24 & 1800 & 43200 & 0,004501 \\
 			9 & 1920 & 125\% &  & 06:00,000 & 30 & 3600 & 108000 & 0,011253 \\
-			\rowcolor{c3}
+			\rowcolor{c3!30!white}
 			10 & 2560 & 170\% &  & 12:00,000 & 40 & 7200 & 288000 & 0,030007 \\
-			\rowcolor{c3}
+			\rowcolor{c3!30!white}
 			11 & 3008 & 200\% & 10:12,766 & 15:00,000 & 47 & 6128 & 288000 & 0,030007 \\
 			12 & 3008 & 200\% &  & 15:00,000 & 47 & 9000 & 423000 & 0,044073 \\ 
 			\bottomrule
 		\end{tabularx}
-		\tabelafootnote{\textsuperscript{\ddag}~~Se refere à alocação proporcional de CPU onde 200\% equivale à completa alocação de duas vCPUs}
-		\tabelafootnote{{*}~Para as demais variáveis das equações de Custo e Financeiro foram adotados os seguintes valores: $ c = y $ e $ m = 1\text{,}04191\text{e-}7 $ }
+		\tabelafootnote{\textsuperscript{\dag}~~Se refere à alocação proporcional de CPU onde 200\% equivale à completa alocação de duas vCPUs}
+		\tabelafootnote{{*}~Para as demais variáveis das equações de Custo (\ref{eq:custo-faas}) e Financeiro (\ref{eq:financeiro-faas}) foram adotados os seguintes valores: $ c = y $ e $ m = 1\text{,}04191\text{e-}7 $ }
 		\fonte{Elaborado pelo autor.}
 	\end{minipage}
 \end{table}
@@ -4262,8 +4277,8 @@ Sendo assim, nas próximas subseções são apresentadas as características de 
 
 \begin{figure}[tb]
 	\centering%
-	\begin{minipage}{\defaultFigureWidth\textwidth}
-		\caption[Análise da evolução do custo de execução no modelo de computação FaaS conforme escolhas de parâmetros de Tempo Limite de Execução ($t$) e Memória Alocada ($y$)]{Análise da evolução do custo de execução no modelo de computação FaaS conforme escolhas de parâmetros de Tempo Limite de Execução ($t$) e Memória Alocada ($y$) com a linha Diagonal mostrando, a cada passo, a duplicação de ambas as dimensões ($ t $ e $ y $)}
+	\begin{minipage}{\textwidth}
+		\caption[Análise da evolução do custo de execução no modelo de computação FaaS conforme escolhas de parâmetros de Tempo Limite de Execução ($t$) e Memória Alocada ($y$)]{Análise da evolução do custo de execução no modelo de computação FaaS conforme escolhas de parâmetros de Tempo Limite de Execução ($t$) e Memória Alocada ($y$) com a linha \textquoteleft Diagonal\textquoteright mostrando o custo resultante da duplicação em ambas as dimensões ($ t $ e $ y $)}
 		\label{fig:modelo-custben-faas}
 		\vspace{1ex}
 		\includegraphics[width=\textwidth]{modelo-custben-faas}
@@ -4299,7 +4314,7 @@ Contudo, tais análises não representam o caso de uso projetado para as FaaS um
 
 Entretanto, ainda que a camada FaaS seja usada em cenários favoráveis compostos por alto processamento, alto paralelismo e baixa comunicação, como é o caso no modelo \textsf{He}--lastic, uma característica do seu cálculo de custo, conforme detalhado pela \autoref{eq:custo-faas}, exige cuidados especialmente relevantes para a análise de custo benefício.
 O fato de que os parâmetros de memória, CPU e tempo limite, $y$, $c$ e $t$, respectivamente, são multiplicados entre si, faz desta métrica uma unidade composta, tornando o cálculo de $ Custo $ e $ Financeiro $ contra--intuitivo por configurar uma função polinomial de grau três.
-O resultado desta característica pode ser observado na \autoref{fig:modelo-custben-faas} indicando uma possível explosão no custo em função da relação entre os parâmetros de memória e tempo limite de execução no cenário, que e simulado adotando o modelo de cobrança do provedor AWS ($ c = y $, conforme \autoref{tab:custo-faas}).
+O resultado desta característica pode ser observado na \autoref{fig:modelo-custben-faas} indicando uma possível explosão no custo em função da relação entre os parâmetros de memória e tempo limite de execução no cenário, que é simulado adotando o modelo de cobrança do provedor AWS ($ c = y $, conforme \autoref{tab:custo-faas}).
 
 
 
@@ -5427,7 +5442,7 @@ No caso do modelo \textsf{He}--lastic este fenômeno perde importância quando s
 \begin{figure}[p]
 	\centering%
 	\begin{minipage}{\textwidth}
-		\caption{Percentual de uso de CPU para cada uma das VMs (com quatro \textit{cores} de processamento) ativas durante a execução do arquivo 12-stamatakis-59 no cenário $C_{c36}$.}
+		\caption{Consumo percentual de CPU para cada VM envolvida na execução do arquivo 12-stamatakis-59 no cenário $C_{c36}$, onde cada linha representa uma VM ativa com quatro \textit{cores} de processamento.}		
 		\label{fig:results-modelo-batch-stamatakis-detail}
 		\vspace{1ex}
 		\includegraphics[width=\textwidth]{stamatakis_36cpu_processors}
@@ -5545,7 +5560,7 @@ A falta de modelos formais que sejam capazes de representar este comportamento d
 		\begin{table}
 			\centering%
 			\begin{minipage}{\linewidth}
-				\caption{Diferenças nos tempos de execução entre os cenários de avaliação do modelo \textsf{He}--lastic com FaaS e Orquestração de Contêineres versus os cenários do jModelTest.}
+				\caption{Diferenças nos tempos de execução entre os cenários de avaliação do modelo \textsf{He}--lastic com FaaS e Orquestração de Contêineres versus os cenários do jModelTest, com os melhores e piores resultados destacados em verde e vermelho, respectivamente.}
 				\label{tab:results-modelo-mixed}
 				\vspace{0.75ex}
 				\footnotesize
@@ -5583,20 +5598,22 @@ A falta de modelos formais que sejam capazes de representar este comportamento d
 	\end{minipage}
 \end{table}
 
+
 \begin{figure}[p]
 	\centering%
-	\begin{minipage}{\linewidth}
-		\caption{Mapa de calor da diferença percentual nos tempos de execução entre os cenários de avaliação do modelo \textsf{He}--lastic com FaaS e Orquestração de Contêineres versus os cenários do jModelTest.}
+	\begin{minipage}{.9\paperheight}
+		\caption{Mapa de calor da diferença nos tempos de execução entre os cenários de avaliação do modelo \textsf{He}--lastic com FaaS e Orquestração\\ de Contêineres versus os cenários do jModelTest, onde cores mais fortes representam maiores diferenças.}
 		\label{fig:results-modelo-mixed}
-		\vspace{1ex}
 		% esq | baixo | dir | alto
-		\includegraphics[trim=0 38 0 70,clip,width=\textwidth]{results-modelo-mixed}
+		\includegraphics[trim=0 20 0 60,clip,width=\textwidth]{results-modelo-mixed}
 		\fonte{Elaborado pelo autor.}
 	\end{minipage}
 \end{figure}
 
+
 \end{landscape}
 }
+
 
 
 Como estratégia para avaliar o grau de \textit{overhead} gerado pelo modelo \textsf{He}--lastic sobre a execução do software jModelTest, uma medida de variação no tempo de execução foi adotada, comparando os tempos médios das execuções por arquivo dos cenários $C_{mX}$ versus os cenários $C_{jX}$ com a mesma quantidade de CPUs.
@@ -5712,12 +5729,12 @@ Dentre os arquivos que passam pela camada de Orquestrador de contêineres, o 08-
 		\cmidrule(l){5-6}
 		Código & \begin{tabular}[c]{@{}r@{}}Duração\\ Média\end{tabular} & Código & \begin{tabular}[c]{@{}r@{}}Duração\\ Média\end{tabular} & Média & Percentual \\ 
 		\midrule
-		$C_{j8}$ & 0:32:01 & $C_{m1}$ & 0:31:08 & \textcolor{success-green}{-0:00:53} & -3\% \\ 
+		$C_{j8}$ & 0:32:01 & $C_{m1}$ & 0:31:08 & -0:00:53 & -3\% \\ 
 		\dashedline{1-6}
-		\multirow{2}{*}{$C_{j16}$} & \multirow{2}{*}{0:17:31} & $C_{m2}$ & 0:15:46 & \textcolor{success-green}{-0:01:45} & -10\% \\
+		\multirow{2}{*}{$C_{j16}$} & \multirow{2}{*}{0:17:31} & $C_{m2}$ & 0:15:46 & -0:01:45 & -10\% \\
 		&  & $C_{m3}$ & 0:19:36 & 0:02:05 & 12\% \\ 
 		\dashedline{1-6}
-		\multirow{4}{*}{$C_{j36}$} & \multirow{4}{*}{0:10:33} & $C_{m4}$ & 0:15:45 & \textcolor{success-green}{0:05:12} & 49\% \\
+		\multirow{4}{*}{$C_{j36}$} & \multirow{4}{*}{0:10:33} & $C_{m4}$ & 0:15:45 & 0:05:12 & 49\% \\
 		&  & $C_{m5}$ & 0:18:43 & 0:08:10 & 77\% \\
 		&  & $C_{m6}$ & 0:26:41 & 0:16:08 & 153\% \\
 		&  & $C_{m7}$ & 0:20:54 & 0:10:21 & 98\% \\ 
@@ -5817,7 +5834,7 @@ O indicador de CPUs, presente na tabela, representa, em contraste com o parâmet
 		\begin{table}
 			\centering%
 			\begin{minipage}{\linewidth}
-				\caption{Resultados médios das avaliações de performance e custo financeiro dos cenários do modelo \textsf{He}--lastic por arquivo do \textit{dataset}.}
+				\caption{Resultados de performance e custo financeiro das avaliações dos cenários do modelo \textsf{He}--lastic para cada arquivo do \textit{dataset}, contemplando apenas FaaS ($C_{f0}$), apenas Orquestrador de Contêineres ($C_{c36}$) e os cenários Mistos com melhor desempenho ($C_{m1}$, $C_{m2}$ e $C_{m4}$).}
 				\label{tab:results-custos-modelo}
 				\vspace{0.75ex}
 				%\scriptsize
@@ -5832,12 +5849,7 @@ O indicador de CPUs, presente na tabela, representa, em contraste com o parâmet
 					\cmidrule(lr){8-11}
 					\cmidrule(lr){12-15}
 					\cmidrule(l){16-19}
-					\multicolumn{1}{c}{} &
-					\rotatebox[origin=c]{\tabelaAngulo}{Duração} & \rotatebox[origin=c]{\tabelaAngulo}{CPUs} & \rotatebox[origin=c]{\tabelaAngulo}{Financeiro} &
-					\rotatebox[origin=c]{\tabelaAngulo}{Duração} & \rotatebox[origin=c]{\tabelaAngulo}{CPUs} & \rotatebox[origin=c]{\tabelaAngulo}{Financeiro} & 
-					\rotatebox[origin=c]{\tabelaAngulo}{Duração} & \rotatebox[origin=c]{\tabelaAngulo}{CPUs} & \rotatebox[origin=c]{\tabelaAngulo}{Razão} &  \rotatebox[origin=c]{\tabelaAngulo}{Financeiro} &
-					\rotatebox[origin=c]{\tabelaAngulo}{Duração} & \rotatebox[origin=c]{\tabelaAngulo}{CPUs} & \rotatebox[origin=c]{\tabelaAngulo}{Razão} &  \rotatebox[origin=c]{\tabelaAngulo}{Financeiro} &
-					\rotatebox[origin=c]{\tabelaAngulo}{Duração} & \rotatebox[origin=c]{\tabelaAngulo}{CPUs} & \rotatebox[origin=c]{\tabelaAngulo}{Razão} & \rotatebox[origin=c]{\tabelaAngulo}{Financeiro}
+					\multicolumn{1}{c}{} & \rotatebox[origin=c]{\tabelaAngulo}{\begin{tabular}[c]{@{}c@{}}Duração\\[1ex]\end{tabular}} & \rotatebox[origin=c]{\tabelaAngulo}{CPUs} & \rotatebox[origin=c]{\tabelaAngulo}{\begin{tabular}[c]{@{}c@{}}Financeiro\\[1ex]\end{tabular}} & \rotatebox[origin=c]{\tabelaAngulo}{\begin{tabular}[c]{@{}c@{}}Duração\\[1ex]\end{tabular}} & \rotatebox[origin=c]{\tabelaAngulo}{CPUs} & \rotatebox[origin=c]{\tabelaAngulo}{\begin{tabular}[c]{@{}c@{}}Financeiro\\[1ex]\end{tabular}} & \rotatebox[origin=c]{\tabelaAngulo}{\begin{tabular}[c]{@{}c@{}}Duração\\[1ex]\end{tabular}} & \rotatebox[origin=c]{\tabelaAngulo}{CPUs} & \rotatebox[origin=c]{\tabelaAngulo}{Razão} &  \rotatebox[origin=c]{\tabelaAngulo}{\begin{tabular}[c]{@{}c@{}}Financeiro\\[1ex]\end{tabular}} & \rotatebox[origin=c]{\tabelaAngulo}{\begin{tabular}[c]{@{}c@{}}Duração\\[1ex]\end{tabular}} & \rotatebox[origin=c]{\tabelaAngulo}{CPUs} & \rotatebox[origin=c]{\tabelaAngulo}{Razão} & \rotatebox[origin=c]{\tabelaAngulo}{\begin{tabular}[c]{@{}c@{}}Financeiro\\[1ex]\end{tabular}} & \rotatebox[origin=c]{\tabelaAngulo}{\begin{tabular}[c]{@{}c@{}}Duração\\[1ex]\end{tabular}} & \rotatebox[origin=c]{\tabelaAngulo}{CPUs} & \rotatebox[origin=c]{\tabelaAngulo}{Razão} & \rotatebox[origin=c]{\tabelaAngulo}{\begin{tabular}[c]{@{}c@{}}Financeiro\\[1ex]\end{tabular}}
 					\\
 					\midrule
 					01-aP6 & 0:00:09 & 63 & 0,000 & 0:10:02 & 21 & 0,240 & 0:00:09 & 70 & 0\% & 0,000 & 0:00:11 & 29 & 0\% & 0,000 & 0:00:09 & 78 & 0\% & 0,000 \\
@@ -5866,7 +5878,7 @@ O indicador de CPUs, presente na tabela, representa, em contraste com o parâmet
 		\begin{table}
 			\centering%
 			\begin{minipage}{\linewidth}
-				\caption{Resultados médios das avaliações de performance e custo financeiro dos cenários do jModelTest por arquivo do \textit{dataset}..}
+				\caption{Resultados de performance e custo financeiro das avaliações dos cenários do jModelTest por arquivo do \textit{dataset}.}
 				\label{tab:results-custos-jmodeltest}
 				\vspace{0.75ex}
 				%\scriptsize
@@ -5907,7 +5919,7 @@ O indicador de CPUs, presente na tabela, representa, em contraste com o parâmet
 
 
 
-O termo CPU, neste caso, adquire um sentido mais amplo, contemplando tanto o conceito clássico de \textit{cores} de um microprocessador, quanto os contêineres ou unidades de processamento da camada FaaS, o que explica a grande quantidade reportada na tabela.
+O termo CPU, neste caso, adquire um sentido mais amplo, contemplando tanto o conceito clássico de \textit{cores} um microprocessador, quanto os contêineres ou unidades de processamento da camada FaaS, o que explica a grande quantidade reportada na tabela.
 %
 Desta forma, as 127 CPUs utilizadas em média no cenário $C_{m4}$ correspondem a um valor $ CPU = CPU_{faas} + CPU_{conteineres} $, onde a quantidade de CPUs utilizadas na camada de Orquestração de Contêineres é um valor inteiro compreendido no intervalo $ 0 \le x \le CPU_{max} $, sendo o limite superior o valor do parâmetro do modelo.
 
@@ -5922,7 +5934,7 @@ Contudo, ainda mais interessante é a análise do cenário $C_{c36}$, correspond
 %
 Mesmo configurado para utilizar até 36 \textit{cores} de processamento, o gerenciador de elasticidade adota, neste cenário, um comportamento bastante conservador ao alocar menos de cinco CPUs para os arquivos 04-18S\_insects2 e 12-stamatakis-59, o que representa menos de 15\% do valor permitido.
 %
-Embora este comportamento não seja nocivo para o custo financeiro, uma vez que este acompanha a quantidade de recursos utilizados no tempo, a baixa alocação efetiva traz impactos perceptíveis na duração do processamento, e provavelmente está ocorrendo também nos demais cenários, embora mascarado pela grande quantidade de CPUs da camada FaaS.
+Embora este comportamento não seja nocivo para o custo financeiro, uma vez que o custo acompanha a quantidade de recursos utilizados ao longo do tempo, a baixa alocação efetiva traz impactos perceptíveis na duração do processamento, e provavelmente está ocorrendo também nos demais cenários, embora mascarado pela grande quantidade de CPUs da camada FaaS.
 
 
 
@@ -6143,19 +6155,19 @@ Esta dinâmica de custo pela disponibilidade, ao invés do uso efetivo, também 
 %
 Nestes casos, seja no uso do jModelTest em ambiente de computação em nuvem, seja com recursos físicos, o custo financeiro da execução de qualquer um dos cenários aqui avaliados é auferido de maneira inversamente proporcional ao nível de utilização dos recursos.
 %
-Este fenômeno faz com que exista uma grande pressão para justificar a alocação ou compra de recursos computacionais, uma vez que seu uso deve estar embasado em uma real e pungente necessidade que comprove o uso contínuo destes recursos.
+Este fenômeno faz com que exista uma significativa pressão para justificar a alocação ou compra de recursos computacionais, uma vez que seu uso deve estar embasado em uma real e pungente necessidade que comprove o uso contínuo destes recursos.
 
 
 
-Tal modelo de operação cria uma barreira de entrada para pesquisadores e/ou profissionais que não são especialistas em suas áreas e, portanto, carecem das habilidades necessárias para justificar um investimento de grande porte.
+Por conta de burocracias e processos institucionais, são criadas barreiras de entrada para pesquisadores e/ou profissionais que não são especialistas em suas áreas e, portanto, carecem das habilidades necessárias para justificar um investimento com aportes de capital.
 %
-Esta dinâmica institucional acaba suprimindo a capacidade de experimentação e exploração sem compromisso, uma notável fonte de inovação que pode originar de uma nova e/ou inusitada abordagem e que, por consequência, dificilmente será aceita como justificativa para um grande investimento em recursos computacionais.
+Esta dinâmica institucional acaba suprimindo a capacidade de experimentação e exploração sem compromisso, uma notável fonte de inovação que pode alimentada através de uma nova e/ou inusitada abordagem, mas que, por consequência, dificilmente será aceita como justificativa para um investimento em recursos computacionais dado que não há qualquer garantia prévia sobre a relevância dos resultados obtidos.
 
 
 
 Embora o modelo proposto não tenha relação com o processo de compra e alocação de recursos computacionais, nem tampouco com as abordagens de pesquisa (seja por especialistas ou por novos entrantes), o fato de abolir custos ociosos através de um engenhoso emprego das suas duas camadas de elasticidade, uma abordagem totalmente \textit{cloud--native}, favorece o acesso à grandes volumes de recursos computacionais em um curto espaço de tempo.
 %
-Esta capacidade é de grande valor não somente para pesquisadores e profissionais individuais, como também para instituições de menor porte, onde a demanda por recursos computacionais não justifique a aquisição de grandes servidores ou \textit{clusters}.
+Esta capacidade é de valorizada não somente para pesquisadores e profissionais individuais, como também para instituições de menor porte, onde a demanda por recursos computacionais não justifique a aquisição de servidores ou \textit{clusters}.
 
 
 
@@ -6165,14 +6177,8 @@ A associatividade de custos oriunda do uso elástico de recursos da computação
 Neste sentido, o modelo \textsf{He}--lastic se apresenta como uma abordagem capaz de habilitar a elasticidade no projeto jModelTest, assim como outras aplicações mediante adaptações.
 %
 Além disso, seu uso das camadas FaaS e de Orquestração de Contêineres permite o total descarte de recursos em momentos de ociosidade, contrastando com a clássica abordagem de elasticidade intermediada por balanceadores de carga que exige uma quantidade mínima de recursos sempre disponíveis.
-
-
-
-Embora não resulte, como pode ser observado nesta seção, em ganhos de desempenho quando avaliado em termos do duração do processamento e custo financeiro de uma única execução, sua abordagem resulta em grandes economias em função do uso consciente e na medida certa de recursos computacionais.
 %
-Estas características resultam em vantagens não apenas financeiras para pesquisadores e instituições, mas também num \textit{mindset} de liberdade e responsabilidade que incentiva o uso consciente, ao mesmo tempo que empodera individuais a dedicar quantidades adequadas de recursos computacionais para seus objetivos.
-%
-Podendo, em última instância, resultar na democratização do acesso a computação de alto desempenho e contribuir com a qualidade da produção acadêmica e profissional de instituições que anteriormente não teriam os recursos financeiros para justificar grandes aquisições de equipamentos computacionais.
+Desta forma o modelo proposto se mostra apropriado para cenários em que existe intermitência entre períodos de ociosidade e de necessidade por grande quantidade de recursos computacionais, podendo lidar tanto com execuções de curta duração, através da camada FaaS, quanto longas, utilizando o Orquestrador de Contêineres.
 
 
 
@@ -6193,26 +6199,26 @@ Podendo, em última instância, resultar na democratização do acesso a computa
 
 Neste capítulo foram apresentados os resultados da avaliação do modelo proposto, seja através de dados sintéticos em um estudo de custo--benefício, seja através da execução dos cenários definidos na metodologia de avaliação.
 %
-A análise destes resultados revela que, embora o modelo proposto esteja associado a uma perda de eficiência no processamento frente ao cenário ótimo de execução do jModelTest, sua adoção ainda é viável devido ao tratamento de recursos ociosos através das ações de elasticidade combinadas entre as duas camadas.
+A análise destes resultados revela que, embora o modelo proposto esteja associado a uma perda de eficiência no processamento frente ao cenário ótimo de execução do jModelTest, sua adoção ainda é viável devido ao tratamento de recursos ociosos por meio das ações de elasticidade combinadas entre as duas camadas.
 %
-Diferentemente do cenário base do jModelTest, o modelo proposto não necessita de recursos disponíveis em espera de requisições, evitando cobranças em momentos de ociosidade.
+Diferentemente do cenário base do jModelTest, o modelo proposto não necessita de recursos disponíveis enquanto espera por requisições, evitando cobranças em momentos de ociosidade.
 
 
 
 Durante a análise de custos por meio de dados simulados foi possível compreender o comportamento que emerge da combinação entre as duas camadas de elasticidade do modelo proposto.
 %
-Através de tabelas e gráficos fica evidente como se comporta a distribuição de custos entre as camadas conforme são ajustados seus parâmetros de funcionamento e suposições a respeito do cenário em execução.
+Através das tabelas e gráficos apresentados fica evidente como se comporta a distribuição de custos entre as camadas conforme são ajustados seus parâmetros de funcionamento e cenários em execução.
 %
-Esta análise conjunta foi acompanhada de análises individualizadas das camadas de elasticidade, demonstrando as características de cada uma e representando a manifestação de uma abordagem prática sobre os conceitos previamente mencionados a respeito das camadas de elasticidade.
+Esta análise conjunta foi acompanhada de análises individualizadas das camadas de elasticidade, demonstrando as características de cada uma e representando a manifestação de uma abordagem prática sobre os conceitos previamente estudados a respeito das camadas de \textit{Function as a Service} (FaaS) e de Orquestração de Contêineres.
 
 
-A avaliação dos cenários de base do jModelTest permitiu verificar seu comportamento a medida que é alterada a quantidade de recursos disponíveis.
+A avaliação dos cenários base do jModelTest permitiu verificar seu comportamento a medida que é alterada a quantidade de recursos disponíveis.
 %
-Estes dados são particularmente relevantes para estabelecer uma base sólida de resultados, abordando não apenas o tempo de execução como métricas de variabilidade, também.
+Estes dados são particularmente relevantes para estabelecer uma base sólida de resultados, abordando não apenas o tempo de execução como custo financeiro e métricas de variabilidade, também.
 %
 Além disso, os resultados indicam uma tendência de desperdício de recursos e ociosidade que se manifestam de maneira proporcional ao aumento de recursos computacionais disponíveis.
 %
-Através do estudo do projeto da aplicação em conjunto com este comportamento referente a eficiência é possível sugerir que a maior contribuição vem da estratégia de \textit{Clustering Search}, adotada para reduzir o tempo de processamento através de fases de execução que contemplam de 8 a 120 tarefas.
+Através de análise do código--fonte da aplicação em conjunto com o comportamento ineficiente observado é possível indicar que a maior contribuição vem da estratégia de \textit{Clustering Search}, adotada como heurística para evitar a busca exaustiva e que funciona através de fases de execução que contemplam de 8 a 120 tarefas paralelas em até seis etapas.
 
 
 % avaliação do helastic
