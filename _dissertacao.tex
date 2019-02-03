@@ -45,7 +45,8 @@
 % place this immediately after the \documentclass line to ensure that all fonts are checked for appropriate resources.
 \usepackage{cmap} % melhorar a busca e seleção de texto no pdf
 
-\usepackage[pass]{geometry}
+%\usepackage[pass]{geometry}
+\usepackage{changepage}
 
 \usepackage[utf8]{inputenc} % charset do texto (utf8, latin1, etc.)
 \usepackage[T1]{fontenc} % encoding da fonte (afeta a sep. de sílabas)
@@ -2166,16 +2167,17 @@ Contudo, acredita-se que os incentivos financeiros a adoção da elasticidade, a
 	
 	%config TWOSIDE
 	%\newgeometry{inner=2cm,centering,bindingoffset=0pt}
-	\newgeometry{textheight=108ex}
+	%\newgeometry{textheight=108ex}
 	\setlength{\oddsidemargin}{-8mm}
 	\setlength{\evensidemargin}{-8mm}
 	
 	
 	%padrão daqui pra baixo
 	
-	\clearpage	% Flush earlier floats
+	%\clearpage	% Flush earlier floats
+	
 	\scriptsize
-	\centering
+	%\centering
 	
 	\newlength{\atributowidth}
 	\setlength{\atributowidth}{4.5em}
@@ -2353,15 +2355,18 @@ Contudo, acredita-se que os incentivos financeiros a adoção da elasticidade, a
 		TipDate & \citetexto{Rambaut2000} &  &  &  &  &  &  \\*
 	\end{longtabu}
 
-	\restoregeometry
+	%\restoregeometry
+	\clearpage
 }
 %\relax
+%\restoregeometry
 
 
 
 %=======================================================================
 % Modelo Proposto
 %=======================================================================
+
 \chapter{Modelo {H\lowercase{e}}--lastic }
 \label{ch:modelo}
 
@@ -2420,18 +2425,6 @@ Por fim, a metodologia de avaliação é apresentada detalhando as estratégias 
 \label{sec:modelo-selecao}
 
 
-\begin{figure}[tb]
-	\centering%
-	\begin{minipage}{\defaultFigureWidth\textwidth}
-		\caption{Gráfico apresentando os projetos mais relevantes para esta pesquisa segundo o critério de que somados componham até 85\% do total de citações dentre os trabalhos encontrados na revisão de literatura.}
-		\label{fig:survey-topcitations}
-		\vspace{1ex}
-		\includegraphics[width=\textwidth]{survey-topcitations}
-		\fonte{Elaborado pelo autor.}
-	\end{minipage}
-\end{figure}
-
-
 Uma vez identificado o estado da arte no que diz respeito à intersecção das áreas de computação de alto desempenho e bioinformática, mais precisamente filogenética, foi verificada a existência de lacunas, detalhadas na \autoref{sec:lacunas-de-pesquisa}, quanto à técnicas computacionais modernas, como por exemplo: aceleração por GPUs, balanceamento de carga e o uso de recursos de computação em nuvem.
 Embora todas as lacunas encontradas sejam relevantes para o aumento da eficiência dos projetos de software, o modelo \textsf{He}--lastic estreita seu foco na questão da elasticidade de recursos computacionais.
 Desta forma, o presente trabalho objetiva modernizar projetos relevantes para a bioinformática, assim como, realizar ganhos de eficiência e possíveis reduções de custos, através do desenvolvimento de um modelo que seja capaz de validar a hipótese de que a computação em nuvem, através da elasticidade, pode fornecer os ganhos de eficiência e redução de custos.
@@ -2456,6 +2449,18 @@ onde seis projetos se destacam dos demais em função de sua popularidade:
 Dada a grande quantidade de trabalhos oriundos do levantamento bibliográfico, foi necessário recorrer a uma variação do princípio de Pareto\footnote{
 	O princípio de Pareto, \cite{ParetoPrinciple}, é uma famosa afirmação de que 80\% dos efeitos vêm de 20\% das causas. Este princípio é muito observado em empresas como uma estratégia para priorizar os esforços de maneira a obter os maiores retornos.
 } visando reduzir a lista para contemplar somente os trabalhos mais citados e que em conjunto acumulam 85\% das citações totais, descartando a cauda longa, ou seja, trabalhos de baixa relevância bibliográfica.
+
+
+\begin{figure}[tb]
+\centering%
+\begin{minipage}{\defaultFigureWidth\textwidth}
+	\caption{Gráfico apresentando os projetos mais relevantes para esta pesquisa segundo o critério de que somados componham até 85\% do total de citações dentre os trabalhos encontrados na revisão de literatura.}
+	\label{fig:survey-topcitations}
+	\vspace{1ex}
+	\includegraphics[width=\textwidth]{survey-topcitations}
+	\fonte{Elaborado pelo autor.}
+\end{minipage}
+\end{figure}
 
 
 A aplicação desta estratégia resultou na seleção dos vinte primeiros trabalhos ordenados de acordo com o número de citações, e pode ser vista na \autoref{fig:survey-topcitations}.
@@ -2598,7 +2603,7 @@ Esta tarefa é altamente receptiva ao paralelismo, uma vez que, cada sistema pod
 Contudo, apesar da aparente simplicidade da tarefa, um fator relevante no esforço computacional é a complexidade do sistema de substituição molecular.
 Conforme abordado na \autoref{sec:modelos-de-substituicao}, nem todos os sistemas são criados iguais, com a complexidade aumentando progressivamente ao longo dos anos e acompanhando a profundidade do conhecimento acerca dos processos evolutivos.
 Desta forma seria intuitivo pensar que deve sempre utilizar-se o sistema mais complexo possível, uma vez que este será capaz de melhor se adaptar aos dados encontrados. 
-No entanto, este não é o caso, pois como afirma \citetexto{Zwickl2006}, além de exigir maior esforço computacional, um sistema muito complexo está mais vulnerável ao risco de atribuir grande importância a algum tipo de ruído aleatório presente nos dados.
+No entanto, este não é o caso, pois como afirma \citetexto{Zwickl2006}, além de exigir maior esforço computacional, um sistema muito complexo está mais vulnerável ao risco de atribuir grande importância a algum tipo de ruído aleatório presente nos dados, o que pode levar a conclusões equivocadas.
 
 
 Para combater estes riscos é comum que critérios de seleção de sistemas, como os critérios de informação de Akaike \cite{Akaike1974} e Bayesianos \cite{Schwarz1978}, penalizem a complexidade dos sistemas durante a escolha do \textit{best--fit} \cite{yang2014molecular}.
@@ -4666,6 +4671,7 @@ Os dados contidos na \autoref{tab:results-jmodel-samples} apresentam os resultad
 Para obter a quantidade de chamadas à ferramenta PhyML basta multiplicar os dados da \autoref{tab:results-jmodel-samples} pela \autoref{tab:metodologia-etapas-dataset}, mais especificamente a quantidade de sistemas de substituição molecular contemplados por arquivo quando é seguida a estratégia de \textit{Clustering Search}, resultando em aproximadamente 250 mil (249.184) execuções por arquivo--sistema--cenário.
 
 
+
 A respeito da quantidade de amostras cabe ressaltar que a variação no número de coletas do cenário $C_{j8}$ se deu em função de uma limitação do provedor AWS onde inicialmente a conta de usuário utilizada para os testes não tinha acesso à recursos computacionais da família \texttt{c5}, de última geração, de forma que, na época, a estratégia adotada foi prosseguir com os testes utilizando recursos da família \texttt{c4}, da geração anterior.
 %
 O impacto destas restrições estabelecidas pelo provedor AWS também se manifesta na pequena redução da quantidade de execuções para o arquivo 12-stamatakis-59 que alocava todas as VMs disponíveis por longos períodos de tempo, principalmente nos cenários com menos recursos como $C_{j2}$ e $C_{j4}$, afetando a execução dos demais cenários.
@@ -4692,45 +4698,49 @@ diagonal imaginária que abrange os dados de arquivo e cenário: \{03--$C_{j2}$,
 
 
 \afterpage{
-	\clearpage
 	\begin{landscape}
-		\begin{table}
-			%\centering%
-			\begin{minipage}{\linewidth}
+		%\begin{minipage}{1.1\linewidth}
+		\addtolength{\topmargin}{2em}
+			\begin{table}
+				\begin{minipage}{1.1\linewidth}
 				\caption{Média e Mediana dos tempos de execução observados no jModelTest por arquivo e cenário de avaliação.}
 				\label{tab:results-jmodel-avgs}
 				\vspace{0.75ex}
-				%\small
 				\renewcommand\arraystretch{1.35}
-				\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrcrrcrrcrrcrr@{}}
-					\toprule
-					\multicolumn{1}{c}{\multirow[b]{3}{*}{Arquivo}} & \multicolumn{14}{c}{Cenário / vCPUs} \\ \cmidrule(l){2-15} 
-					& \multicolumn{2}{c}{$C_{j2}$} &  & \multicolumn{2}{c}{$C_{j4}$} &  & \multicolumn{2}{c}{$C_{j8}$} &  & \multicolumn{2}{c}{$C_{j16}$} &  & \multicolumn{2}{c}{$C_{j36}$} \\ 
-					\cmidrule(lr){2-3} \cmidrule(lr){5-6} \cmidrule(lr){8-9} \cmidrule(lr){11-12} \cmidrule(l){14-15} 
-					& \multicolumn{1}{c}{Média} & \multicolumn{1}{c}{Mediana} &  & \multicolumn{1}{c}{Média} & \multicolumn{1}{c}{Mediana} &  & \multicolumn{1}{c}{Média} & \multicolumn{1}{c}{Mediana} &  & \multicolumn{1}{c}{Média} & \multicolumn{1}{c}{Mediana} &  & \multicolumn{1}{c}{Média} & \multicolumn{1}{c}{Mediana} \\ 
-					\midrule
-					01-aP6 & 0:00:40 & 0:00:40 &  & 0:00:20 & 0:00:21 &  & 0:00:11 & 0:00:11 &  & 0:00:06 & 0:00:06 &  & 0:00:04 & 0:00:04 \\
-					02-rodents & 0:03:19 & 0:03:20 &  & 0:01:40 & 0:01:41 &  & 0:00:54 & 0:00:57 &  & 0:00:29 & 0:00:29 &  & 0:00:17 & 0:00:17 \\
-					03-example & 0:04:41 & 0:04:42 &  & 0:02:22 & 0:02:23 &  & 0:01:19 & 0:01:22 &  & 0:00:44 & 0:00:45 &  & 0:00:26 & 0:00:27 \\
-					04-18S\_insects2 & 0:04:51 & 0:04:52 &  & 0:02:26 & 0:02:27 &  & 0:01:18 & 0:01:23 &  & 0:00:40 & 0:00:41 &  & 0:00:22 & 0:00:22 \\
-					05-HIVpol.groupM & 0:11:58 & 0:11:58 &  & 0:06:09 & 0:06:10 &  & 0:03:22 & 0:03:34 &  & 0:01:55 & 0:01:55 &  & 0:01:11 & 0:01:11 \\
-					06-Hex\_EF1a & 0:20:11 & 0:20:12 &  & 0:10:14 & 0:10:16 &  & 0:05:27 & 0:05:45 &  & 0:03:05 & 0:03:05 &  & 0:01:45 & 0:01:44 \\
-					07-primate-mtDNA & 0:24:22 & 0:24:23 &  & 0:12:25 & 0:12:26 &  & 0:06:45 & 0:07:07 &  & 0:04:00 & 0:04:01 &  & 0:02:37 & 0:02:37 \\
-					08-HIV\_vpu.ref2 & 0:45:39 & 0:45:38 &  & 0:22:52 & 0:22:56 &  & 0:11:58 & 0:12:39 &  & 0:06:40 & 0:06:41 &  & 0:03:52 & 0:03:52 \\
-					09-gusanos16S.mafft & 1:44:53 & 1:44:52 &  & 0:52:49 & 0:53:06 &  & 0:28:08 & 0:29:46 &  & 0:15:46 & 0:15:47 &  & 0:10:24 & 0:10:24 \\
-					10-Birds & 2:11:57 & 2:11:50 &  & 1:07:22 & 1:07:34 &  & 0:36:00 & 0:37:38 &  & 0:20:53 & 0:20:53 &  & 0:12:27 & 0:12:28 \\
-					11-gusanosCOI.mafft & 2:58:59 & 2:58:49 &  & 1:30:39 & 1:31:03 &  & 0:47:51 & 0:50:14 &  & 0:27:21 & 0:27:22 &  & 0:16:15 & 0:16:15 \\
-					12-stamatakis-59 & 14:52:32 & 14:51:54 &  & 7:28:55 & 7:30:39 &  & 4:02:50 & 4:15:20 &  & 2:19:25 & 2:19:30 &  & 1:23:40 & 1:23:34 \\
-					\bottomrule
+				\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrrrrrrrr@{}}
+\toprule
+\multicolumn{1}{c}{\multirow{3}{*}{Arquivo}} & \multicolumn{10}{c}{Cenário / vCPUs} \\ 
+\cmidrule{2-11} 
+\multicolumn{1}{c}{} & \multicolumn{2}{c}{$C_{j2}$} & \multicolumn{2}{c}{$C_{j4}$} & \multicolumn{2}{c}{$C_{j8}$} & \multicolumn{2}{c}{$C_{j16}$} & \multicolumn{2}{c}{$C_{j36}$} \\
+\cmidrule(r){2-3}
+\cmidrule(lr){4-5}
+\cmidrule(lr){6-7}
+\cmidrule(lr){8-9}
+\cmidrule(l){10-11}
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{Média} & \multicolumn{1}{c}{Mediana} & \multicolumn{1}{c}{Média} & \multicolumn{1}{c}{Mediana} & \multicolumn{1}{c}{Média} & \multicolumn{1}{c}{Mediana} & \multicolumn{1}{c}{Média} & \multicolumn{1}{c}{Mediana} & \multicolumn{1}{c}{Média} & \multicolumn{1}{c}{Mediana} \\ 
+\midrule
+01-aP6 & 0:00:40 & 0:00:40 & 0:00:20 & 0:00:21 & 0:00:11 & 0:00:11 & 0:00:06 & 0:00:06 & 0:00:04 & 0:00:04 \\
+02-rodents & 0:03:19 & 0:03:20 & 0:01:40 & 0:01:41 & 0:00:54 & 0:00:57 & 0:00:29 & 0:00:29 & 0:00:17 & 0:00:17 \\
+03-example & 0:04:41 & 0:04:42 & 0:02:22 & 0:02:23 & 0:01:19 & 0:01:22 & 0:00:44 & 0:00:45 & 0:00:26 & 0:00:27 \\
+04-18S\_insects2 & 0:04:51 & 0:04:52 & 0:02:26 & 0:02:27 & 0:01:18 & 0:01:23 & 0:00:40 & 0:00:41 & 0:00:22 & 0:00:22 \\
+05-HIVpol.groupM & 0:11:58 & 0:11:58 & 0:06:09 & 0:06:10 & 0:03:22 & 0:03:34 & 0:01:55 & 0:01:55 & 0:01:11 & 0:01:11 \\
+06-Hex\_EF1a & 0:20:11 & 0:20:12 & 0:10:14 & 0:10:16 & 0:05:27 & 0:05:45 & 0:03:05 & 0:03:05 & 0:01:45 & 0:01:44 \\
+07-primate-mtDNA & 0:24:22 & 0:24:23 & 0:12:25 & 0:12:26 & 0:06:45 & 0:07:07 & 0:04:00 & 0:04:01 & 0:02:37 & 0:02:37 \\
+08-HIV\_vpu.ref2 & 0:45:39 & 0:45:38 & 0:22:52 & 0:22:56 & 0:11:58 & 0:12:39 & 0:06:40 & 0:06:41 & 0:03:52 & 0:03:52 \\
+09-gusanos16S.mafft & 1:44:53 & 1:44:52 & 0:52:49 & 0:53:06 & 0:28:08 & 0:29:46 & 0:15:46 & 0:15:47 & 0:10:24 & 0:10:24 \\
+10-Birds & 2:11:57 & 2:11:50 & 1:07:22 & 1:07:34 & 0:36:00 & 0:37:38 & 0:20:53 & 0:20:53 & 0:12:27 & 0:12:28 \\
+11-gusanosCOI.mafft & 2:58:59 & 2:58:49 & 1:30:39 & 1:31:03 & 0:47:51 & 0:50:14 & 0:27:21 & 0:27:22 & 0:16:15 & 0:16:15 \\
+12-stamatakis-59 & 14:52:32 & 14:51:54 & 7:28:55 & 7:30:39 & 4:02:50 & 4:15:20 & 2:19:25 & 2:19:30 & 1:23:40 & 1:23:34 \\ 
+\bottomrule
 				\end{tabular*}
 				\tabelafootnote{{*}~Valores apresentados em formato hh:mm:ss.}
 				\fonte{Elaborado pelo autor.}
 			\end{minipage}
 		\end{table}
 		
-		\begin{figure}[bt]
+		\begin{figure}
 			\centering%
-			\begin{minipage}{\linewidth}
+			\begin{minipage}{1.1\linewidth}
 				\caption{Representação gráfica da \autoref{tab:results-jmodel-avgs} mostrando os tempos de execução por arquivo e cenário conforme a mediana.}
 				\label{fig:results-jmodel-avgs}
 				\vspace{1ex}
@@ -5049,19 +5059,19 @@ Os pontos de maior concentração no número de amostras coletadas indicam área
 
 
 \afterpage{
-	\clearpage
 	\begin{landscape}
-		\begin{table}[tbp]
+		%\begin{minipage}{1.1\linewidth}
+		\addtolength{\topmargin}{2em}
+		\begin{table}
 			\centering%
-			\begin{minipage}{\linewidth}
+			\begin{minipage}{1.1\linewidth}
 				\caption{Mediana dos tempos de execução observados no modelo \textsf{He}--lastic por arquivo e cenário de avaliação.}
 				\label{tab:results-modelo-avgs}
 				\vspace{0.75ex}
-				\small
 				\renewcommand\arraystretch{1.35}
 				\begin{tabularx}{\textwidth}{@{\extracolsep{\fill}}lWWWWWWWWWWW@{}}
 					\toprule
-					\multirow{3}{*}{Arquivo} & \multicolumn{11}{c}{Tempo de Execução (Mediana) / Cenário} \\ \cmidrule(l){2-12} 
+					\multirow{3}{*}{Arquivo} & \multicolumn{11}{c}{Cenários} \\ \cmidrule(l){2-12} 
 					& \multicolumn{1}{c}{FaaS} & \multicolumn{3}{c}{Contêineres} & \multicolumn{7}{c}{Misto} \\ 
 					\cmidrule(lr){2-2}
 					\cmidrule(lr){3-5}
@@ -5585,15 +5595,16 @@ A falta de modelos formais que sejam capazes de representar este comportamento d
 
 
 \afterpage{
-	\clearpage
 	\begin{landscape}
+		%\begin{minipage}{1.1\linewidth}
+		\addtolength{\topmargin}{2em}
 		\begin{table}
 			\centering%
-			\begin{minipage}{\linewidth}
+			\begin{minipage}{1.1\linewidth}
 				\caption{Diferenças nos tempos de execução entre os cenários de avaliação do modelo \textsf{He}--lastic com FaaS e Orquestração de Contêineres versus os cenários do jModelTest, com os melhores e piores resultados destacados em verde e vermelho, respectivamente.}
 				\label{tab:results-modelo-mixed}
 				\vspace{0.75ex}
-				\footnotesize
+				%\footnotesize
 				%\small
 				%\renewcommand\arraystretch{1.2}
 		\begin{tabularx}{\linewidth}{@{\extracolsep{\fill}}lrrrrrrrrrrrrrr@{}}
@@ -5631,7 +5642,7 @@ A falta de modelos formais que sejam capazes de representar este comportamento d
 
 \begin{figure}[p]
 	\centering%
-	\begin{minipage}{.9\paperheight}
+	\begin{minipage}{1.13\linewidth}
 		\caption{Mapa de calor da diferença nos tempos de execução entre os cenários de avaliação do modelo \textsf{He}--lastic com FaaS e Orquestração\\ de Contêineres versus os cenários do jModelTest, onde cores mais fortes representam maiores diferenças.}
 		\label{fig:results-modelo-mixed}
 		% esq | baixo | dir | alto
@@ -5861,15 +5872,15 @@ O indicador de CPUs, presente na tabela, representa, em contraste com o parâmet
 \afterpage{
 	\clearpage
 	\begin{landscape}
+		%\begin{minipage}{1.1\linewidth}
+		\addtolength{\topmargin}{2em}
 		\begin{table}
 			\centering%
-			\begin{minipage}{\linewidth}
+			\begin{minipage}{1.1\linewidth}
 				\caption{Resultados de performance e custo financeiro das avaliações dos cenários do modelo \textsf{He}--lastic para cada arquivo do \textit{dataset}, contemplando apenas FaaS ($C_{f0}$), apenas Orquestrador de Contêineres ($C_{c36}$) e os cenários Mistos com melhor desempenho ($C_{m1}$, $C_{m2}$ e $C_{m4}$).}
 				\label{tab:results-custos-modelo}
 				\vspace{0.75ex}
-				%\scriptsize
-				\footnotesize
-				%\small
+				\small
 				\renewcommand\arraystretch{1.4}
 				\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrrrrrrrrrrrrrrrr@{}}
 					\toprule
@@ -5907,13 +5918,10 @@ O indicador de CPUs, presente na tabela, representa, em contraste com o parâmet
 		
 		\begin{table}
 			\centering%
-			\begin{minipage}{\linewidth}
+			\begin{minipage}{1.1\linewidth}
 				\caption{Resultados de performance e custo financeiro das avaliações dos cenários do jModelTest por arquivo do \textit{dataset}.}
 				\label{tab:results-custos-jmodeltest}
 				\vspace{0.75ex}
-				%\scriptsize
-				%\footnotesize
-				%\small
 				\renewcommand\arraystretch{1.4}
 				\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrrrrrrrr@{}}
 					\toprule
