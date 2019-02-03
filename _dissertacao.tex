@@ -45,8 +45,6 @@
 % place this immediately after the \documentclass line to ensure that all fonts are checked for appropriate resources.
 \usepackage{cmap} % melhorar a busca e seleção de texto no pdf
 
-%\usepackage[pass]{geometry}
-\usepackage{changepage}
 
 \usepackage[utf8]{inputenc} % charset do texto (utf8, latin1, etc.)
 \usepackage[T1]{fontenc} % encoding da fonte (afeta a sep. de sílabas)
@@ -306,16 +304,16 @@ Aplicada da Universidade do Vale do Rio dos Sinos --- UNISINOS
 %taxonomia
 
 % == problema & motivação
-Atualmente são escassos os exemplos de áreas do conhecimento que não se beneficiam de recursos tecnológicos para aumentar a produtividade .
+Atualmente são escassos os exemplos de áreas do conhecimento que não se beneficiam de recursos tecnológicos para aumentar a produtividade.
 Também figurando como uma das beneficiadas por esta tendência, a bioinformática, que surge da união entre biologia, ciência da computação e medicina, estabeleceu técnicas, algoritmos e bases de dados que se tornaram fundamentais para o execício da pesquisa, seja no âmbito acadêmico ou profissional.
 Avanços recentes como as tecnologias de Sequenciamento genético de Próxima Geração (NGS) trouxeram abundância de dados para a bioinformática e a filogenética, que foca no estudo das relações genealógicas entre organismos, aumentando a qualidade dos estudos outrora limitados apenas a observações manuais.
 % == objetivos
-Com o objetivo de aumentar o conhecimento sobre bioinformática e filogenética, de especial relevância para o projeto contemplado pela FAPERGS em colaboração com o laboratório de Biologia da UNISINOS, buscamos realizar um mapeamento do estado da arte através de uma revisão da literatura que contribuiu para a elaboração de uma taxonomia capaz de classificar os projetos de software encontrados em termos de suas categorias, métodos e finalidades.
-Concluímos com base na bibliografia que, contrastando com os recentes avanços na filogenética, os projetos de software estão tecnologicamente defasados, demandando investimentos em modernização principalmente no que diz respeito a aplicação de técnicas mais recentes como elasticidade de recursos, balanceamento de carga e aceleração por GPUs.
-Nossa principal contribuição se dá através do modelo \textsf{He}--lastic onde propomos uma abordagem de otimização para o projeto jModelTest que contempla o uso de elasticidade de recursos em um ambiente de computação em nuvem, resultando em uma arquitetura de elasticidade em duas camadas, baseada nas tecnologias de FaaS e Orquestração de Contêineres e que tem por objetivo absorver, na primeira camada, as tarefas de curta duração, deixando as demais para a segunda camada de elasticidade.
+Com o objetivo de aumentar o conhecimento sobre bioinformática e filogenética, de especial relevância para o projeto contemplado pela FAPERGS em colaboração com o laboratório de Biologia da UNISINOS, foi realizado um mapeamento do estado da arte através de uma revisão da literatura que contribuiu para a elaboração de uma taxonomia capaz de classificar os projetos de software encontrados em termos de suas categorias, métodos e finalidades.
+É possível concluir com base na bibliografia, que contrastando com os recentes avanços na filogenética, os projetos de software estão tecnologicamente defasados, demandando investimentos em modernização principalmente no que diz respeito a aplicação de técnicas mais recentes como elasticidade de recursos, balanceamento de carga e aceleração por GPUs.
+Nossa principal contribuição se dá através do modelo \textsf{He}--lastic onde foi proposta uma abordagem de otimização para o projeto jModelTest que contempla o uso de elasticidade de recursos em um ambiente de computação em nuvem, resultando em uma arquitetura de elasticidade em duas camadas, baseada nas tecnologias de FaaS e Orquestração de Contêineres e que tem por objetivo absorver, na primeira camada, as tarefas de curta duração, deixando as demais para a segunda camada de elasticidade.
 %todo: resultados
 % == futuro
-Seguindo adiante buscamos futuramente aprimorar a taxonomia e, principalmente, implementar o modelo proposto através de um protótipo, utilizando-o na avaliação dos cenários propostos neste trabalho e objetivando uma análise comparativa com o estado atual do projeto jModelTest sob a luz de critérios como a eficiência computacional e econômica da nossa proposta.
+Desta forma, futuros esforços devem concentrar-se em aprimorar a taxonomia e, principalmente, implementar o modelo proposto através de um protótipo, utilizando-o na avaliação dos cenários propostos neste trabalho e objetivando uma análise comparativa com o estado atual do projeto jModelTest sob a luz de critérios como a eficiência computacional e econômica da proposta.
 
 
 \end{abstract}
@@ -463,8 +461,8 @@ Eventualmente equipamentos de informática passaram a dividir espaço com micros
 
 Atualmente são escassos os exemplos de áreas do conhecimento que não se beneficiam de recursos tecnológicos para aumentar a produtividade \cite{Denning2009}.
 Não é diferente com a biologia que, através da união de esforços com a medicina e a informática criou uma área específica de estudo, a bioinformática.
-Através desta colaboração surgiram algoritmos e bases de dados que se mostram, hoje em dia, fundamentais para o exercício da pesquisa, seja ela acadêmica ou profissional \cite{NCBI-Handbook}.
-Projetos como o de mapeamento do genoma humano \cite{Venter2001}, inciado em 1990 com o apoio de múltiplos países, impulsionaram a colaboração entre estas áreas, garantindo avanços significativos nos seus respectivos domínios do conhecimento.
+Através desta colaboração surgiram algoritmos e bases de dados que se mostram fundamentais para o exercício da pesquisa, seja ela acadêmica ou profissional \cite{NCBI-Handbook}.
+Projetos como o de mapeamento do genoma humano \cite{Venter2001}, inciado em 1990 com o apoio de múltiplos países, impulsionaram a colaboração entre estas áreas, garantindo avanços notáveis nos seus respectivos domínios do conhecimento.
 
 
 Embora os avanços tenham sido significativos e amplamente variados, o acesso crescente a tecnologias como as de mapeamento genético aumentou o volume de dados gerado a partir de estudos biológicos, antes limitados a observações manuais \cite{book:2119998}.
@@ -498,8 +496,8 @@ O advento das tecnologias chamadas de NGS, (\textit{Next Generation Sequencing})
 
 %	> atraso na computação e elasticidade
 
-Apesar dos avanços no que diz respeito a obtenção de material genético, quando tratando-se de aspectos computacionais foi identificada, através de um extensivo levantamento bibliográfico (\autoref{sec:analise-estadodaarte}), uma lacuna tecnológica que se torna evidente quando investigamos na intersecção entre filogenética e técnicas computacionais como computação distribuída, aceleração por GPU, o uso de elasticidade de recursos e técnicas de balanceamento de carga.
-Especulamos que tal situação tenha advindo do fato de que os algoritmos e métodos da filogenética são considerados maduros e bem definidos, enquanto as técnicas computacionais mencionadas se popularizaram anos depois.
+Apesar dos avanços no que diz respeito a obtenção de material genético, quando tratando-se de aspectos computacionais foi identificada, através de um extensivo levantamento bibliográfico (\autoref{sec:analise-estadodaarte}), uma lacuna tecnológica que se torna evidente quando é investigada a intersecção entre filogenética e técnicas computacionais como computação distribuída, aceleração por GPU, o uso de elasticidade de recursos e técnicas de balanceamento de carga.
+Especula-se que tal situação tenha advindo do fato de que os algoritmos e métodos da filogenética são considerados maduros e bem definidos, enquanto as técnicas computacionais mencionadas se popularizaram anos depois.
 Esta situação é especialmente notória no que diz respeito ao uso de computação em nuvem e, mais especificamente, na elasticidade de recursos.
 \citetexto{Jonas2017} corroboram com esta hipótese ao postular que grande parte dos projetos de software para aplicações científicas e de análise não foi escrito por cientistas da computação e que este grupo foi deixado de fora da revolução que se tornou a computação em nuvem.
 
@@ -522,7 +520,7 @@ Em última instância estes fatores combinados têm potencial para contribuir em
 
 \section{Questão de Pesquisa} %modelo... o que te move?!
 
-
+%TODO: reescrever essa bosta
 Instigado pelos motivos citados embarcamos nesta jornada buscando aplicar nossos conhecimentos no campo da elasticidade pela computação em nuvem aos projetos da filogenética, definindo do seguinte modo nossa questão de pesquisa:
 
 
@@ -542,7 +540,7 @@ Para viabilizar a resposta à esta pergunta se torna necessário esclarecer os e
 	
 	\item \textbf{Elasticidade:} apresentada por meio da fundamentação teórica na \autoref{sec:computacao};
 	
-	\item \textbf{Adequação de Sistemas:} através de uma análise comparativa (\autoref{sec:analise-estadodaarte}) foi encontrada uma quantidade significativa de projetos e delineamos as lacunas de pesquisa (\autoref{sec:lacunas-de-pesquisa}) para, finalmente, escolher uma aplicação candidata para o desenvolvimento (\autoref{sec:modelo-selecao});
+	\item \textbf{Adequação de Sistemas:} através de uma análise comparativa (\autoref{sec:analise-estadodaarte}) foi encontrada uma quantidade significativa de projetos e delineadas as lacunas de pesquisa (\autoref{sec:lacunas-de-pesquisa}) para, finalmente, escolher uma aplicação candidata para o desenvolvimento (\autoref{sec:modelo-selecao});
 	
 	\item \textbf{Filogenética:} também apresentada por meio da fundamentação teórica na \autoref{sec:bioinformatica};
 	
@@ -557,12 +555,12 @@ Para viabilizar a resposta à esta pergunta se torna necessário esclarecer os e
 %O objetivo geral para esse trabalho é propor um modelo computacional para a triagem, monitoramento de pacientes e alerta precoce que visa apoiar a equipe de saúde e interagir com os pacientes do departamento de emergência de hospitais, utilizando os protocolos de deterioração de sinais vitais em conjunto com os protocolos de triagem.
 
 
-Conhecendo as motivações e a questão de pesquisa no âmbito deste trabalho, podemos estabelecer que seu objetivo geral é:
+Conhecendo as motivações e a questão de pesquisa no âmbito deste trabalho, é possível estabelecer que seu objetivo geral é:
 \begin{quote}
 	\large
 	propor um modelo computacional que empregue a elasticidade de recursos oriunda da computação em nuvem para aumentar a eficiência computacional e econômica no problema do teste de adequação de sistemas de substituição de sequências moleculares no contexto da filogenética.
 \end{quote}
-Contudo, visando detalhar este objetivo, assim como seus requisitos e resultados esperados, devemos dividi-lo em termos dos seus componentes, ou seja, os objetivos específicos desta pesquisa, sendo eles:
+Contudo, visando detalhar este objetivo, assim como seus requisitos e resultados esperados, é necessário dividi-lo em termos dos seus componentes, ou seja, os objetivos específicos desta pesquisa, sendo eles:
 
 
 \begin{enumerate}[label=Objetivo~\arabic*:~,itemindent=*]
@@ -1283,11 +1281,11 @@ Portanto, é fundamental que a escolha de um sistema de substituição para aná
 
 
 Com o objetivo de impulsionar a pesquisa e fornecer respostas para os cada vez mais complexos problemas de variados campos do conhecimento, os supercomputadores e clusters estão na vanguarda dos projetos computacionais.
-Inicialmente projetados com hardware e software específico, como era o caso dos Cray, na década de 60, ao longo dos anos os sistemas de computação de alto desempenho foram convergindo em suas tecnologias e definindo tendências nesse sentido.
+Inicialmente projetados com hardware e software específico, como era o caso dos computadores Cray na década de 60, ao longo dos anos os sistemas de computação de alto desempenho foram convergindo em suas tecnologias e definindo tendências nesse sentido.
 Recentemente, o design de supercomputadores e sistemas de alto desempenho tem sido dominado, do ponto de vista de hardware, por componentes ``de prateleira'', ou seja, disponíveis para usuários finais, e por um aumento no paralelismo através de processadores com múltiplos cores e GPUs.
 
 
-Embora este tipo de sistema esteja, classicamente, restrito a centros de pesquisa e universidades com grandes orçamentos, os aprendizados obtidos na construção e operação de supercomputadores têm sido compartilhados com a comunidade em geral através de métodos e algoritmos publicados em revistas científicas.
+Embora este tipo de sistema esteja, classicamente, restrito a centros de pesquisa e universidades com grandes orçamentos, os aprendizados obtidos na construção e operação de supercomputadores têm sido compartilhados com a comunidade através de métodos e algoritmos publicados em revistas científicas.
 Tais ensinamentos eventualmente alcançam o público em geral e passam, conforme sua utilidade, a se tornar parte da rotina do desenvolvedor de software.
 \textit{Clusters} caseiros e a computação em nuvem, conforme veremos a seguir, contribuem para expandir o acesso a um alto poder computacional que deve ser explorado através de técnicas eficientes e já testadas, como as oriundas da computação de alto desempenho.
 
@@ -1304,7 +1302,7 @@ Acessando serviços remotos através da Internet, a computação em nuvem permit
 
 A elasticidade se posiciona como a principal mudança ocasionada pela computação em nuvem do ponto de vista da computação de alto desempenho, possibilitando o projeto de sistemas que se ajustam conforme a demanda, uma vez que adicionar e remover recursos é uma das funcionalidades oferecidas pelos provedores na forma de uma chamada de função e realizada em questão de minutos.
 Esta capacidade de auto serviço via Interfaces de Programaçao de Aplicações (APIs) torna possível a criação e composição de inovadoras soluções computacionais, onde uma aplicação pode alocar e desalocar os recursos necessários para executar determinada tarefa apenas enquanto ela está sendo executada.
-Um exemplo deste cenário ocorre no uso de aceleradores gráficos disponibilizados pelos grandes provedores de computação em nuvem na forma de \textit{add--ons} que podem ser atachados a uma máquina virtual (VM) mesmo depois que ela já esteja em uso, desafiando a noção clássica de que um computador contempla um conjunto fixo de recursos definidos em tempo de montagem e \textit{boot} do sistema operacional.
+Um exemplo deste cenário ocorre na utilização de aceleradores gráficos disponibilizados pelos grandes provedores de computação em nuvem na forma de \textit{add--ons} que podem ser atachados a uma máquina virtual (VM) mesmo depois que ela já esteja em uso, desafiando a noção clássica de que um computador contempla um conjunto fixo de recursos definidos em tempo de montagem e \textit{boot} do sistema operacional.
 O desafio, portanto, passa a ser qual é a melhor maneira de tirar proveito destas capacidades, uma vez que são possíveis do ponto de vista técnico, alinhando interesses técnicos e econômicos em busca de projetos de software que possam se moldar conforme o uso.
 
 
@@ -1407,6 +1405,8 @@ Empresas não precisam mais investir grandes capitais em hardware e infraestrutu
 \end{inparaenum}
 
 
+%TODO: tentar melhorar o underflow
+
 Por ser relativamente jovem e uma combinação entre tecnologias, a obtenção de uma definição amplamente aceita para a computação em nuvem foi um desafio, pois cada autor favorece as características que mais lhe convém.
 No entanto a elasticidade e o modelo de custos são consenso, formando a base para que o \textit{National Institute of Standards and Technology} (NIST)\footnote{
 	Instituto Nacional de Padrões e Tecnologia, uma agência governamental americana.
@@ -1478,7 +1478,7 @@ Tomando por base as classificações realizadas por \citetexto{Coutinho2015}, \c
 \end{itemize}
 
 
-A precificação dinâmica, um subproduto do uso elástico de recursos computacionais, possibilita a criação de mercados que negociam a capacidade ociosa dos provedores de nuvem (\textit{spot market}) a um preço mais vantajoso, sendo desejável para uma ampla categoria de aplicações científicas e comerciais.
+A precificação dinâmica, um subproduto do uso elástico de recursos computacionais, possibilita a criação de mercados que negociam a capacidade ociosa dos provedores de nuvem (\textit{spot market}) a um preço mais atrativo, sendo desejável para uma ampla categoria de aplicações científicas e comerciais.
 Contudo, esta possibilidade deixa de ser utilizada por tornar ainda mais complexo o cálculo de retorno no investimento em um ambiente de nuvem e porque aplicações não estão preparadas para lidar com a preempção de recursos (que ocorre quando há exaustão da capacidade ociosa) \cite{Jonas2017}.
 Neste momento, o corpo de conhecimento da computação paralela e distribuída se torna um aliado, uma vez que um dos requisitos para a elasticidade é uma boa escalabilidade, ou seja, a capacidade de uma aplicação manter sua eficiência e aumentar o consumo de recursos proporcionalmente ao tamanho do processamento \cite{Galante2012,HennessyPatterson2013}.
 Por fim fornece, também, estratégias para recuperação (\textit{self--healing}) e alta disponibilidade.
@@ -1747,9 +1747,9 @@ No meio acadêmico, os trabalhos de \citetexto{Jonas2017} e \citetexto{Shankar20
 %Baseado nesses conceitos, esse capítulo apresenta um mapeamento sistemático de literatura cujo objetivo foi encontrar trabalhos relacionados que aplicam a Internet das coisas durante o processo de triagem de pacientes no departamento de emergência de hospitais. Sendo assim, foi possível encontrar 16 modelos voltados ao assunto de interesse. Esses artigos foram localizados através de uma técnica de mapeamento sistemático de literatura, que será descrita na primeira seção; a segunda seção traz uma análise comparativa entre os modelos encontrados; e, por fim, na terceira seção desse capítulo, são expostas as lacunas de pesquisa encontradas.
 
 
-Neste capítulo apresenta-se um levantamento da literatura para a compreensão do estado da arte, apresentando trabalhos relacionados assim como suas contribuições para a área de bioinformática aplicada à filogenética e a computação de alto desempenho.
+Neste capítulo é apresentado um levantamento da literatura para a compreensão do estado da arte, apresentando trabalhos relacionados assim como suas contribuições para a área de bioinformática aplicada à filogenética e a computação de alto desempenho.
 %
-Apresenta-se também a estratégia aplicada no levantamento da literatura, as motivações e as justificativas para a estratégia escolhida. Além de delinear as fontes utilizadas e as questões de pesquisa, destacando as palavras--chaves empregadas e os critérios utilizados para inclusão dos resultados.
+Demonstra-se também a estratégia aplicada no levantamento da literatura, as motivações e as justificativas para a estratégia escolhida. Além de delinear as fontes utilizadas e as questões de pesquisa, destacando as palavras--chaves empregadas e os critérios utilizados para inclusão dos resultados.
 
 
 Em seguida, elaborou-se uma taxonomia para melhor categorizar e classificar os trabalhos encontrados neste levantamento, para então, realizar uma análise comparativa entre eles e um comparativo estatístico. É de fundamental interesse avaliar os trabalhos em termos do emprego de técnicas de computação de alto desempenho, resultando na \autoref{tab:survey-comparativo}, que apresenta uma visão consolidada dos trabalhos enquanto categorizados pela taxonomia e avaliados em termos das técnicas de computação de alto desempenho.
@@ -1959,7 +1959,7 @@ Adicionalmente, as pesquisas realizadas durante o levantamento bibliográfico n�
 
 
 No entanto, ao invés de construir uma taxonomia teórica e então aplicá--la na classificação de projetos existentes, foi adotada uma abordagem prática: construção  da taxonomia com base nos resultados obtidos através do levantamento bibliográfico e, assim como~\cite{Perera2013}, identificando características, técnicas, funcionalidades ou abordagens empregadas pelos projetos de software contemplados no levantamento.
-Tal abordagem é relevante uma vez que, para o melhor do conhecimento do autor, não foram encontradas nenhuma outra taxonomia ou classificação similar que contemplasse a intersecção entre filogenética e bioinformática com a computação de alto desempenho.
+Esta estratégia é relevante uma vez que, para o melhor do conhecimento do autor, não foram encontradas nenhuma outra taxonomia ou classificação similar que contemplasse a intersecção entre filogenética e bioinformática com a computação de alto desempenho.
 
 
 Diante desta situação, e conforme pode ser visto na \autoref{fig:taxonomia}, foi formalizada uma taxonomia que classifica os trabalhos encontrados em distintas categorias e em uma estrutura hierárquica que contempla as principais características de cada trabalho.
@@ -2572,9 +2572,10 @@ Ainda assim, o programa consegue obter desempenho razoável ao fazer uso de todo
 Além da popularidade do projeto, evidenciada pelo número de citações, outro fator relevante para sua escolha está no fato de que, no processo de análise e inferência filogenética, a seleção de um sistema de substituição molecular é um dos passos preparatórios à análise propriamente dita, assim como a coleta de amostras e o alinhamento de sequências moleculares.
 Contudo, apesar do seu carácter preparatório, este costuma ser um passo demorado em função do custo computacional da avaliação de \textit{best--fit}, dentre os inúmeros sistemas de substituição, assim como, de suas variantes, e também o conjunto de dados a ser analisado.
 
+%TODO: underflow
 
-De acordo com levantamento realizado junto ao laboratório de filogenética da UNISINOS, em um típico fluxo de tarefas para análise filogenética (como aquele apresentado na \autoref{fig:modelo-workflow-unisinos}), a seleção de sistemas pode levar diversas horas e, conforme o tamanho e a quantidade dos alinhamentos de sequências, nem mesmo chega a terminar, esbarrando em limitações técnicas.
-Esta lentidão no processo de busca do sistema mais adequado aos dados pode fazer com que pesquisadores negligenciem a importância de escolher o sistema correto, o que, segundo advertem \citetexto{Minin2003} e \citetexto{Keane2006a}, pode levar a conclusões infundadas e puramente erradas.
+De acordo com levantamento realizado junto ao laboratório de filogenética da UNISINOS, em um típico fluxo de tarefas para análise filogenética (como aquele apresentado na \autoref{fig:modelo-workflow-unisinos}), a seleção de sistemas pode levar diversas horas e, conforme o tamanho e a quantidade dos alinhamentos de sequências, nem mesmo chega a finalizar, esbarrando em limitações técnicas.
+Esta lentidão no processo de busca do sistema mais adequado aos dados pode fazer com que pesquisadores negligenciem a importância de escolher o sistema correto, o que, segundo advertem \citetexto{Minin2003} e \citetexto{Keane2006a}, pode levar a conclusões infundadas.
 
 
 Sendo assim, uma possível redução no tempo de execução destes cálculos traz duplos benefícios ao: 
@@ -2838,7 +2839,7 @@ Visando atender este cenário a arquitetura do modelo \textsf{He}--lastic requer
 %são um padrão de
 %projeto recomendado para o paradigma de computação em nuvem e favorecem a elasticidade e
 %a tolerância a falhas
-por meio do uso de filas buscamos fornecer ao sistema os meios para se adaptar às variações de demanda e mantê-lo resiliente a falhas, uma vez que, processos com erros podem voltar para a fila ou ser direcionados para outro destino. Em se tratando de arquiteturas que visam elasticidade, tanto provedores de computação em nuvem, quanto acadêmicos como \citetexto{Tran2011}, recomendam o uso de filas e comunicação assíncrona orientada a eventos como padrão de projetos.
+por meio do uso de filas é possível fornecer ao sistema os meios para se adaptar às variações de demanda e mantê-lo resiliente a falhas, uma vez que, processos com erros podem voltar para a fila ou ser direcionados para outro destino. Em se tratando de arquiteturas que visam elasticidade, tanto provedores de computação em nuvem, quanto acadêmicos como \citetexto{Tran2011}, recomendam o uso de filas e comunicação assíncrona orientada a eventos como padrão de projetos.
 Seu uso é difundido entre iniciativas \textit{cloud--native} e suportado pelos principais provedores de computação em nuvem através de serviços gerenciados além de grande quantidade de alternativas \textit{open--source};
 		
 		\item \textbf{FaaS:}
@@ -3318,7 +3319,7 @@ Todo código utilizado pelo protótipo, assim como o código do jModelTest, é p
 
 
 O protótipo foi desenvolvido utilizando a linguagem Python, na sua versão 3.6, no ambiente do provedor de computação em nuvem AWS, utilizando, portanto, suas APIs e serviços disponíveis como blocos de construção.
-A abordagem adotada para replicar o funcionamento do jModelTest foi através da repetição de \textit{traces} de execução, o que exigiu pequenas modificações\footnote{
+A abordagem utilizada para replicar o funcionamento do jModelTest foi através da repetição de \textit{traces} de execução, o que exigiu pequenas modificações\footnote{
 	As alterações realizadas para viabilizar a geração de \textit{traces} não alteraram o comportamento da aplicação e podem ser vistas no comparativo disponível no endereço: \url{https://github.com/mateusaubin/jmodeltest2/compare/8242fc..master?diff=split}.
 } no projeto original.
 Estas decisões são detalhadas a seguir.
@@ -3445,12 +3446,12 @@ A recomendação recebida foi por utilizar os alinhamentos de exemplo que acompa
 Embora exista uma quantidade significativa de alinhamentos presentes no repositório indicado, sua utilização se mostrou proibitiva em função do tempo de execução exigido e, consequentemente, a necessidade de um grande \textit{pool} computacional à disposição.
 
 
-Tendo em vista que uma das diretrizes de projeto do modelo \textsf{He}--lastic está na sua capacidade de lidar com amplas variações no que diz respeito a carga computacional, o uso de arquivos que ultrapassem o tempo de execução de 24 horas foi julgado não relevante, uma vez que, do ponto de vista dos resultados, tais testes não adicionariam valor por apresentar comportamento muito similar dentre este conjunto.
+Tendo em vista que uma das diretrizes de projeto do modelo \textsf{He}--lastic é sua capacidade de lidar com amplas variações no que diz respeito a carga computacional, o uso de arquivos que ultrapassem o tempo de execução de 24 horas foi julgado não relevante, uma vez que, do ponto de vista dos resultados, tais testes não adicionariam valor por apresentar comportamento muito similar dentre este conjunto.
 A escolha por evitar alinhamentos de grandes dimensões também gera efeito no custo financeiro requerido para executar os cenários de testes do modelo e do jModelTest, além de contribuir significativamente no tempo necessário para executar cada cenário, de forma que a escolha por deixar tais arquivos de fora do conjunto de dados permitiu uma maior variação nos cenários de testes em função do tempo de execução reduzido.
 
 
-Assim foram estabelecidos 12 arquivos com ampla variação no tempo de execução que serão usados para as execuções de avaliação do modelo \textsf{He}--lastic e do jModelTest.
-Dos 12 arquivos apenas um deles se origina do repositório indicado por Stamatakis, enquanto os demais são oriundos do próprio projeto jModelTest.
+Assim foram estabelecidos doze arquivos com ampla variação no tempo de execução que serão usados para as execuções de avaliação do modelo \textsf{He}--lastic e do jModelTest.
+Dos doze arquivos apenas um deles se origina do repositório indicado por Stamatakis, enquanto os demais são oriundos do próprio projeto jModelTest.
 Esta decisão foi motivada pelas circunstâncias expostas anteriormente e colhe apoio no fato de que favorece análises comparativas e facilita a avaliação dos resultados por terceiros.
 A \autoref{tab:metodologia-etapas-dataset} apresenta os arquivos e algumas de suas características, assim como uma referência do tempo de execução máximo obtido por execuções em uma instância com dois núcleos de processamento disponíveis.
 
@@ -3460,7 +3461,7 @@ Conforme pode ser visto na \autoref{tab:metodologia-etapas-jmodelparams}, a esco
 Considerando este perfil de usuário foi estabelecido que os parâmetros de execução serão os mais compreensivos possíveis, empregando o maior número de avaliações para obter, desta forma, um amplo panorama acerca das características de execução de cada sistema de substituição molecular.
 
 
-No jModelTest este cenário se dá através das utilização de \textit{Clustering Search}, conforme detalhado na \autoref{sec:estrategias-elasticidade}, que adota uma heurística capaz de reduzir os 1624 sistemas disponíveis para teste em 6 conjuntos que somados totalizam 288 sistemas (vide \autoref{tab:modelo-elasticidade-jmodelsteps}).
+No jModelTest este cenário se dá através das utilização de \textit{Clustering Search}, conforme detalhado na \autoref{sec:estrategias-elasticidade}, que adota uma heurística capaz de reduzir os 1624 sistemas disponíveis para teste em seis conjuntos que somados totalizam 288 sistemas (vide \autoref{tab:modelo-elasticidade-jmodelsteps}).
 Também embasa esta escolha o fato de que parâmetros menos compreensivos de execução do jModelTest resultam em apenas 88, 40 ou 24 execuções paralelas, um número considerado baixo para colocar à prova as capacidades de paralelismo e elasticidade da camada FaaS do modelo \textsf{He}--lastic, uma vez que não é incomum encontrar servidores com mais de 16 \textit{cores} de processamento e VMs de provedores de computação em nuvem com mais de 30 núcleos.
 
 
@@ -3471,7 +3472,7 @@ Cabe ressaltar, mais uma vez, que a escolha dos arquivos de alinhamentos de sequ
 \subsection{Estratégia de Avaliação do jModelTest}
 
 
-Para viabilizar uma comparação justa entre a abordagem de recursos fixos adotada pelo jModelTest, com a estratégia de elasticidade empregada pelo modelo \textsf{He}--lastic, existe a necessidade de coletar resultados de execução em um ambiente similar, reduzindo as variações em função de possíveis versões de dependências, modelos de hardware, situações de carga do ambiente e outras características inerentes a execução de softwares distribuídos e de alta performance.
+Para viabilizar uma comparação justa entre a abordagem de recursos fixos adotada pelo jModelTest com a estratégia de elasticidade empregada pelo modelo \textsf{He}--lastic, existe a necessidade de coletar resultados de execução em um ambiente similar, reduzindo as variações em função de possíveis versões de dependências, modelos de hardware, situações de carga do ambiente e outras características inerentes a execução de softwares distribuídos e de alta performance.
 Desta forma, a próxima etapa na avaliação do modelo consiste na execução do jModelTest com os arquivos e parâmetros, que determinam o grão de paralelismo, previamente selecionados em um ambiente similar ao que encontrará o protótipo do modelo \textsf{He}--lastic.
 
 
@@ -3490,7 +3491,7 @@ Através de uma análise do código fonte é possível perceber que as funções
 Durante a operação normal do jModelTest é possível observar dois comportamentos de execução, variando conforme a adoção ou não, da técnica de \textit{Clustering Search}, onde o modo que não utiliza esta técnica se comporta de maneira muito similar a um mestre--escravo ou até mesmo um \textit{scatter--gather}, embaraçosamente paralelo ao distribuir para cada nodo/processador um sistema de substituição de sequências para que seja executado o teste de adequação e agregando os resultados antes de devolver uma resposta ao usuário.
 Nos casos onde há o uso de \textit{Clustering Search}, seu modo de operação se assemelha ao de fases paralelas (BSP), uma vez que existem seis fases de computação com barreiras, entre elas, que são utilizadas pela heurística para determinar o ponto de parada do algoritmo.
 Embora não haja comunicação lateral entre os nodos de execução, sendo esta limitada a uma arquitetura mestre--escravo, a existência de uma barreira de sincronização é julgada suficiente para justificar a associação ao modelo BSP.
-Este modo de execução pode gerar desperdício significativo de recursos em função da ociosidade ocasionada pela ampla variação no número de testes de adequação que são executados e, portanto, paralelizáveis em cada uma das 6 etapas que compõem a \textit{Clustering Search}, uma fraqueza do jModelTest já abordada na \autoref{sec:estrategias-elasticidade} e exemplificada na \autoref{tab:modelo-elasticidade-jmodelsteps}.
+Este modo de execução pode gerar desperdício significativo de recursos em função da ociosidade ocasionada pela ampla variação no número de testes de adequação que são executados e, portanto, paralelizáveis em cada uma das seis etapas que compõem a \textit{Clustering Search}, uma fraqueza do jModelTest já abordada na \autoref{sec:estrategias-elasticidade} e exemplificada na \autoref{tab:modelo-elasticidade-jmodelsteps}.
 
 
 Para atender aos objetivos do presente trabalho foi selecionada a estratégia de execução baseada em \textit{threads} por memória compartilhada.
@@ -3722,7 +3723,7 @@ Uma vez que o protótipo também funcionará como um controlador do PhyML, exist
 Para tanto, foi utilizada a biblioteca ALTER, especializada na conversão entre tipos de alinhamentos e também utilizada pelo jModelTest, de modo que todos os arquivos presentes no \textit{dataset} estejam em formato .phy, que é o único reconhecido pelo PhyML.
 
 
-Visando obter uma maior qualidade e reprodutibilidade das execuções realizadas, a aplicação contou com automação, por meio de scripts de execução automatizada dos cenários, tanto para estabelecer as bases de comparação no jModelTest\footnote{Disponível no endereço: \url{https://github.com/mateusaubin/modeltest-loadexerciser/blob/master/exec-old-userdata.sh}}, quanto para gerir e executar as execuções do protótipo do modelo \textsf{He}--lastic\footnote{
+Visando obter uma maior qualidade e reprodutibilidade das execuções realizadas a aplicação contou com automação, por meio de scripts de execução automatizada dos cenários, tanto para estabelecer as bases de comparação no jModelTest\footnote{Disponível no endereço: \url{https://github.com/mateusaubin/modeltest-loadexerciser/blob/master/exec-old-userdata.sh}}, quanto para gerir e executar as execuções do protótipo do modelo \textsf{He}--lastic\footnote{
 	Disponível nos endereços: \url{https://github.com/mateusaubin/modeltest-loadexerciser/blob/master/exec-new.py}
 	\&
 	\url{https://github.com/mateusaubin/modeltest-loadexerciser/blob/master/exec-new-helper.sh}
@@ -4056,7 +4057,7 @@ e na definição de que uma tarefa só será removida do armazenamento de estado
 %
 Através destas estratégias, o protótipo não precisa de garantias firmes quanto as capacidades de outros elementos da arquitetura, como por exemplo, as filas de mensagens implementadas pelo SNS, que oferecem apenas garantias \textit{at least once} (pelo menos uma vez), ao invés da garantia mais complexa de \textit{exactly once} (exatamente uma vez), favorecendo a portabilidade e aumentando a confiabilidade do modelo e, por consequência, do protótipo.
 
-
+%TODO: underflow
 
 Também se tornam aparentes, em função das escolhas arquiteturais, as propriedades de tolerância a falha e recuperação presentes no modelo \textsf{He}--lastic.
 %
@@ -4116,7 +4117,7 @@ Esta forma de heurística usa dados a respeito da fila de execuções do Batch p
 %
 Desta forma, cada vez que uma nova tarefa que falhou na camada FaaS chega para encaminhamento para a camada de Orquestração de Contêineres, a função \texttt{\textit{forwarder}} avalia a quantidade de tarefas pendentes no Batch (Orquestrador de Contêineres) e, no caso de uma variação significativa entre tarefas pendentes e recursos disponíveis, solicita uma readequação.
 %
-Esta ação permite burlar o tempo necessário para que as primeiras ações de elasticidade entrem em efeito e comecem a aumentar a quantidade de recursos até o equilíbrio, podendo ser encarada (com a devida licença poética) como \textquoteleft pré--aquecimento do forno\textquoteright, contudo, sem desperdício, uma vez que a ação só é realizada quando há de fato tarefas sendo encaminhadas para o Orquestrador de Contêineres.
+Esta ação permite burlar o tempo necessário para que as primeiras ações de elasticidade entrem em efeito e comecem a aumentar a quantidade de recursos até alcançar o equilíbrio, podendo ser encarada como uma etapa preparatória, contudo, sem desperdício, uma vez que a ação só é realizada quando há de fato tarefas sendo encaminhadas para o Orquestrador de Contêineres.
 
 
 
@@ -4322,13 +4323,12 @@ Sendo assim, nas próximas subseções são apresentadas as características de 
 \end{figure}
 
 
-Com vistas a um melhor entendimento do funcionamento da camada de curta duração, implementada através de FaaS, e por intermédio das definições prévias a respeito das métricas de avaliação do modelo \textsf{He}--lastic é apresentado, na \autoref{tab:modelo-custben-faas}, um estudo a respeito das escolhas de parâmetros da camada adotando o provedor AWS como referência.
+Buscando um melhor entendimento do funcionamento da camada de curta duração, implementada através de FaaS, e por intermédio das definições prévias a respeito das métricas de avaliação do modelo \textsf{He}--lastic é apresentado, na \autoref{tab:modelo-custben-faas}, um estudo a respeito das escolhas de parâmetros da camada adotando o provedor AWS como referência.
 Através dos resultados apresentados neste estudo, é possível notar que a propriedade de associatividade de custos se mantém ao analisar as duplas em destaque referentes aos cenários \{3, 4\}, \{5, 7\} e \{10, 11\}, evidenciando a relação entre o tempo efetivo de execução, o tempo limite de execução e a medida de potência, definida, no estudo da \autoref{tab:modelo-custben-faas}, como a alocação de memória, conforme adotado pela AWS.
 
 
-Embora o modelo de execução baseado em FaaS evite custos ociosos na ausência de requisições, obsoletando a necessidade de recursos que podem permanecer ociosos por longos períodos de tempo aguardando requisições (com \textit{web--servers} e servidores de banco de dados com baixa utilização figurando como exemplos evidentes), ele, em contrapartida, penaliza operações que ficam em espera como requisições remotas, conexão com bancos de dados ou qualquer operação que demande alto volume de I/O ou tráfego de rede.
-
-
+Embora o modelo de execução baseado em FaaS evite custos ociosos na ausência de requisições, removendo a necessidade de recursos que tendem permanecer ociosos por longos períodos de tempo aguardando requisições, este, em contrapartida, penaliza operações que ficam em espera como requisições remotas, conexão com bancos de dados ou qualquer operação que demande alto volume de I/O ou tráfego de rede.
+%
 Desta forma, lançar mão de FaaS para atuar como \textit{load--balancer}, por exemplo, embora seja atualmente uma tarefa que exige poucos recursos computacionais, se mostra uma péssima ideia ao exacerbar alguns dos pontos negativos do modelo de execução, nomeadamente:
 \begin{inparaenum}[\itshape a\upshape)]
 	\item espera pelo resultado de terceiros, uma vez que o \textit{load--balancer} apenas encaminha e aguarda resposta de um recurso de \textit{back--end};
@@ -4429,7 +4429,7 @@ Através do uso de um orquestrador de contêineres o modelo \textsf{He}--lastic 
 Ainda que o tempo de provisionamento de recursos em um cenário de orquestração de contêineres seja similar ao observado quando usadas apenas máquinas virtuais, a vantagem que se obtém é um ambiente de execução agnóstico ao hardware e sistema operacional, evitando a preocupação com os mesmos e permitindo colher os frutos das otimizações realizadas pelos provedores sem a necessidade de reestruturar o código de aplicação.
 
 
-Diferentemente da camada FaaS, onde não há controle sobre o hardware subjacente, o uso de orquestração de contêineres permite a escolha de famílias de instâncias, dando conta de cenários como os mencionados anteriormente, na \autoref{sec:modelo-custben-faas}, onde existe uma forte demanda por uma única dimensão computacional como memória, CPU e I/O, seja de rede ou armazenamento.
+Diferentemente da camada FaaS, na qual não há controle sobre o hardware subjacente, o uso de orquestração de contêineres permite a escolha de famílias de instâncias, dando conta de cenários como os mencionados anteriormente, na \autoref{sec:modelo-custben-faas}, onde existe uma forte demanda por uma única dimensão computacional como memória, CPU e I/O, seja de rede ou armazenamento.
 Através desta característica é possível ajustar o modelo \textsf{He}--lastic para que seja capaz de atender a uma ampla gama de cenários, mostrando sua flexibilidade e capacidade de generalização para situações além do cálculo de adequação de sistemas de substituição de sequências moleculares.
 
 
@@ -4539,12 +4539,13 @@ Tal comportamento é suportado pela análise de custo realizada na \autoref{sec:
 
 
 De maneira a facilitar a visualização deste comportamento, a \autoref{fig:modelo-custben-misto} apresenta um panorama sobre os dados oriundos da \autoref{tab:modelo-custben-misto}, quando limitados ao cenário que contempla uma divisão equalitária entre o atendimento das requisições disparadas.
-Ao analisar o gráfico, fica evidente a estreita relação entre o custo da camada FaaS e a quantidade de requisições, uma situação que não se repete na camada baseada em Orquestração de Contêineres, uma vez que seu modelo de custo considera apenas o tempo de uso dos recursos.
+%TODO torna-se, ver 
+Analisando o gráfico é visível a estreita relação entre o custo da camada FaaS e a quantidade de requisições, uma situação que não se repete na camada baseada em Orquestração de Contêineres, uma vez que seu modelo de custo considera apenas o tempo de uso dos recursos.
 Embora não exista, na precificação, a relação entre requisições e tempo de uso, este é um fator relevante na construção dos cenários de análise de custo benefício do modelo \textsf{He}--lastic, visto que, requisições que consomem muitos recursos causarão um aumento no tempo necessário para seu processamento e resultando em um ajuste na variável $t$ do componente $Custo_{elastico}$, conforme apresentado na \autoref{eq:custo-elastico}.
 A situação inversa também é relevante para análise pois mostra que o custo oriundo do Orquestrador de Contêineres pode dominar o custo total em cenários de baixo volume de curtas requisições, o que pode resultar em baixa utilização dos recursos disponíveis alocados por esta camada em função da ociosidade.
 
 
-Contudo, um dos diferenciais do modelo \textsf{He}--lastic se mostra difícil de mapear apenas através de análises de custo em situações de carga.
+Todavia, um dos diferenciais do modelo \textsf{He}--lastic se mostra difícil de mapear apenas através de análises de custo em situações de carga.
 Devido a forma como as duas camadas de elasticidade são projetadas, uma das propriedades do modelo proposto é sua capacidade de manter custo zero em períodos de ociosidade, diferentemente de abordagens anteriores.
 A existência de uma camada de elasticidade baseada em FaaS fornece os mecanismos necessários para ativar, sob demanda, a segunda camada baseada em Orquestração de Contêineres, de forma que, através da combinação de camadas, torna-se possível manter inativa também a segunda camada, contudo livre do risco de rejeitar requisições por falta de servidores.
 
@@ -4682,7 +4683,7 @@ Uma vez detalhados os objetivos da requisição e o contexto de uso, os recursos
 
 
 
-Contudo, ao detectar uma variação atípica nos tempos de execução, que se manifesta no desvio padrão e no coeficiente de variação (CV\footnote{
+Ao detectar uma variação atípica nos tempos de execução, que se manifesta no desvio padrão e no coeficiente de variação (CV\footnote{
 	Coeficiente de Variação é uma métrica estatística amplamente utilizada para indicar a precisão, repetitividade e reprodutibilidade de avaliações, atuando também como indicador de dispersão de uma distribuição por incorporar em seu cálculo a média e o desvio padrão, sendo definido pela fórmula:
 	\[ \text{CV} = \dfrac{desvio~padr\tilde{a}o}{m\acute{e}dia} \]
 }) das amostras coletadas, conforme evidências da \autoref{tab:results-jmodel-cv}, 
@@ -4760,7 +4761,7 @@ Além de amplificar as diferenças relativas, medida em termos do CV, as tarefas
 
 Entretanto é possível afirmar que as métricas de média e mediana encontram-se, de maneira geral, bastante alinhadas entre si, apresentando pequenos deltas, o que, combinado com os dados de CV, indica uma distribuição estatística equilibrada e com uma tendência central bem definida.
 %
-Apesar da relativamente alta variação encontrada no cenário $C_{j8}$ quando comparado com o restante dos resultados, a afirmação anterior encontra suporte na métrica de Variância\footnote{
+Apesar da relativamente alta variação encontrada no cenário $C_{j8}$ quando comparado com o restante dos resultados, a afirmação anterior apoia-se na métrica de Variância\footnote{
 	Variância representa uma medida de dispersão estatística que indica quão distantes do valor esperado estão os valores observados sendo calculada através da média do quadrado da distância de cada ponto até a média com a fórmula:
 	\[ \text{VAR} = m\acute{e}dia\left((X-m\acute{e}dia)^2\right) \]
 }, que apresenta valores maiores do que zero em apenas quatro ocorrências, sendo elas:
@@ -4806,21 +4807,21 @@ Também é possível perceber a expressiva diferença nos tempos de execução d
 Outro destaque é o primeiro grupo de arquivos, composto por 01-aP6, 02-rodents, 03-example e 04-18S\_insects2, que contabilizam tempos de execução extremamente curtos mesmo em cenários com relativa escassez de recursos como $C_{j2}$, $C_{j4}$ e $C_{j8}$, contabilizando, somados, apenas 1\% do tempo total de execução de cada cenário.
 
 
-Através da análise dos tempos de processamento por sistema de substituição molecular testado pelo jModelTest é possível verificar o caráter destas execuções em termos da sua amplitude de duração.
+Através da análise dos tempos de processamento por sistema de substituição molecular testado pelo jModelTest, é possível verificar o caráter destas execuções em termos da sua amplitude de duração.
 %
 Os histogramas apresentados nas Figuras \ref{fig:results-jmodel-timepermodel-36-stamatakis} e \ref{fig:results-jmodel-timepermodel-02-primate} apresentam a frequência com que os sistemas avaliados se enquadram em um determinado intervalo de tempo de execução.
 %
-É possível determinar pela análise das figuras que a maior parte dos sistemas avaliados se concentra na ponta mais baixa das durações, contudo há também uma característica de cauda longa que contempla execuções que levam mais de 4x o tempo de execução da maioria.
+É possível determinar pela análise das figuras que a maior parte dos sistemas avaliados se concentra na ponta mais baixa das durações, contudo há também uma característica de cauda longa que contempla execuções que levam mais de quatro vezes o tempo de execução da maioria.
 
 
 
 Os resultados obtidos na coleta de execuções do jModelTest comprovam a adequação da escolha da aplicação para uso no modelo \textsf{He}--lastic, conforme definido na \autoref{sec:modelo-selecao} e explorado em detalhes na \autoref{sec:modelo-decisoes}.
 %
-A ampla variação no tempo de execução conforme o arquivo é uma característica relevante para o usuário do jModelTest uma vez que ele não sabe (a não ser por experiência empírica) o tempo de execução e/ou os recursos necessários para que o cálculo de adequação que está prestes a realizar.
+A ampla variação no tempo de execução conforme o arquivo é uma característica relevante para o usuário do jModelTest uma vez que ele não sabe (a não ser por experiência empírica) o tempo estimado de processamento e/ou os recursos necessários para que o cálculo de adequação que está prestes a realizar.
 %
 Este problema torna-se ainda mais relevante em casos onde o usuário pretende executar o jModelTest em arquivos maiores, como 12-stamatakis-59, pois, uma vez que não há indicação de tempo estimado ou complexidade, não é possível saber a quantidade de recursos necessária ou adequada para requisitar em uma determinada execução supondo um ambiente de \textit{cluster} ou \textit{grid} computacional.
 %
-A execução local de arquivos maiores, embora sem dúvida possível, exige uma significativa dose de paciência do usuário em função dos elevados tempos de execução em computadores pessoais (que atualmente costumam ter entre 4 e 8 \textit{cores} de processamento) e até mesmo servidores de menor porte.
+O processamento com recursos locais de arquivos maiores, embora sem dúvida possível, exige uma significativa dose de paciência do usuário em função do tempo de execução necessário em computadores pessoais (que atualmente costumam ter entre 4 e 8 \textit{cores} de processamento) e até mesmo servidores de menor porte.
 
 
 
@@ -4852,7 +4853,7 @@ Para determinar esta métrica foram tomadas as médias dos tempos de execução 
 %
 Desta forma é possível obter um índice normalizado, descrito na \autoref{eq:results-jmodel-eficiencia}, que expressa a perda, ou ganho, de desempenho conforme varia a quantidade de recursos disponível em cada cenário de execução.
 %
-Desta forma, uma execução que levava uma hora pra executar com duas unidades de recursos teria 0\% de perdas caso levasse a metade do tempo para executar com o dobro de unidades de recursos, no caso meia hora e quatro unidades.
+Assim, uma execução com duração de uma hora utilizando duas unidades de recursos teria 0\% de perdas caso levasse a metade do tempo para processar com o dobro de unidades de recursos, no caso meia hora e quatro unidades.
 
 
 
@@ -5051,9 +5052,9 @@ e apresentados na \autoref{tab:results-modelo-samples} que apresenta os resultad
 Para obter a quantidade de chamadas à ferramenta PhyML basta multiplicar os dados da \autoref{tab:results-jmodel-samples} pela \autoref{tab:metodologia-etapas-dataset}, mais especificamente a quantidade de sistemas de substituição molecular contemplados por arquivo quando é seguida a estratégia de \textit{Clustering Search}, resultando em aproximadamente 270 mil (268.992) execuções por arquivo--sistema--cenário.
 
 
-Apesar do número similar de execuções em relação às avaliações do jModelTest, nos testes do modelo proposto foi necessário reduzir a quantidade de amostras para viabilizar a execução de todos os cenários propostos.
+Apesar da quantidade similar de execuções em relação às avaliações do jModelTest, nos testes do modelo proposto foi necessário reduzir a quantidade de amostras para viabilizar a execução de todos os cenários propostos.
 %
-Desta forma foi estabelecido que cinco seria o número mínimo desejado de amostras, menor que os onze desejados na avaliação do jModelTest, contudo ainda significativos o suficiente para fornecer uma rede de segurança estatística para que se possam tirar conclusões acerca dos resultados.
+Desta forma foi estabelecido que cinco seria o número mínimo desejado de amostras, menor que as onze desejadas na avaliação do jModelTest, porém significativas o suficiente para fornecer uma rede de segurança estatística para que se possam tirar conclusões acerca dos resultados.
 %
 Os pontos de maior concentração no número de amostras coletadas indicam áreas de interesse devido ao comportamento dinâmico em duas camadas do modelo ou cenários que apresentavam alta variação nos tempos de execução e receberam maior atenção para garantir uma melhor compreensão do comportamento.
 
@@ -5114,7 +5115,7 @@ Outra possibilidade é a pura variação nos patamares de performance entregue p
 
 
 
-Contudo, assim cono nas execuções do jModelTest é possível afirmar que as estatísticas mostram uma distribuição concentrada nos pontos centrais como média e mediana.
+Assim como nas execuções do jModelTest é possível afirmar que as estatísticas mostram uma distribuição concentrada nos pontos centrais como média e mediana.
 %
 A métrica de Variância, nas execuções do modelo \textsf{He}--lastic também permaneceu zerada para a maior parte das 132 combinações cenário--arquivo, apenas apresentando valores de: dez segundos para a combinação 12-stamatakis-59 cenário $C_{m2}$, dois segundos para a combinação 01-aP6 cenário $C_{c8}$ e apenas um segundo para outras 6 combinações, totalizando somente 6\% de ocorrências maiores que zero.
 %
@@ -5243,13 +5244,13 @@ O arquivo 08-HIV\_vpu.ref2 apresenta uma situação interessante que se manifest
 
 
 
-A existência de \textit{retries} durante o processamento indica a proximidade com os limites estabelecidos para a camada FaaS no cenário $C_{f0}$, onde os recursos alocados não são mais suficientes para dar conta do processamento solicitado.
+A existência de \textit{retries} durante o processamento indica a proximidade com os limites estabelecidos para a camada FaaS no cenário $C_{f0}$, onde os recursos alocados tornam-se suficientes para dar conta do processamento solicitado.
 %
 Contudo, mesmo se aproximando do ponto de saturação e excedendo o tempo limite em alguns processos, é interessante notar que o arquivo ainda é processado integralmente, o que parece contra intuitivo uma vez que não houve alteração nos parâmetros estabelecidos para o cenário.
 %
 Este fenômeno pode ser explicado por duas características que trabalham juntas e influenciam o tempo de execução de cada processo paralelo, sendo a primeira delas as pequenas variações de performance que ocorrem em função da virtualização e de fatores fora do controle da função FaaS como \textit{scheduler} de sistema operacional e contenção de leitura e escrita.
 %
-A segunda característica é a existência de um \textit{cache} na camada FaaS que evita a necessidade de obter um novo ambiente de execução e até mesmo os arquivos de entrada que também ficam em \textit{cache} em área temporária de armazenamento, o que acelera de maneira significativa uma reexecução ao remover a necessidade de buscar recursos remotos.
+A segunda característica é a existência de um \textit{cache} na camada FaaS que evita a necessidade de obter um novo ambiente de execução e até mesmo os arquivos de entrada que também ficam em \textit{cache} em área temporária de armazenamento, acelerando de maneira significativa uma reexecução ao remover a necessidade de buscar recursos remotos.
 
 
 
@@ -5496,7 +5497,7 @@ Contudo, para afirmar com segurança que esta é uma característica do serviço
 %
 No entanto a experiência do autor sugere que este comportamento tem origem, de fato, na implementação interna do serviço AWS Batch.
 %
-Contudo, indiferente da origem deste comportamento, sua ocorrência perde relevância a medida que aumentam os tamanhos dos arquivos e as durações de cada requisição de processamento, reduzindo também seu impacto no desempenho do modelo \textsf{He}--lastic.
+Indiferentemente da origem deste comportamento, sua ocorrência perde relevância a medida que aumentam os tamanhos dos arquivos e as durações de cada requisição de processamento, reduzindo também seu impacto no desempenho do modelo \textsf{He}--lastic.
 
 
 Por fim, as Figuras \ref{fig:results-modelo-batch-stamatakis} e
@@ -5579,11 +5580,11 @@ Os demais cenários se mantém na faixa de 25\% dos sistemas processados pelo Or
 
 
 
-Por meio da análise conjunta sobre os dados da \autoref{tab:results-modelo-avgs}, \autoref{fig:results-modelo-caracteristicas} e \autoref{tab:results-modelo-batchratio} é possível estabelecer que a razão entre os arquivos processados pela camada FaaS e pela camada de Orquestração de Contêineres exerce uma significativa influência no tempo total das execuções quando se utiliza o modelo \textsf{He}--lastic.
+Por meio da análise conjunta sobre os dados da \autoref{tab:results-modelo-avgs}, \autoref{fig:results-modelo-caracteristicas} e \autoref{tab:results-modelo-batchratio} é possível estabelecer que a razão entre os arquivos processados pela camada FaaS e pela camada de Orquestração de Contêineres exerce uma significativa influência na duração total das execuções quando se utiliza o modelo \textsf{He}--lastic.
 %
 Também é possível perceber, integrando na análise os dados da \autoref{tab:metodologia-cenarios-helastic}, que existe grande sensibilidade ao tempo limite de execução estabelecido para a camada FaaS, onde os arquivos processados pelos cenários $C_{m1}$, $C_{m3}$ e $C_{m6}$ apresentam os menores níveis de arquivos processados na camada de Orquestração de Contêineres.
 %
-Contudo, no que diz respeito ao tempo total de execução, a comparação entre os cenários $C_{m3}$ e $C_{m4}$ mostra que através da redução no tempo limite da camada FaaS para $1/4$ (de 60s para 15s), enquanto aumenta os recursos do Orquestrador de Contêineres em $2,25x$ (de 16 para 36), é possível obter melhores tempos de execução, conforme provam os resultados dos arquivos 09-gusanos16S.mafft, 11-gusanosCOI.mafft, e 12-stamatakis-59.
+Contudo, no que diz respeito a duração total de execução, a comparação entre os cenários $C_{m3}$ e $C_{m4}$ mostra que através da redução no tempo limite da camada FaaS para $1/4$ (de 60s para 15s), enquanto aumenta os recursos do Orquestrador de Contêineres em $2,25x$ (de 16 para 36), é possível obter melhores tempos de execução, conforme provam os resultados dos arquivos 09-gusanos16S.mafft, 11-gusanosCOI.mafft, e 12-stamatakis-59.
 
 
 
@@ -5848,7 +5849,7 @@ Adicionalmente, os cenários utilizados para comparação de custos foram reduzi
 %
 Os identificadores de tais cenários seguem o formato $C_{mX}$ e foram escolhidos para esta análise aqueles que apresentaram melhor desempenho em termos dos tempos de execução conforme a quantidade de recursos disponível para alocação.
 %
-Como já discutido, embora a quantidade de recursos não seja um indicativo confiável de semelhança entre os cenários, ele se mostrou o único viável na comparação entre jModelTest e o modelo proposto.
+Como mencionado anteriormente, embora a quantidade de recursos não seja um indicativo confiável de semelhança entre os cenários, ele se mostrou o único viável na comparação entre jModelTest e o modelo proposto.
 
 
 O critério de seleção dos cenários que participam da análise comparativa de custos se baseou nos dados das Tabelas \ref{tab:results-modelo-mixed} e \ref{tab:results-modelo-mixed-summary}, escolhendo o que obteve melhor desempenho quando agrupados em termos da quantidade de CPUs disponíveis para alocação, conforme determinado na definição dos cenários de avaliação para o modelo \textsf{He}--lastic na \autoref{tab:metodologia-cenarios-helastic}.
@@ -5972,7 +5973,7 @@ Contudo, ainda mais interessante é a análise do cenário $C_{c36}$, correspond
 %
 Mesmo configurado para utilizar até 36 \textit{cores} de processamento, o gerenciador de elasticidade adota, neste cenário, um comportamento bastante conservador ao alocar menos de cinco CPUs para os arquivos 04-18S\_insects2 e 12-stamatakis-59, o que representa menos de 15\% do valor permitido.
 %
-Embora este comportamento não seja nocivo para o custo financeiro, uma vez que o custo acompanha a quantidade de recursos utilizados ao longo do tempo, a baixa alocação efetiva traz impactos perceptíveis na duração do processamento, e provavelmente está ocorrendo também nos demais cenários, embora mascarado pela grande quantidade de CPUs da camada FaaS.
+Embora este comportamento não seja nocivo para o custo financeiro, uma vez que este acompanha a quantidade de recursos utilizados ao longo do tempo, a baixa alocação efetiva traz impactos perceptíveis na duração do processamento, e provavelmente está ocorrendo também nos demais cenários, embora mascarado pela grande quantidade de CPUs da camada FaaS.
 
 
 
@@ -6027,7 +6028,7 @@ Assim, o resultado de custo \$ 3,40 para o cenário $C_{j36}$, representa uma in
 
 Consolidando os resultados obtidos para os cenários de avalição do jModelTest e do modelo \textsf{He}--lastic, a \autoref{tab:results-custos-summary} apresenta o comparativo dos desempenhos em termos de tempo de execução e custos dos dados coletados.
 %
-Estão representados, na tabela, os cenários de teste do jModelTest com seus custos mínimos, calculados estritamente em função do tempo de execução, assim como os dados dos cenários com melhor desempenho em termos dos tempos de execução obtidos para o modelo proposto.
+Estão representados, na tabela, os cenários de teste do jModelTest com seus custos mínimos, calculados estritamente em função do tempo de execução, assim como os dados dos cenários com melhor desempenho obtidos para o modelo proposto.
 %
 A comparação entre eles foi realizada através do cálculo do percentual que cada uma das métricas representa sobre a soma dos resultados obtidos pelo cenário do jModelTest e o do \textsf{He}--lastic, onde um resultado de 50\% representa o equilíbrio entre as abordagens, consequência de tempos de execução e/ou custos iguais.
 %
@@ -6382,7 +6383,7 @@ Tão importante são estas ferramentas que sua utilização deu origem a uma sub
 
 Apesar dos frutos desta união, paradigmas mais recentes como a computação em nuvem ainda são ausentes em se tratando de aplicações para filogenética.
 Visando mapear o estado da arte no que diz respeito aos projetos de software no âmbito da filogenética foi elaborada uma taxonomia, disponível na \autoref{fig:taxonomia}, que os classifica em termos das suas categorias, métodos e finalidades.
-Embora esta taxonomia tenho cumprido seu papel no contexto deste trabalho, ainda é possível aprimorá-la buscando, por exemplo, eliminar a categoria \textquoteleft outras finalidades\textquoteright, que ainda detêm um número não trivial de trabalhos conforme mostra a \autoref{tab:survey-stats-bio}.
+Embora esta taxonomia tenha cumprido seu papel no contexto deste trabalho, ainda é possível aprimorá-la buscando, por exemplo, eliminar a categoria \textquoteleft outras finalidades\textquoteright, que ainda detêm um número não trivial de trabalhos conforme mostra a \autoref{tab:survey-stats-bio}.
 
 
 Através de um levantamento bibliográfico, apresentado na \autoref{tab:survey-comparativo} e sumarizado do ponto de vista da computação pela \autoref{tab:survey-stats-comp} foi possível confirmar a hipótese da baixa penetração de novas tecnologias.
@@ -6491,11 +6492,11 @@ Por meio dos resultados consolidados é possível estabelecer que, conforme a qu
 
 
 
-Traçando um paralelo aos objetivos que nos propomos a alcançar com este trabalho e que foram delineados na \autoref{sec:objetivos}, podemos destacar cinco deles:
+Traçando um paralelo aos objetivos propostos pelo trabalho e que foram delineados na \autoref{sec:objetivos}, é possível destacar cinco deles:
 
 \begin{enumerate}[label={\arabic*)}]
 	
-	\item Taxonomia: com base no levantamento bibliográfico realizado no contexto deste trabalho e objetivando um entendimento compartilhado no âmbito da filogenética e suas ferramentas elaboramos a taxonomia apresentada na \autoref{fig:taxonomia};
+	\item Taxonomia: com base no levantamento bibliográfico realizado no contexto deste trabalho e objetivando um entendimento compartilhado no âmbito da filogenética e suas ferramentas, foi elaborada uma taxonomia apresentada na \autoref{fig:taxonomia};
 	
 	
 	\item Mapeamento do Estado da Arte: onde foi identificado que uma parcela significativa dos projetos de \textit{software} utilizados no âmbito da filogenética, apesar de já bem estabelecidos e populares, ainda não dá suporte à técnicas de computação de alto desempenho como a elasticidade;
@@ -6504,7 +6505,7 @@ Traçando um paralelo aos objetivos que nos propomos a alcançar com este trabal
 	\item Modelo \textsf{He}--lastic: partindo de um dos mais populares projetos de \textit{software} filogenético, foi proposto um modelo, descrito na \autoref{fig:modelo-strategies}, que permite um comportamento verdadeiramente elástico no aproveitamento de recursos computacionais e capaz de lidar com tarefas com ampla variação de complexidade para que seu uso seja mais eficiente do ponto de vista computacional e financeiro;
 	
 	
-	\item Elasticidade em Duas Camadas: como decorrência do modelo adotado para a solução no contexto da filogenética chegamos a uma estratégia de elasticidade combinada em dois níveis (\autoref{fig:modelo-arq-full}) que pode ser generalizada e aplicada à uma série de problemas computacionais cuja característica marcante é a heterogeneidade na complexidade e esforço computacional de suas etapas paralelas, sendo dividido, a grosso modo, em uma camada de elasticidade agressiva mas limitada em termos do tempo de execução, e uma camada de elasticidade mais estável e configurável, indicada para processamentos de média e longa duração;
+	\item Elasticidade em Duas Camadas: como decorrência do modelo adotado para a solução no contexto da filogenética foi adotada uma estratégia de elasticidade combinada em dois níveis (\autoref{fig:modelo-arq-full}) que pode ser generalizada e aplicada à uma série de problemas computacionais cuja característica marcante é a heterogeneidade na complexidade e esforço computacional de suas etapas paralelas, sendo dividido, a grosso modo, em uma camada de elasticidade agressiva mas limitada em termos do tempo de execução, e uma camada de elasticidade mais estável e configurável, indicada para processamentos de média e longa duração;
 	
 	
 	\item Estudo de Custo--Benefício: que demonstrou, por meio de dados hipotéticos, as características da interação entre as duas camadas de elasticidade utilizadas pelo modelo proposto no que diz respeito ao custo financeiro apresentando, também, as características de custo das camadas de elasticidade de maneira independente, o que permite compreender melhor cada camada assim como sua estrutura de custos e cenários ideais de utilização.
