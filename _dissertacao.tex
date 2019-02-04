@@ -300,7 +300,7 @@ Aplicada da Universidade do Vale do Rio dos Sinos --- UNISINOS
 %=======================================================================
 \begin{abstract}
 
-%TODO: Valorizar a análise de custo benefício \autoref{sec:modelo-custben}
+
 %Deixar bem claro no resumo a contribuição do trabalho.
 %taxonomia
 
@@ -1420,7 +1420,6 @@ Empresas não precisam mais investir grandes capitais em hardware e infraestrutu
 \end{inparaenum}
 
 
-%TODO: underflow
 
 Por ser relativamente jovem e uma combinação entre tecnologias, a obtenção de uma definição amplamente aceita para a computação em nuvem foi um desafio, pois cada autor favorece as características que mais lhe convém.
 No entanto a elasticidade e o modelo de custos são consenso, formando a base para que o \textit{National Institute of Standards and Technology} (NIST)\footnote{
@@ -2592,7 +2591,7 @@ Na sua estratégia de paralelismo, o programa tira proveito do fato de que o \te
 %
 Estas e outras características técnicas serão abordadas em maior profundidade nas próximas seções.
 
-%TODO: Fix diagramação das figuras
+
 \begin{figure}[tbp]
 	\centering%
 	\begin{minipage}{\textwidth}
@@ -2629,7 +2628,7 @@ Ainda assim, o programa consegue obter desempenho razoável ao fazer uso de todo
 Além da popularidade do projeto, evidenciada pelo número de citações, outro fator relevante para sua escolha está no fato de que, no processo de análise e inferência filogenética, a seleção de um sistema de substituição molecular é um dos passos preparatórios à análise propriamente dita, assim como a coleta de amostras e o alinhamento de sequências moleculares.
 Contudo, apesar do seu carácter preparatório, este costuma ser um passo demorado em função do custo computacional da avaliação de \textit{best--fit}, dentre os inúmeros sistemas de substituição, assim como, de suas variantes, e também o conjunto de dados a ser analisado.
 
-%TODO: underflow
+
 
 De acordo com levantamento realizado junto ao laboratório de filogenética da UNISINOS, em um típico fluxo de tarefas para análise filogenética (como aquele apresentado na \autoref{fig:modelo-workflow-unisinos}), a seleção de sistemas pode levar diversas horas e, conforme o tamanho e a quantidade dos alinhamentos de sequências, nem mesmo chega a finalizar, esbarrando em limitações técnicas.
 Esta lentidão no processo de busca do sistema mais adequado aos dados pode fazer com que pesquisadores negligenciem a importância de escolher o sistema correto, o que, segundo advertem \citetexto{Minin2003} e \citetexto{Keane2006a}, pode levar a conclusões infundadas.
@@ -4118,7 +4117,7 @@ e na definição de que uma tarefa só será removida do armazenamento de estado
 %
 Através destas estratégias, o protótipo não precisa de garantias firmes quanto as capacidades de outros elementos da arquitetura, como por exemplo, as filas de mensagens implementadas pelo SNS, que oferecem apenas garantias \textit{at least once} (pelo menos uma vez), ao invés da garantia mais complexa de \textit{exactly once} (exatamente uma vez), favorecendo a portabilidade e aumentando a confiabilidade do modelo e, por consequência, do protótipo.
 
-%TODO: underflow
+
 
 Também se tornam aparentes, em função das escolhas arquiteturais, as propriedades de tolerância a falha e recuperação presentes no modelo \textsf{He}--lastic.
 %
@@ -4601,7 +4600,6 @@ Tal comportamento é suportado pela análise de custo realizada na \autoref{sec:
 
 
 De maneira a facilitar a visualização deste comportamento, a \autoref{fig:modelo-custben-misto} apresenta um panorama sobre os dados oriundos da \autoref{tab:modelo-custben-misto}, quando limitados ao cenário que contempla uma divisão equalitária entre o atendimento das requisições disparadas.
-%TODO: torna-se, ver 
 Analisando o gráfico é visível a estreita relação entre o custo da camada FaaS e a quantidade de requisições, uma situação que não se repete na camada baseada em Orquestração de Contêineres, uma vez que seu modelo de custo considera apenas o tempo de uso dos recursos.
 Embora não exista, na precificação, a relação entre requisições e tempo de uso, este é um fator relevante na construção dos cenários de análise de cust--benefício do modelo \textsf{He}--lastic, visto que, requisições que consomem muitos recursos causarão um aumento no tempo necessário para seu processamento e resultando em um ajuste na variável $t$ do componente $Custo_{elastico}$, conforme apresentado na \autoref{eq:custo-elastico}.
 A situação inversa também é relevante para análise pois mostra que o custo oriundo do Orquestrador de Contêineres pode dominar o custo total em cenários de baixo volume de curtas requisições, o que pode resultar em baixa utilização dos recursos disponíveis alocados por esta camada em função da ociosidade.
